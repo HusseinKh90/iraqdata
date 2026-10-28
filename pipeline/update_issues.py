@@ -147,7 +147,7 @@ def issue_body(finding: dict, run: dict) -> str:
     expires = sorted({r["available_until"] for r in rows if r.get("available_until")})
     if expires:
         lines.append(f"The downloaded files are in that run's artifact until {expires[-1]}; archive the exact "
-                     "bytes (check each SHA-256) before then, as in docs/collecting_data_doc.md section 5.")
+                     "bytes (check each SHA-256) before then, as in the maintainer's update steps.")
     lines += ["", "_Opened, updated and closed by the weekly update check (pipeline/update_issues.py)._"]
     return "\n".join(lines)
 

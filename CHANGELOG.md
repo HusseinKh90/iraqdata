@@ -52,7 +52,7 @@ First release, with the data release `data-2026-10`.
 
 - Eleven parsers read the archived raw files and stop, naming the file and the sheet, cell or row,
   rather than guess, skip or drop a value. Typed-in values live in transcription records under
-  `pipeline/raw/transcribed/` (`docs/transcription_records.md`), never in code.
+  `pipeline/raw/transcribed/`, never in code.
 - The quality gate (`pipeline/validate.py`) checks schema, plausibility limits derived from each
   series' own data, jumps, accounting identities, cross-source sanity, continuity and freshness.
   `--release` fails on any review notice that has not been acknowledged by a named reviewer.
@@ -64,6 +64,7 @@ First release, with the data release `data-2026-10`.
   saved. A dead-man's switch reports a check that stopped running.
 - `pipeline/export_release.py` runs the gate and the catalog check first and never overwrites an
   existing release; its output is byte-for-byte reproducible.
-- Documentation: `docs/collecting_data_doc.md` (how each source is collected and checked),
-  `docs/source_inventory.md` (sources and terms of reuse), `docs/series.md`,
-  `docs/transcription_records.md` and `docs/linked_inflation_method.md`.
+- Documentation: `docs/user_guide.md` (how to use the library, step by step),
+  `docs/r_and_stata.md` (the same data in R, Stata and Excel without Python), `docs/series.md`
+  (every series) and `docs/linked_inflation_method.md`. Each source's terms of reuse are in
+  `pipeline/metadata/sources.yaml`.

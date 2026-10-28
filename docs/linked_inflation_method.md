@@ -279,8 +279,7 @@ movement. This is why the warning at the top of this document recommends `cpi_co
   2024-01 splice on equal the official 2022-base figures.
 - **Not an official series.** COSIT and the CBI publish the native bases, not this linked series.
 - **Coverage is not documented.** Whether each base covers urban and rural households alike, and whether the
-  1993 base covers the same governorates as the later ones, is not stated in any document found (see
-  `docs/source_inventory.md`).
+  1993 base covers the same governorates as the later ones, is not stated in any document found.
 - **Methodology sources are not archived.** The coverage and weights facts in section 2 come from
   public documents read on 2026-10-26 that are not stored in this repository.
 

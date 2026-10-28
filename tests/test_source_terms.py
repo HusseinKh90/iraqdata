@@ -8,6 +8,7 @@ source, referred to from the raw manifest and the catalog, and an accurate licen
 import datetime
 import re
 
+import pytest
 import yaml
 
 import raw_audit
@@ -56,6 +57,8 @@ def test_manifest_and_catalog_refer_to_existing_records():
                 assert seg.get("source_ref") in ids, (entry["series_id"], i)
 
 
+@pytest.mark.skipif(not (REPO_ROOT / "docs" / "source_inventory.md").is_file(),
+                    reason="docs/source_inventory.md is an internal document, not in the published repository")
 def test_unconfirmed_sources_are_open_items_in_the_inventory():
     text = (REPO_ROOT / "docs" / "source_inventory.md").read_text(encoding="utf-8")
     block = text.split("<!-- terms:begin -->", 1)[1].split("<!-- terms:end -->", 1)[0]
@@ -70,7 +73,7 @@ def test_unconfirmed_sources_are_open_items_in_the_inventory():
 def test_licence_texts_scope_cc_by_to_the_compilation():
     licence = (REPO_ROOT / "LICENSE-DATA").read_text(encoding="utf-8")
     assert "compiled and derived data only" in licence
-    assert "docs/source_inventory.md" in licence and "series metadata" not in licence
+    assert "pipeline/metadata/sources.yaml" in licence and "series metadata" not in licence
     readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
-    assert readme.count("docs/source_inventory.md#terms-of-reuse-by-source") >= 2
+    assert readme.count("pipeline/metadata/sources.yaml") >= 2
     assert "cite both the package and the original publishers" in readme

@@ -17,6 +17,7 @@ import yaml
 from conftest import REPO_ROOT
 
 DOC = REPO_ROOT / "docs" / "collecting_data_doc.md"
+needs_doc = pytest.mark.skipif(not DOC.is_file(), reason="docs/collecting_data_doc.md is an internal document, not in the published repository")
 WORKFLOWS = REPO_ROOT / ".github" / "workflows"
 
 
@@ -24,6 +25,7 @@ def lines():
     return DOC.read_text(encoding="utf-8").splitlines()
 
 
+@needs_doc
 def test_every_named_workflow_exists_or_is_planned():
     offending = []
     for n, line in enumerate(lines(), 1):
@@ -33,6 +35,7 @@ def test_every_named_workflow_exists_or_is_planned():
     assert offending == []
 
 
+@needs_doc
 def test_every_schedule_claim_is_real_or_planned():
     offending = [f"{n}: {line.strip()[:80]}" for n, line in enumerate(lines(), 1)
                  if re.search(r"\bcron\b", line, re.I) and "update_check.yml" not in line
@@ -40,6 +43,7 @@ def test_every_schedule_claim_is_real_or_planned():
     assert offending == []
 
 
+@needs_doc
 def test_document_describes_the_real_update_check():
     text = DOC.read_text(encoding="utf-8")
     assert "update_check.yml" in text
@@ -99,6 +103,7 @@ def test_ci_versions_match_workflow():
     assert found and all(v.replace("-", "–") == want for v in found), (found, want)
 
 
+@needs_doc
 def test_implemented_sources_label_planned_parts_explicitly():
     """
     In a source section whose status block says it is implemented, a heading may mark a planned

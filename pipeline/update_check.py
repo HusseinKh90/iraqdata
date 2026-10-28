@@ -26,7 +26,7 @@ The weekly update check.
 
 Nothing outside --workdir and --report-dir is written, git is never run, and all network access
 goes through the fetchers (downloads.polite_get). Applying an update stays a maintainer step
-(docs/collecting_data_doc.md, section 5, "Maintenance Runbook").
+(the maintainer's runbook).
 
 Exit status: 0 whenever a report was written, whatever it found; 1 if the check itself failed.
 """
@@ -540,7 +540,7 @@ def render_markdown(report: dict) -> str:
     lines += ["", "## Applying an update", "",
               "Nothing has been committed. To apply: download this run's artifact, copy `downloads/<path>` "
               "into `pipeline/raw/<path>`, check each SHA-256 against `report.json`, then follow "
-              "section 5 (\"Maintenance Runbook\") of docs/collecting_data_doc.md.", ""]
+              "the maintainer's update steps.", ""]
     return "\n".join(lines)
 
 

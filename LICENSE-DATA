@@ -17,7 +17,7 @@ subject to the terms of reuse and copyright of each original publisher (Central 
 Iraq, COSIT, Ministry of Finance, OPEC, JODI, EIA, FRED, BIS, World Bank and others).
 Some publishers state no licence; the project does not grant one on their behalf. Each
 source's terms, as recorded and with the date they were checked, are listed in
-docs/source_inventory.md ("Terms of reuse by source") and in the `sources` of each
-release's datapackage.json; every series names the sources it comes from.
+pipeline/metadata/sources.yaml and in the `sources` of each release's datapackage.json;
+every series names the sources it comes from.
 
 When you use the data, cite both the iraqdata package and the original publisher.

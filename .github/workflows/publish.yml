@@ -1,8 +1,8 @@
 name: Publish to PyPI
 
 # Run by hand (Actions, Publish to PyPI, Run workflow) after the version in pyproject.toml has been
-# raised and the change is on main. PyPI trusts this workflow through trusted publishing
-# (docs/publishing.md), so no password or token is stored anywhere. A version that PyPI already
+# raised and the change is on main. PyPI trusts this workflow through trusted publishing, so no
+# password or token is stored anywhere. A version that PyPI already
 # holds cannot be uploaded again: raise the version first.
 on:
   workflow_dispatch:

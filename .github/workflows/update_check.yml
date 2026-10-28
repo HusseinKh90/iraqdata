@@ -1,8 +1,7 @@
 # Weekly update check (reliability and notifications). Fetches every
 # automatically fetchable source, rebuilds and gatekeeps in a scratch folder, and keeps one GitHub
 # issue per open problem (pipeline/update_issues.py), @-mentioning the maintainer when one opens,
-# returns or changes. It never commits: applying an update is a maintainer step
-# (docs/collecting_data_doc.md, section 5, "Maintenance Runbook").
+# returns or changes. It never commits: applying an update is a maintainer step.
 #
 # Missed or failed runs are caught outside GitHub by a healthchecks.io check pinged at start, on
 # success and on failure; its ping URL is the HC_PING_URL secret, and the run fails without it.

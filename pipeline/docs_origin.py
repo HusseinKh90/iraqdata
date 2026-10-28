@@ -176,6 +176,8 @@ def updated_files() -> List[tuple]:
     }
     out = []
     for path, parts in blocks.items():
+        if not path.is_file():      # an internal document kept out of the published repository
+            continue
         text, crlf = _read(path)
         wanted = text
         for begin, end, inner in parts:

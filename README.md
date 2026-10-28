@@ -73,6 +73,11 @@ You need Python 3.10 or newer. To try the latest development version, run
 
 ## How to use
 
+This is a short tour. The [user guide](https://github.com/husseinkh90/iraqdata/blob/main/docs/user_guide.md)
+explains every option step by step: finding series, loading and renaming them, status flags, where
+each number comes from, saving the data, pinning a data release, offline use and what each error
+means.
+
 Import the library:
 
 ```python
@@ -171,7 +176,9 @@ left alone. Data are downloaded from the GitHub releases of `husseinkh90/iraqdat
 
 ## Without Python
 
-Every table is available as a CSV file on the
+The [guide for R and Stata](https://github.com/husseinkh90/iraqdata/blob/main/docs/r_and_stata.md)
+shows how to load a series, turn its dates into dates, use the flags and reshape the table. In short,
+every table is available as a CSV file on the
 [latest release page](https://github.com/husseinkh90/iraqdata/releases/latest), one file per
 subject area (for example `money_banking_monthly.csv`).
 
@@ -207,7 +214,7 @@ A DOI will be added once the release is archived on Zenodo.
 
 Please cite both the package and the original publishers of the series you use (each series'
 sources are in `datapackage.json`, and their terms in
-[Terms of reuse by source](https://github.com/husseinkh90/iraqdata/blob/main/docs/source_inventory.md#terms-of-reuse-by-source)):
+[`pipeline/metadata/sources.yaml`](https://github.com/husseinkh90/iraqdata/blob/main/pipeline/metadata/sources.yaml)):
 - the Central Bank of Iraq;
 - the Central Organization for Statistics and Information Technology (COSIT);
 - the Ministry of Finance;
@@ -223,9 +230,12 @@ sources are in `datapackage.json`, and their terms in
 - **Code:** [MIT](https://github.com/husseinkh90/iraqdata/blob/main/LICENSE).
 - **Data:** the compiled and derived data are [CC BY 4.0](https://github.com/husseinkh90/iraqdata/blob/main/LICENSE-DATA). The source data keep
   their publishers' own terms, some of which state no licence; see
-  [Terms of reuse by source](https://github.com/husseinkh90/iraqdata/blob/main/docs/source_inventory.md#terms-of-reuse-by-source).
+  [`pipeline/metadata/sources.yaml`](https://github.com/husseinkh90/iraqdata/blob/main/pipeline/metadata/sources.yaml).
 
 ## Contributing
 
-For contributors and maintainers, see [`docs/`](https://github.com/husseinkh90/iraqdata/tree/main/docs); publishing the repository and its data
-releases is described in [docs/publishing.md](https://github.com/husseinkh90/iraqdata/blob/main/docs/publishing.md).
+A wrong number, an unclear message or a missing series: please open an issue at
+<https://github.com/husseinkh90/iraqdata/issues> and say the series, the dates and the data release
+(`print(id.get_data_source())`). The documents in
+[`docs/`](https://github.com/husseinkh90/iraqdata/tree/main/docs) describe the series, the linked price
+indices and how to use the data.

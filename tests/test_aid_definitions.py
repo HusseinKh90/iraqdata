@@ -24,7 +24,8 @@ KEY_PHRASE = {
     "BX.GRT.EXTA.CD.WD": "excluding technical cooperation",
 }
 FILE_OF = {"oecd.dac.oda_total_net": "wb_oda_net.json", "oecd.dac.grants_excl_tc": "wb_oda_grants.json"}
-DOCS = ["README.md", "docs/series.md", "docs/source_inventory.md", "docs/collecting_data_doc.md"]
+DOCS = [d for d in ("README.md", "docs/series.md", "docs/source_inventory.md", "docs/collecting_data_doc.md")
+        if (REPO_ROOT / d).is_file()]      # the last two are internal documents, not always present
 
 
 def _entries():

@@ -95,3 +95,12 @@ docs/ground_rules.md
 docs/establishing_monorepo_skeleton.md
 docs/implement_client_library_interface.md
 docs/strategic_value_and_benefits.md
+
+# Internal documents: the maintainer's own checks and runbooks, kept on the maintainer's computer and
+# not published. A repository that already tracks one of them keeps tracking it until it is removed
+# with `git rm --cached`.
+/docs/maintaining.md
+/docs/publishing.md
+/docs/collecting_data_doc.md
+/docs/source_inventory.md
+/docs/transcription_records.md

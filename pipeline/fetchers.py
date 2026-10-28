@@ -220,7 +220,7 @@ def _normalise_ar(text: str) -> str:
 def _not_blocked(text: str, url: str) -> None:
     if _BLOCKED in text:
         raise ValueError(f"cbi_fx: {url} was blocked by the CBI website firewall; download the file by hand "
-                         "(docs/collecting_data_doc.md, section 5, 'Maintenance Runbook')")
+                         "and archive it as the maintainer's update steps describe")
 
 
 def fetch_github_fx(raw_root: Path, today: date, manifest_path: Path) -> Optional[List[Path]]:
