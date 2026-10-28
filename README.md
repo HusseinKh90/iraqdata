@@ -70,6 +70,7 @@ pip install iraqdata
 
 You need Python 3.10 or newer. To try the latest development version, run
 `pip install git+https://github.com/husseinkh90/iraqdata` instead.
+The test suite runs on Python 3.10–3.13.
 
 ## How to use
 
