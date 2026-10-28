@@ -114,12 +114,39 @@ The first line should name release `data-2026-10` from your repository, and the 
 
 ### 6. Optional: PyPI and a DOI
 
-- The README says `pip install iraqdata`, which works only once the package is on PyPI. Either
-  publish it (`python -m build`, then `twine upload dist/*`, with a PyPI account and a project
-  named `iraqdata`) or change that line to the `pip install git+...` form.
-- A DOI comes from archiving a GitHub release on Zenodo (link the repository at zenodo.org, then
-  publish a release). The README promises one; add it to `CITATION.cff` and the README when it
-  exists.
+The README says `pip install iraqdata`, which works only once the package is on PyPI (pypi.org).
+The package holds the Python code only; the data is downloaded from the repository's releases on
+first use, so step 4 must be done first. The workflow `.github/workflows/publish.yml` builds the
+package on GitHub and uploads it with PyPI's "trusted publishing", so you need neither Python on your
+own computer nor a stored password or token.
+
+**Once, on PyPI** (pypi.org, signed in; PyPI first asks you to switch on two-factor login with an
+authenticator app, and to verify your e-mail address):
+
+1. Open your account menu, **Your projects**, then **Publishing** (or go to
+   `https://pypi.org/manage/account/publishing/`).
+2. Under "Add a new pending publisher", choose **GitHub** and fill in:
+   - PyPI project name: `iraqdata`
+   - Owner: `HusseinKh90`
+   - Repository name: `iraqdata`
+   - Workflow name: `publish.yml`
+   - Environment name: `pypi`
+3. Click **Add**. The project does not exist yet; PyPI creates it on the first upload.
+
+**To publish** (needs the files of this repository, including `publish.yml`, on `main`):
+
+1. On GitHub, open the repository, **Actions**, **Publish to PyPI** (left list), **Run workflow**,
+   branch `main`, **Run workflow**.
+2. Wait for both jobs ("build" and "publish") to turn green.
+3. Check `https://pypi.org/project/iraqdata/`, then in a fresh environment `pip install iraqdata`.
+
+PyPI never accepts the same version twice. For a correction, raise the version in `pyproject.toml`,
+`src/iraqdata/__init__.py` and `CITATION.cff`, add a `CHANGELOG.md` entry, push, and run the
+workflow again.
+
+A DOI comes from archiving a GitHub release on Zenodo (link the repository at zenodo.org, then
+publish a release). The README promises one; add it to `CITATION.cff` and the README when it
+exists.
 
 ### 7. Confirm the terms of reuse
 

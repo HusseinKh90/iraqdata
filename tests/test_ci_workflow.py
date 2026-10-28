@@ -11,6 +11,7 @@ import yaml
 from conftest import REPO_ROOT
 
 WORKFLOW = REPO_ROOT / ".github" / "workflows" / "ci.yml"
+PUBLISH_WORKFLOW = REPO_ROOT / ".github" / "workflows" / "publish.yml"
 
 
 @pytest.fixture(scope="module")
@@ -241,7 +242,7 @@ def test_update_check_secrets_only_where_needed(update_job, update_workflow):
 def test_every_action_is_pinned_and_no_floating_runners():
     """Commit SHAs with a version comment; no *-latest images."""
     import re
-    for path in (WORKFLOW, UPDATE_WORKFLOW):
+    for path in (WORKFLOW, UPDATE_WORKFLOW, PUBLISH_WORKFLOW):
         text = path.read_text(encoding="utf-8")
         uses = re.findall(r"uses:\s*(\S+)(.*)", text)
         assert uses, path.name
@@ -262,3 +263,42 @@ def test_update_check_installs_pinned_dependencies(update_job):
     """The weekly check uses the same pins as CI."""
     runs = [step.get("run", "") for step in update_job["steps"]]
     assert any("pip install -c requirements/ci-constraints.txt" in run for run in runs)
+
+
+# ---------------------------------------------------------------------------- publishing to PyPI
+
+
+@pytest.fixture(scope="module")
+def publish_workflow() -> dict:
+    return yaml.safe_load(PUBLISH_WORKFLOW.read_text(encoding="utf-8"))
+
+
+def test_publishing_is_manual_and_only_from_main(publish_workflow):
+    triggers = publish_workflow.get("on", publish_workflow.get(True))
+    assert set(triggers) == {"workflow_dispatch"}
+    assert publish_workflow["jobs"]["build"]["if"] == "github.ref == 'refs/heads/main'"
+
+
+def test_only_the_upload_job_can_ask_pypi_to_trust_it(publish_workflow):
+    assert publish_workflow["permissions"] == {"contents": "read"}
+    build, publish = publish_workflow["jobs"]["build"], publish_workflow["jobs"]["publish"]
+    assert "permissions" not in build
+    assert publish["permissions"] == {"id-token": "write"} and publish["environment"] == "pypi"
+    assert publish["needs"] == "build"
+
+
+def test_publishing_stores_no_password_or_token(publish_workflow):
+    assert "secrets." not in PUBLISH_WORKFLOW.read_text(encoding="utf-8")
+    for job in publish_workflow["jobs"].values():
+        for step in job["steps"]:
+            assert not {"password", "user"} & set(step.get("with", {})) and "env" not in step
+            if str(step.get("uses", "")).startswith("actions/checkout"):
+                assert step["with"]["persist-credentials"] is False
+
+
+def test_the_build_is_checked_before_it_is_uploaded(publish_workflow):
+    build = publish_workflow["jobs"]["build"]["steps"]
+    run = " ".join(step.get("run", "") for step in build)
+    assert run.index("python -m build") < run.index("twine check dist/*")
+    names = [step.get("name", "") for step in publish_workflow["jobs"]["publish"]["steps"]]
+    assert names == ["Fetch the files built above", "Upload to PyPI"]

@@ -57,6 +57,11 @@ Issues = "https://github.com/husseinkh90/iraqdata/issues"
 [tool.hatch.build.targets.wheel]
 packages = ["src/iraqdata"]
 
+# The source archive holds the package and its documents only, not the archived raw files, the
+# pipeline or the tests: those live in the repository.
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/README.md", "/LICENSE", "/LICENSE-DATA", "/CHANGELOG.md", "/CITATION.cff"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 markers = [

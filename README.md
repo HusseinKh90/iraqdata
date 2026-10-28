@@ -2,8 +2,8 @@
 
 **Iraq's economic statistics: clean, consistent and in one place.**
 
-[![Code licence: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
-[![Data licence: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-lightgrey.svg)](LICENSE-DATA)
+[![Code licence: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](https://github.com/husseinkh90/iraqdata/blob/main/LICENSE)
+[![Data licence: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-lightgrey.svg)](https://github.com/husseinkh90/iraqdata/blob/main/LICENSE-DATA)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 
 `iraqdata` gives you Iraq's main economic numbers (money, prices, exchange rates, oil, public
@@ -29,7 +29,7 @@ Anyone who studies Iraq's economy runs into the same problems:
   observations are read directly from archived official files; the rest are computed from them,
   typed in from publications, compiled from a seed of unknown publisher, or come from a named
   non-official source. They are listed in
-  [docs/series.md](docs/series.md#data-not-observed-from-an-archived-official-file) and flagged.
+  [docs/series.md](https://github.com/husseinkh90/iraqdata/blob/main/docs/series.md#data-not-observed-from-an-archived-official-file) and flagged.
 - Breaks between series are marked rather than hidden.
 - The data are checked before each release.
 
@@ -60,7 +60,7 @@ There are 62 series in 9 areas:
 | Cross-border banking | claims `bis.lbs.claims_total`, liabilities `bis.lbs.liabilities_total` | Bank for International Settlements |
 | Development aid | net aid received `oecd.dac.oda_total_net` | OECD / World Bank |
 
-See the [full list of all 62 series](docs/series.md).
+See the [full list of all 62 series](https://github.com/husseinkh90/iraqdata/blob/main/docs/series.md).
 
 ## Install
 
@@ -207,7 +207,7 @@ A DOI will be added once the release is archived on Zenodo.
 
 Please cite both the package and the original publishers of the series you use (each series'
 sources are in `datapackage.json`, and their terms in
-[Terms of reuse by source](docs/source_inventory.md#terms-of-reuse-by-source)):
+[Terms of reuse by source](https://github.com/husseinkh90/iraqdata/blob/main/docs/source_inventory.md#terms-of-reuse-by-source)):
 - the Central Bank of Iraq;
 - the Central Organization for Statistics and Information Technology (COSIT);
 - the Ministry of Finance;
@@ -220,12 +220,12 @@ sources are in `datapackage.json`, and their terms in
 
 ## Licence
 
-- **Code:** [MIT](LICENSE).
-- **Data:** the compiled and derived data are [CC BY 4.0](LICENSE-DATA). The source data keep
+- **Code:** [MIT](https://github.com/husseinkh90/iraqdata/blob/main/LICENSE).
+- **Data:** the compiled and derived data are [CC BY 4.0](https://github.com/husseinkh90/iraqdata/blob/main/LICENSE-DATA). The source data keep
   their publishers' own terms, some of which state no licence; see
-  [Terms of reuse by source](docs/source_inventory.md#terms-of-reuse-by-source).
+  [Terms of reuse by source](https://github.com/husseinkh90/iraqdata/blob/main/docs/source_inventory.md#terms-of-reuse-by-source).
 
 ## Contributing
 
-For contributors and maintainers, see [`docs/`](docs/); publishing the repository and its data
-releases is described in [docs/publishing.md](docs/publishing.md).
+For contributors and maintainers, see [`docs/`](https://github.com/husseinkh90/iraqdata/tree/main/docs); publishing the repository and its data
+releases is described in [docs/publishing.md](https://github.com/husseinkh90/iraqdata/blob/main/docs/publishing.md).
