@@ -1,0 +1,23 @@
+# Which source wins where two parsers write the same table and periods.
+#
+# A period that two sources both supply is taken from `winner` only where a rule covers it; the
+# run reports how many periods each source supplied and every period where both have a value and
+# they differ. Two sources overlapping where no rule covers it stop the run.
+#
+# Fields:
+#   table   - the published table
+#   series  - the series it applies to (a glob)
+#   from    - the first period (inclusive)
+#   to      - the last period (inclusive), or open
+#   winner  - the parser whose value is published
+#   over    - the parser it replaces
+#   reason  - why
+
+rules:
+- table: fiscal_annual
+  series: "fiscal.*"
+  from: "2024"
+  to: open
+  winner: cbi_fiscal_bulletin
+  over: fiscal_seed
+  reason: The CBI Monthly Statistical Bulletin supplies every completed year from 2024; the maintainer-compiled seed covers 2004-2023 only.

@@ -1,0 +1,19 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Data files are stored and checked out byte-exact, so every clone matches the recorded
+# checksums and raw-manifest fingerprints. -text keeps CSV diffs readable.
+*.csv     -text
+*.parquet binary
+*.xlsx    binary
+*.xls     binary
+*.pdf     binary
+*.zip     binary
+pipeline/raw/**     -text
+pipeline/seeds/**   -text
+pipeline/archive/** -text
+
+# Release metadata is always LF so `sha256sum -c` works on every platform
+*.sha256                       text eol=lf
+release/**/datapackage.json    text eol=lf
+pipeline/data/datapackage.json text eol=lf

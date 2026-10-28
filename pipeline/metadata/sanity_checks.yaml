@@ -1,0 +1,48 @@
+# Cross-source sanity checks.
+#
+# Two series from different sources that should move together are compared in every period
+# where both are published. A period outside the tolerance is a [SANITY] Tier-2 review notice.
+# These are sanity checks, not accounting identities: a breach is never fatal, can be
+# acknowledged (acknowledged_warnings.yaml, `sanity:` entries), and does not count towards the
+# identity coverage.
+#
+# Fields:
+#   id         - short name, used in [SANITY] lines and acknowledgements
+#   a, b       - the two series_ids compared
+#   align      - same_period: a and b in the same period, at the same frequency;
+#                quarter_end_change: a is a quarterly flow; b is a monthly stock, whose change
+#                over the quarter (end of quarter minus end of the previous quarter) is compared
+#   convert    - optional, for quarter_end_change: {divide_by: series_id, scale: number}; each
+#                quarter-end stock is divided by that series' value on the quarter's last day (or
+#                the last value before it), then the change is multiplied by scale
+#   band       - for same_period: [low, high] bounds on the ratio a / b
+#   tolerance  - for quarter_end_change: {absolute: number, relative: number}; a breach is
+#                |a - change| > max(absolute, relative * |change|)
+#   rationale  - why the band or tolerance is what it is (required)
+#   reviewed   - YYYY-MM-DD (required)
+
+checks:
+  - id: fx_parallel_vs_official
+    a: parallel_rate_iraq
+    b: fx.official
+    align: same_period
+    band: [0.98, 1.30]
+    rationale: >-
+      The parallel market rate (IQD per USD) sits at or above the CBI's official rate: measured
+      2004-2026, the ratio's median is 1.024, its 1st and 99th percentiles 0.999 and 1.21, and it
+      exceeded 1.2 only in 2023 and 2026. A parallel rate more than 2% below the official one, or a
+      premium above 30%, is more likely a data error than a market rate.
+    reviewed: "2026-10-26"
+  - id: bop_reserves_vs_cbi_stock
+    a: bop.reserve_assets_change
+    b: money.reserves_official
+    align: quarter_end_change
+    convert: {divide_by: fx.official, scale: 1000}
+    tolerance: {absolute: 5000, relative: 0.5}
+    rationale: >-
+      The BOP reserve-asset flow (MILLION_USD, positive = increase) should follow the change in the
+      CBI's official reserves stock (BILLION_IQD, converted to USD at each quarter-end official
+      rate). They differ by valuation changes (in the stock, not in BOP) and timing: measured over
+      53 quarters, correlation 0.75, median gap 1,146 and largest 9,363 million USD. The tolerance
+      max(5,000, half the stock change) flags 6 quarters (user decision 2026-10-26; 2,000 flagged 18).
+    reviewed: "2026-10-26"

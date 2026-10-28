@@ -1,0 +1,113 @@
+# Status flag policy.
+# Codes are the SDMX observation-status codes. pipeline/flags.py
+# applies this file to every parser's output; no parser sets a final flag itself.
+#
+# precedence: when several rules apply to one observation, the code listed first wins.
+# class_flags: the flag each origin class (series_catalog.yaml `origin` segments) implies.
+#   derived: inherit = the highest-precedence flag among the same-period rows of its `inputs`.
+# default_windows: the latest N periods of a series are provisional (P), counted on the series'
+#   own latest period in the table, never on the run date. 0 = never provisional.
+# series: per-series window (an integer, or `publisher` = only the source file's own marking)
+#   with the reason. Series not listed use the default for their frequency.
+precedence: [M, B, E, U, P, A]
+
+class_flags:
+  observed: A
+  derived: inherit
+  modelled: E
+  transcribed: U   # until the source document is archived
+  unknown: U
+
+default_windows: {daily: 0, monthly: 12, quarterly: 4, annual: 2}
+
+# breaks: the first period measured on a changed definition (status B), from the source's own footnote.
+#   status: proposed = read from the footnote and not yet confirmed by the maintainer: it is not applied
+#                       (the maintainer confirmed all seven entries below on 2026-10-28).
+#           confirmed = applied by pipeline/flags.py, so the period is flagged B and the jump gate reports
+#                       a move there as [BREAK] instead of a review notice.
+#   To confirm, change the status and run `python pipeline/run_parsers.py` (a flag change is updated in place).
+breaks:
+  # CBI Key Financial Indicators (cbi.iq/news/view/94), notes under the table
+  - series: money.m0
+    period: 2007-07
+    status: confirmed
+    source: KFI note 1
+    note: From July 1, 2007 the ID overnight deposits were replaced with 7 day deposits, and thus no longer included in base Money and Excess Reserves.
+  - series: money.reserves_official
+    period: 2006-01
+    status: confirmed
+    source: KFI note 9 (on Investments, a part of the official reserve)
+    note: Investment data were amended as of Jan.2006, based on the CBI balance sheet. (May be a revision of earlier months, not a break.)
+  - series: money.reserves_official
+    period: 2009-10
+    status: confirmed
+    source: KFI note 5 (on Gold and SDRs, a part of the official reserve)
+    note: Starting from October 2009, the increasing in SDR is according to the IMF revised treatment of SDR Allocations in Monetary Statistics.
+  - series: money.reserves_official
+    period: 2015-11
+    status: confirmed
+    source: KFI note 5 (on Gold and SDRs, a part of the official reserve)
+    note: Excluding SDR starting frome Nov. 2015  # sic: the workbook's own spelling and no full stop
+  - series: money.required_reserves
+    period: 2005-05
+    status: confirmed
+    source: KFI note 3
+    note: 25% of the Reservable Deposits included the government Deposits Since May 2005
+  - series: money.required_reserves
+    period: 2007-07
+    status: confirmed
+    source: KFI note 3
+    note: then became 75% of Reservable Gov. Deposits since July,2007
+  - series: money.required_reserves
+    period: 2009-03
+    status: confirmed
+    source: KFI note 3
+    note: So 25% of the Reservable Deposits included the government Deposits Since March 2009.
+
+series:
+  # Daily market and administered prices are not revised
+  fx.official: {revision_window: 0, rationale: CBI official rate is administered and not revised}
+  parallel_rate_iraq: {revision_window: 0, rationale: Daily market closes are not revised}
+  oil_price_brent: {revision_window: 0, rationale: FRED daily Brent spot prices are not revised}
+  # CBI Key Financial Indicators, money and banking
+  money.currency_outside_banks: {revision_window: 1, rationale: CBI revises only the latest KFI month (confirmed by the maintainer, 2026-10-25)}
+  money.m0: {revision_window: 1, rationale: CBI revises only the latest KFI month (confirmed by the maintainer, 2026-10-25)}
+  money.m1: {revision_window: 1, rationale: CBI revises only the latest KFI month (confirmed by the maintainer, 2026-10-25)}
+  money.m2: {revision_window: 1, rationale: CBI revises only the latest KFI month (confirmed by the maintainer, 2026-10-25)}
+  money.fx_deposits: {revision_window: 1, rationale: CBI revises only the latest KFI month (confirmed by the maintainer, 2026-10-25)}
+  money.reserves_official: {revision_window: 1, rationale: CBI revises only the latest KFI month (confirmed by the maintainer, 2026-10-25)}
+  money.policy_rate: {revision_window: 1, rationale: CBI revises only the latest KFI month (confirmed by the maintainer, 2026-10-25)}
+  money.bank_deposit_rate: {revision_window: 1, rationale: CBI revises only the latest KFI month (confirmed by the maintainer, 2026-10-25)}
+  money.bank_lending_rate: {revision_window: 1, rationale: CBI revises only the latest KFI month (confirmed by the maintainer, 2026-10-25)}
+  money.required_reserves: {revision_window: 1, rationale: CBI revises only the latest KFI month (confirmed by the maintainer, 2026-10-25)}
+  # CPI (CBI KFI, COSIT indices): monthly default of 12
+  cpi.headline_1993: {revision_window: 0, rationale: Base superseded and no longer revised (update_schedule.yaml ended)}
+  cpi.headline_2007: {revision_window: 0, rationale: Base superseded and no longer revised (update_schedule.yaml ended)}
+  cpi.headline_2012: {revision_window: 0, rationale: Base superseded and no longer revised (update_schedule.yaml ended)}
+  cpi.headline_2022: {revision_window: 12, rationale: Default; COSIT revision practice not documented (confirmed by the maintainer, 2026-10-25)}
+  cpi.core_1993: {revision_window: 0, rationale: Base superseded and no longer revised (update_schedule.yaml ended)}
+  cpi.core_2007: {revision_window: 0, rationale: Base superseded and no longer revised (update_schedule.yaml ended)}
+  cpi.core_2012: {revision_window: 0, rationale: Base superseded and no longer revised (update_schedule.yaml ended)}
+  cpi.core_2022: {revision_window: 12, rationale: Default; COSIT revision practice not documented (confirmed by the maintainer, 2026-10-25)}
+  cpi_headline: {revision_window: 12, rationale: Default; COSIT revision practice not documented (confirmed by the maintainer, 2026-10-25)}
+  cpi_core: {revision_window: 12, rationale: Default; COSIT revision practice not documented (confirmed by the maintainer, 2026-10-25)}
+  # Oil
+  crude_production_secondary: {revision_window: 12, rationale: EIA revises recent months in each release cycle}
+  crude_production_direct: {revision_window: 12, rationale: Monthly default; JODI and OPEC MOMR revise recent months}
+  oil_price_basrah: {revision_window: 0, rationale: Transcribed anchor months only; U outranks P}
+  # COSIT national accounts: later early-warning reports revised quarters a year or more after their first figure
+  # (Q1 2024 is 76,956,186 in the Q1 2024 report and 84,160,312 in the Q1 2025 one; Q4 2024 is 95,635,717 and then 93,118,655)
+  gdp.nominal: {revision_window: 8, rationale: COSIT revised quarterly GDP for at least a year after its first figure}
+  gdp.nominal_oil: {revision_window: 8, rationale: COSIT revised quarterly GDP for at least a year after its first figure}
+  gdp.nominal_nonoil: {revision_window: 8, rationale: COSIT revised quarterly GDP for at least a year after its first figure}
+  gdp.real: {revision_window: 8, rationale: COSIT revised quarterly GDP for at least a year after its first figure}
+  gdp.real_oil: {revision_window: 8, rationale: COSIT revised quarterly GDP for at least a year after its first figure}
+  gdp.real_nonoil: {revision_window: 8, rationale: COSIT revised quarterly GDP for at least a year after its first figure}
+  # CBI fiscal bulletin marks outturns provisional pending final accounts; the seed years are U
+  fiscal.revenue_total: {revision_window: publisher, rationale: CBI bulletin marks outturns provisional pending final accounts}
+  fiscal.revenue_current: {revision_window: publisher, rationale: CBI bulletin marks outturns provisional pending final accounts}
+  fiscal.revenue_investment: {revision_window: publisher, rationale: CBI bulletin marks outturns provisional pending final accounts}
+  fiscal.expenditure_total: {revision_window: publisher, rationale: CBI bulletin marks outturns provisional pending final accounts}
+  fiscal.expenditure_current: {revision_window: publisher, rationale: CBI bulletin marks outturns provisional pending final accounts}
+  fiscal.expenditure_investment: {revision_window: publisher, rationale: CBI bulletin marks outturns provisional pending final accounts}
+  fiscal.balance: {revision_window: publisher, rationale: CBI bulletin marks outturns provisional pending final accounts}

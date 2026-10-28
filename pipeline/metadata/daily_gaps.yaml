@@ -1,0 +1,21 @@
+# Allowed gaps in daily series.
+#
+# Between a daily series' first and last published dates, a run of more than 10 consecutive
+# calendar days without a value stops the parser (pipeline/parsers/source_io.check_daily_coverage),
+# unless the gap is listed here with a reason. A listed gap that is no longer in the data stops the
+# run too (stale entry), so a gap that the source later fills is noticed.
+#
+# Fields:
+#   series    - the series id
+#   from      - the last date with a value before the gap
+#   to        - the first date with a value after it
+#   reason    - why there is no value (describe the source, not events)
+#   reviewed  - the date the gap was checked against the source file
+
+gaps:
+- {series: fx.official, from: "2020-03-24", to: "2020-04-21", reason: "No rate is published in the CBI workbook for these dates; the cells are blank in the source file.", reviewed: "2026-10-27"}
+- {series: fx.official, from: "2020-05-21", to: "2020-06-14", reason: "No rate is published in the CBI workbook for these dates; the cells are blank in the source file.", reviewed: "2026-10-27"}
+- {series: fx.official, from: "2021-05-11", to: "2021-05-23", reason: "No rate is published in the CBI workbook for these dates; the cells are blank in the source file.", reviewed: "2026-10-27"}
+- {series: parallel_rate_iraq, from: "2020-03-24", to: "2020-04-19", reason: "No rate is published in the historical seed for these dates; the cells are blank in the source file.", reviewed: "2026-10-27"}
+- {series: parallel_rate_iraq, from: "2020-05-21", to: "2020-06-14", reason: "No rate is published in the historical seed for these dates; the cells are blank in the source file.", reviewed: "2026-10-27"}
+- {series: parallel_rate_iraq, from: "2021-05-11", to: "2021-05-23", reason: "No rate is published in the historical seed for these dates; the cells are blank in the source file.", reviewed: "2026-10-27"}

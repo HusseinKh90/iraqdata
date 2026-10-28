@@ -1,0 +1,44 @@
+# Expected identity gaps.
+#
+# An identity period where some but not all components are published is reported by
+# `python pipeline/validate.py` as a [GAP] review notice, naming the rule, the period and the
+# missing series. A gap that is expected (a component starts later or ended earlier, by design)
+# is listed here with its reason, and is then not reported.
+#
+# Fields:
+#   rule     - the identity rule, exactly as validate.py prints it (e.g. "Currency <= M1")
+#   period   - the period, as validate.py prints it (e.g. 2003-12), or `latest`: the gap is
+#              expected only after the missing series' last published period (a ragged edge
+#              between sources that publish at different times). A gap before that is still
+#              reported, and the freshness check reports the missing series if it is overdue
+#   missing  - the series that are missing in that period (a list)
+#   reason   - why the gap is expected (required)
+
+# missing_periods: a monthly, quarterly or annual series with a period missing inside its range is a [GAP]
+#   review notice (a source may have dropped it). A series that lacks periods by design is listed here with the
+#   reason, either by the periods it lacks or, if it holds only some periods, as `sparse: true`.
+#   series   - the series id
+#   periods  - the missing periods inside its range (a list), or
+#   sparse   - true: the series holds only some periods
+#   reason   - why (required)
+
+expected:
+  - rule: Currency <= M1
+    period: latest
+    missing: [money.m1]
+    reason: >-
+      Currency outside banks comes from the CBI key financial indicators workbook, which is
+      published about a month before the statistical bulletin that gives M1, so the latest
+      month has currency but not yet M1 (measured 2026-10-26: currency to 2026-09, M1 to 2026-08).
+
+missing_periods:
+  - series: crude_production_direct
+    periods: [2013-02]
+    reason: >-
+      JODI prints no value ("-") for Iraq's crude oil production in February 2013
+      (pipeline/raw/jodi/jodi_iraq_2013.csv); the run reports it as a [MARKERS] cell.
+  - series: oil_price_basrah
+    sparse: true
+    reason: >-
+      Only the months OPEC's Monthly Oil Market Report gives are held; the months that were modelled from Brent
+      were withdrawn and the series has ended.

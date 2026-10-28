@@ -1,0 +1,16 @@
+# Published rows deliberately kept although a new release no longer contains them
+#.
+#
+# A production merge refuses when published rows are missing from the new release, unless each
+# missing row is either withdrawn (`run_parsers.py --withdraw-missing SERIES:YYYY-MM-DD`) or kept
+# (`--keep-missing SERIES:YYYY-MM-DD`). A kept row must be listed here with its reason.
+#
+# Fields:
+#   table         - the garden table (e.g. money_banking_monthly)
+#   series_id     - the series
+#   date          - the row's date, as published (e.g. 2025-06)
+#   reason        - why the row is kept (required)
+#   reviewer      - who decided (required)
+#   date_decided  - YYYY-MM-DD (required)
+
+kept: []

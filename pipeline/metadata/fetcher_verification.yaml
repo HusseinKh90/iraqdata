@@ -1,0 +1,162 @@
+# Live verification of the update check's fetchers.
+# Written by pipeline/verify_fetchers.py; do not edit by hand.
+sources:
+- source: bis_lbs
+  checked: '2026-10-26'
+  status: verified
+  reason: no change since the archived file
+  responses:
+  - url: https://stats.bis.org/api/v1/data/WS_LBS_D_PUB/Q.S.C.A.TO1.A.5J.A.5A.A.IQ.N?format=csv
+    final_url: https://stats.bis.org/api/v1/data/WS_LBS_D_PUB/Q.S.C.A.TO1.A.5J.A.5A.A.IQ.N?format=csv
+    status: 200
+    content_type: text/csv;charset=UTF-8
+    size: 13319
+    sha256: efd586f7e2fe446c59eaa26f106cec0220046ec4175948c66b41cc0150f2bdec
+  - url: https://stats.bis.org/api/v1/data/WS_LBS_D_PUB/Q.S.L.A.TO1.A.5J.A.5A.A.IQ.N?format=csv
+    final_url: https://stats.bis.org/api/v1/data/WS_LBS_D_PUB/Q.S.L.A.TO1.A.5J.A.5A.A.IQ.N?format=csv
+    status: 200
+    content_type: text/csv;charset=UTF-8
+    size: 13432
+    sha256: ad88cac54ba2be3b88fa308c879e9ae00d294afb1e08847a2782fab19cd6d984
+  - url: https://stats.bis.org/api/v1/data/WS_LBS_D_PUB/Q.S.L.A.TO1.A.5J.A.5A.B.IQ.N?format=csv
+    final_url: https://stats.bis.org/api/v1/data/WS_LBS_D_PUB/Q.S.L.A.TO1.A.5J.A.5A.B.IQ.N?format=csv
+    status: 200
+    content_type: text/csv;charset=UTF-8
+    size: 13184
+    sha256: fcb2f3d30d302f4ff1871f91b46bb28c4b6138dbfd0478f929b85cb9515d5b0d
+  - url: https://stats.bis.org/api/v1/data/WS_LBS_D_PUB/Q.S.L.A.TO1.A.5J.A.5A.N.IQ.N?format=csv
+    final_url: https://stats.bis.org/api/v1/data/WS_LBS_D_PUB/Q.S.L.A.TO1.A.5J.A.5A.N.IQ.N?format=csv
+    status: 200
+    content_type: text/csv;charset=UTF-8
+    size: 13228
+    sha256: 6ffec6bc2e236613a6d884c39568a76ed704ce51439fcdb483cfc4713db96bb1
+  - url: https://stats.bis.org/api/v1/data/WS_LBS_D_PUB/Q.S.C.A.TO1.A.5J.A.5A.N.IQ.N?format=csv
+    final_url: https://stats.bis.org/api/v1/data/WS_LBS_D_PUB/Q.S.C.A.TO1.A.5J.A.5A.N.IQ.N?format=csv
+    status: 200
+    content_type: text/csv;charset=UTF-8
+    size: 13182
+    sha256: ba2b8da83b6d9e0bf34584d1109cd76c4c2164c11fe88b94c9e20dc7e2f8bb52
+- source: cbi_bop
+  checked: '2026-10-26'
+  status: verified
+  reason: no change since the archived file
+  responses:
+  - url: https://cbi.iq/page/145
+    final_url: https://cbi.iq/page/145
+    status: 200
+    content_type: text/html; charset=UTF-8
+    size: 46158
+    sha256: 1d304da6f1c8409a6dfcad346769a604b8d25e928637d3eacd207e77857721a0
+  - url: https://cbi.iq/static/uploads/up/file-178108037037889.xlsx
+    final_url: https://cbi.iq/static/uploads/up/file-178108037037889.xlsx
+    status: 200
+    content_type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+    size: 36032
+    sha256: 4735d5b7d2fb6927c004a3a85fe39a97c4128177c5a391f43ec177600fa261aa
+  - url: https://cbi.iq/static/uploads/up/file-178867638349573.xlsx
+    final_url: https://cbi.iq/static/uploads/up/file-178867638349573.xlsx
+    status: 200
+    content_type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+    size: 17859
+    sha256: ca8ae2dd79fecde7ed155b17b5b5e03b16baf013f8af753282db651953523b8e
+- source: cbi_bulletin
+  checked: '2026-10-26'
+  status: verified
+  reason: no change since the archived file
+  responses:
+  - url: https://cbi.iq/page/122
+    final_url: https://cbi.iq/page/122
+    status: 200
+    content_type: text/html; charset=UTF-8
+    size: 42531
+    sha256: 0046ff9171789832973a19af83a0c2153d312622c315b36bb333974adcd8d352
+  - url: https://cbi.iq/static/uploads/up/file-179256512862953.xlsx
+    final_url: https://cbi.iq/static/uploads/up/file-179256512862953.xlsx
+    status: 200
+    content_type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+    size: 1302456
+    sha256: c1300048bc587537eea9d31ef2c1846f647cc6d9630ec2c5374a45066749bedc
+- source: cbi_fx
+  checked: '2026-10-26'
+  status: verified
+  reason: no change since the archived file
+  responses:
+  - url: https://cbi.iq/page/144
+    final_url: https://cbi.iq/page/144
+    status: 200
+    content_type: text/html; charset=UTF-8
+    size: 44010
+    sha256: 06f898f16994452ebbc3a8f14394273e4b8d1bddefd9ad2f96ca6b96c6eb7c57
+  - url: https://cbi.iq/static/uploads/up/file-179256987150948.xlsx
+    final_url: https://cbi.iq/static/uploads/up/file-179256987150948.xlsx
+    status: 200
+    content_type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+    size: 249525
+    sha256: 85685c9a8fab8d32dc4b888394106ff3d5283a3406e25ab8710fafeb8c9f5027
+- source: cbi_kfi
+  checked: '2026-10-26'
+  status: verified
+  reason: new release
+  responses:
+  - url: https://cbi.iq/news/view/94
+    final_url: https://cbi.iq/news/view/94
+    status: 200
+    content_type: text/html; charset=UTF-8
+    size: 43688
+    sha256: fe1c3e17bf691c69df5b73f32c9994aad68c3e2beb906380f7aebc89efc7035b
+  - url: https://cbi.iq/static/uploads/up/file-179290250238577.xlsx
+    final_url: https://cbi.iq/static/uploads/up/file-179290250238577.xlsx
+    status: 200
+    content_type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+    size: 381692
+    sha256: d43ca6c6cf0c74321c6a2677f21198ace0d72ba24e7936cff598c05d454f4255
+- source: eia_intl
+  checked: '2026-10-26'
+  status: verified
+  reason: no change since the archived file
+  responses:
+  - url: https://api.eia.gov/bulk/INTL.zip
+    final_url: https://www.eia.gov/opendata/bulk/INTL.zip
+    status: 200
+    content_type: application/x-zip-compressed
+    size: 24264743
+    sha256: 367a8d8f93bc3c54f96c755e67ce68783ae92580a5751faa545a265376483216
+- source: fred_brent
+  checked: '2026-10-26'
+  status: verified
+  reason: no change since the archived file
+  responses:
+  - url: https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU
+    final_url: https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU
+    status: 200
+    content_type: application/csv
+    size: 170183
+    sha256: a1fec56bfa6bc77dc5e017fa8976e6eaca2fa2ae43773209ac5923f1269c8b33
+- source: github_fx
+  checked: '2026-10-26'
+  status: verified
+  reason: new release
+  responses:
+  - url: https://raw.githubusercontent.com/HusseinKh90/Iraq-parallel-exchange-rate/master/data/daily_fx.csv
+    final_url: https://raw.githubusercontent.com/HusseinKh90/Iraq-parallel-exchange-rate/master/data/daily_fx.csv
+    status: 200
+    content_type: text/plain; charset=utf-8
+    size: 142894
+    sha256: 968ff77218c012a0997d4207bb5926c244b9b0e79cf286989292f21071ab1e83
+- source: wb_oda
+  checked: '2026-10-26'
+  status: verified
+  reason: no change since the archived file
+  responses:
+  - url: https://api.worldbank.org/v2/country/IRQ/indicator/DT.ODA.ALLD.CD?format=json&per_page=100
+    final_url: https://api.worldbank.org/v2/country/IRQ/indicator/DT.ODA.ALLD.CD?format=json&per_page=100
+    status: 200
+    content_type: application/json;charset=utf-8
+    size: 17328
+    sha256: 7cc0b9a69f66a4b9298693b8f99e7bb0f519c620c7de281af2fe02ebeb5ff09c
+  - url: https://api.worldbank.org/v2/country/IRQ/indicator/BX.GRT.EXTA.CD.WD?format=json&per_page=100
+    final_url: https://api.worldbank.org/v2/country/IRQ/indicator/BX.GRT.EXTA.CD.WD?format=json&per_page=100
+    status: 200
+    content_type: application/json;charset=utf-8
+    size: 15960
+    sha256: 62da655d3ab3f8c91e1271ea153ced5108dc2887a4f01fea6d6210bf76dfa82a

@@ -1,0 +1,97 @@
+# ==============================================================================
+# iraqdata — Standard Python & Data Project .gitignore
+# ==============================================================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+
+# Distribution / packaging
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Testing, coverage & linters
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# IDEs & code editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Operating system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Temporary logs & local scratch files
+scratch/
+tmp/
+*.log
+*.bak
+
+# ==============================================================================
+# Kept on the maintainer's computer only (not published)
+# ==============================================================================
+# AI assistant and Spec Kit tooling, and the design specs
+.claude/
+.specify/
+specs/
+.pytest_cache/
+
+# Merge transaction files; they exist only while a merge runs or was interrupted
+*.parquet.new
+*.parquet.old
+.merge_journal.json
+# Atomic parser output; left only by an interrupted write
+*.parquet.part
+
+# Internal working documents
+docs/ground_rules.md
+docs/establishing_monorepo_skeleton.md
+docs/implement_client_library_interface.md
+docs/strategic_value_and_benefits.md

@@ -1,0 +1,11 @@
+series_id,period,value,unit,source_document,page_or_table,transcriber,transcribed_on,notes
+oil_price_basrah,2004-07,36.29,USD_PER_BBL,"OPEC Monthly Oil Market Report (OPEC Reference Basket, Basrah grade)",unknown,maintainer (typed into the parser before transcription records existed),unknown,
+oil_price_basrah,2007-03,55.99,USD_PER_BBL,"OPEC Monthly Oil Market Report (OPEC Reference Basket, Basrah grade)",unknown,maintainer (typed into the parser before transcription records existed),unknown,
+oil_price_basrah,2007-04,59.74,USD_PER_BBL,"OPEC Monthly Oil Market Report (OPEC Reference Basket, Basrah grade)",unknown,maintainer (typed into the parser before transcription records existed),unknown,
+oil_price_basrah,2013-01,107.51,USD_PER_BBL,"OPEC Monthly Oil Market Report (OPEC Reference Basket, Basrah grade)",unknown,maintainer (typed into the parser before transcription records existed),unknown,
+oil_price_basrah,2013-02,110.48,USD_PER_BBL,"OPEC Monthly Oil Market Report (OPEC Reference Basket, Basrah grade)",unknown,maintainer (typed into the parser before transcription records existed),unknown,
+oil_price_basrah,2017-09,53.03,USD_PER_BBL,"OPEC Monthly Oil Market Report (OPEC Reference Basket, Basrah grade)",unknown,maintainer (typed into the parser before transcription records existed),unknown,
+oil_price_basrah,2017-10,55.02,USD_PER_BBL,"OPEC Monthly Oil Market Report (OPEC Reference Basket, Basrah grade)",unknown,maintainer (typed into the parser before transcription records existed),unknown,
+oil_price_basrah,2024-11,73.14,USD_PER_BBL,"OPEC Monthly Oil Market Report (OPEC Reference Basket, Basrah grade)",unknown,maintainer (typed into the parser before transcription records existed),unknown,
+oil_price_basrah,2025-05,63.86,USD_PER_BBL,"OPEC Monthly Oil Market Report (OPEC Reference Basket, Basrah grade)",unknown,maintainer (typed into the parser before transcription records existed),unknown,
+oil_price_basrah,2025-11,63.86,USD_PER_BBL,"OPEC Monthly Oil Market Report (OPEC Reference Basket, Basrah grade)",unknown,maintainer (typed into the parser before transcription records existed),unknown,identical to 2025-05 (63.86); not verified

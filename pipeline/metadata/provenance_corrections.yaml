@@ -1,0 +1,18 @@
+# Provenance corrections. Append-only.
+#
+# A correction changes only a published row's source_hash, never its value: the hash first
+# published turned out to name the wrong file, and builds after the correction carry the right one.
+# Nothing has been corrected since the first release, so the list is empty.
+#
+# Fields of an entry:
+#   id              - PC1, PC2, ...
+#   table           - the garden table (e.g. oil_monthly)
+#   series          - the series the correction covers
+#   from, to        - the first and last period covered, as dates are written in the table
+#   published_hash  - the hash released rows carry
+#   corrected_hash  - the hash builds after the correction carry; it must name an archived file
+#   releases        - the releases that carry published_hash
+#   applied         - in_place (written directly to the garden table) or revision (applied by the
+#                     vintage merge, so the history keeps the published hash)
+#   reason          - what was wrong
+corrections: []

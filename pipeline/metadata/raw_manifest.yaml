@@ -1,0 +1,873 @@
+# Raw-file manifest. Append-only: never edit a recorded sha256.
+# Regenerate fields with `python pipeline/raw_audit.py manifest add PATH`; edit origin and
+# acquired by hand when they become known. `source_ref` names the terms-of-reuse record in
+# pipeline/metadata/sources.yaml. `acquired: unknown` means the download date is not
+# documented; `held_by` is then the earliest date the file is provably held, with the evidence
+# in `held_by_basis` (an upper bound on the download date, never the download date itself).
+files:
+- path: pipeline/raw/bis/bis_lbs_claims_nonbank.csv
+  size: 13182
+  sha256: ba2b8da83b6d9e0bf34584d1109cd76c4c2164c11fe88b94c9e20dc7e2f8bb52
+  origin: BIS SDMX API WS_LBS_D_PUB, https://data.bis.org
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: bis_lbs
+  consumers:
+  - parser: bis_lbs
+    use: parsed
+  status: parsed
+- path: pipeline/raw/bis/bis_lbs_claims_total.csv
+  size: 13319
+  sha256: efd586f7e2fe446c59eaa26f106cec0220046ec4175948c66b41cc0150f2bdec
+  origin: BIS SDMX API WS_LBS_D_PUB, https://data.bis.org
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: bis_lbs
+  consumers:
+  - parser: bis_lbs
+    use: parsed
+  status: parsed
+- path: pipeline/raw/bis/bis_lbs_liabilities_banks.csv
+  size: 13184
+  sha256: fcb2f3d30d302f4ff1871f91b46bb28c4b6138dbfd0478f929b85cb9515d5b0d
+  origin: BIS SDMX API WS_LBS_D_PUB, https://data.bis.org
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: bis_lbs
+  consumers:
+  - parser: bis_lbs
+    use: parsed
+  status: parsed
+- path: pipeline/raw/bis/bis_lbs_liabilities_nonbank.csv
+  size: 13228
+  sha256: 6ffec6bc2e236613a6d884c39568a76ed704ce51439fcdb483cfc4713db96bb1
+  origin: BIS SDMX API WS_LBS_D_PUB, https://data.bis.org
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: bis_lbs
+  consumers:
+  - parser: bis_lbs
+    use: parsed
+  status: parsed
+- path: pipeline/raw/bis/bis_lbs_liabilities_total.csv
+  size: 13432
+  sha256: ad88cac54ba2be3b88fa308c879e9ae00d294afb1e08847a2782fab19cd6d984
+  origin: BIS SDMX API WS_LBS_D_PUB, https://data.bis.org
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: bis_lbs
+  consumers:
+  - parser: bis_lbs
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/bop/bop_2013_2016.xlsx
+  size: 118299
+  sha256: 70013d08f75afa46b2cb4c758d6dd1e5acd30abec5af8b661ded66fed1e8930e
+  origin: CBI BOP Data Archive, https://cbi.iq/page/145
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cbi_bop
+  consumers:
+  - parser: cbi_bop
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/bop/bop_2017.xlsx
+  size: 45671
+  sha256: 13543f4f22259b86a17496bf8875a1d1ec59fd4860cc150aa2f941e22754dc46
+  origin: CBI BOP Data Archive, https://cbi.iq/page/145
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cbi_bop
+  consumers:
+  - parser: cbi_bop
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/bop/bop_2018.xlsx
+  size: 46784
+  sha256: e5ede760a4bcaba73c872ad0ffa4883924ae8b2c7ccf58fad8c576003b343e4a
+  origin: CBI BOP Data Archive, https://cbi.iq/page/145
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cbi_bop
+  consumers:
+  - parser: cbi_bop
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/bop/bop_2019.xlsx
+  size: 43831
+  sha256: f8035d3ff0ed7d1cc000ff9f469c88c3e483af8641e45d47745cac3ec51cfc5d
+  origin: CBI BOP Data Archive, https://cbi.iq/page/145
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cbi_bop
+  consumers:
+  - parser: cbi_bop
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/bop/bop_2020.xlsx
+  size: 45114
+  sha256: 873f173fdbbb39ab26adea577fd5510830f57e4e0401d3fff6ef3479f48cab7c
+  origin: CBI BOP Data Archive, https://cbi.iq/page/145
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cbi_bop
+  consumers:
+  - parser: cbi_bop
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/bop/bop_2021.xlsx
+  size: 47071
+  sha256: f69b5ed709d6f576e10c70122316c17efa183085b09f622af6d110fa19f8a5ff
+  origin: CBI BOP Data Archive, https://cbi.iq/page/145
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cbi_bop
+  consumers:
+  - parser: cbi_bop
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/bop/bop_2022.xlsx
+  size: 39712
+  sha256: 54f4e0aa0d96e719c968a9ce6a9c8d637800cd5c5e807cc1aa0ce0f4e521ad04
+  origin: CBI BOP Data Archive, https://cbi.iq/page/145
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cbi_bop
+  consumers:
+  - parser: cbi_bop
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/bop/bop_2023.xlsx
+  size: 36954
+  sha256: cd20da5451dc9302653a646188e1a1c638ce0d4442b67ba87257bb48c7597731
+  origin: CBI BOP Data Archive, https://cbi.iq/page/145
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cbi_bop
+  consumers:
+  - parser: cbi_bop
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/bop/bop_2024.xlsx
+  size: 35942
+  sha256: 863edd5ee5326c3ce44b724aa7d8041d3211d419f49185d3966e1728bb8544d8
+  origin: CBI BOP Data Archive, https://cbi.iq/page/145
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cbi_bop
+  consumers:
+  - parser: cbi_bop
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/bop/bop_2025.xlsx
+  size: 36032
+  sha256: 4735d5b7d2fb6927c004a3a85fe39a97c4128177c5a391f43ec177600fa261aa
+  origin: CBI BOP Data Archive, https://cbi.iq/page/145
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cbi_bop
+  consumers:
+  - parser: cbi_bop
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/bop/bop_2026.xlsx
+  size: 17859
+  sha256: ca8ae2dd79fecde7ed155b17b5b5e03b16baf013f8af753282db651953523b8e
+  origin: CBI BOP Data Archive, https://cbi.iq/page/145
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cbi_bop
+  consumers:
+  - parser: cbi_bop
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/bulletin_latest.xlsx
+  size: 1302456
+  sha256: c1300048bc587537eea9d31ef2c1846f647cc6d9630ec2c5374a45066749bedc
+  origin: CBI Monthly Statistical Bulletin, https://cbi.iq/page/122
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cbi_bulletin
+  consumers:
+  - parser: cbi_fiscal_bulletin
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/fx/cbi_fx_usd_2026-10-25.xlsx
+  size: 249525
+  sha256: 85685c9a8fab8d32dc4b888394106ff3d5283a3406e25ab8710fafeb8c9f5027
+  origin: CBI dinar-per-dollar rates (daily, monthly, annual), https://cbi.iq/page/144
+  acquired: '2026-10-25'
+  source_ref: cbi_fx
+  consumers:
+  - parser: cbi_exchange_rates
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/key_financial_indicators.xlsx
+  size: 381175
+  sha256: 6c704fc66b3f2d1d63ae6b2313101fe4a19bbd7070e7ac5eacb93d801e13be2a
+  origin: CBI Key Financial Indicators, https://cbi.iq/news/view/94
+  acquired: '2026-10-14'
+  source_ref: cbi_kfi
+  consumers:
+  - parser: cbi_cpi
+    use: parsed
+  - parser: cbi_money_banking
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cosit/alarm/1-2025.pdf
+  size: 1954910
+  sha256: d1a20699c0bb4acaab48508a12ee918b24b9757c0896560cfe90952434d4b0ae
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/alarm/2-2025.pdf
+  size: 3313719
+  sha256: 1f8da58ec1e4916bd112e300a0ee33c22a8b2ed26f44ae943bb8053307d7e908
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/alarm/_الانذار_المبكر_للربع_الرابع_20256_.pdf
+  size: 1799209
+  sha256: ab70e7d6cc4282d9795207cccc259a898008c56078011c617c3675ff560f8d3a
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/alarm/الانذار_المبكر_للربع_الاول_2023.pdf
+  size: 2717267
+  sha256: c58d65509b196ad4755ed973514fe9eb180298ca78c4e951b75ad50aac9d6ef3
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/alarm/ربع_رابع_2024.pdf
+  size: 2088685
+  sha256: c284fc7e993e44da4d0698387127d06c75b30420d0bd320099b3c164d03d66a1
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/alarm/ف1__2024_نهائي.pdf
+  size: 2195482
+  sha256: f379a6ebe70606aaa26025ad9f2d6c35af8edf0948925dc02dc9f57db771d698
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/alarm/ف2_2024_نهائي.pdf
+  size: 2248975
+  sha256: a109cb45df4231a381a828754834d1aac02994d38e5662f6eaaa376db981a90b
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/alarm/ف3_2024_نهائي.pdf
+  size: 2043188
+  sha256: e4dec0c82399c848d1cea61c4b0bd30ac638631eeed54d644cbb5fd517b7ff7f
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/alarm/ف3_2025_نهائي.pdf
+  size: 2239955
+  sha256: cb230dafe325bc70124641ca248e395234659f80bae58bb16dc7ef7fb2a41e57
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/alarm/مؤشرات_الانذار_المبكر_للربع_الاول_لسنة_2026_.pdf
+  size: 1911276
+  sha256: 45c731dccf737e04a5e1b84ab9ea30557a7f32da70efb4249f4fb8385d496bee
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/الاسعار_الثابتة_2025.xlsx
+  size: 14162
+  sha256: 9191444124ec907569068b3910a8c0f10051f55c95b371bffff55619cd9a0491
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/التقديرات_الأولية_الفصلية_والإجمالية_للناتج_المحلي_الإجمالي_لسنة_2020.xls
+  size: 198144
+  sha256: f181f1fe698d9e290c45b0710c63769e0a8b0b00fb4c7091ec2381e663a3eb25
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/التقديرات_الأولية_للناتج_المحلي_الإجمالي_لسنة_2021.xlsx
+  size: 51211
+  sha256: 5375cd72dc0ea86e1c4f39761e38745da9f6762a5d5113b4635bd3e5330ade64
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/التقديرات_الاولية_للناتج_المحلي_الإجمالي_والدخل_القومي_لسنة_2019.xlsx
+  size: 105869
+  sha256: 60231225cc3bf3805de2b65553e1b0e194b86ef125fb1303999f51249536fc99
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/التقديرات_الفعلية_للناتج_المحلي_الإجمالي_والدخل_القومي_لسنة_2019.xlsx
+  size: 92721
+  sha256: e6e324e2673a04d906972aeefd62115495f7aec396757fe855f443472db0f1c9
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/التقديرات_الفعلية_للناتج_المحلي_الاجمالي_و_الدخل_القومي_2017.xlsx
+  size: 105760
+  sha256: 982060dc65b4f010858757b6601029f6011f10c7f65494a2faa77da9c853f166
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/التقديرات_الفعلية_للناتج_المحلي_والدخل_القومي_لسنة_2014.xlsx
+  size: 96525
+  sha256: 7b8546347322ba36815c102ceaf36b3ed80ec6817822455f956b8abb598978e6
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/التقديرات_الفعلية_للناتج_المحلي_والدخل_القومي_لسنة_2015.xlsx
+  size: 46776
+  sha256: 8455f18d566672489acef0311deed1b4af08319c50ef6eb90e65e9eeea1d49e8
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/التقديرات_الفعلية_للناتج_المحلي_والدخل_القومي_لسنة_2016.xlsx
+  size: 105980
+  sha256: a9821629505109a9978048c483d90d133ab97896a7fcbb3ab46f9435310982f6
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/التقديرات_الفعليه_السنوية_للناتج_المحلي_الإجمالي_والدخل_القومي_لسنة_2018.xlsx
+  size: 107546
+  sha256: 4189ec1a45f8ecf203dd3e5d651d76caa563c2740c8131752c0ecdeff8a9effb
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/الجداول_سلسلة_صافي_التراكم_الرأسمالي_للسنوات_1992-_2016.xlsx
+  size: 135830
+  sha256: 6dfc27da9a7e357c9517d1df0b769f848fe8cad081e1fa84dedd7a6d05cb19e6
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/الحسابات_الموحدة_2018-2019.xls
+  size: 133632
+  sha256: da14877849c17dc707ea76e0dcee6779806d99c87190418b4877398474644717
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/تراكم_جاري_2021.xlsx
+  size: 73943
+  sha256: 29632fe15ba9c4b2e04656e3c609545cc12480ab196d2480b3aee67886f93343
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/تقرير_سلسلة_صافي_التراكم_الرأسمالي_للسنوات__2001-2015.xlsx
+  size: 78765
+  sha256: 40f1c1af0054753c828a2bb5ddf394ba9114b273497847bff1622b9e72137026
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/جداول_التقديرات_الأولية_للناتج_المحلي_الإجمالي_للنصف_الاول_من_سنة_2021.xlsx
+  size: 46297
+  sha256: 0d9998af0302dbd3dd1b2537ef16d77a18c9d070544fd70fbb35fdf9b12ed307
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/جداول_سلسلة_صافي_التراكم_الرأسمالي_للسنوات_1993-_2017.xlsx
+  size: 67373
+  sha256: 197b0518008843342a0af88af54afa11a7454c5a21929709a975c9cd2243d988
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/cosit/سلسلة_صافي_التراكم_الرأسمالي_للسنوات__1994-2018_.xlsx
+  size: 70415
+  sha256: 58b0b4bcd2649210771a7e2f66779fd13853cc44bfaf2d4d36f4a12013ddd6df
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/raw/eia/INTL.zip
+  size: 24264743
+  sha256: 367a8d8f93bc3c54f96c755e67ce68783ae92580a5751faa545a265376483216
+  origin: U.S. EIA International Energy Statistics bulk file (series INTL.57-1-IRQ-TBPD.M), https://www.eia.gov
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: eia_intl
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/fred/DCOILBRENTEU.csv
+  size: 170183
+  sha256: a1fec56bfa6bc77dc5e017fa8976e6eaca2fa2ae43773209ac5923f1269c8b33
+  origin: EIA via FRED series DCOILBRENTEU, https://fred.stlouisfed.org/series/DCOILBRENTEU
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: fred_brent
+  consumers:
+  - parser: oil_daily
+    use: parsed
+  status: parsed
+- path: pipeline/raw/github/daily_fx_2026-10-25.csv
+  size: 142686
+  sha256: c4f996746b5f35c6fcaf04428991d8605d2be12a5e5bd6dc6a05803be1472c6e
+  origin: HusseinKh90/Iraq-parallel-exchange-rate data/daily_fx.csv, https://github.com/HusseinKh90/Iraq-parallel-exchange-rate
+  acquired: '2026-10-25'
+  source_ref: iraq_parallel_fx
+  consumers:
+  - parser: cbi_exchange_rates
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2007.csv
+  size: 92228
+  sha256: 7621858f728e9ee20a387ad88d3684f623664de747d7f8c3f2ff35a427f80cca
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2008.csv
+  size: 92234
+  sha256: de7821a15b07a4a4603e8f7416d4ed7b4b6ba4429bada1262d363eae116c1ff3
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2009.csv
+  size: 103148
+  sha256: 5dbd5e5e4070946ba203eeb9cba9db12bb65da57c8afe29fc1f97b69f913aa97
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2010.csv
+  size: 103144
+  sha256: c72dcc23cdb728b0adc3e344a2b52416e4995f37e488862de32ea2779b0b40b0
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2011.csv
+  size: 103194
+  sha256: a3dc7c723f1c3763cac3d1a6b8e9779086a6d4d1056f74f4b2a78c44de3f55a3
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2012.csv
+  size: 103192
+  sha256: 76dd76f53757469911b37ebbf8eb37d9042baa3ea670124c7b4d74652d6f2d2a
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2013.csv
+  size: 102632
+  sha256: 4df2bda07a09d3e49ee2840c7f562cfe1c3842cd489eb68da60d0d726ae78884
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2014.csv
+  size: 103264
+  sha256: 3b7c79552c9587a056c1e88a7dad4d61e6e2494be48c718aad8c90efcfb2f53b
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2015.csv
+  size: 103353
+  sha256: ddd64851d646cabfc8971cae5a439b567c317365ca8f6e54b718ba86a289775c
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2016.csv
+  size: 103401
+  sha256: c5ce43b02993518c3d7c81d4ee2a293e079e946680a92cbed1470bcc38f2df7f
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2017.csv
+  size: 103465
+  sha256: 1bdf454601632bc62c1b295ca379dd4f6864e1d9be98029800dc93296c55adba
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2018.csv
+  size: 103457
+  sha256: 70a47909786fdb8372f799905bce7f3eabc288d80b67f31b498627e37250f6ba
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2019.csv
+  size: 103484
+  sha256: 4138271b2eb38a97ebc45e1b67320db66ca3d9eb5b41194acc6347d0be823d1c
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2020.csv
+  size: 103459
+  sha256: 0af0cec00de5126cca29e189ed328a252a2ce27faaefcf438a16ea2e0f814429
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2021.csv
+  size: 104133
+  sha256: a62d4cf652a068dcece14bb5c9b4b29047502a245fae03a50bf166416d0680b4
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2022.csv
+  size: 104219
+  sha256: 13a34ddde2b2fa72fd38b007730756548652e8b85fd572066efddc8ddbfa0359
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2023.csv
+  size: 104286
+  sha256: 93d8049c075e140cf783d53c3d8b7257f119b8b8aaf5bb2d4875c9f38edbbf17
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2024.csv
+  size: 98242
+  sha256: 73d90f6deba90bada74e2ef83b2517b0250185e5106057c629d0fea292c3a3c0
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/jodi/jodi_iraq_2025.csv
+  size: 93991
+  sha256: 499bc52c3083362856e90cc2559210d2a83b46aec667c89f55d9f336e7bac85e
+  origin: JODI Oil World Database, https://jodidata.org/oil/database/data-downloads.aspx
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: jodi_oil
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/oecd/wb_oda_grants.json
+  size: 15960
+  sha256: 62da655d3ab3f8c91e1271ea153ced5108dc2887a4f01fea6d6210bf76dfa82a
+  origin: World Bank WDI API (ODA), https://api.worldbank.org
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: wb_wdi
+  consumers:
+  - parser: oecd_dac
+    use: parsed
+  status: parsed
+- path: pipeline/raw/oecd/wb_oda_net.json
+  size: 17328
+  sha256: 7cc0b9a69f66a4b9298693b8f99e7bb0f519c620c7de281af2fe02ebeb5ff09c
+  origin: World Bank WDI API (ODA), https://api.worldbank.org
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: wb_wdi
+  consumers:
+  - parser: oecd_dac
+    use: parsed
+  status: parsed
+- path: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  size: 50071
+  sha256: b93bb1dd9c081a2aff34d17a5a7ae3bedcd45aad27a7e62194820ca129c4e847
+  origin: Transcription record of COSIT national-accounts values; each row cites its archived document or says it is not archived
+  acquired: '2026-10-28'
+  source_ref: cosit_national_accounts
+  consumers:
+  - parser: cosit_gdp
+    use: parsed
+  status: parsed
+- path: pipeline/raw/transcribed/opec_momr_basrah_anchors_2026-10-25.csv
+  size: 2165
+  sha256: cb8af56563dd5f86eed5d272d8bae7ab1186fcc2c705cf0b89ebb1b264132dca
+  origin: Transcription record of values typed in from publications
+  acquired: '2026-10-25'
+  source_ref: opec_momr
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/raw/transcribed/opec_momr_crude_direct_2026-10-25.csv
+  size: 5248
+  sha256: b65dc0e827d2ce07ba6aaddcd65e72edf59c2190dbb1e1e16c0b5cd81f8c5a08
+  origin: Transcription record of values typed in from publications
+  acquired: '2026-10-25'
+  source_ref: opec_momr
+  consumers:
+  - parser: oil_monthly
+    use: parsed
+  status: parsed
+- path: pipeline/seeds/cbi_exchange_rate_historical.xlsx
+  size: 333102
+  sha256: a1b9d842eab9843234ad7f77eb0c95951e07b43ed0dc45cf40a24f0ffeb4b2f0
+  origin: CBI exchange-rate files, https://cbi.iq/page/144
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: cbi_fx
+  consumers:
+  - parser: cbi_exchange_rates
+    use: parsed
+  status: parsed
+- path: pipeline/seeds/iraq_fiscal_historical.csv
+  size: 1644
+  sha256: 796b55b054be79fada214500f5a601c66f3abeb2b42c9dc7baa86e1f3a14f3cf
+  origin: Compiled by the maintainer from the original publishers' documents (maintainer statement, 2026-10-25)
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: maintainer_fiscal_seed
+  consumers: []
+  status: archived-not-parsed
+- path: pipeline/seeds/iraq_fiscal_historical.xlsx
+  size: 6252
+  sha256: 30bee2693fb29be20c466f5ebca731eb290359fb0a00d9df581662480cffe30c
+  origin: Compiled by the maintainer from the original publishers' documents (maintainer statement, 2026-10-25)
+  acquired: unknown
+  held_by: '2026-10-25'
+  held_by_basis: held in the maintainer's private repository on this date, before this repository's first publication
+  source_ref: maintainer_fiscal_seed
+  consumers:
+  - parser: fiscal_seed
+    use: parsed
+  status: parsed
+input_groups:
+- id: 0ac3e74c8f5c998cd50363f80df667fcb0301badc169f53450a9be537a6f58e2
+  name: bis_lbs_all
+  method: concat_hexdigests_sorted
+  used_by: bis_lbs_quarterly / bis.lbs.net_position (liabilities_total - claims_total)
+  members:
+  - pipeline/raw/bis/bis_lbs_claims_nonbank.csv
+  - pipeline/raw/bis/bis_lbs_claims_total.csv
+  - pipeline/raw/bis/bis_lbs_liabilities_banks.csv
+  - pipeline/raw/bis/bis_lbs_liabilities_nonbank.csv
+  - pipeline/raw/bis/bis_lbs_liabilities_total.csv
+derived_snapshots:
+- path: pipeline/seeds/bis_lbs_quarterly_seed.parquet
+  producer: bis_lbs
+- path: pipeline/seeds/cosit_gdp_quarterly_seed.parquet
+  producer: cosit_gdp
+- path: pipeline/seeds/oecd_dac_annual_seed.parquet
+  producer: oecd_dac
+- path: pipeline/seeds/opec_momr_historical.parquet
+  producer: oil_monthly

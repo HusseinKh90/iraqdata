@@ -1,0 +1,64 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "iraqdata"
+version = "1.0.0"
+description = "Open, documented, and reproducible macroeconomic data package for Iraq"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Hussein Khalid" }
+]
+keywords = [
+    "iraq", "macroeconomics", "data", "cbi", "cosit", "oil",
+    "inflation", "exchange-rates", "time-series", "econometrics"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+dependencies = [
+    "pandas>=2.0.0",
+    "numpy>=1.24",
+    "pyarrow>=14.0.0",
+    "requests>=2.31.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+pipeline = [
+    "openpyxl>=3.1.0",
+    "pdfplumber>=0.10.0",
+    "xlrd>=2.0.1",
+]
+dev = [
+    "pytest>=8.0.0",
+    "jsonschema>=4.17",
+    "packaging>=22",
+]
+
+[project.urls]
+Homepage = "https://github.com/husseinkh90/iraqdata"
+Repository = "https://github.com/husseinkh90/iraqdata.git"
+Issues = "https://github.com/husseinkh90/iraqdata/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/iraqdata"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: clones the repository or runs other long steps",
+]

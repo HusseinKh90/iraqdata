@@ -1,0 +1,57 @@
+# Known-findings register.
+# Known, deferred problems. The audit checks this file against the data in both directions:
+# a problem not listed here fails, and an entry that no longer matches the data fails too.
+# Fixing a finding therefore means deleting its entry in the same change.
+
+# Published observations that were not read from the archived file their source_hash names.
+# Counts are for the 10 production tables only; the seed snapshots mirror the same rows.
+provenance: []
+
+# Parser robustness gaps, measured by tests/test_parser_robustness.py.
+# Outcomes: unhandled_error (an exception from pandas, openpyxl, json, zipfile ... or an error that
+# names neither the file, sheet nor label), silent_shift (no error, but the output changed) and
+# not_atomic (output written in place). correct and clear_error outcomes are not listed.
+# The parsers read, check and write through pipeline/parsers/source_io.py, so none is open.
+robustness: []
+
+
+# Text cells holding numbers in Arabic-Indic digits, with thousands separators or with footnote
+# markers, and formula cells without a cached value, in the sheets each parser reads. All zero; the
+# synthetic formula_no_cache mutation in the robustness test covers the last case.
+cell_text_scan:
+  cbi_bop:
+    input: pipeline/raw/cbi/bop/bop_2024.xlsx
+    arabic_indic_digits: 0
+    thousands_separators: 0
+    footnote_markers: 0
+    formulas_without_cache: 0
+  cbi_cpi:
+    input: pipeline/raw/cbi/key_financial_indicators.xlsx
+    arabic_indic_digits: 0
+    thousands_separators: 0
+    footnote_markers: 0
+    formulas_without_cache: 0
+  cbi_exchange_rates:
+    input: pipeline/seeds/cbi_exchange_rate_historical.xlsx
+    arabic_indic_digits: 0
+    thousands_separators: 0
+    footnote_markers: 0
+    formulas_without_cache: 0
+  cbi_fiscal_bulletin:
+    input: pipeline/raw/cbi/bulletin_latest.xlsx
+    arabic_indic_digits: 0
+    thousands_separators: 0
+    footnote_markers: 0
+    formulas_without_cache: 0
+  cbi_money_banking:
+    input: pipeline/raw/cbi/key_financial_indicators.xlsx
+    arabic_indic_digits: 0
+    thousands_separators: 0
+    footnote_markers: 0
+    formulas_without_cache: 0
+  fiscal_seed:
+    input: pipeline/seeds/iraq_fiscal_historical.xlsx
+    arabic_indic_digits: 0
+    thousands_separators: 0
+    footnote_markers: 0
+    formulas_without_cache: 0

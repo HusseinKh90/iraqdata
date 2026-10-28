@@ -1,0 +1,1515 @@
+# Acknowledged gatekeeper warnings.
+#
+# A Tier 2 warning that reflects a genuine movement in the published source data (not a data or
+# processing error) is reviewed and recorded here. `python pipeline/validate.py` then reports it as
+# [ACKNOWLEDGED] instead of a review notice, and `--release` passes.
+#
+# Fields:
+#   series    - series_id the warning is about (or `sanity` - a sanity check id, with check: sanity)
+#   check     - envelope | sign | jump | scale_shift | unfinished_period | unchecked_series |
+#               overdue | gap | sanity
+#   periods   - the warning periods this entry covers; one entry can cover an event's several
+#               periods, each matched on its own
+#   values    - {period: value} as reviewed, for envelope, sign, jump, scale_shift and sanity:
+#               every listed period, and for a jump also the value before it. If a published value
+#               changes (a revision), the entry no longer applies and is reported [CHANGED]
+#               (values are compared at 10 significant figures)
+#   dataset   - optional file name (e.g. oil_monthly.parquet); omitted, the entry covers the
+#               production table and its seed snapshot
+#   reason    - the event or decision that explains the value (required)
+#   reviewer  - who reviewed it (required)
+#   date      - YYYY-MM-DD, when it was reviewed (required)
+#   review_by - YYYY-MM-DD (required): at most 12 months after `date`, or at most 5 years for
+#               settled history. Past it the entry no longer applies and is reported [EXPIRED],
+#               and `--release` fails; within 30 days of it the entry is [DUE-FOR-REVIEW]
+#   settled   - optional, true for a past event whose values are final (allows the 5 years)
+#
+# `python pipeline/validate.py --propose-acknowledgements FILE` drafts entries, with the values
+# filled in, for every unacknowledged notice. An entry that no longer matches any warning is
+# reported as [STALE] and fails `--release`, so remove it when the underlying data changes.
+
+acknowledged:
+- series: bop.transfers_net
+  check: jump
+  periods:
+  - 2014-Q4
+  values:
+    2014-Q3: -1043.1
+    2014-Q4: -48.6
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- sanity: bop_reserves_vs_cbi_stock
+  check: sanity
+  periods:
+  - 2014-Q1
+  - 2014-Q2
+  - 2015-Q1
+  values:
+    2014-Q1: -2156.4
+    2014-Q1 money.reserves_official change: 3659.5773961907125
+    2014-Q2: 3723.9
+    2014-Q2 money.reserves_official change: -2159.0340623646966
+    2015-Q1: -4110.2
+    2015-Q1 money.reserves_official change: 1700.59521332216
+  reason: Value as published by the CBI (balance of payments and reserves stock); reviewed as a genuine
+    movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- sanity: bop_reserves_vs_cbi_stock
+  check: sanity
+  periods:
+  - 2022-Q3
+  values:
+    2022-Q3: -450.1
+    2022-Q3 money.reserves_official change: 8912.413793103455
+  reason: Value as published by the CBI (balance of payments and reserves stock); reviewed as a genuine
+    movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- sanity: bop_reserves_vs_cbi_stock
+  check: sanity
+  periods:
+  - 2023-Q4
+  - 2024-Q1
+  values:
+    2023-Q4: 10503.0
+    2023-Q4 money.reserves_official change: 1263.8461538461456
+    2024-Q1: -8643.4
+    2024-Q1 money.reserves_official change: -2741.5384615384537
+  reason: Value as published by the CBI (balance of payments and reserves stock); reviewed as a genuine
+    movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: cpi.core_2012
+  check: jump
+  periods:
+  - 2015-02
+  values:
+    2015-01: 107.0
+    2015-02: 102.6
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error; no known cause, re-check at review.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2027-10-27'
+- series: cpi.core_2012
+  check: jump
+  periods:
+  - 2020-12
+  values:
+    2020-11: 105.8
+    2020-12: 110.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: cpi.core_2012
+  check: jump
+  periods:
+  - 2023-01
+  values:
+    2022-12: 119.8
+    2023-01: 124.6
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: cpi_core
+  check: jump
+  periods:
+  - 2004-02
+  - 2004-03
+  values:
+    2004-01: 27.213
+    2004-02: 24.1484
+    2004-03: 27.0096
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: cpi_core
+  check: jump
+  periods:
+  - 2004-11
+  - 2005-01
+  - 2005-04
+  values:
+    2004-10: 29.9404
+    2004-11: 31.2885
+    2004-12: 31.8968
+    2005-01: 33.3142
+    2005-03: 34.8555
+    2005-04: 36.2862
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: cpi_core
+  check: jump
+  periods:
+  - 2005-08
+  - 2005-11
+  - 2006-01
+  - 2006-02
+  values:
+    2005-07: 34.9857
+    2005-08: 36.7366
+    2005-10: 38.7766
+    2005-11: 40.7245
+    2005-12: 41.0343
+    2006-01: 42.8219
+    2006-02: 44.7024
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: cpi_core
+  check: jump
+  periods:
+  - 2008-04
+  values:
+    2008-03: 63.66
+    2008-04: 66.3609
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: cpi_headline
+  check: jump
+  periods:
+  - 2004-02
+  - 2004-03
+  values:
+    2004-01: 25.616
+    2004-02: 22.6821
+    2004-03: 24.7722
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: cpi_headline
+  check: jump
+  periods:
+  - 2004-10
+  - 2005-01
+  values:
+    2004-09: 26.8253
+    2004-10: 29.1069
+    2004-12: 31.6894
+    2005-01: 36.0858
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: cpi_headline
+  check: jump
+  periods:
+  - 2005-08
+  values:
+    2005-07: 32.6306
+    2005-08: 36.062
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: cpi_headline
+  check: jump
+  periods:
+  - 2006-02
+  values:
+    2006-01: 44.128
+    2006-02: 49.9205
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: cpi_headline
+  check: jump
+  periods:
+  - 2006-07
+  - 2006-08
+  - 2006-09
+  - 2006-10
+  - 2006-12
+  - 2007-02
+  values:
+    2006-06: 51.095
+    2006-07: 55.3335
+    2006-08: 63.6677
+    2006-09: 55.4944
+    2006-10: 59.4976
+    2006-11: 61.7584
+    2006-12: 68.7432
+    2007-01: 73.4464
+    2007-02: 68.4275
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: crude_production_direct
+  check: jump
+  periods:
+  - 2007-02
+  values:
+    2007-01: 1538.0
+    2007-02: 1915.0
+  reason: Value as published by JODI-Oil and OPEC MOMR direct communication; reviewed as a genuine movement,
+    not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: crude_production_direct
+  check: jump
+  periods:
+  - 2010-12
+  values:
+    2010-11: 2403.0
+    2010-12: 2775.0
+  reason: Value as published by JODI-Oil and OPEC MOMR direct communication; reviewed as a genuine movement,
+    not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: crude_production_direct
+  check: jump
+  periods:
+  - 2013-09
+  values:
+    2013-08: 3207.0
+    2013-09: 2833.0
+  reason: Value as published by JODI-Oil and OPEC MOMR direct communication; reviewed as a genuine movement,
+    not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: crude_production_direct
+  check: jump
+  periods:
+  - 2014-02
+  values:
+    2014-01: 2848.0
+    2014-02: 3410.0
+  reason: Value as published by JODI-Oil and OPEC MOMR direct communication; reviewed as a genuine movement,
+    not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: crude_production_direct
+  check: jump
+  periods:
+  - 2015-03
+  values:
+    2015-02: 2783.0
+    2015-03: 3339.0
+  reason: Value as published by JODI-Oil and OPEC MOMR direct communication; reviewed as a genuine movement,
+    not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: crude_production_direct
+  check: jump
+  periods:
+  - 2016-01
+  values:
+    2015-12: 4130.0
+    2016-01: 4775.0
+  reason: Value as published by JODI-Oil and OPEC MOMR direct communication; reviewed as a genuine movement,
+    not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: crude_production_secondary
+  check: jump
+  periods:
+  - 2004-03
+  - 2004-06
+  - 2004-09
+  - 2004-11
+  values:
+    2004-02: 1893.0
+    2004-03: 2378.0
+    2004-05: 1958.0
+    2004-06: 1583.0
+    2004-08: 1643.0
+    2004-09: 2248.0
+    2004-10: 2218.0
+    2004-11: 1788.0
+  reason: Value as published by the US EIA and OPEC MOMR secondary sources; reviewed as a genuine movement,
+    not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: crude_production_secondary
+  check: jump
+  periods:
+  - 2026-03
+  - 2026-06
+  values:
+    2026-02: 4461.0
+    2026-03: 1620.0
+    2026-05: 1320.0
+    2026-06: 1945.0
+  reason: Value as published by the US EIA and OPEC MOMR secondary sources; reviewed as a genuine movement,
+    not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2027-10-27'
+- series: fx.official
+  check: jump
+  periods:
+  - '2004-01-03'
+  - '2004-01-04'
+  - '2004-01-07'
+  - '2004-01-10'
+  - '2004-01-11'
+  - '2004-01-14'
+  - '2004-01-17'
+  - '2004-01-18'
+  - '2004-01-19'
+  - '2004-01-20'
+  - '2004-01-25'
+  - '2004-02-09'
+  - '2004-02-10'
+  - '2004-02-14'
+  - '2004-02-15'
+  - '2004-02-18'
+  - '2004-03-09'
+  values:
+    '2004-01-01': 1680.0
+    '2004-01-03': 1660.0
+    '2004-01-04': 1640.0
+    '2004-01-06': 1640.0
+    '2004-01-07': 1625.0
+    '2004-01-08': 1615.0
+    '2004-01-10': 1550.0
+    '2004-01-11': 1520.0
+    '2004-01-13': 1515.0
+    '2004-01-14': 1405.0
+    '2004-01-17': 1450.0
+    '2004-01-18': 1470.0
+    '2004-01-19': 1430.0
+    '2004-01-20': 1400.0
+    '2004-01-24': 1400.0
+    '2004-01-25': 1375.0
+    '2004-02-08': 1370.0
+    '2004-02-09': 1385.0
+    '2004-02-10': 1430.0
+    '2004-02-12': 1450.0
+    '2004-02-14': 1420.0
+    '2004-02-15': 1400.0
+    '2004-02-17': 1400.0
+    '2004-02-18': 1415.0
+    '2004-03-08': 1420.0
+    '2004-03-09': 1400.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: fx.official
+  check: jump
+  periods:
+  - '2004-04-12'
+  - '2004-04-17'
+  values:
+    '2004-04-08': 1425.0
+    '2004-04-12': 1440.0
+    '2004-04-15': 1445.0
+    '2004-04-17': 1460.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: fx.official
+  check: jump
+  periods:
+  - '2006-12-18'
+  - '2006-12-21'
+  - '2006-12-27'
+  values:
+    '2006-12-17': 1400.0
+    '2006-12-18': 1388.0
+    '2006-12-20': 1373.0
+    '2006-12-21': 1360.0
+    '2006-12-26': 1338.0
+    '2006-12-27': 1325.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: fx.official
+  check: jump
+  periods:
+  - '2015-12-01'
+  values:
+    '2015-11-30': 1166.0
+    '2015-12-01': 1182.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: fx.official
+  check: jump
+  periods:
+  - '2020-12-20'
+  values:
+    '2020-12-17': 1182.0
+    '2020-12-20': 1450.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: fx.official
+  check: jump
+  periods:
+  - '2023-02-08'
+  values:
+    '2023-02-07': 1450.0
+    '2023-02-08': 1300.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: fx.official
+  check: jump
+  periods:
+  - '2026-10-07'
+  values:
+    '2026-10-06': 1300.0
+    '2026-10-07': 1500.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2027-10-27'
+- sanity: fx_parallel_vs_official
+  check: sanity
+  periods:
+  - '2004-01-13'
+  - '2004-01-14'
+  - '2004-01-17'
+  - '2004-01-19'
+  - '2004-02-11'
+  - '2004-02-12'
+  values:
+    '2004-01-13': 1440.0
+    2004-01-13 fx.official: 1515.0
+    '2004-01-14': 1288.0
+    2004-01-14 fx.official: 1405.0
+    '2004-01-17': 1415.0
+    2004-01-17 fx.official: 1450.0
+    '2004-01-19': 1390.0
+    2004-01-19 fx.official: 1430.0
+    '2004-02-11': 1411.0
+    2004-02-11 fx.official: 1440.0
+    '2004-02-12': 1405.0
+    2004-02-12 fx.official: 1450.0
+  reason: Value as published by the CBI (official rate) and the parallel-market rate source; reviewed
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- sanity: fx_parallel_vs_official
+  check: sanity
+  periods:
+  - '2005-01-25'
+  values:
+    '2005-01-25': 1408.0
+    2005-01-25 fx.official: 1460.0
+  reason: Value as published by the CBI (official rate) and the parallel-market rate source; reviewed
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- sanity: fx_parallel_vs_official
+  check: sanity
+  periods:
+  - '2006-12-24'
+  - '2006-12-25'
+  values:
+    '2006-12-24': 1323.0
+    2006-12-24 fx.official: 1352.0
+    '2006-12-25': 1313.0
+    2006-12-25 fx.official: 1345.0
+  reason: Value as published by the CBI (official rate) and the parallel-market rate source; reviewed
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- sanity: fx_parallel_vs_official
+  check: sanity
+  periods:
+  - '2007-12-11'
+  - '2007-12-12'
+  - '2007-12-13'
+  values:
+    '2007-12-11': 1175.0
+    2007-12-11 fx.official: 1216.0
+    '2007-12-12': 1175.0
+    2007-12-12 fx.official: 1216.0
+    '2007-12-13': 1190.0
+    2007-12-13 fx.official: 1216.0
+  reason: Value as published by the CBI (official rate) and the parallel-market rate source; reviewed
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: gdp.nominal_nonoil
+  check: jump
+  periods:
+  - 2023-Q4
+  values:
+    2023-Q3: 37519464.0
+    2023-Q4: 56116692.0
+  reason: The 2023-Q3 total is COSIT's (84,619,464, Q3 2024 report) but its oil value is the earlier unsourced one
+    (47,100,000), because the report's own non-oil figure for that quarter (80,625,844) is implausible; the
+    jump is that mixture, not a movement in the source. Acknowledged as a known limit of the data; the value is
+    flagged U.
+  reviewer: HusseinKh90
+  date: '2026-10-28'
+  review_by: '2027-10-28'
+- series: money.bank_deposit_rate
+  check: jump
+  periods:
+  - 2007-01
+  - 2007-03
+  values:
+    2006-12: 7.7
+    2007-01: 8.9
+    2007-02: 9.3
+    2007-03: 11.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.bank_lending_rate
+  check: jump
+  periods:
+  - 2004-03
+  values:
+    2004-02: 15.0
+    2004-03: 13.16
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.bank_lending_rate
+  check: jump
+  periods:
+  - 2007-03
+  values:
+    2007-02: 16.2
+    2007-03: 18.4
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.bank_lending_rate
+  check: jump
+  periods:
+  - 2024-01
+  values:
+    2023-12: 11.14
+    2024-01: 9.86
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.fx_deposits
+  check: jump
+  periods:
+  - 2005-02
+  - 2005-05
+  values:
+    2005-01: 796.0
+    2005-02: 1562.0
+    2005-04: 1837.0
+    2005-05: 3290.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.fx_deposits
+  check: jump
+  periods:
+  - 2007-11
+  values:
+    2007-10: 8238.0
+    2007-11: 5609.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.fx_deposits
+  check: jump
+  periods:
+  - 2010-11
+  values:
+    2010-10: 8131.0
+    2010-11: 5367.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.m0
+  check: jump
+  periods:
+  - 2007-09
+  values:
+    2007-08: 20115.0
+    2007-09: 25916.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.m1
+  check: jump
+  periods:
+  - 2004-12
+  values:
+    2004-11: 8616.0
+    2004-12: 10149.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.m2
+  check: jump
+  periods:
+  - 2004-12
+  values:
+    2004-11: 9885.0
+    2004-12: 12254.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.policy_rate
+  check: jump
+  periods:
+  - 2006-07
+  values:
+    2006-06: 8.0
+    2006-07: 12.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.policy_rate
+  check: jump
+  periods:
+  - 2016-03
+  values:
+    2016-02: 6.0
+    2016-03: 4.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.policy_rate
+  check: jump
+  periods:
+  - 2023-06
+  values:
+    2023-05: 4.0
+    2023-06: 7.5
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.required_reserves
+  check: jump
+  periods:
+  - 2005-01
+  - 2005-02
+  - 2005-05
+  values:
+    2004-12: 1605.0
+    2005-01: 1198.0
+    2005-02: 1575.0
+    2005-04: 1442.0
+    2005-05: 2345.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.required_reserves
+  check: jump
+  periods:
+  - 2007-09
+  values:
+    2007-08: 5401.0
+    2007-09: 11827.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.required_reserves
+  check: jump
+  periods:
+  - 2010-04
+  values:
+    2010-03: 9970.0
+    2010-04: 7901.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.required_reserves
+  check: jump
+  periods:
+  - 2010-09
+  values:
+    2010-08: 8870.0
+    2010-09: 6467.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.required_reserves
+  check: jump
+  periods:
+  - 2017-03
+  values:
+    2017-02: 8556.0
+    2017-03: 6179.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.required_reserves
+  check: jump
+  periods:
+  - 2018-05
+  values:
+    2018-04: 6748.0
+    2018-05: 9409.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.required_reserves
+  check: jump
+  periods:
+  - 2023-05
+  values:
+    2023-04: 14447.0
+    2023-05: 17735.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.required_reserves
+  check: jump
+  periods:
+  - 2025-07
+  values:
+    2025-06: 19891.0
+    2025-07: 14122.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2027-10-27'
+- series: money.reserves_official
+  check: jump
+  periods:
+  - 2004-02
+  - 2004-05
+  - 2004-07
+  values:
+    2004-01: 2134.0
+    2004-02: 2952.0
+    2004-04: 3251.0
+    2004-05: 4150.0
+    2004-06: 4662.0
+    2004-07: 6444.0
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: money.reserves_official
+  check: jump
+  periods:
+  - 2006-12
+  values:
+    2006-11: 20019.812
+    2006-12: 26157.735
+  reason: Value as published by the Central Bank of Iraq; reviewed as a genuine movement, not a data or
+    processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: oecd.dac.grants_excl_tc
+  check: jump
+  periods:
+  - '2005'
+  values:
+    '2004': 4252.64
+    '2005': 21038.97
+  reason: Value as published by the World Bank (OECD DAC data); reviewed as a genuine movement, not a
+    data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: oecd.dac.grants_excl_tc
+  check: jump
+  periods:
+  - '2009'
+  values:
+    '2008': 9923.72
+    '2009': 2601.348
+  reason: Value as published by the World Bank (OECD DAC data); reviewed as a genuine movement, not a
+    data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: oecd.dac.oda_total_net
+  check: jump
+  periods:
+  - '2005'
+  values:
+    '2004': 4650.65
+    '2005': 22057.09
+  reason: Value as published by the World Bank (OECD DAC data); reviewed as a genuine movement, not a
+    data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: oecd.dac.oda_total_net
+  check: jump
+  periods:
+  - '2009'
+  values:
+    '2008': 9884.529
+    '2009': 2791.23
+  reason: Value as published by the World Bank (OECD DAC data); reviewed as a genuine movement, not a
+    data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: oil_price_brent
+  check: jump
+  periods:
+  - '2008-12-05'
+  - '2009-01-02'
+  values:
+    '2008-12-04': 43.83
+    '2008-12-05': 37.04
+    '2008-12-31': 35.82
+    '2009-01-02': 42.94
+  reason: Value as published by the US EIA (via FRED); reviewed as a genuine movement, not a data or processing
+    error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: oil_price_brent
+  check: jump
+  periods:
+  - '2020-03-09'
+  - '2020-03-16'
+  - '2020-03-18'
+  - '2020-03-30'
+  - '2020-03-31'
+  - '2020-04-02'
+  - '2020-04-03'
+  - '2020-04-08'
+  - '2020-04-09'
+  - '2020-04-20'
+  - '2020-04-21'
+  - '2020-04-22'
+  - '2020-04-29'
+  - '2020-05-05'
+  values:
+    '2020-03-06': 45.6
+    '2020-03-09': 35.33
+    '2020-03-13': 32.25
+    '2020-03-16': 27.98
+    '2020-03-17': 27.97
+    '2020-03-18': 22.79
+    '2020-03-27': 22.39
+    '2020-03-30': 19.19
+    '2020-03-31': 14.85
+    '2020-04-01': 14.97
+    '2020-04-02': 20.24
+    '2020-04-03': 24.33
+    '2020-04-07': 22.1
+    '2020-04-08': 25.22
+    '2020-04-09': 20.23
+    '2020-04-17': 19.75
+    '2020-04-20': 17.36
+    '2020-04-21': 9.12
+    '2020-04-22': 13.77
+    '2020-04-28': 15.6
+    '2020-04-29': 17.86
+    '2020-05-04': 20.4
+    '2020-05-05': 25.46
+  reason: Value as published by the US EIA (via FRED); reviewed as a genuine movement, not a data or processing
+    error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: oil_price_brent
+  check: jump
+  periods:
+  - '2021-11-26'
+  values:
+    '2021-11-25': 82.05
+    '2021-11-26': 72.37
+  reason: Value as published by the US EIA (via FRED); reviewed as a genuine movement, not a data or processing
+    error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: oil_price_brent
+  check: jump
+  periods:
+  - '2022-03-09'
+  values:
+    '2022-03-08': 133.18
+    '2022-03-09': 116.58
+  reason: Value as published by the US EIA (via FRED); reviewed as a genuine movement, not a data or processing
+    error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: oil_price_brent
+  check: jump
+  periods:
+  - '2026-03-23'
+  - '2026-04-08'
+  - '2026-04-17'
+  values:
+    '2026-03-20': 118.42
+    '2026-03-23': 103.79
+    '2026-04-07': 138.21
+    '2026-04-08': 122.11
+    '2026-04-16': 116.63
+    '2026-04-17': 98.63
+  reason: Value as published by the US EIA (via FRED); reviewed as a genuine movement, not a data or processing
+    error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2027-10-27'
+- series: oil_price_brent
+  check: jump
+  periods:
+  - '2026-10-02'
+  values:
+    '2026-10-01': 114.82
+    '2026-10-02': 135.51
+  reason: Value as published by the US EIA (via FRED); reviewed as a genuine movement, not a data or processing
+    error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2027-10-27'
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2004-01-05'
+  - '2004-01-08'
+  - '2004-01-10'
+  - '2004-01-13'
+  - '2004-01-14'
+  - '2004-01-17'
+  - '2004-01-18'
+  - '2004-01-19'
+  - '2004-01-26'
+  - '2004-01-28'
+  - '2004-01-29'
+  - '2004-02-09'
+  values:
+    '2004-01-04': 1675.0
+    '2004-01-05': 1645.0
+    '2004-01-07': 1635.0
+    '2004-01-08': 1595.0
+    '2004-01-10': 1520.0
+    '2004-01-12': 1515.0
+    '2004-01-13': 1440.0
+    '2004-01-14': 1288.0
+    '2004-01-17': 1415.0
+    '2004-01-18': 1490.0
+    '2004-01-19': 1390.0
+    '2004-01-25': 1375.0
+    '2004-01-26': 1350.0
+    '2004-01-27': 1360.0
+    '2004-01-28': 1390.0
+    '2004-01-29': 1360.0
+    '2004-02-08': 1375.0
+    '2004-02-09': 1407.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2005-01-25'
+  - '2005-01-27'
+  values:
+    '2005-01-24': 1463.0
+    '2005-01-25': 1408.0
+    '2005-01-27': 1440.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2006-12-05'
+  - '2006-12-21'
+  - '2006-12-24'
+  values:
+    '2006-12-04': 1420.0
+    '2006-12-05': 1442.0
+    '2006-12-20': 1381.0
+    '2006-12-21': 1355.0
+    '2006-12-24': 1323.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2007-12-11'
+  - '2007-12-16'
+  values:
+    '2007-12-10': 1194.0
+    '2007-12-11': 1175.0
+    '2007-12-13': 1190.0
+    '2007-12-16': 1219.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2011-12-15'
+  - '2011-12-18'
+  - '2011-12-19'
+  values:
+    '2011-12-14': 1210.0
+    '2011-12-15': 1230.0
+    '2011-12-18': 1260.0
+    '2011-12-19': 1210.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2012-04-03'
+  values:
+    '2012-04-02': 1240.0
+    '2012-04-03': 1260.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2015-01-15'
+  values:
+    '2015-01-14': 1240.0
+    '2015-01-15': 1220.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2015-03-10'
+  - '2015-04-08'
+  - '2015-04-12'
+  values:
+    '2015-03-09': 1250.0
+    '2015-03-10': 1277.0
+    '2015-04-07': 1292.0
+    '2015-04-08': 1321.0
+    '2015-04-09': 1327.0
+    '2015-04-12': 1302.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2015-06-15'
+  - '2015-06-17'
+  - '2015-06-18'
+  - '2015-06-21'
+  values:
+    '2015-06-14': 1355.0
+    '2015-06-15': 1379.0
+    '2015-06-16': 1379.0
+    '2015-06-17': 1353.0
+    '2015-06-18': 1312.0
+    '2015-06-21': 1250.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2016-07-13'
+  values:
+    '2016-07-12': 1263.0
+    '2016-07-13': 1285.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2019-11-05'
+  - '2019-11-10'
+  values:
+    '2019-11-04': 1199.182
+    '2019-11-05': 1218.82
+    '2019-11-07': 1218.539
+    '2019-11-10': 1196.897
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2020-06-14'
+  - '2020-06-28'
+  values:
+    '2020-05-21': 1218.187
+    '2020-06-14': 1246.763
+    '2020-06-25': 1248.5
+    '2020-06-28': 1226.295
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2020-12-14'
+  - '2020-12-17'
+  - '2020-12-20'
+  values:
+    '2020-12-13': 1271.768
+    '2020-12-14': 1296.06
+    '2020-12-16': 1307.869
+    '2020-12-17': 1331.446
+    '2020-12-20': 1456.457
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2022-12-26'
+  - '2023-01-04'
+  - '2023-01-19'
+  - '2023-01-23'
+  - '2023-01-29'
+  - '2023-02-06'
+  - '2023-02-07'
+  - '2023-02-08'
+  - '2023-02-15'
+  - '2023-03-15'
+  - '2023-03-30'
+  - '2023-04-02'
+  - '2023-04-09'
+  - '2023-04-10'
+  - '2023-04-25'
+  values:
+    '2022-12-22': 1543.173
+    '2022-12-26': 1569.248
+    '2023-01-03': 1539.0
+    '2023-01-04': 1564.5
+    '2023-01-18': 1613.5
+    '2023-01-19': 1638.5
+    '2023-01-22': 1641.0
+    '2023-01-23': 1583.0
+    '2023-01-25': 1609.0
+    '2023-01-29': 1655.0
+    '2023-02-02': 1705.0
+    '2023-02-06': 1609.0
+    '2023-02-07': 1557.0
+    '2023-02-08': 1466.25
+    '2023-02-14': 1505.0
+    '2023-02-15': 1532.5
+    '2023-03-14': 1550.25
+    '2023-03-15': 1580.0
+    '2023-03-29': 1542.0
+    '2023-03-30': 1517.0
+    '2023-04-02': 1487.5
+    '2023-04-06': 1498.0
+    '2023-04-09': 1470.0
+    '2023-04-10': 1447.0
+    '2023-04-24': 1428.0
+    '2023-04-25': 1403.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2023-07-20'
+  - '2023-07-26'
+  - '2023-07-30'
+  values:
+    '2023-07-19': 1483.0
+    '2023-07-20': 1510.0
+    '2023-07-25': 1536.0
+    '2023-07-26': 1560.0
+    '2023-07-27': 1563.0
+    '2023-07-30': 1516.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2023-10-09'
+  values:
+    '2023-10-08': 1589.0
+    '2023-10-09': 1614.75
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2023-11-12'
+  - '2023-11-14'
+  - '2023-11-15'
+  values:
+    '2023-11-09': 1649.17
+    '2023-11-12': 1609.75
+    '2023-11-13': 1596.33
+    '2023-11-14': 1551.25
+    '2023-11-15': 1582.33
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2023-12-24'
+  - '2023-12-26'
+  values:
+    '2023-12-21': 1524.5
+    '2023-12-24': 1487.5
+    '2023-12-25': 1490.0
+    '2023-12-26': 1531.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2024-10-06'
+  values:
+    '2024-10-03': 1531.0
+    '2024-10-06': 1558.5
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2031-10-27'
+  settled: true
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2026-01-26'
+  - '2026-01-28'
+  values:
+    '2026-01-25': 1490.0
+    '2026-01-26': 1522.0
+    '2026-01-27': 1534.0
+    '2026-01-28': 1496.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2027-10-27'
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2026-06-22'
+  values:
+    '2026-06-21': 1563.83
+    '2026-06-22': 1589.0
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2027-10-27'
+- series: parallel_rate_iraq
+  check: jump
+  periods:
+  - '2026-10-06'
+  - '2026-10-07'
+  values:
+    '2026-10-05': 1596.5
+    '2026-10-06': 1623.0
+    '2026-10-07': 1664.5
+  reason: Value as published by the parallel-market rate sources; reviewed as a genuine movement, not
+    a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-10-27'
+  review_by: '2027-10-27'

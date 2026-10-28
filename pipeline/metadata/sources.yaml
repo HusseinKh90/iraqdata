@@ -1,0 +1,157 @@
+# Terms of reuse, one record per source.
+# Raw manifest entries (`source_ref`) and catalog origin segments (`origin[].source_ref`) refer to
+# these ids; docs/source_inventory.md ("Terms of reuse by source") and datapackage.json `sources`
+# are generated from this file.
+#
+#   id              unique, lowercase with `_`
+#   publisher       the original publisher
+#   title           the product (file, database or API) read
+#   url             where it is published
+#   terms           the publisher's words, or exactly "No licence stated"
+#   licence         an SPDX id, only when `status: licensed`; otherwise null
+#   status          licensed | no_licence_stated | confirmed_by_maintainer | unconfirmed
+#                   (`unconfirmed` = the terms have not been checked at the publisher yet; an open
+#                   item, listed in docs/source_inventory.md)
+#   redistribution  the basis on which the project republishes the data
+#   attribution     the credit to give
+#   checked         the date the terms were last checked (for `unconfirmed`, the date this record
+#                   was written)
+sources:
+- id: bis_lbs
+  publisher: Bank for International Settlements (BIS)
+  title: Locational Banking Statistics (SDMX API, WS_LBS_D_PUB)
+  url: https://data.bis.org
+  terms: Open data; attribution required
+  licence: null
+  status: unconfirmed
+  redistribution: To confirm against the BIS terms of use; republished with attribution to the BIS
+  attribution: Bank for International Settlements, Locational Banking Statistics
+  checked: '2026-10-27'
+- id: cbi_bop
+  publisher: Central Bank of Iraq (CBI)
+  title: Balance of Payments Data Archive
+  url: https://cbi.iq/page/145
+  terms: No licence stated
+  licence: null
+  status: no_licence_stated
+  redistribution: Free public download with no stated terms (no CBI terms of reuse found on cbi.iq,
+    2026-10-24); republished unchanged in value with attribution to the CBI
+  attribution: Central Bank of Iraq, Balance of Payments
+  checked: '2026-10-24'
+- id: cbi_bulletin
+  publisher: Central Bank of Iraq (CBI)
+  title: Monthly Statistical Bulletin
+  url: https://cbi.iq/page/122
+  terms: No licence stated
+  licence: null
+  status: no_licence_stated
+  redistribution: Free public download with no stated terms (no CBI terms of reuse found on cbi.iq,
+    2026-10-24); republished unchanged in value with attribution to the CBI
+  attribution: Central Bank of Iraq, Monthly Statistical Bulletin
+  checked: '2026-10-24'
+- id: cbi_fx
+  publisher: Central Bank of Iraq (CBI)
+  title: Exchange-rate files (dinar per US dollar)
+  url: https://cbi.iq/page/144
+  terms: No licence stated
+  licence: null
+  status: no_licence_stated
+  redistribution: Free public download with no stated terms (checked 2026-10-24); republished
+    unchanged in value with attribution to the CBI
+  attribution: Central Bank of Iraq, exchange rates
+  checked: '2026-10-24'
+- id: cbi_kfi
+  publisher: Central Bank of Iraq (CBI)
+  title: Key Financial Indicators
+  url: https://cbi.iq/news/view/94
+  terms: No licence stated
+  licence: null
+  status: no_licence_stated
+  redistribution: Free public download with no stated terms (no CBI terms of reuse found on cbi.iq,
+    2026-10-24); republished unchanged in value with attribution to the CBI
+  attribution: Central Bank of Iraq, Key Financial Indicators
+  checked: '2026-10-24'
+- id: cosit_national_accounts
+  publisher: Central Organization for Statistics and Information Technology (COSIT)
+  title: National Accounts (quarterly GDP)
+  url: https://cosit.gov.iq/ar/national-accounts/income
+  terms: Government publication; free download
+  licence: null
+  status: unconfirmed
+  redistribution: To confirm with COSIT; republished with attribution to COSIT
+  attribution: Central Organization for Statistics and Information Technology (COSIT), National Accounts
+  checked: '2026-10-27'
+- id: eia_intl
+  publisher: U.S. Energy Information Administration (EIA)
+  title: International Energy Statistics bulk file (series INTL.57-1-IRQ-TBPD.M)
+  url: https://www.eia.gov/opendata/bulk/INTL.zip
+  terms: US government open data; free public API
+  licence: null
+  status: unconfirmed
+  redistribution: To confirm against the EIA copyright and reuse page; republished with attribution
+    to the EIA
+  attribution: U.S. Energy Information Administration, International Energy Statistics
+  checked: '2026-10-27'
+- id: fred_brent
+  publisher: U.S. Energy Information Administration (EIA), via FRED (Federal Reserve Bank of St. Louis)
+  title: Crude Oil Prices, Brent - Europe (DCOILBRENTEU)
+  url: https://fred.stlouisfed.org/series/DCOILBRENTEU
+  terms: US government open data; free public API
+  licence: null
+  status: unconfirmed
+  redistribution: To confirm against the series' copyright note on FRED; republished with attribution
+    to the EIA and FRED
+  attribution: U.S. Energy Information Administration, retrieved from FRED, Federal Reserve Bank of St. Louis
+  checked: '2026-10-27'
+- id: iraq_parallel_fx
+  publisher: Hussein Khalid (Iraq-parallel-exchange-rate repository)
+  title: Iraq-parallel-exchange-rate, data/daily_fx.csv
+  url: https://github.com/HusseinKh90/Iraq-parallel-exchange-rate
+  terms: CC-BY 4.0
+  licence: CC-BY-4.0
+  status: licensed
+  redistribution: Licensed CC-BY 4.0 by the repository
+  attribution: Iraq-parallel-exchange-rate (HusseinKh90/Iraq-parallel-exchange-rate)
+  checked: '2026-10-25'
+- id: jodi_oil
+  publisher: Joint Organisations Data Initiative (JODI)
+  title: JODI Oil World Database
+  url: https://jodidata.org/oil/database/data-downloads.aspx
+  terms: Free; open download
+  licence: null
+  status: unconfirmed
+  redistribution: To confirm against the JODI terms of use; republished with attribution to JODI
+  attribution: Joint Organisations Data Initiative, JODI Oil World Database
+  checked: '2026-10-27'
+- id: maintainer_fiscal_seed
+  publisher: Compiled by the maintainer from the original publishers' documents
+  title: Historical fiscal seed, 2004-2023
+  url: pipeline/seeds/iraq_fiscal_historical.csv
+  terms: Redistribution confirmed by the maintainer on 2026-10-25
+  licence: null
+  status: confirmed_by_maintainer
+  redistribution: Redistribution confirmed by the maintainer (statement, 2026-10-25); the publisher of
+    each value is unknown (flag U)
+  attribution: iraqdata historical fiscal seed (compiled by the maintainer)
+  checked: '2026-10-25'
+- id: opec_momr
+  publisher: Organization of the Petroleum Exporting Countries (OPEC)
+  title: Monthly Oil Market Report (figures typed into transcription records)
+  url: https://www.opec.org
+  terms: Public PDF download
+  licence: null
+  status: unconfirmed
+  redistribution: To confirm against the OPEC terms of use; a few figures are republished with
+    attribution to OPEC
+  attribution: OPEC, Monthly Oil Market Report
+  checked: '2026-10-27'
+- id: wb_wdi
+  publisher: World Bank (World Development Indicators, compiled from OECD DAC data)
+  title: WDI API, indicators DT.ODA.ALLD.CD and BX.GRT.EXTA.CD.WD
+  url: https://api.worldbank.org
+  terms: Creative Commons Attribution 4.0 (World Bank Data Catalog, dataset 0037712)
+  licence: CC-BY-4.0
+  status: licensed
+  redistribution: Licensed CC-BY 4.0 (licence check 2026-10-26, docs/source_inventory.md)
+  attribution: World Bank, World Development Indicators (from OECD DAC data)
+  checked: '2026-10-26'

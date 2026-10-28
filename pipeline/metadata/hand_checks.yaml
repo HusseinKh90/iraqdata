@@ -1,0 +1,568 @@
+# Hand-checked values.
+# Each `expected` was read independently from the cited location of the archived file (openpyxl
+# with data_only=True, csv, json or zipfile; never through the parser), multiplied by `scale`
+# and, where the parser rounds, rounded to `round` decimals. tests/test_parser_hand_checks.py
+# re-reads every location and compares it with the parser's sandbox output.
+#
+# status: pending                    - read from the archived file; awaiting the maintainer's
+#                                      check against the published document
+#         confirmed                  - checked by the maintainer on `confirmed_on` (YYYY-MM-DD)
+#         unverified-against-source  - cosit_gdp only: the values are typed in from COSIT
+#                                      documents. Two read the transcription
+#                                      record (a round-trip check, not a check against the
+#                                      publisher); one pins a derived value. Where a row cites an
+#                                      archived document, pipeline/check_cosit_record.py reads
+#                                      it back from that document.
+values:
+- parser: cbi_bop
+  source: pipeline/raw/cbi/bop/bop_2013_2016.xlsx
+  locator:
+    sheet: qi 2014
+    cell: B118
+  expected: 13849.5
+  scale: 1
+  round: 1
+  target:
+    table: bop_trade_quarterly
+    series: bop.trade_balance
+    date: 2014-Q2
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_bop
+  source: pipeline/raw/cbi/bop/bop_2017.xlsx
+  locator:
+    sheet: Q1
+    cell: B7
+  expected: 3845.5
+  scale: 1
+  round: 1
+  target:
+    table: bop_trade_quarterly
+    series: bop.current_account
+    date: 2017-Q1
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_bop
+  source: pipeline/raw/cbi/bop/bop_2021.xlsx
+  locator:
+    sheet: Q3
+    cell: B9
+  expected: 19985.4
+  scale: 1
+  round: 1
+  target:
+    table: bop_trade_quarterly
+    series: trade.exports_total
+    date: 2021-Q3
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_bop
+  source: pipeline/raw/cbi/bop/bop_2024.xlsx
+  locator:
+    sheet: BOP Q4
+    cell: B19
+  expected: 22486.4
+  scale: 1
+  round: 1
+  target:
+    table: bop_trade_quarterly
+    series: trade.imports_total
+    date: 2024-Q4
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_cpi
+  source: pipeline/raw/cbi/key_financial_indicators.xlsx
+  locator:
+    sheet: Sheet1
+    cell: AB3
+  expected: 14815.0
+  scale: 1
+  round: 4
+  target:
+    table: prices_monthly
+    series: cpi.headline_1993
+    date: 2006-01
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_cpi
+  source: pipeline/raw/cbi/key_financial_indicators.xlsx
+  locator:
+    sheet: Sheet1
+    cell: BX6
+  expected: 123.6
+  scale: 1
+  round: 4
+  target:
+    table: prices_monthly
+    series: cpi.core_2007
+    date: 2010-01
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_cpi
+  source: pipeline/raw/cbi/key_financial_indicators.xlsx
+  locator:
+    sheet: Sheet1
+    cell: FR8
+  expected: 104.5
+  scale: 1
+  round: 4
+  target:
+    table: prices_monthly
+    series: cpi.core_2012
+    date: 2018-03
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_cpi
+  source: pipeline/raw/cbi/key_financial_indicators.xlsx
+  locator:
+    sheet: Sheet1
+    cell: IO9
+  expected: 107.3
+  scale: 1
+  round: 4
+  target:
+    table: prices_monthly
+    series: cpi.headline_2022
+    date: 2024-06
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_money_banking
+  source: pipeline/raw/cbi/key_financial_indicators.xlsx
+  locator:
+    sheet: Sheet1
+    cell: BX102
+  expected: 21517.0
+  scale: 1
+  target:
+    table: money_banking_monthly
+    series: money.currency_outside_banks
+    date: 2010-01
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_money_banking
+  source: pipeline/raw/cbi/key_financial_indicators.xlsx
+  locator:
+    sheet: Sheet1
+    cell: DD63
+  expected: 65530.69401293344
+  scale: 1
+  target:
+    table: money_banking_monthly
+    series: money.m0
+    date: 2012-09
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_money_banking
+  source: pipeline/raw/cbi/key_financial_indicators.xlsx
+  locator:
+    sheet: Sheet1
+    cell: GY110
+  expected: 119906.0
+  scale: 1
+  target:
+    table: money_banking_monthly
+    series: money.m2
+    date: 2020-12
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_money_banking
+  source: pipeline/raw/cbi/key_financial_indicators.xlsx
+  locator:
+    sheet: Sheet1
+    cell: IC33
+  expected: 7.5
+  scale: 1
+  target:
+    table: money_banking_monthly
+    series: money.policy_rate
+    date: 2023-06
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_exchange_rates
+  source: pipeline/raw/cbi/fx/cbi_fx_usd_2026-10-25.xlsx
+  locator:
+    sheet: Daily Price basis
+    cell: H718
+  expected: 1300.0
+  scale: 1
+  target:
+    table: exchange_rates_daily
+    series: fx.official
+    date: '2024-07-01'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_exchange_rates
+  source: pipeline/raw/cbi/fx/cbi_fx_usd_2026-10-25.xlsx
+  locator:
+    sheet: Daily Price basis
+    cell: K794
+  expected: 1500.0
+  scale: 1
+  target:
+    table: exchange_rates_daily
+    series: fx.official
+    date: '2026-10-07'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_exchange_rates
+  source: pipeline/seeds/cbi_exchange_rate_historical.xlsx
+  locator:
+    sheet: Daily Market price
+    cell: C679
+  expected: 1463.25
+  scale: 1
+  target:
+    table: exchange_rates_daily
+    series: parallel_rate_iraq
+    date: '2021-02-10'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_exchange_rates
+  source: pipeline/raw/github/daily_fx_2026-10-25.csv
+  locator:
+    row_match:
+      date: '2023-06-15'
+    column: baghdad_close
+  expected: 1469.0
+  scale: 1
+  target:
+    table: exchange_rates_daily
+    series: parallel_rate_iraq
+    date: '2023-06-15'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_exchange_rates
+  source: pipeline/raw/github/daily_fx_2026-10-25.csv
+  locator:
+    row_match:
+      date: '2026-10-22'
+    column: baghdad_close
+  expected: 1694.5
+  scale: 1
+  target:
+    table: exchange_rates_daily
+    series: parallel_rate_iraq
+    date: '2026-10-22'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: fiscal_seed
+  source: pipeline/seeds/iraq_fiscal_historical.xlsx
+  locator:
+    sheet: Sheet1
+    cell: B3
+  expected: 40502890.0
+  scale: 1
+  target:
+    table: fiscal_annual
+    series: fiscal.revenue_total
+    date: '2005'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: fiscal_seed
+  source: pipeline/seeds/iraq_fiscal_historical.xlsx
+  locator:
+    sheet: Sheet1
+    cell: E10
+  expected: 90374783.0
+  scale: 1
+  target:
+    table: fiscal_annual
+    series: fiscal.expenditure_total
+    date: '2012'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: fiscal_seed
+  source: pipeline/seeds/iraq_fiscal_historical.xlsx
+  locator:
+    sheet: Sheet1
+    cell: H17
+  expected: -4156528.0
+  scale: 1
+  target:
+    table: fiscal_annual
+    series: fiscal.balance
+    date: '2019'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_fiscal_bulletin
+  source: pipeline/raw/cbi/bulletin_latest.xlsx
+  locator:
+    sheet: 6-1
+    cell: B41
+  expected: 140774106.0
+  scale: 1
+  target:
+    table: fiscal_annual
+    series: fiscal.revenue_total
+    date: '2024'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_fiscal_bulletin
+  source: pipeline/raw/cbi/bulletin_latest.xlsx
+  locator:
+    sheet: 6-1
+    cell: H41
+  expected: -9753240.0
+  scale: 1
+  target:
+    table: fiscal_annual
+    series: fiscal.balance
+    date: '2024'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cbi_fiscal_bulletin
+  source: pipeline/raw/cbi/bulletin_latest.xlsx
+  locator:
+    sheet: 6-1
+    cell: E54
+  expected: 141227925.0
+  scale: 1
+  target:
+    table: fiscal_annual
+    series: fiscal.expenditure_total
+    date: '2025'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: bis_lbs
+  source: pipeline/raw/bis/bis_lbs_claims_total.csv
+  locator:
+    row_match:
+      TIME_PERIOD: 2006-Q1
+    column: OBS_VALUE
+  expected: 1253.0
+  scale: 1
+  round: 3
+  target:
+    table: bis_lbs_quarterly
+    series: bis.lbs.claims_total
+    date: 2006-Q1
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: bis_lbs
+  source: pipeline/raw/bis/bis_lbs_liabilities_banks.csv
+  locator:
+    row_match:
+      TIME_PERIOD: 2015-Q3
+    column: OBS_VALUE
+  expected: 8373.735
+  scale: 1
+  round: 3
+  target:
+    table: bis_lbs_quarterly
+    series: bis.lbs.liabilities_banks
+    date: 2015-Q3
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: bis_lbs
+  source: pipeline/raw/bis/bis_lbs_liabilities_total.csv
+  locator:
+    row_match:
+      TIME_PERIOD: 2025-Q4
+    column: OBS_VALUE
+  expected: 24434.285
+  scale: 1
+  round: 3
+  target:
+    table: bis_lbs_quarterly
+    series: bis.lbs.liabilities_total
+    date: 2025-Q4
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: oecd_dac
+  source: pipeline/raw/oecd/wb_oda_net.json
+  locator:
+    pointer: /1/20/value
+  expected: 22057.09
+  scale: 1.0e-06
+  round: 3
+  target:
+    table: oecd_dac_annual
+    series: oecd.dac.oda_total_net
+    date: '2005'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: oecd_dac
+  source: pipeline/raw/oecd/wb_oda_grants.json
+  locator:
+    pointer: /1/11/value
+  expected: 904.493
+  scale: 1.0e-06
+  round: 3
+  target:
+    table: oecd_dac_annual
+    series: oecd.dac.grants_excl_tc
+    date: '2014'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: oecd_dac
+  source: pipeline/raw/oecd/wb_oda_net.json
+  locator:
+    pointer: /1/2/value
+  expected: 2007.467
+  scale: 1.0e-06
+  round: 3
+  target:
+    table: oecd_dac_annual
+    series: oecd.dac.oda_total_net
+    date: '2023'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: oil_daily
+  source: pipeline/raw/fred/DCOILBRENTEU.csv
+  locator:
+    row_match:
+      observation_date: '2008-07-03'
+    column: DCOILBRENTEU
+  expected: 143.95
+  scale: 1
+  round: 2
+  target:
+    table: oil_daily
+    series: oil_price_brent
+    date: '2008-07-03'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: oil_daily
+  source: pipeline/raw/fred/DCOILBRENTEU.csv
+  locator:
+    row_match:
+      observation_date: '2016-01-20'
+    column: DCOILBRENTEU
+  expected: 26.01
+  scale: 1
+  round: 2
+  target:
+    table: oil_daily
+    series: oil_price_brent
+    date: '2016-01-20'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: oil_daily
+  source: pipeline/raw/fred/DCOILBRENTEU.csv
+  locator:
+    row_match:
+      observation_date: '2025-06-02'
+    column: DCOILBRENTEU
+  expected: 66.55
+  scale: 1
+  round: 2
+  target:
+    table: oil_daily
+    series: oil_price_brent
+    date: '2025-06-02'
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: oil_monthly
+  source: pipeline/raw/eia/INTL.zip
+  locator:
+    member: INTL.txt
+    line_contains: INTL.57-1-IRQ-TBPD.M
+    json_path:
+    - data
+    - 253
+    - 1
+  expected: 1823.0
+  scale: 1
+  round: 1
+  target:
+    table: oil_monthly
+    series: crude_production_secondary
+    date: 2005-05
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: oil_monthly
+  source: pipeline/raw/eia/INTL.zip
+  locator:
+    member: INTL.txt
+    line_contains: INTL.57-1-IRQ-TBPD.M
+    json_path:
+    - data
+    - 128
+    - 1
+  expected: 4275.0
+  scale: 1
+  round: 1
+  target:
+    table: oil_monthly
+    series: crude_production_secondary
+    date: 2015-10
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: oil_monthly
+  source: pipeline/raw/jodi/jodi_iraq_2009.csv
+  locator:
+    row_match:
+      TIME_PERIOD: 2009-02
+      ENERGY_PRODUCT: CRUDEOIL
+      FLOW_BREAKDOWN: INDPROD
+      UNIT_MEASURE: KBD
+    column: OBS_VALUE
+  expected: 2187.0
+  scale: 1
+  round: 1
+  target:
+    table: oil_monthly
+    series: crude_production_direct
+    date: 2009-02
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: oil_monthly
+  source: pipeline/raw/jodi/jodi_iraq_2022.csv
+  locator:
+    row_match:
+      TIME_PERIOD: 2022-11
+      ENERGY_PRODUCT: CRUDEOIL
+      FLOW_BREAKDOWN: INDPROD
+      UNIT_MEASURE: KBD
+    column: OBS_VALUE
+  expected: 4430.0
+  scale: 1
+  round: 1
+  target:
+    table: oil_monthly
+    series: crude_production_direct
+    date: 2022-11
+  status: confirmed
+  confirmed_on: '2026-10-25'
+- parser: cosit_gdp
+  source: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  locator:
+    row_match:
+      series_id: gdp.nominal
+      period: 2015-Q1
+    column: value
+  expected: 43100000.0
+  scale: 1
+  target:
+    table: gdp_quarterly
+    series: gdp.nominal
+    date: 2015-Q1
+  status: unverified-against-source
+  confirmed_on: null
+- parser: cosit_gdp
+  source: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  locator:
+    row_match:
+      series_id: gdp.real_oil
+      period: 2020-Q2
+    column: value
+  expected: 29568343.1
+  scale: 1
+  target:
+    table: gdp_quarterly
+    series: gdp.real_oil
+    date: 2020-Q2
+  status: unverified-against-source
+  confirmed_on: null
+- parser: cosit_gdp
+  source: null
+  locator:
+    published: true
+  expected: 53854448.5
+  scale: 1
+  target:
+    table: gdp_quarterly
+    series: gdp.nominal_nonoil
+    date: 2025-Q4
+  status: unverified-against-source
+  confirmed_on: null

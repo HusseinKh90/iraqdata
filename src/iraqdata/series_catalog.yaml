@@ -1,0 +1,1648 @@
+family: money_banking
+provider: Central Bank of Iraq (CBI)
+source_file: Key Financial Indicators (cbi.iq/news/view/94)
+series:
+- series_id: money.currency_outside_banks
+  name_en: Currency outside banks
+  name_ar: العملة خارج المصارف
+  category: money_banking
+  frequency: monthly
+  unit: BILLION_IQD
+  start_date: 2004-01
+  source_row_label: a - Currency outside banks (Row 102)
+  cross_check: CBI Monthly Bulletin (Sheet 1-a)
+  description: Total Iraqi Dinar banknotes and coins in circulation held by the public
+    outside the banking system.
+  summary: 'Banknotes and coins held by the public outside commercial banks.'
+  origin:
+  - from: 2004-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, a - Currency outside banks (Row 102)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: money.m0
+  name_en: Monetary Base (M0)
+  name_ar: الأساس النقدي
+  category: money_banking
+  frequency: monthly
+  unit: BILLION_IQD
+  start_date: 2004-01
+  source_row_label: Monetary Base (Row 63)
+  cross_check: CBI Monthly Bulletin (Sheet 2-a)
+  description: Central bank liabilities comprising currency outside banks plus total
+    commercial bank reserves held at the CBI.
+  summary: 'Monetary base: currency outside banks plus commercial bank reserves at CBI.'
+  origin:
+  - from: 2004-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, Monetary Base (Row 63)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: money.m1
+  name_en: Narrow Money (M1)
+  name_ar: المعروض النقدي بالمعنى الضيق
+  category: money_banking
+  frequency: monthly
+  unit: BILLION_IQD
+  start_date: 2004-01
+  source_row_label: M1 (Row 109)
+  cross_check: CBI Monthly Bulletin (Sheet 1-c)
+  description: Highly liquid money supply consisting of currency outside banks plus
+    demand (checking) deposits in local currency.
+  summary: 'Narrow money: currency outside banks plus demand (checking) deposits.'
+  origin:
+  - from: 2004-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, M1 (Row 109)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: money.m2
+  name_en: Broad Money (M2)
+  name_ar: السيولة المحلية بالمعنى الواسع
+  category: money_banking
+  frequency: monthly
+  unit: BILLION_IQD
+  start_date: 2004-01
+  source_row_label: M2 (Row 110)
+  cross_check: CBI Monthly Bulletin (Sheet 2-b)
+  description: 'Headline national liquidity aggregate: M1 plus savings deposits, time
+    deposits, and foreign currency deposits of the resident private sector.'
+  summary: 'Headline broad money: M1 plus savings, time, and foreign currency deposits.'
+  origin:
+  - from: 2004-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, M2 (Row 110)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: money.fx_deposits
+  name_en: Foreign currency deposits
+  name_ar: الودائع بالعملة الأجنبية
+  category: money_banking
+  frequency: monthly
+  unit: BILLION_IQD
+  start_date: 2004-12
+  source_row_label: Foreign currency deposits (Row 113)
+  cross_check: CBI Monthly Bulletin (Sheet 2-b)
+  description: Foreign currency-denominated bank deposits of the private sector in
+    Iraqi commercial banks, expressed in Billion IQD.
+  summary: 'Resident private sector foreign currency deposits in commercial banks.'
+  origin:
+  - from: 2004-12
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, Foreign currency deposits (Row 113)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: money.reserves_official
+  name_en: Official Foreign Exchange Reserves
+  name_ar: الاحتياطيات الأجنبية الرسمية للبنك المركزي
+  category: money_banking
+  frequency: monthly
+  unit: BILLION_IQD
+  start_date: 2004-01
+  source_row_label: Official Reserve (Row 67)
+  cross_check: CBI Monthly Bulletin (Sheet 4) / IMF IFS
+  description: Official gross foreign exchange assets held by the Central Bank of
+    Iraq (convertible foreign currency, deposits abroad, US Treasuries, and monetary
+    gold).
+  summary: 'Official gross foreign exchange reserves held by CBI (USD, Treasuries, gold).'
+  origin:
+  - from: 2004-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, Official Reserve (Row 67)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: money.policy_rate
+  name_en: CBI Policy Interest Rate
+  name_ar: سعر الفائدة الرسمي للبنك المركزي (سعر السياسة)
+  category: money_banking
+  frequency: monthly
+  unit: PERCENT
+  start_date: 2004-08
+  source_row_label: Policy Rate (Row 33)
+  cross_check: CBI Official Announcements
+  description: The benchmark policy interest rate set by the Central Bank of Iraq
+    Board of Governors.
+  summary: 'Official benchmark policy interest rate set by CBI.'
+  origin:
+  - from: 2004-08
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, Policy Rate (Row 33)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: money.bank_deposit_rate
+  name_en: Commercial Banks Deposit Rate (1-Year Fixed)
+  name_ar: متوسط أسعار الفائدة على الودائع المصرفية لأجل سنة
+  category: money_banking
+  frequency: monthly
+  unit: PERCENT
+  start_date: 2004-01
+  source_row_label: ID Bank deposits (one year fixed) (Row 58)
+  cross_check: CBI Monthly Bulletin (Sheet 4-1)
+  description: Weighted average interest rate paid by commercial banks in Iraq on
+    one-year fixed dinar deposits.
+  summary: 'Commercial banks'' weighted average interest rate on 1-year fixed deposits.'
+  origin:
+  - from: 2004-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, ID Bank deposits (one year fixed) (Row
+      58)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: money.bank_lending_rate
+  name_en: Commercial Banks Lending Rate (1-5 Years)
+  name_ar: متوسط أسعار الفائدة على الائتمان والإقراض (1-5 سنوات)
+  category: money_banking
+  frequency: monthly
+  unit: PERCENT
+  start_date: 2004-01
+  source_row_label: ID Bank loans ( 1+ - 5 year) (Row 60)
+  cross_check: CBI Monthly Bulletin (Sheet 4-1)
+  description: Weighted average interest rate charged by commercial banks in Iraq
+    on medium-term dinar loans (1 to 5 years).
+  summary: 'Commercial banks'' weighted average interest rate on medium-term loans.'
+  origin:
+  - from: 2004-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, ID Bank loans ( 1+ - 5 year) (Row 60)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: money.required_reserves
+  name_en: Statutory Required Reserves
+  name_ar: الاحتياطي القانوني الإلزامي
+  category: money_banking
+  frequency: monthly
+  unit: BILLION_IQD
+  start_date: 2004-12
+  source_row_label: a - Required Reserves 3 (Row 116)
+  cross_check: CBI Monthly Bulletin (Sheet 11-a)
+  description: Statutory reserves that commercial banks are legally mandated to maintain
+    on deposit at the Central Bank of Iraq.
+  summary: 'Statutory mandatory reserves maintained by commercial banks at CBI.'
+  origin:
+  - from: 2004-12
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, a - Required Reserves 3 (Row 116)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: parallel_rate_iraq
+  name_en: Parallel Market Exchange Rate (Baghdad)
+  name_ar: سعر صرف السوق الموازي للدينار العراقي (بغداد)
+  category: exchange_rates
+  frequency: daily
+  unit: IQD_PER_USD
+  start_date: '2004-01-01'
+  primary_source: 2004-2022 CBI published daily market rate (user-provided historical
+    seed); from 2023-01-01 HusseinKh90/Iraq-parallel-exchange-rate (GitHub; publisher),
+    Baghdad close, from the dealer Telegram channels @dollariraqi, @iqborsa and @dollar_price;
+    licence CC-BY 4.0 (checked 2026-10-24)
+  source_file: pipeline/seeds/cbi_exchange_rate_historical.xlsx (Sheet 'Daily Market
+    price', to 2022-12-31) & pipeline/raw/github/daily_fx_<date>.csv (column baghdad_close,
+    from 2023-01-01)
+  cross_check: World Bank RTFX
+  description: Daily closing parallel market exchange rate for the Iraqi Dinar per
+    US Dollar in Baghdad (Al-Kifah and Al-Harithiya bourses). Headline national parallel
+    rate. The source changes on 2023-01-01; that value is flagged B (series break).
+  summary: 'Daily closing parallel market exchange rate in Baghdad: CBI''s published market rate to 2022, then the Baghdad close of the [Iraq-parallel-exchange-rate](https://github.com/HusseinKh90/Iraq-parallel-exchange-rate) dealer consensus (CC-BY 4.0). Flag `B` on 2023-01-01 marks the change of source.'
+  origin:
+  - from: '2004-01-01'
+    to: '2022-12-31'
+    class: observed
+    official: true
+    method: Read from the CBI published daily market rate (historical seed workbook, sheet 'Daily Market
+      price')
+    source: Central Bank of Iraq (pipeline/seeds/cbi_exchange_rate_historical.xlsx)
+    source_ref: cbi_fx
+  - from: '2023-01-01'
+    to: open
+    class: observed
+    official: false
+    method: Read from the Iraq-parallel-exchange-rate dataset (Baghdad close of dealer quotes)
+    source: HusseinKh90/Iraq-parallel-exchange-rate dealer consensus (CC-BY 4.0)
+    source_ref: iraq_parallel_fx
+- series_id: fx.official
+  name_en: CBI Official Base Exchange Rate
+  name_ar: سعر الصرف الرسمي للبنك المركزي (سعر الأساس)
+  category: exchange_rates
+  frequency: daily
+  unit: IQD_PER_USD
+  start_date: '2004-01-01'
+  primary_source: Central Bank of Iraq (cbi.iq/page/144); no licence stated, free download
+    (checked 2026-10-24)
+  source_file: pipeline/raw/cbi/fx/cbi_fx_usd_<date>.xlsx (Sheet 'Daily Price basis');
+    values to 2023-12-13 were first published from the identical sheet of
+    pipeline/seeds/cbi_exchange_rate_historical.xlsx
+  cross_check: CBI Monthly Bulletin (Sheet المؤشرات الاقتصادية)
+  description: Official statutory basic exchange rate established by the Central Bank
+    of Iraq for purchasing US Dollars from the Ministry of Finance.
+  summary: 'Official statutory exchange rate set by CBI for government foreign exchange (CBI workbook, `cbi.iq/page/144`).'
+  origin:
+  - from: '2004-01-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI daily official exchange rate workbook
+    source: Central Bank of Iraq (cbi.iq/page/144); no licence stated, free download (checked 2026-10-24)
+    source_ref: cbi_fx
+- series_id: crude_production_secondary
+  name_en: Crude Oil Production (Secondary Sources)
+  name_ar: إنتاج النفط الخام (المصادر الثانوية)
+  category: oil
+  frequency: monthly
+  unit: TB_PER_D
+  start_date: 2004-01
+  primary_source: U.S. EIA International Energy Statistics (INTL.57-1-IRQ-TBPD.M)
+  source_file: pipeline/raw/eia/INTL.zip
+  cross_check: JODI-Oil (INDPROD, 2007-Mar 2024)
+  description: Monthly crude oil production of Iraq as estimated by the U.S. EIA from secondary
+    sources (independent tracking of output and shipments), read from the EIA International
+    Energy Statistics bulk file, series INTL.57-1-IRQ-TBPD.M. Not the OPEC MOMR secondary-sources
+    table, which is not read.
+  summary: 'Iraq crude production estimated by secondary sources (U.S. EIA International Energy Statistics).'
+  origin:
+  - from: 2004-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the U.S. EIA International Energy Data archive (INTL.57-1-IRQ-TBPD.M)
+    source: U.S. EIA International Energy Statistics (INTL.57-1-IRQ-TBPD.M)
+    source_ref: eia_intl
+- series_id: crude_production_direct
+  name_en: Crude Oil Production (Direct Communication)
+  name_ar: إنتاج النفط الخام (الاتصال المباشر - وزارة النفط)
+  category: oil
+  frequency: monthly
+  unit: TB_PER_D
+  start_date: 2007-01
+  primary_source: JODI-Oil (INDPROD, 2007-Mar 2024); OPEC MOMR Direct Communication
+    (Apr 2024+)
+  source_file: pipeline/raw/jodi/jodi_iraq_<year>.csv (2007-01 to 2024-03) & pipeline/raw/transcribed/opec_momr_crude_direct_2026-10-25.csv
+    (2024-04 on)
+  cross_check: None
+  description: 'Monthly crude oil production reported by the Iraqi Ministry of Oil through direct
+    communication: read from the JODI-Oil database to March 2024, then typed in from OPEC Monthly
+    Oil Market Report figures whose source documents are not archived (status flag U).'
+  summary: 'Iraq crude production reported by the Ministry of Oil: read from JODI to March 2024, then typed in from OPEC MOMR figures (flag `U`).'
+  origin:
+  - from: 2007-01
+    to: 2024-03
+    class: observed
+    official: true
+    method: Read from the JODI-Oil World Database annual files (INDPROD, CRUDEOIL, KBD)
+    source: JODI-Oil World Database (pipeline/raw/jodi/jodi_iraq_<year>.csv)
+    source_ref: jodi_oil
+  - from: 2024-04
+    to: open
+    class: transcribed
+    official: true
+    method: Typed in from OPEC Monthly Oil Market Report direct-communication figures; source document not
+      archived
+    source: OPEC Monthly Oil Market Report (issue and table not recorded)
+    source_ref: opec_momr
+    record: pipeline/raw/transcribed/opec_momr_crude_direct_2026-10-25.csv
+- series_id: oil_price_basrah
+  name_en: Basrah crude price, OPEC MOMR anchor months (transcribed)
+  name_ar: معدل سعر نفط البصرة (خام البصرة الخفيف / المتوسط)
+  category: oil
+  frequency: monthly
+  unit: USD_PER_BBL
+  start_date: 2004-07
+  primary_source: OPEC Monthly Oil Market Report (MOMR - OPEC Reference Basket)
+  source_file: pipeline/raw/transcribed/opec_momr_basrah_anchors_2026-10-25.csv
+  cross_check: None
+  description: Ten monthly prices typed in from OPEC Monthly Oil Market Reports (issue not recorded).
+    The other months are left empty on purpose, because a price estimated as the Brent monthly
+    mean minus a fixed discount would not be a Basrah price.
+  summary: 'Basrah crude price, OPEC MOMR anchor months only: ten prices typed in from OPEC reports (flag `U`). The other months are not estimated.'
+  origin:
+  - from: 2004-07
+    to: open
+    class: transcribed
+    official: true
+    method: Ten anchor months typed in from OPEC Monthly Oil Market Reports; source documents not archived
+    source: OPEC Monthly Oil Market Report (issues not recorded)
+    source_ref: opec_momr
+    record: pipeline/raw/transcribed/opec_momr_basrah_anchors_2026-10-25.csv
+- series_id: oil_price_brent
+  name_en: Brent Crude Oil Spot Price (Daily)
+  name_ar: سعر خام برنت القياسي الفوري (يومي)
+  category: oil
+  frequency: daily
+  unit: USD_PER_BBL
+  start_date: '2004-01-06'
+  primary_source: U.S. EIA via FRED (DCOILBRENTEU)
+  source_file: https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU
+  cross_check: None
+  description: Daily Europe Brent spot crude oil price in USD per barrel, continuous
+    from 2004 to present. Sourced from the U.S. Energy Information Administration
+    (EIA) via FRED.
+  summary: 'Daily Europe Brent spot crude oil price (U.S. EIA via FRED).'
+  origin:
+  - from: '2004-01-06'
+    to: open
+    class: observed
+    official: true
+    method: Read from the FRED DCOILBRENTEU daily series
+    source: U.S. EIA via FRED (DCOILBRENTEU)
+    source_ref: fred_brent
+- series_id: cpi.headline_1993
+  name_en: Headline CPI (Base 1993 = 100)
+  name_ar: الرقم القياسي لأسعار المستهلك (أساس 1993 = 100)
+  category: prices
+  frequency: monthly
+  unit: INDEX
+  start_date: 2004-01
+  source_row_label: Inflation Consumer Price Index (1993 = 100) (Row 3)
+  cross_check: COSIT CPI Monthly Reports
+  description: Official headline consumer price index using the 1993 basket as reported
+    by the Central Bank of Iraq and COSIT.
+  summary: 'Headline CPI under official 1993 base basket.'
+  origin:
+  - from: 2004-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, Inflation Consumer Price Index (1993 =
+      100) (Row 3)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: cpi.headline_2007
+  name_en: Headline CPI (Base 2007 = 100)
+  name_ar: الرقم القياسي لأسعار المستهلك (أساس 2007 = 100)
+  category: prices
+  frequency: monthly
+  unit: INDEX
+  start_date: 2009-01
+  source_row_label: Inflation Consumer Price Index (2007 = 100) (Row 5)
+  cross_check: COSIT CPI Monthly Reports
+  description: Official headline consumer price index using the 2007 rebased basket.
+  summary: 'Headline CPI under official 2007 base basket.'
+  origin:
+  - from: 2009-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, Inflation Consumer Price Index (2007 =
+      100) (Row 5)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: cpi.headline_2012
+  name_en: Headline CPI (Base 2012 = 100)
+  name_ar: الرقم القياسي لأسعار المستهلك (أساس 2012 = 100)
+  category: prices
+  frequency: monthly
+  unit: INDEX
+  start_date: 2015-01
+  source_row_label: Inflation Consumer Price Index (2012 = 100) (Row 7)
+  cross_check: COSIT CPI Monthly Reports
+  description: Official headline consumer price index using the 2012 rebased basket.
+  summary: 'Headline CPI under official 2012 base basket.'
+  origin:
+  - from: 2015-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, Inflation Consumer Price Index (2012 =
+      100) (Row 7)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: cpi.headline_2022
+  name_en: Headline CPI (Base 2022 = 100)
+  name_ar: الرقم القياسي لأسعار المستهلك (أساس 2022 = 100)
+  category: prices
+  frequency: monthly
+  unit: INDEX
+  start_date: 2023-01
+  source_row_label: New Inflation Consumer Price Index (2022 = 100) (Row 9)
+  cross_check: COSIT CPI Monthly Reports
+  description: Official current headline consumer price index using the latest 2022
+    rebased basket.
+  summary: 'Headline CPI under official 2022 base basket.'
+  origin:
+  - from: 2023-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, New Inflation Consumer Price Index (2022
+      = 100) (Row 9)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: cpi.core_1993
+  name_en: Core CPI (Base 1993 = 100)
+  name_ar: التضخم الأساس (أساس 1993 = 100)
+  category: prices
+  frequency: monthly
+  unit: INDEX
+  start_date: 2004-01
+  source_row_label: Core Inflation Consumer Price Index Exclude ( F&L and T&C ) (
+    1993=100 ) (Row 4)
+  cross_check: COSIT CPI Monthly Reports
+  description: Core consumer price index excluding Fuel & Lighting and Transport &
+    Communications under the 1993 basket.
+  summary: 'Core CPI excluding Fuel & Lighting and Transport & Comm. (1993 basket).'
+  origin:
+  - from: 2004-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, Core Inflation Consumer Price Index Exclude
+      ( F&L and T&C ) ( 1993=100 ) (Row 4)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: cpi.core_2007
+  name_en: Core CPI (Base 2007 = 100)
+  name_ar: التضخم الأساس (أساس 2007 = 100)
+  category: prices
+  frequency: monthly
+  unit: INDEX
+  start_date: 2009-01
+  source_row_label: Core Inflation Consumer Price Index ( 2007=100 ) (Row 6)
+  cross_check: COSIT CPI Monthly Reports
+  description: Core CPI excluding Fruit & Vegetables and Kerosene & LPG under the
+    2007 methodology.
+  summary: 'Core CPI excluding Fruit & Vegetables and Kerosene & LPG (2007 basket).'
+  origin:
+  - from: 2009-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, Core Inflation Consumer Price Index ( 2007=100
+      ) (Row 6)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: cpi.core_2012
+  name_en: Core CPI (Base 2012 = 100)
+  name_ar: التضخم الأساس (أساس 2012 = 100)
+  category: prices
+  frequency: monthly
+  unit: INDEX
+  start_date: 2015-01
+  source_row_label: Core Inflation Consumer Price Index ( 2012=100 ) (Row 8)
+  cross_check: COSIT CPI Monthly Reports
+  description: Core consumer price index excluding volatile components under the 2012
+    methodology.
+  summary: 'Core CPI excluding volatile components under 2012 methodology.'
+  origin:
+  - from: 2015-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, Core Inflation Consumer Price Index ( 2012=100
+      ) (Row 8)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: cpi.core_2022
+  name_en: Core CPI (Base 2022 = 100)
+  name_ar: التضخم الأساس (أساس 2022 = 100)
+  category: prices
+  frequency: monthly
+  unit: INDEX
+  start_date: 2023-01
+  source_row_label: New Core Inflation Consumer Price Index ( 2022=100 ) (Row 10)
+  cross_check: COSIT CPI Monthly Reports
+  description: Current Core CPI under the 2022 rebased methodology.
+  summary: 'Current Core CPI under 2022 rebased methodology.'
+  origin:
+  - from: 2023-01
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Key Financial Indicators workbook, New Core Inflation Consumer Price Index
+      ( 2022=100 ) (Row 10)
+    source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
+    source_ref: cbi_kfi
+- series_id: cpi_headline
+  name_en: Consumer Price Index (Headline, Linked Series, 2022 = 100)
+  name_ar: الرقم القياسي العام لأسعار المستهلك (سلسلة مترابطة، 2022 = 100)
+  category: prices
+  frequency: monthly
+  unit: INDEX
+  start_date: 2004-01
+  primary_source: Central Bank of Iraq & COSIT
+  source_file: pipeline/raw/cbi/key_financial_indicators.xlsx (Rows 3, 5, 7, 9)
+  cross_check: COSIT CPI Historical Bulletins
+  description: Continuous monthly headline consumer price index linked by iraqdata from the
+    1993, 2007, 2012 and 2022 native base series (not a series published by COSIT or the CBI). Each
+    older base is used through December of its overlap year and the series switches base the
+    following January, linking at that December (a December one-month overlap); every switch
+    month carries status flag B. On the 2022 base's scale without rescaling, so "2022 = 100" is
+    approximate (the linked 2022 average is not exactly 100). Factors, splice months and the
+    remaining year-on-year gaps are in docs/linked_inflation_method.md.
+  summary: 'Index, 2022 base (approx. 2022=100). Headline CPI linked by iraqdata from the 1993, 2007, 2012 and 2022 bases by a December one-month overlap; flagged `B` at each switch month (2010-01, 2016-01, 2024-01). Not an official series; see [the method doc](linked_inflation_method.md).'
+  origin:
+  - from: 2004-01
+    to: open
+    class: derived
+    official: false
+    method: Linked from the four published CPI bases (1993, 2007, 2012, 2022 = 100) by a December
+      one-month overlap, switching base each January after an overlap year (flag B); see
+      docs/linked_inflation_method.md
+    source: Central Bank of Iraq & COSIT
+    inputs:
+    - cpi.headline_1993
+    - cpi.headline_2007
+    - cpi.headline_2012
+    - cpi.headline_2022
+- series_id: cpi_core
+  name_en: Core Consumer Price Index (Linked Series, 2022 = 100)
+  name_ar: الرقم القياسي للتضخم الأساس (سلسلة مترابطة، 2022 = 100)
+  category: prices
+  frequency: monthly
+  unit: INDEX
+  start_date: 2004-01
+  primary_source: Central Bank of Iraq & COSIT
+  source_file: pipeline/raw/cbi/key_financial_indicators.xlsx (Rows 4, 6, 8, 10)
+  cross_check: COSIT CPI Historical Bulletins
+  description: Continuous monthly core consumer price index linked by iraqdata from the
+    1993, 2007, 2012 and 2022 native core series (not a series published by COSIT or the CBI), by the
+    same December one-month overlap as cpi_headline, with status flag B on every switch month.
+    The core definition changes at the 1993 to 2007 switch - the 1993 base excludes fuel and
+    lighting and transport and communications, the later bases exclude fruit and vegetables and
+    kerosene and LPG - so values before and after it measure different core baskets. "2022 = 100"
+    is approximate; details in docs/linked_inflation_method.md.
+  summary: 'Index, 2022 base (approx. 2022=100). Core CPI linked the same way, flagged `B` at the same switch months. The core definition changes at the 2010-01 switch (1993 base: excludes fuel & lighting and transport & communications; later bases: fruit & vegetables and kerosene & LPG). See [the method doc](linked_inflation_method.md).'
+  origin:
+  - from: 2004-01
+    to: open
+    class: derived
+    official: false
+    method: Linked from the four published CPI bases (1993, 2007, 2012, 2022 = 100) by a December
+      one-month overlap, switching base each January after an overlap year (flag B); see
+      docs/linked_inflation_method.md
+    source: Central Bank of Iraq & COSIT
+    inputs:
+    - cpi.core_1993
+    - cpi.core_2007
+    - cpi.core_2012
+    - cpi.core_2022
+- series_id: fiscal.revenue_total
+  name_en: Total Public Revenues (Actual / Outturn)
+  name_ar: إجمالي الإيرادات العامة الفعلية
+  category: fiscal
+  frequency: annual
+  unit: MILLION_IQD
+  start_date: '2004'
+  primary_source: Central Bank of Iraq & Ministry of Finance
+  source_file: pipeline/seeds/iraq_fiscal_historical.csv (compiled by the maintainer; publisher
+    per value unknown) to 2023; CBI Monthly Statistical Bulletin from 2024
+  cross_check: CBI Annual Statistical Bulletins (2004-2013)
+  description: Total actual public revenues (oil and non-oil outturn) collected by
+    the Iraqi general government. Continuous annual time-series from 2004 to 2023,
+    automated for recent years using the cumulative December row in CBI Sheet '6-1'.
+  summary: 'Total actual government revenues (oil and non-oil receipts).'
+  origin:
+  - from: '2004'
+    to: '2023'
+    class: unknown
+    official: false
+    method: Seed table compiled by the maintainer from unnamed publisher documents (raw manifest, 2026-10-25); the
+      origin stays unknown, but of the 108 values the CBI Monthly Statistical Bulletin (sheet 6-1) also prints for
+      2004-2023, 106 are identical and 2 differ only because the bulletin has two 2012 columns transposed
+      (pipeline/check_fiscal_seed.py)
+    source: unknown (pipeline/seeds/iraq_fiscal_historical.csv)
+    source_ref: maintainer_fiscal_seed
+  - from: '2024'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin fiscal sheet
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: fiscal.revenue_current
+  name_en: Current Public Revenues (Actual)
+  name_ar: الإيرادات العامة الجارية الفعلية
+  category: fiscal
+  frequency: annual
+  unit: MILLION_IQD
+  start_date: '2004'
+  primary_source: Central Bank of Iraq & Ministry of Finance
+  source_file: pipeline/seeds/iraq_fiscal_historical.csv (compiled by the maintainer; publisher
+    per value unknown) to 2023; CBI Monthly Statistical Bulletin from 2024
+  cross_check: CBI Annual Statistical Bulletins (2004-2013)
+  description: Current public revenues including oil export proceeds, tax revenues,
+    social contributions, and other operating duties.
+  summary: 'Current operational revenue receipts.'
+  origin:
+  - from: '2004'
+    to: '2023'
+    class: unknown
+    official: false
+    method: Seed table compiled by the maintainer from unnamed publisher documents (raw manifest, 2026-10-25); the
+      origin stays unknown, but of the 108 values the CBI Monthly Statistical Bulletin (sheet 6-1) also prints for
+      2004-2023, 106 are identical and 2 differ only because the bulletin has two 2012 columns transposed
+      (pipeline/check_fiscal_seed.py)
+    source: unknown (pipeline/seeds/iraq_fiscal_historical.csv)
+    source_ref: maintainer_fiscal_seed
+  - from: '2024'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin fiscal sheet
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: fiscal.revenue_investment
+  name_en: Investment / Capital Public Revenues (Actual)
+  name_ar: الإيرادات العامة الاستثمارية / الرأسمالية الفعلية
+  category: fiscal
+  frequency: annual
+  unit: MILLION_IQD
+  start_date: '2004'
+  primary_source: Central Bank of Iraq & Ministry of Finance
+  source_file: pipeline/seeds/iraq_fiscal_historical.csv (compiled by the maintainer; publisher
+    per value unknown) to 2023; CBI Monthly Statistical Bulletin from 2024
+  cross_check: CBI Annual Statistical Bulletins (2004-2013)
+  description: Investment and capital revenues of the general government, primarily
+    comprising proceeds from sales of non-financial capital assets.
+  summary: 'Capital revenues received by the treasury.'
+  origin:
+  - from: '2004'
+    to: '2023'
+    class: unknown
+    official: false
+    method: Seed table compiled by the maintainer from unnamed publisher documents (raw manifest, 2026-10-25); the
+      origin stays unknown, but of the 108 values the CBI Monthly Statistical Bulletin (sheet 6-1) also prints for
+      2004-2023, 106 are identical and 2 differ only because the bulletin has two 2012 columns transposed
+      (pipeline/check_fiscal_seed.py)
+    source: unknown (pipeline/seeds/iraq_fiscal_historical.csv)
+    source_ref: maintainer_fiscal_seed
+  - from: '2024'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin fiscal sheet
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: fiscal.expenditure_total
+  name_en: Total Public Expenditures (Actual / Outturn)
+  name_ar: إجمالي النفقات العامة الفعلية
+  category: fiscal
+  frequency: annual
+  unit: MILLION_IQD
+  start_date: '2004'
+  primary_source: Central Bank of Iraq & Ministry of Finance
+  source_file: pipeline/seeds/iraq_fiscal_historical.csv (compiled by the maintainer; publisher
+    per value unknown) to 2023; CBI Monthly Statistical Bulletin from 2024
+  cross_check: CBI Annual Statistical Bulletins (2004-2013)
+  description: Total actual public expenditures executed by the Iraqi general government.
+    Continuous annual time-series from 2004 to 2023, automated for recent years using
+    the cumulative December row in CBI Sheet '6-1'.
+  summary: 'Total actual general government outlays (current plus capital).'
+  origin:
+  - from: '2004'
+    to: '2023'
+    class: unknown
+    official: false
+    method: Seed table compiled by the maintainer from unnamed publisher documents (raw manifest, 2026-10-25); the
+      origin stays unknown, but of the 108 values the CBI Monthly Statistical Bulletin (sheet 6-1) also prints for
+      2004-2023, 106 are identical and 2 differ only because the bulletin has two 2012 columns transposed
+      (pipeline/check_fiscal_seed.py)
+    source: unknown (pipeline/seeds/iraq_fiscal_historical.csv)
+    source_ref: maintainer_fiscal_seed
+  - from: '2024'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin fiscal sheet
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: fiscal.expenditure_current
+  name_en: Current Public Expenditures (Actual)
+  name_ar: النفقات العامة الجارية الفعلية
+  category: fiscal
+  frequency: annual
+  unit: MILLION_IQD
+  start_date: '2004'
+  primary_source: Central Bank of Iraq & Ministry of Finance
+  source_file: pipeline/seeds/iraq_fiscal_historical.csv (compiled by the maintainer; publisher
+    per value unknown) to 2023; CBI Monthly Statistical Bulletin from 2024
+  cross_check: CBI Annual Statistical Bulletins (2004-2013)
+  description: Current operational public expenditures including employee compensation,
+    goods and services, social subsidies, transfers, and debt interest payments.
+  summary: 'Operating expenditure (public payroll, pensions, subsidies, social safety).'
+  origin:
+  - from: '2004'
+    to: '2023'
+    class: unknown
+    official: false
+    method: Seed table compiled by the maintainer from unnamed publisher documents (raw manifest, 2026-10-25); the
+      origin stays unknown, but of the 108 values the CBI Monthly Statistical Bulletin (sheet 6-1) also prints for
+      2004-2023, 106 are identical and 2 differ only because the bulletin has two 2012 columns transposed
+      (pipeline/check_fiscal_seed.py)
+    source: unknown (pipeline/seeds/iraq_fiscal_historical.csv)
+    source_ref: maintainer_fiscal_seed
+  - from: '2024'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin fiscal sheet
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: fiscal.expenditure_investment
+  name_en: Investment / Capital Public Expenditures (Actual)
+  name_ar: النفقات العامة الاستثمارية / الرأسمالية الفعلية
+  category: fiscal
+  frequency: annual
+  unit: MILLION_IQD
+  start_date: '2004'
+  primary_source: Central Bank of Iraq & Ministry of Finance
+  source_file: pipeline/seeds/iraq_fiscal_historical.csv (compiled by the maintainer; publisher
+    per value unknown) to 2023; CBI Monthly Statistical Bulletin from 2024
+  cross_check: CBI Annual Statistical Bulletins (2004-2013)
+  description: Investment and capital expenditures dedicated to the purchase of non-financial
+    fixed assets, reconstruction projects, and public infrastructure development.
+  summary: 'Investment expenditure on infrastructure, oil development, and public projects.'
+  origin:
+  - from: '2004'
+    to: '2023'
+    class: unknown
+    official: false
+    method: Seed table compiled by the maintainer from unnamed publisher documents (raw manifest, 2026-10-25); the
+      origin stays unknown, but of the 108 values the CBI Monthly Statistical Bulletin (sheet 6-1) also prints for
+      2004-2023, 106 are identical and 2 differ only because the bulletin has two 2012 columns transposed
+      (pipeline/check_fiscal_seed.py)
+    source: unknown (pipeline/seeds/iraq_fiscal_historical.csv)
+    source_ref: maintainer_fiscal_seed
+  - from: '2024'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin fiscal sheet
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: fiscal.balance
+  name_en: Overall Fiscal Balance (Surplus / Deficit)
+  name_ar: الفائض / العجز المالي الكلي
+  category: fiscal
+  frequency: annual
+  unit: MILLION_IQD
+  start_date: '2004'
+  primary_source: Central Bank of Iraq & Ministry of Finance
+  source_file: pipeline/seeds/iraq_fiscal_historical.csv (compiled by the maintainer; publisher
+    per value unknown) to 2023; CBI Monthly Statistical Bulletin from 2024
+  cross_check: 'Accounting identity: cbi.fiscal.revenue_total - cbi.fiscal.expenditure_total'
+  description: Overall fiscal surplus (positive) or deficit (negative) resulting from
+    actual public revenues minus actual public expenditures. Continuous 20-year annual
+    series (2004-2023).
+  summary: 'Actual budget outturn balance: revenue minus expenditure.'
+  origin:
+  - from: '2004'
+    to: '2023'
+    class: unknown
+    official: false
+    method: Seed table compiled by the maintainer from unnamed publisher documents (raw manifest, 2026-10-25); the
+      origin stays unknown, but of the 108 values the CBI Monthly Statistical Bulletin (sheet 6-1) also prints for
+      2004-2023, 106 are identical and 2 differ only because the bulletin has two 2012 columns transposed
+      (pipeline/check_fiscal_seed.py)
+    source: unknown (pipeline/seeds/iraq_fiscal_historical.csv)
+    source_ref: maintainer_fiscal_seed
+  - from: '2024'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin fiscal sheet
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: bop.current_account
+  name_en: Current Account Balance (Net)
+  name_ar: ميزان الحساب الجاري (صافي)
+  category: bop
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: IMF Balance of Payments Statistics (BPM6)
+  description: Net balance of the current account (Goods, Services, Primary Income,
+    and Secondary Income / Current Transfers) under the IMF BPM6 standard. Compiled
+    quarterly in Million USD.
+  summary: 'Net current account balance (goods, services, primary & secondary income).'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: bop.trade_balance
+  name_en: Merchandise Trade Balance (Net Goods)
+  name_ar: الميزان التجاري السلعي (صافي)
+  category: bop
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: COSIT Foreign Trade Statistics & IMF DOTS
+  description: Net merchandise trade balance representing total exports of goods FOB
+    minus total imports of goods FOB. Compiled quarterly in Million USD.
+  summary: 'Net merchandise trade balance (FOB exports minus FOB imports).'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: bop.services_net
+  name_en: Services Account Balance (Net)
+  name_ar: ميزان الخدمات (صافي)
+  category: bop
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: IMF Balance of Payments Statistics (BPM6)
+  description: Net services receipts minus payments abroad. Reflects the standard
+    15% freight and insurance deduction transferred from CIF imports to services payments.
+  summary: 'Net services balance (transportation, travel, construction, government).'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: bop.income_net
+  name_en: Primary Income Balance (Net)
+  name_ar: ميزان الدخل الأولي (صافي)
+  category: bop
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: IMF Balance of Payments Statistics (BPM6)
+  description: Net primary income receipts minus payments, including employee compensation,
+    official investment income from foreign reserves, and external debt interest.
+  summary: 'Net primary income (employee compensation and investment income).'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: bop.transfers_net
+  name_en: Secondary Income / Current Transfers (Net)
+  name_ar: التحويلات الجارية بدون مقابل (صافي)
+  category: bop
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: IMF Balance of Payments Statistics (BPM6)
+  description: Net current unilateral transfers, including official international
+    grants received and UN compensation fund payments disbursed.
+  summary: 'Net secondary income / current transfers (worker remittances, official transfers).'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: bop.capital_account
+  name_en: Capital Account Balance (Net)
+  name_ar: الحساب الرأسمالي (صافي)
+  category: bop
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: IMF Balance of Payments Statistics (BPM6)
+  description: Net capital transfers and transactions in non-produced non-financial
+    assets.
+  summary: 'Net capital account transfers.'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: bop.financial_account
+  name_en: Financial Account Balance (Net)
+  name_ar: الحساب المالي (صافي)
+  category: bop
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: IMF Balance of Payments Statistics (BPM6)
+  description: Net financial flows representing direct investment, portfolio investment,
+    other investment (official and commercial deposits abroad), and reserve assets.
+  summary: 'Net financial flows (direct, portfolio, deposits abroad, reserve assets).'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: bop.reserve_assets_change
+  name_en: Reserve Assets (Net Change)
+  name_ar: الأصول الاحتياطية (صافي التغير)
+  category: bop
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: CBI Key Financial Indicators & IMF Reserves
+  description: Net quarterly change in official foreign reserve assets held by the
+    Central Bank of Iraq (foreign exchange, monetary gold, and SDRs).
+  summary: 'Net quarterly change in official foreign reserve assets held by CBI.'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: trade.exports_total
+  name_en: Merchandise Exports (FOB), Total
+  name_ar: إجمالي الصادرات السلعية (فوب)
+  category: trade
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: COSIT Foreign Trade & IMF DOTS
+  description: Total merchandise exports valued at Free on Board (FOB) terms in Million
+    USD. Includes crude oil, refined products, and non-oil merchandise.
+  summary: 'Total merchandise exports (crude oil, refined products, non-oil goods).'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: trade.exports_crude_oil
+  name_en: Crude Oil Exports (FOB)
+  name_ar: صادرات النفط الخام (فوب)
+  category: trade
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: SOMO Official Exports & OPEC MOMR
+  description: Total export value of crude oil shipped by SOMO and international oil
+    companies, including in-kind remuneration crude under technical service contracts.
+  summary: 'Total crude oil export earnings shipped by SOMO and international operators.'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: trade.exports_oil_products
+  name_en: Refined Petroleum Products Exports (FOB)
+  name_ar: صادرات المشتقات النفطية (فوب)
+  category: trade
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: CBI Annual Statistical Bulletins
+  description: Exports of refined petroleum products by governmental and private entities.
+  summary: 'Exports of refined petroleum products.'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: trade.exports_nonoil
+  name_en: Non-Oil Merchandise Exports (FOB)
+  name_ar: الصادرات السلعية غير النفطية (فوب)
+  category: trade
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: COSIT Foreign Trade Statistics
+  description: Total non-oil merchandise exports (agricultural produce, dates, sulfur,
+    fertilizers, and manufactured goods).
+  summary: 'Non-oil merchandise exports (dates, agricultural goods, sulfur, fertilizers).'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: trade.imports_total
+  name_en: Merchandise Imports (FOB), Total
+  name_ar: إجمالي الاستيرادات السلعية (فوب)
+  category: trade
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: COSIT Imports (CIF) after 15% freight adjustment
+  description: Total merchandise imports valued at Free on Board (FOB) terms in Million
+    USD, compiled from banking financial settlement records.
+  summary: 'Total merchandise imports compiled from banking financial settlements.'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: trade.imports_government
+  name_en: Government Sector Imports (FOB)
+  name_ar: استيرادات القطاع الحكومي (فوب)
+  category: trade
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: Ministry of Finance State Accounts
+  description: Merchandise imports executed by Iraqi ministries, public institutions,
+    and state enterprises, covering consumption staples (food ration basket, pharmaceuticals)
+    and capital project equipment.
+  summary: 'Imports executed by Iraqi ministries (food ration basket, pharmaceuticals).'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: trade.imports_private
+  name_en: Private Sector Imports (FOB)
+  name_ar: استيرادات القطاع الخاص (فوب)
+  category: trade
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2013-Q1
+  primary_source: Central Bank of Iraq (Balance of Payments Statistics Division)
+  source_file: https://cbi.iq/page/145 (BOP Data Archive)
+  cross_check: CBI Foreign Exchange Window Financing
+  description: Merchandise imports financed and imported by private commercial entities
+    and households, covering consumer goods, vehicles, industrial inputs, and capital
+    machinery.
+  summary: 'Private commercial imports (consumer durables, vehicles, machinery).'
+  origin:
+  - from: 2013-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Central Bank of Iraq (Balance of Payments Statistics Division)
+    source_ref: cbi_bop
+- series_id: gdp.nominal
+  name_en: Headline GDP at Current Basic Prices
+  name_ar: الناتج المحلي الإجمالي بالأسعار الأساسية الجارية
+  category: gdp
+  frequency: quarterly
+  unit: MILLION_IQD
+  start_date: 2015-Q1
+  primary_source: Central Organization for Statistics and Information Technology (COSIT)
+  source_file: cosit.gov.iq/ar/national-accounts/income (Early Warning Indicators)
+  cross_check: CBI Monthly Statistical Bulletin (Economic Indicators)
+  description: Headline Gross Domestic Product at current basic prices. Typed in from COSIT national accounts; values from 2020-Q1 that cite an archived document (most of them) are read back from it and are flagged A, or P for the latest eight quarters, which COSIT revises; values for quarters whose document is not archived carry status flag U. GDP is the line COSIT calls GDP, after the imputed bank service charge.
+  summary: 'Headline Gross Domestic Product at current basic prices.'
+  origin:
+  - from: 2015-Q1
+    to: 2019-Q4
+    class: transcribed
+    official: true
+    method: Typed in from COSIT quarterly national accounts; the source document is not archived
+    source: COSIT Directorate of National Accounts (document not recorded)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2020-Q1
+    to: 2021-Q2
+    class: observed
+    official: true
+    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
+    source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2021-Q3
+    to: 2021-Q4
+    class: transcribed
+    official: true
+    method: Typed in from COSIT quarterly national accounts; the source document is not archived
+    source: COSIT Directorate of National Accounts (document not recorded)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2022-Q1
+    to: 2022-Q1
+    class: observed
+    official: true
+    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
+    source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2022-Q2
+    to: 2022-Q3
+    class: transcribed
+    official: true
+    method: Typed in from COSIT quarterly national accounts; the source document is not archived
+    source: COSIT Directorate of National Accounts (document not recorded)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2022-Q4
+    to: open
+    class: observed
+    official: true
+    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
+    source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+- series_id: gdp.nominal_nonoil
+  name_en: Non-Oil GDP at Current Basic Prices
+  name_ar: الناتج المحلي الإجمالي عدا النفط بالأسعار الجارية
+  category: gdp
+  frequency: quarterly
+  unit: MILLION_IQD
+  start_date: 2015-Q1
+  primary_source: Central Organization for Statistics and Information Technology (COSIT)
+  source_file: cosit.gov.iq/ar/national-accounts/income (Early Warning Indicators)
+  cross_check: COSIT Preliminary Quarterly Accounts
+  description: Gross value added of all non-oil activities at current basic prices, computed as
+    gdp.nominal minus gdp.nominal_oil; its status flag is the strongest of the two.
+  summary: 'Value added of non-oil sectors at current basic prices.'
+  origin:
+  - from: 2015-Q1
+    to: open
+    class: derived
+    official: true
+    method: Computed as gdp.nominal minus gdp.nominal_oil
+    source: COSIT (via the transcribed totals)
+    inputs:
+    - gdp.nominal
+    - gdp.nominal_oil
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+- series_id: gdp.nominal_oil
+  name_en: Crude Oil GDP at Current Basic Prices
+  name_ar: ناتج نشاط النفط الخام بالأسعار الجارية
+  category: gdp
+  frequency: quarterly
+  unit: MILLION_IQD
+  start_date: 2015-Q1
+  primary_source: Central Organization for Statistics and Information Technology (COSIT)
+  source_file: cosit.gov.iq/ar/national-accounts/income (Early Warning Indicators)
+  cross_check: 'Accounting identity: cosit.gdp_nominal - cosit.gdp_nominal_nonoil'
+  description: Gross value added of crude petroleum and natural gas at current basic prices. Typed in from COSIT national accounts; values from 2020-Q1 that cite an archived document (most of them) are read back from it and are flagged A, or P for the latest eight quarters, which COSIT revises; values for quarters whose document is not archived carry status flag U. From 2022 the early-warning reports print non-oil GDP, so oil is the total minus it.
+  summary: 'Value added of crude petroleum and natural gas at current basic prices.'
+  origin:
+  - from: 2015-Q1
+    to: 2019-Q4
+    class: transcribed
+    official: true
+    method: Typed in from COSIT quarterly national accounts; the source document is not archived
+    source: COSIT Directorate of National Accounts (document not recorded)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2020-Q1
+    to: 2021-Q2
+    class: observed
+    official: true
+    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
+    source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2021-Q3
+    to: 2021-Q4
+    class: transcribed
+    official: true
+    method: Typed in from COSIT quarterly national accounts; the source document is not archived
+    source: COSIT Directorate of National Accounts (document not recorded)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2022-Q1
+    to: 2022-Q1
+    class: observed
+    official: true
+    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print
+    source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2022-Q2
+    to: 2022-Q3
+    class: transcribed
+    official: true
+    method: Typed in from COSIT quarterly national accounts; the source document is not archived
+    source: COSIT Directorate of National Accounts (document not recorded)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2022-Q4
+    to: 2023-Q2
+    class: observed
+    official: true
+    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print
+    source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2023-Q3
+    to: 2023-Q3
+    class: transcribed
+    official: true
+    method: Typed in from COSIT quarterly national accounts; the source document is not archived
+    source: COSIT Directorate of National Accounts (document not recorded)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2023-Q4
+    to: open
+    class: observed
+    official: true
+    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print
+    source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+- series_id: gdp.real
+  name_en: Headline Real GDP at Constant Basic Prices (2007 = 100)
+  name_ar: الناتج المحلي الإجمالي بالأسعار الأساسية الثابتة (أساس 2007 = 100)
+  category: gdp
+  frequency: quarterly
+  unit: MILLION_IQD
+  start_date: 2015-Q1
+  primary_source: Central Organization for Statistics and Information Technology (COSIT)
+  source_file: cosit.gov.iq/ar/national-accounts/income (Early Warning Indicators)
+  cross_check: CBI Monthly Statistical Bulletin (Economic Indicators)
+  description: Headline real Gross Domestic Product in constant 2007 basic prices. Typed in from COSIT national accounts; values from 2020-Q1 that cite an archived document (most of them) are read back from it and are flagged A, or P for the latest eight quarters, which COSIT revises; values for quarters whose document is not archived carry status flag U. GDP is the line COSIT calls GDP, after the imputed bank service charge.
+  summary: 'Headline real Gross Domestic Product in constant 2007 basic prices.'
+  origin:
+  - from: 2015-Q1
+    to: 2019-Q4
+    class: transcribed
+    official: true
+    method: Typed in from COSIT quarterly national accounts; the source document is not archived
+    source: COSIT Directorate of National Accounts (document not recorded)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2020-Q1
+    to: 2021-Q2
+    class: observed
+    official: true
+    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
+    source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2021-Q3
+    to: 2021-Q4
+    class: transcribed
+    official: true
+    method: Typed in from COSIT quarterly national accounts; the source document is not archived
+    source: COSIT Directorate of National Accounts (document not recorded)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2022-Q1
+    to: 2022-Q1
+    class: observed
+    official: true
+    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
+    source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2022-Q2
+    to: 2022-Q3
+    class: transcribed
+    official: true
+    method: Typed in from COSIT quarterly national accounts; the source document is not archived
+    source: COSIT Directorate of National Accounts (document not recorded)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2022-Q4
+    to: open
+    class: observed
+    official: true
+    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
+    source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+- series_id: gdp.real_nonoil
+  name_en: Real Non-Oil GDP at Constant Basic Prices (2007 = 100)
+  name_ar: الناتج المحلي الإجمالي عدا النفط بالأسعار الثابتة (أساس 2007 = 100)
+  category: gdp
+  frequency: quarterly
+  unit: MILLION_IQD
+  start_date: 2015-Q1
+  primary_source: Central Organization for Statistics and Information Technology (COSIT)
+  source_file: cosit.gov.iq/ar/national-accounts/income (Early Warning Indicators)
+  cross_check: COSIT Preliminary Quarterly Accounts
+  description: Real gross value added of all non-oil activities in constant 2007 basic prices,
+    computed as gdp.real minus gdp.real_oil; its status flag is the strongest of the two.
+  summary: 'Real value added of non-oil sectors in constant 2007 basic prices.'
+  origin:
+  - from: 2015-Q1
+    to: open
+    class: derived
+    official: true
+    method: Computed as gdp.real minus gdp.real_oil
+    source: COSIT (via the transcribed totals)
+    inputs:
+    - gdp.real
+    - gdp.real_oil
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+- series_id: gdp.real_oil
+  name_en: Real Crude Oil GDP at Constant Basic Prices (2007 = 100)
+  name_ar: ناتج نشاط النفط الخام بالأسعار الثابتة (أساس 2007 = 100)
+  category: gdp
+  frequency: quarterly
+  unit: MILLION_IQD
+  start_date: 2015-Q1
+  primary_source: Central Organization for Statistics and Information Technology (COSIT)
+  source_file: cosit.gov.iq/ar/national-accounts/income (Early Warning Indicators)
+  cross_check: 'Accounting identity: cosit.gdp_real - cosit.gdp_real_nonoil'
+  description: Real gross value added of crude petroleum extraction in constant 2007 basic prices. Typed in from COSIT national accounts; values from 2020-Q1 that cite an archived document (most of them) are read back from it and are flagged A, or P for the latest eight quarters, which COSIT revises; values for quarters whose document is not archived carry status flag U. From 2022 the early-warning reports print non-oil GDP, so oil is the total minus it.
+  summary: 'Real value added of crude petroleum in constant 2007 basic prices.'
+  origin:
+  - from: 2015-Q1
+    to: 2019-Q4
+    class: transcribed
+    official: true
+    method: Typed in from COSIT quarterly national accounts; the source document is not archived
+    source: COSIT Directorate of National Accounts (document not recorded)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2020-Q1
+    to: 2021-Q2
+    class: observed
+    official: true
+    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
+    source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2021-Q3
+    to: 2021-Q4
+    class: transcribed
+    official: true
+    method: Typed in from COSIT quarterly national accounts; the source document is not archived
+    source: COSIT Directorate of National Accounts (document not recorded)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2022-Q1
+    to: 2022-Q1
+    class: observed
+    official: true
+    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print
+    source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2022-Q2
+    to: 2022-Q3
+    class: transcribed
+    official: true
+    method: Typed in from COSIT quarterly national accounts; the source document is not archived
+    source: COSIT Directorate of National Accounts (document not recorded)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+  - from: 2022-Q4
+    to: open
+    class: observed
+    official: true
+    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print
+    source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
+    source_ref: cosit_national_accounts
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+- series_id: bis.lbs.claims_total
+  name_en: Total Claims of BIS Reporting Banks on Iraq
+  name_ar: إجمالي مطالبات المصارف الدولية على العراق
+  category: bis
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2004-Q1
+  primary_source: Bank for International Settlements (BIS)
+  source_file: BIS Locational Banking Statistics (LBS_PUB / WS_LBS_D_PUB)
+  cross_check: CBI External Debt & CBI Foreign Assets
+  description: Total cross-border claims (loans, debt securities, deposits, and other
+    credit assets) of all BIS reporting banks on Iraqi counterparties across all sectors.
+    Quarters in which the BIS marks a break in the series (its observation status B) carry
+    status flag B; the BIS publishes a comparable pre-break value for them, which is not
+    included here.
+  summary: 'Total cross-border claims of BIS reporting banks on Iraqi counterparties.'
+  origin:
+  - from: 2004-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Bank for International Settlements (BIS)
+    source_ref: bis_lbs
+- series_id: bis.lbs.liabilities_total
+  name_en: Total Liabilities of BIS Reporting Banks to Iraq
+  name_ar: إجمالي التزامات المصارف الدولية تجاه العراق (ودائع وأصول العراق في الخارج)
+  category: bis
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2004-Q1
+  primary_source: Bank for International Settlements (BIS)
+  source_file: BIS Locational Banking Statistics (LBS_PUB / WS_LBS_D_PUB)
+  cross_check: CBI Foreign Exchange Reserves & IMF International Financial Statistics
+  description: Total liabilities of BIS reporting banks to Iraqi entities, representing
+    deposits, custody holdings, and funds placed by Iraqi institutions and residents
+    in global banking hubs.
+    Quarters in which the BIS marks a break in the series (its observation status B) carry
+    status flag B; the BIS publishes a comparable pre-break value for them, which is not
+    included here.
+  summary: 'Total liabilities of BIS reporting banks to Iraqi entities (deposits, custody).'
+  origin:
+  - from: 2004-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Bank for International Settlements (BIS)
+    source_ref: bis_lbs
+- series_id: bis.lbs.liabilities_banks
+  name_en: BIS Reporting Bank Liabilities to Iraqi Banks
+  name_ar: التزامات المصارف الدولية تجاه القطاع المصرفي العراقي
+  category: bis
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2004-Q1
+  primary_source: Bank for International Settlements (BIS)
+  source_file: BIS Locational Banking Statistics (LBS_PUB / WS_LBS_D_PUB)
+  cross_check: CBI Balance Sheet (Foreign Assets) & Commercial Banks Foreign Assets
+  description: Liabilities of international reporting banks to the Iraqi banking system
+    (Central Bank of Iraq and Iraqi commercial and state-owned banks).
+    Quarters in which the BIS marks a break in the series (its observation status B) carry
+    status flag B; the BIS publishes a comparable pre-break value for them, which is not
+    included here.
+  summary: 'International bank liabilities to the Iraqi banking system (CBI & commercial banks).'
+  origin:
+  - from: 2004-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Bank for International Settlements (BIS)
+    source_ref: bis_lbs
+- series_id: bis.lbs.liabilities_nonbank
+  name_en: BIS Reporting Bank Liabilities to Non-Bank Sector
+  name_ar: التزامات المصارف الدولية تجاه القطاع غير المصرفي العراقي
+  category: bis
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2004-Q1
+  primary_source: Bank for International Settlements (BIS)
+  source_file: BIS Locational Banking Statistics (LBS_PUB / WS_LBS_D_PUB)
+  cross_check: Ministry of Finance External Accounts & DFI / Successor Accounts
+  description: Liabilities of international reporting banks to Iraqi non-bank counterparties,
+    including government entities, public enterprises, and private residents.
+    Quarters in which the BIS marks a break in the series (its observation status B) carry
+    status flag B; the BIS publishes a comparable pre-break value for them, which is not
+    included here.
+  summary: 'International bank liabilities to Iraqi non-bank counterparties (government & private).'
+  origin:
+  - from: 2004-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Bank for International Settlements (BIS)
+    source_ref: bis_lbs
+- series_id: bis.lbs.claims_nonbank
+  name_en: BIS Reporting Bank Claims on Non-Bank Sector
+  name_ar: مطالبات المصارف الدولية على القطاع غير المصرفي العراقي
+  category: bis
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2004-Q1
+  primary_source: Bank for International Settlements (BIS)
+  source_file: BIS Locational Banking Statistics (LBS_PUB / WS_LBS_D_PUB)
+  cross_check: Ministry of Finance External Sovereign Debt Registry
+  description: Cross-border loans and credit extended by international reporting banks
+    directly to Iraqi non-bank entities (general government, state enterprises, private
+    sector).
+    Quarters in which the BIS marks a break in the series (its observation status B) carry
+    status flag B; the BIS publishes a comparable pre-break value for them, which is not
+    included here.
+  summary: 'Cross-border loans extended by international banks to Iraqi non-banks.'
+  origin:
+  - from: 2004-Q1
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: Bank for International Settlements (BIS)
+    source_ref: bis_lbs
+- series_id: bis.lbs.net_position
+  name_en: Iraq's Net Position vis-à-vis BIS Reporting Banks (Liabilities minus Claims)
+  name_ar: صافي مركز العراق تجاه المصارف المبلِّغة لبنك التسويات الدولية (الالتزامات ناقص المطالبات)
+  category: bis
+  frequency: quarterly
+  unit: MILLION_USD
+  start_date: 2004-Q1
+  primary_source: Bank for International Settlements (BIS)
+  source_file: BIS Locational Banking Statistics (LBS_PUB / WS_LBS_D_PUB)
+  cross_check: 'Accounting identity: bis.lbs.liabilities_total - bis.lbs.claims_total'
+  description: Liabilities of BIS reporting banks to Iraqi residents minus their claims on
+    Iraqi residents, measured from the reporting banks' books (cross-border positions, all
+    reporting countries, all sectors and instruments). It is Iraq's position against those
+    banks; a positive value means Iraqi residents hold more with BIS reporting banks (deposits
+    and other claims) than they owe them, so Iraq is a net creditor of the reporting banks.
+    It covers banks only and is not the international investment position or Iraq's total
+    net external assets.
+    Quarters where either input is a BIS break carry status flag B.
+  summary: 'Iraq''s net position against BIS reporting banks: their liabilities to Iraqi residents minus their claims on Iraqi residents. Positive means Iraq is a net creditor of the reporting banks. Cross-border bank positions only; not the international investment position.'
+  origin:
+  - from: 2004-Q1
+    to: open
+    class: derived
+    official: true
+    method: Computed as liabilities_total minus claims_total
+    source: Bank for International Settlements (BIS)
+    inputs:
+    - bis.lbs.liabilities_total
+    - bis.lbs.claims_total
+- series_id: oecd.dac.oda_total_net
+  name_en: Net ODA and Official Aid Received
+  name_ar: صافي المساعدات الإنمائية الرسمية والمعونات الرسمية المتلقاة
+  category: oecd
+  frequency: annual
+  unit: MILLION_USD
+  start_date: '2004'
+  primary_source: World Bank WDI (compiled from OECD DAC data)
+  source_file: pipeline/raw/oecd/wb_oda_net.json
+  source_indicator: DT.ODA.ALLD.CD
+  cross_check: OECD Data Explorer (DAC2A) & UN OCHA Financial Tracking Service
+  description: World Bank indicator DT.ODA.ALLD.CD, "Net official development assistance and
+    official aid received (current US$)", compiled by the World Bank from OECD DAC data. Net
+    disbursements (gross disbursements minus principal repayments) of ODA and official aid to
+    Iraq, converted from US dollars to millions.
+  summary: 'Net ODA and official aid received (WDI `DT.ODA.ALLD.CD`, from OECD DAC data): disbursements minus principal repayments.'
+  origin:
+  - from: '2004'
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: World Bank WDI (compiled from OECD DAC data)
+    source_ref: wb_wdi
+- series_id: oecd.dac.grants_excl_tc
+  name_en: ODA Grants Received, Excluding Technical Cooperation
+  name_ar: المنح الإنمائية الرسمية المتلقاة باستثناء التعاون الفني
+  category: oecd
+  frequency: annual
+  unit: MILLION_USD
+  start_date: '2004'
+  primary_source: World Bank WDI (OECD DAC, DAC2A)
+  source_file: pipeline/raw/oecd/wb_oda_grants.json
+  source_indicator: BX.GRT.EXTA.CD.WD
+  cross_check: OECD Data Explorer (DAC2A) & CBI balance of payments (secondary income, foreign
+    grants)
+  description: World Bank indicator BX.GRT.EXTA.CD.WD, "Grants, excluding technical cooperation
+    (BoP, current US$)", which WDI sources from OECD DAC table DAC2A. Grants received by Iraq
+    excluding technical cooperation, so it is not total ODA grants. Converted from US dollars
+    to millions.
+  summary: 'Grants received, excluding technical cooperation (WDI `BX.GRT.EXTA.CD.WD`, from OECD DAC table DAC2A). Not total ODA grants.'
+  origin:
+  - from: '2004'
+    to: open
+    class: observed
+    official: true
+    method: Read from the archived source file named in source_file
+    source: World Bank WDI (OECD DAC, DAC2A)
+    source_ref: wb_wdi

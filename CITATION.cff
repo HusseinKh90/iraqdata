@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this dataset or software in your research, please cite it as below."
+authors:
+  - family-names: "Khalid"
+    given-names: "Hussein"
+title: "iraqdata: Open, Documented, and Reproducible Iraqi Macroeconomic Data Package"
+version: 1.0.0
+date-released: 2026-10-28
+url: "https://github.com/husseinkh90/iraqdata"
+repository-code: "https://github.com/husseinkh90/iraqdata"
+keywords:
+  - iraq
+  - macroeconomics
+  - time-series
+  - econometrics
+  - central-bank-of-iraq
+license: MIT

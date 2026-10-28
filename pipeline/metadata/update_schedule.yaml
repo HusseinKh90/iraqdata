@@ -1,0 +1,192 @@
+# Update schedule. Reviewed by hand: the sources are the publishers' own pages, and each lag is the
+# longest normal delay between the end of a period and its publication.
+#
+# sources: where each upstream release comes from and whether the weekly update check can fetch
+#   it (auto) or a maintainer must bring it in by hand (manual, with the reason).
+#   An auto source also says what it publishes (kind: api for API and bulk-file downloads,
+#   spreadsheet for spreadsheet or PDF publications, which always get a review issue)
+#   and may set failure_threshold: the consecutive failed weekly fetches before an issue opens
+#   (default 2), and pending_threshold: the consecutive runs in which a downloaded release may still
+#   be waiting to be applied before the update check raises it as an anomaly (default 4).
+# series: the longest normal delay (lag_days) between the end of a period and the publication of
+#   its value. The next period of a series is due on period_end(latest + 1) + lag_days; after that
+#   the gatekeeper reports it overdue. A series that has stopped by design is marked `ended`.
+reviewed: 2026-10-24
+
+# A revision of a published value by at least this many percent is counted in the issue's title and listed
+# first (an issue shows at most 50 rows). Default 5.
+large_revision_pct: 5
+
+# Who the weekly update check @-mentions on GitHub issues.
+notify:
+  github: HusseinKh90
+
+sources:
+  - id: bis_lbs
+    publisher: Bank for International Settlements (BIS)
+    url: https://data.bis.org
+    fetch: auto
+    kind: api
+    parsers: [bis_lbs]
+    calendar: Locational banking statistics, quarterly, about 4 months after quarter end
+  - id: cbi_bop
+    publisher: Central Bank of Iraq (CBI)
+    url: https://cbi.iq/page/145
+    fetch: auto
+    kind: spreadsheet
+    parsers: [cbi_bop]
+    calendar: Balance of payments workbook per year, updated quarterly, 3-6 months after quarter end
+  - id: cbi_kfi
+    publisher: Central Bank of Iraq (CBI)
+    url: https://cbi.iq/news/view/94
+    fetch: auto
+    kind: spreadsheet
+    parsers: [cbi_cpi, cbi_money_banking]
+    calendar: Key Financial Indicators workbook, updated monthly, 1-3 months after month end
+  - id: cbi_bulletin
+    publisher: Central Bank of Iraq (CBI)
+    url: https://cbi.iq/page/122
+    fetch: auto
+    kind: spreadsheet
+    parsers: [cbi_fiscal_bulletin]
+    calendar: Monthly Statistical Bulletin; the December cumulative fiscal outturn appears within a year
+  - id: cbi_fx
+    publisher: Central Bank of Iraq (CBI)
+    url: https://cbi.iq/page/144
+    fetch: auto
+    kind: spreadsheet
+    failure_threshold: 1
+    parsers: [cbi_exchange_rates]
+    calendar: Daily official rate; the dinar-per-dollar workbook is updated within days
+  - id: github_fx
+    publisher: HusseinKh90/Iraq-parallel-exchange-rate (GitHub)
+    url: https://github.com/HusseinKh90/Iraq-parallel-exchange-rate
+    fetch: auto
+    kind: api
+    failure_threshold: 1
+    parsers: [cbi_exchange_rates]
+    calendar: Daily Baghdad consensus rate from dealer Telegram channels, appended each trading day
+  - id: fiscal_seed
+    publisher: Unknown (historical fiscal seed)
+    url: pipeline/seeds/iraq_fiscal_historical.xlsx
+    fetch: manual
+    reason: Historical seed of unknown origin covering 2004-2023 only
+    parsers: [fiscal_seed]
+    calendar: None (history only)
+  - id: cosit
+    publisher: Central Statistical Organization (COSIT)
+    url: https://cosit.gov.iq/ar/national-accounts/income
+    fetch: manual
+    reason: The publications (workbooks and early-warning reports in Arabic, archived under pipeline/raw/cosit/) are brought in by hand and their values written into a dated transcription record under pipeline/raw/transcribed/ (docs/transcription_records.md); there is no stable link to fetch
+    parsers: [cosit_gdp]
+    calendar: Quarterly GDP estimates, irregular, 3-9 months after quarter end
+  - id: wb_oda
+    publisher: World Bank WDI (OECD DAC data)
+    url: https://api.worldbank.org
+    fetch: auto
+    kind: api
+    parsers: [oecd_dac]
+    calendar: Annual; WDI republishes DAC recipient data 18-24 months after the year ends
+  - id: fred_brent
+    publisher: U.S. EIA via FRED (DCOILBRENTEU)
+    url: https://fred.stlouisfed.org/series/DCOILBRENTEU
+    fetch: auto
+    kind: api
+    failure_threshold: 1
+    parsers: [oil_daily, oil_monthly]
+    calendar: Daily, 1-2 business days behind
+  - id: eia_intl
+    publisher: U.S. Energy Information Administration (EIA)
+    url: https://www.eia.gov/opendata/bulkfiles.php
+    fetch: auto
+    kind: api
+    parsers: [oil_monthly]
+    calendar: International energy statistics, monthly, about 3-4 months behind
+  - id: opec_momr
+    publisher: OPEC Monthly Oil Market Report; JODI Oil World Database
+    url: https://www.opec.org/opec_web/en/publications/338.htm
+    fetch: manual
+    reason: JODI files end 2024-03; later months and the Basrah anchors are transcribed by hand from OPEC MOMR into the dated records under pipeline/raw/transcribed/
+    parsers: [oil_monthly]
+    calendar: Monthly report, about 1 month after month end
+
+series:
+  # BIS locational banking statistics
+  bis.lbs.claims_nonbank: {source: bis_lbs, lag_days: 150, rationale: BIS publishes about 4 months after quarter end, reviewed: 2026-10-24}
+  bis.lbs.claims_total: {source: bis_lbs, lag_days: 150, rationale: BIS publishes about 4 months after quarter end, reviewed: 2026-10-24}
+  bis.lbs.liabilities_banks: {source: bis_lbs, lag_days: 150, rationale: BIS publishes about 4 months after quarter end, reviewed: 2026-10-24}
+  bis.lbs.liabilities_nonbank: {source: bis_lbs, lag_days: 150, rationale: BIS publishes about 4 months after quarter end, reviewed: 2026-10-24}
+  bis.lbs.liabilities_total: {source: bis_lbs, lag_days: 150, rationale: BIS publishes about 4 months after quarter end, reviewed: 2026-10-24}
+  bis.lbs.net_position: {source: bis_lbs, lag_days: 150, rationale: BIS publishes about 4 months after quarter end, reviewed: 2026-10-24}
+
+  # CBI balance of payments
+  bop.capital_account: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  bop.current_account: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  bop.financial_account: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  bop.income_net: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  bop.reserve_assets_change: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  bop.services_net: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  bop.trade_balance: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  bop.transfers_net: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  trade.exports_crude_oil: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  trade.exports_nonoil: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  trade.exports_oil_products: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  trade.exports_total: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  trade.imports_government: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  trade.imports_private: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+  trade.imports_total: {source: cbi_bop, lag_days: 180, rationale: CBI BOP appears 3-6 months after quarter end, reviewed: 2026-10-24}
+
+  # CBI Key Financial Indicators: money and banking
+  money.bank_deposit_rate: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end; bank rates are the slowest rows, reviewed: 2026-10-24}
+  money.bank_lending_rate: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end; bank rates are the slowest rows, reviewed: 2026-10-24}
+  money.currency_outside_banks: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end, reviewed: 2026-10-24}
+  money.fx_deposits: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end, reviewed: 2026-10-24}
+  money.m0: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end, reviewed: 2026-10-24}
+  money.m1: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end, reviewed: 2026-10-24}
+  money.m2: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end, reviewed: 2026-10-24}
+  money.policy_rate: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end, reviewed: 2026-10-24}
+  money.required_reserves: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end, reviewed: 2026-10-24}
+  money.reserves_official: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end, reviewed: 2026-10-24}
+
+  # CBI Key Financial Indicators: consumer prices
+  cpi.core_2022: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end, reviewed: 2026-10-24}
+  cpi.headline_2022: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end, reviewed: 2026-10-24}
+  cpi_core: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end (spliced series), reviewed: 2026-10-24}
+  cpi_headline: {source: cbi_kfi, lag_days: 90, rationale: KFI workbook appears 1-3 months after month end (spliced series), reviewed: 2026-10-24}
+  cpi.core_1993: {source: cbi_kfi, ended: Superseded by the 2007 base; continued in the spliced cpi_core, reviewed: 2026-10-24}
+  cpi.headline_1993: {source: cbi_kfi, ended: Superseded by the 2007 base; continued in the spliced cpi_headline, reviewed: 2026-10-24}
+  cpi.core_2007: {source: cbi_kfi, ended: Superseded by the 2012 base; continued in the spliced cpi_core, reviewed: 2026-10-24}
+  cpi.headline_2007: {source: cbi_kfi, ended: Superseded by the 2012 base; continued in the spliced cpi_headline, reviewed: 2026-10-24}
+  cpi.core_2012: {source: cbi_kfi, ended: Superseded by the 2022 base; continued in the spliced cpi_core, reviewed: 2026-10-24}
+  cpi.headline_2012: {source: cbi_kfi, ended: Superseded by the 2022 base; continued in the spliced cpi_headline, reviewed: 2026-10-24}
+
+  # CBI Monthly Statistical Bulletin: fiscal outturn (2024 onwards; earlier years from the seed)
+  fiscal.balance: {source: cbi_bulletin, lag_days: 365, rationale: Annual outturn appears in the bulletin within a year, reviewed: 2026-10-24}
+  fiscal.expenditure_current: {source: cbi_bulletin, lag_days: 365, rationale: Annual outturn appears in the bulletin within a year, reviewed: 2026-10-24}
+  fiscal.expenditure_investment: {source: cbi_bulletin, lag_days: 365, rationale: Annual outturn appears in the bulletin within a year, reviewed: 2026-10-24}
+  fiscal.expenditure_total: {source: cbi_bulletin, lag_days: 365, rationale: Annual outturn appears in the bulletin within a year, reviewed: 2026-10-24}
+  fiscal.revenue_current: {source: cbi_bulletin, lag_days: 365, rationale: Annual outturn appears in the bulletin within a year, reviewed: 2026-10-24}
+  fiscal.revenue_investment: {source: cbi_bulletin, lag_days: 365, rationale: Annual outturn appears in the bulletin within a year, reviewed: 2026-10-24}
+  fiscal.revenue_total: {source: cbi_bulletin, lag_days: 365, rationale: Annual outturn appears in the bulletin within a year, reviewed: 2026-10-24}
+
+  # CBI exchange rates (hand-built seed)
+  fx.official: {source: cbi_fx, lag_days: 14, rationale: CBI workbook ran to 2026-10-21 on 2026-10-24; allows holidays and a missed upload, reviewed: 2026-10-24}
+  parallel_rate_iraq: {source: github_fx, lag_days: 7, rationale: The repo's GitHub Action appends each trading day; latest 2026-10-22 on 2026-10-24, reviewed: 2026-10-24}
+
+  # COSIT quarterly GDP (typed into the parser)
+  gdp.nominal: {source: cosit, lag_days: 270, rationale: COSIT quarterly estimates appear irregularly 3-9 months after quarter end, reviewed: 2026-10-24}
+  gdp.nominal_nonoil: {source: cosit, lag_days: 270, rationale: COSIT quarterly estimates appear irregularly 3-9 months after quarter end, reviewed: 2026-10-24}
+  gdp.nominal_oil: {source: cosit, lag_days: 270, rationale: COSIT quarterly estimates appear irregularly 3-9 months after quarter end, reviewed: 2026-10-24}
+  gdp.real: {source: cosit, lag_days: 270, rationale: COSIT quarterly estimates appear irregularly 3-9 months after quarter end, reviewed: 2026-10-24}
+  gdp.real_nonoil: {source: cosit, lag_days: 270, rationale: COSIT quarterly estimates appear irregularly 3-9 months after quarter end, reviewed: 2026-10-24}
+  gdp.real_oil: {source: cosit, lag_days: 270, rationale: COSIT quarterly estimates appear irregularly 3-9 months after quarter end, reviewed: 2026-10-24}
+
+  # OECD DAC via World Bank WDI
+  oecd.dac.grants_excl_tc: {source: wb_oda, lag_days: 730, rationale: WDI republishes DAC recipient data 18-24 months after the year ends (2024 still null on 2026-10-08), reviewed: 2026-10-26}
+  oecd.dac.oda_total_net: {source: wb_oda, lag_days: 730, rationale: WDI republishes DAC recipient data 18-24 months after the year ends (2024 still null on 2026-10-08), reviewed: 2026-10-24}
+
+  # Oil
+  oil_price_brent: {source: fred_brent, lag_days: 7, rationale: FRED posts daily 1-2 business days behind, reviewed: 2026-10-24}
+  oil_price_basrah: {source: opec_momr, ended: Only transcribed OPEC MOMR anchor months remain and there is no fetchable source, reviewed: 2026-10-25}
+  crude_production_secondary: {source: eia_intl, lag_days: 120, rationale: EIA international data run about 3-4 months behind, reviewed: 2026-10-24}
+  crude_production_direct: {source: opec_momr, lag_days: 120, rationale: JODI to 2024-03; then OPEC MOMR transcribed into pipeline/raw/transcribed/, reviewed: 2026-10-25}

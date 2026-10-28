@@ -1,0 +1,139 @@
+# Weekly update check (reliability and notifications). Fetches every
+# automatically fetchable source, rebuilds and gatekeeps in a scratch folder, and keeps one GitHub
+# issue per open problem (pipeline/update_issues.py), @-mentioning the maintainer when one opens,
+# returns or changes. It never commits: applying an update is a maintainer step
+# (docs/collecting_data_doc.md, section 5, "Maintenance Runbook").
+#
+# Missed or failed runs are caught outside GitHub by a healthchecks.io check pinged at start, on
+# success and on failure; its ping URL is the HC_PING_URL secret, and the run fails without it.
+# An optional second check (the HC_ALERT_URL secret) is pinged "fail" whenever the run found
+# something to review or failed, and "success" otherwise, so a second channel (SMS, Telegram,
+# another mailbox: whatever that check is connected to) reaches the maintainer without relying on
+# GitHub notifications. Without the secret that step does nothing.
+name: Update check
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"   # Mondays 06:17 UTC (off the hour, when scheduled runs are delayed most)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  actions: read   # earlier runs' reports, for consecutive fetch failures
+
+concurrency:
+  group: update-check
+  cancel-in-progress: false
+
+jobs:
+  update-check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      # Secrets and the token are given only to the steps that use them, never to pip or the check
+      - name: Ping start
+        id: ping_start
+        env:
+          HC_PING_URL: ${{ secrets.HC_PING_URL }}
+        run: |
+          if [ -z "$HC_PING_URL" ]; then
+            echo "::error::The HC_PING_URL secret is not set; missed-run detection would be off."
+            exit 1
+          fi
+          # a start ping that does not arrive must not cancel the check; the end ping still decides
+          curl -fsS --retry 3 --retry-all-errors --max-time 20 -o /dev/null "$HC_PING_URL/start" \
+            || echo "::warning::Could not ping the start to healthchecks.io; the check continues."
+
+      - name: Failure streaks from earlier runs
+        id: streaks
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python pipeline/update_issues.py --streaks-out "$RUNNER_TEMP/streaks.json" --run-id "${{ github.run_id }}"
+
+      # The output of the next two steps is also kept in check.log; the last lines go into the
+      # check-failed issue (secrets are not in these steps' environment, and are hidden anyway)
+      - name: Install package with pipeline extra
+        id: install
+        shell: bash
+        run: |
+          {
+            python -m pip install --upgrade pip
+            pip install -c requirements/ci-constraints.txt -e ".[pipeline]"
+          } 2>&1 | tee -a "$RUNNER_TEMP/check.log"
+
+      - name: Run update check (report only)
+        id: check
+        shell: bash
+        run: |
+          python pipeline/update_check.py --workdir "$RUNNER_TEMP/work" --report-dir "$RUNNER_TEMP/report" \
+            --streaks "$RUNNER_TEMP/streaks.json" 2>&1 | tee -a "$RUNNER_TEMP/check.log"
+
+      - name: Upload report and downloaded files
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
+        with:
+          name: update-check-report
+          path: ${{ runner.temp }}/report
+          retention-days: 90
+          if-no-files-found: ignore
+
+      - name: Reconcile issues
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          FAILED_STEP: >-
+            ${{ steps.ping_start.outcome != 'success' && 'ping start'
+            || steps.streaks.outcome != 'success' && 'failure streaks'
+            || steps.install.outcome != 'success' && 'install'
+            || steps.check.outcome != 'success' && 'update check'
+            || '' }}
+        run: |
+          set -- --report "$RUNNER_TEMP/report" --run-url "$RUN_URL" --run-id "${{ github.run_id }}" \
+                 --maintainer-fallback "${{ github.repository_owner }}"
+          if [ -n "$FAILED_STEP" ]; then set -- "$@" --check-failed "$FAILED_STEP" --log "$RUNNER_TEMP/check.log"; fi
+          python pipeline/update_issues.py "$@"
+
+      - name: Ping second alert
+        if: always()
+        env:
+          HC_ALERT_URL: ${{ secrets.HC_ALERT_URL }}
+          NEEDS_REVIEW: ${{ steps.check.outputs.needs_review }}
+          CHECK_OUTCOME: ${{ steps.check.outcome }}
+        run: |
+          if [ -z "$HC_ALERT_URL" ]; then
+            echo "No HC_ALERT_URL secret; there is no second alert."
+            exit 0
+          fi
+          if [ "$CHECK_OUTCOME" != "success" ] || [ "$NEEDS_REVIEW" = "true" ]; then suffix=/fail; else suffix=; fi
+          curl -fsS --retry 3 --retry-all-errors --max-time 20 -o /dev/null --data-raw "$RUN_URL" "$HC_ALERT_URL$suffix" \
+            || echo "::warning::Could not reach the second healthchecks.io check."
+
+      - name: Ping success
+        if: success()
+        env:
+          HC_PING_URL: ${{ secrets.HC_PING_URL }}
+        run: >-
+          curl -fsS --retry 3 --retry-all-errors --max-time 20 -o /dev/null
+          --data-raw "Update check passed: $RUN_URL" "$HC_PING_URL"
+
+      - name: Ping fail
+        if: failure()
+        env:
+          HC_PING_URL: ${{ secrets.HC_PING_URL }}
+        run: |
+          if [ -n "$HC_PING_URL" ]; then
+            curl -fsS --retry 3 --retry-all-errors --max-time 20 -o /dev/null --data-raw "Update check failed: $RUN_URL" "$HC_PING_URL/fail"
+          fi

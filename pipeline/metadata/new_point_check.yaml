@@ -1,0 +1,23 @@
+# New-point volatility check (a review notice, off until enabled).
+#
+# The jump rule compares a move with ten times the series' typical move over its whole history, so
+# an error of 40-50% in a volatile series passes. This check compares each of a series' latest
+# `latest` periods with the moves just before it: z = |change - median of the previous `windows` changes|
+# divided by their robust spread (1.4826 x the median absolute deviation, floored at a quarter of the mean
+# absolute deviation). A move with z above `k` is a "New Point Notice", acknowledged like any other (it
+# records the two values). Monthly and quarterly series with at least window + 10 observations are
+# checked; a move at a B-flagged observation is a known break, not a notice.
+#
+# Calibration on the committed history (47 such series, 4,778 points, every point tested as if it were
+# the latest; tests/test_new_point_check.py repeats it):
+#   k = 8:  68 points (1.42%)   k = 12: 42 (0.88%)   k = 15: 26 (0.54%)   k = 20: 17 (0.36%)   k = 30: 6 (0.13%)
+# Most are the CBI's administered rates (policy, deposit and lending rates) moving in steps and the
+# oil series, which move for real reasons. At k = 15 the latest three periods of today's data raise 1
+# notice (crude_production_secondary 2026-06), and a weekly update that adds one new period to each
+# series would raise about 0.25 per run (47 points at 0.54%).
+#
+# Switch it on with `enabled: true` once you have decided that is an acceptable review load.
+enabled: false
+k: 15
+latest: 3
+windows: {monthly: 36, quarterly: 12}

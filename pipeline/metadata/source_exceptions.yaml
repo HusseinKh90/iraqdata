@@ -1,0 +1,28 @@
+# Known bad source cells that a parser leaves out.
+#
+# A parser stops on any cell in its data region that is neither a number nor a stated "no value"
+# marker (blank, "-", ...). A cell that is known to be wrong in the source, and that must be left
+# out, is listed here with its reason; it is then skipped and reported on every run as
+# [EXCEPTION]. An entry that no longer matches a cell stops the run (stale), so this list cannot
+# outlive the problem.
+#
+# Fields:
+#   parser    - the parser that reads the cell (run_parsers name)
+#   file      - the file name, or a glob for dated copies (matched on the name only)
+#   sheet     - the sheet
+#   cell      - the Excel cell, for the reader (informational)
+#   period    - the period the cell stands for, as the parser computes it (the match key, with value)
+#   value     - the cell's content exactly as in the source
+#   reason    - why it is left out (describe the source, not events)
+#   reviewed  - the date it was checked against the source file
+
+exceptions:
+- {parser: cbi_exchange_rates, file: "cbi_fx_usd_*.xlsx", sheet: Daily Price basis, cell: L305, period: "2011-11-31", value: "1170", reason: "The workbook has a rate on a calendar date that does not exist; no observation can be published for it.", reviewed: "2026-10-27"}
+- {parser: cbi_exchange_rates, file: "cbi_fx_usd_*.xlsx", sheet: Daily Price basis, cell: G475, period: "2016-06-31", value: "1182", reason: "The workbook has a rate on a calendar date that does not exist; no observation can be published for it.", reviewed: "2026-10-27"}
+- {parser: cbi_exchange_rates, file: "cbi_fx_usd_*.xlsx", sheet: Daily Price basis, cell: L509, period: "2017-11-31", value: "1184", reason: "The workbook has a rate on a calendar date that does not exist; no observation can be published for it.", reviewed: "2026-10-27"}
+- {parser: cbi_exchange_rates, file: "cbi_fx_usd_*.xlsx", sheet: Daily Price basis, cell: C541, period: "2018-02-29", value: "1184", reason: "The workbook has a rate on a calendar date that does not exist; no observation can be published for it.", reviewed: "2026-10-27"}
+- {parser: cbi_exchange_rates, file: "cbi_fx_usd_*.xlsx", sheet: Daily Price basis, cell: G543, period: "2018-06-31", value: "1182", reason: "The workbook has a rate on a calendar date that does not exist; no observation can be published for it.", reviewed: "2026-10-27"}
+- {parser: cbi_exchange_rates, file: "cbi_fx_usd_*.xlsx", sheet: Daily Price basis, cell: J543, period: "2018-09-31", value: "1182", reason: "The workbook has a rate on a calendar date that does not exist; no observation can be published for it.", reviewed: "2026-10-27"}
+- {parser: cbi_exchange_rates, file: "cbi_fx_usd_*.xlsx", sheet: Daily Price basis, cell: L543, period: "2018-11-31", value: "1182", reason: "The workbook has a rate on a calendar date that does not exist; no observation can be published for it.", reviewed: "2026-10-27"}
+- {parser: cbi_exchange_rates, file: "cbi_fx_usd_*.xlsx", sheet: Daily Price basis, cell: L748, period: "2024-11-31", value: "1300", reason: "The workbook has a rate on a calendar date that does not exist; no observation can be published for it.", reviewed: "2026-10-27"}
+- {parser: cbi_exchange_rates, file: "cbi_fx_usd_*.xlsx", sheet: Daily Price basis, cell: E782, period: "2025-04-31", value: "1300", reason: "The workbook has a rate on a calendar date that does not exist; no observation can be published for it.", reviewed: "2026-10-27"}

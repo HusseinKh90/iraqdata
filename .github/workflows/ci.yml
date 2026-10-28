@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "29 4 * * 2"   # Tuesdays: the pinned dependencies and runner images are tested even in a quiet week
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install package with pipeline and dev extras
+        run: |
+          python -m pip install --upgrade pip
+          pip install -c requirements/ci-constraints.txt -e ".[pipeline,dev]"
+
+      - name: Run test suite
+        run: pytest -v
+
+      - name: Verify checksums, descriptors and raw manifest
+        run: python pipeline/verify_integrity.py
+
+      - name: Check plausibility rules are reproducible
+        run: python pipeline/derive_rules.py --check
+
+      - name: Run quality gatekeeper
+        run: python pipeline/validate.py --release
+
+      - name: Check the series catalog against the data
+        run: python pipeline/catalog_check.py
+
+      - name: Check raw-file manifest
+        run: python pipeline/raw_audit.py manifest check
+
+      - name: Raw-layer audit report
+        run: python pipeline/raw_audit.py report
+
+  # A plain checkout on each OS must verify every release checksum,
+  # descriptor size and raw-manifest fingerprint byte-exactly.
+  integrity:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15, windows-2025]  # pinned images
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          pip install -c requirements/ci-constraints.txt -e .
+
+      - name: Verify checksums, descriptors and raw manifest
+        run: python pipeline/verify_integrity.py
