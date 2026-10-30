@@ -6,42 +6,32 @@
 [![Data licence: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-lightgrey.svg)](https://github.com/husseinkh90/iraqdata/blob/main/LICENSE-DATA)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 
-`iraqdata` gives you Iraq's main economic numbers (money, prices, exchange rates, oil, public
-finance, GDP, trade and more) as ready-to-use tables, with one line of code or one download.
+`iraqdata` project provides key economic time series for Iraq, covering money, prices, exchange rates, oil, public finance, GDP, trade, and more, in ready-to-use tables, accessible via lines of code or a simple download.
 
 ## Why this project matters
 
-Anyone who studies Iraq's economy runs into the same problems:
+Anyone studying Iraq’s economy faces the same set of challenges:
 
-- **The numbers are scattered.** They sit on the websites of the Central Bank of Iraq, the
-  statistics office (COSIT), the Ministry of Finance, the Ministry of Oil, OPEC and international
-  bodies. Pages move or change without notice.
-- **The files are hard to use.** Much of the data comes as multi-sheet Arabic spreadsheets or PDF
-  bulletins, not as tables you can analyse.
-- **The series have breaks.** Price indices were rebased several times (1993, 2007, 2012 and 2022),
-  and accounting standards changed. Joining the pieces correctly takes care.
-- **Everyone repeats the same work.** Researchers can spend most of a project collecting and
-  cleaning data before any analysis begins.
+- **Data is fragmented.** Iraq's data is scattered across the websites of the Central Bank of Iraq, the Central Organization for Statistics (COSIT), the Ministry of Finance, the Ministry of Oil, OPEC, and various international organizations. Web pages are frequently moved or altered without notice.
+- **Files are difficult to work with.** Much of the data comes as complex, multilingual (Arabic) spreadsheets or PDF documents, rather than tables ready for immediate analysis.
+- **Time series contain breaks.** Price indices have been rebased multiple times (in 1993, 2007, 2012, and 2022), and accounting standards have also evolved over time. Merging these datasets correctly requires careful, precise work.
+- **Redundant effort.** Researchers often spend the majority of their time collecting and cleaning data, long before the actual analysis can begin.
 
-`iraqdata` does that work once, carefully and in the open:
+`iraqdata` carries out this work in a thorough and transparent manner, offering it as a one-time service:
 
-- Every number names its source and how it was produced. <!-- share:begin -->91%<!-- share:end --> of
-  observations are read directly from archived official files; the rest are computed from them,
-  typed in from publications, compiled from a seed of unknown publisher, or come from a named
-  non-official source. They are listed in
+- Each figure specifies its source and the methodology used for measurement. 91% of the observations come directly from official archival documents; the rest are calculated from these publications. The series are listed in 
   [docs/series.md](https://github.com/husseinkh90/iraqdata/blob/main/docs/series.md#data-not-observed-from-an-archived-official-file) and flagged.
 - Breaks between series are marked rather than hidden.
 - The data are checked before each release.
 
-The result is a shared, free starting point. Studies of Iraq's economy become faster to do and
-easier to reproduce and check.
+This project delivers a shared, free starting point. Researchers can study the Iraqi economy faster and replicate and verify results more easily.
 
 ## Who it is for
 
-- **Researchers and students:** start your analysis on day one, and let others reproduce your results.
-- **Journalists and the public:** free access to the country's economic record, without paid databases.
-- **Banks, businesses and investors:** reliable benchmarks for inflation, exchange rates, money and the budget.
-- **Policymakers and analysts:** a consistent picture across institutions, in one format.
+- **Researchers and students:**
+- **Journalists and the public:**
+- **Banks, businesses and investors:**
+- **Policymakers and analysts:**
 
 ## What data is included
 
@@ -74,10 +64,7 @@ The test suite runs on Python 3.10–3.13.
 
 ## How to use
 
-This is a short tour. The [user guide](https://github.com/husseinkh90/iraqdata/blob/main/docs/user_guide.md)
-explains every option step by step: finding series, loading and renaming them, status flags, where
-each number comes from, saving the data, pinning a data release, offline use and what each error
-means.
+Check out this user guide. The [user guide](https://github.com/husseinkh90/iraqdata/blob/main/docs/user_guide.md) explains each option step by step: finding series, loading and renaming them, status indicators, the origin of each figure, saving data, pinning a data version, offline use, and the meaning of the various error messages.
 
 Import the library:
 
@@ -92,7 +79,7 @@ df = id.get_series("money.m2")
 print(df.tail())
 ```
 
-Ask for several series at once. Series of different frequencies (monthly, daily) come back as one
+You could display different series at the same time. Series of different frequencies (monthly, daily) come back as one
 table per frequency, so nothing is mixed or averaged:
 
 ```python
@@ -125,14 +112,12 @@ money = id.get_table("money_banking_monthly")
 print(money.head())
 ```
 
-The data are downloaded the first time you ask for them and kept on your computer, so later
-requests work offline. Every downloaded file is checked against the checksums published with its
-release; a file that does not match is never used.
+The data downloads the first time you request it and then stores it on your computer, so future requests can be handled offline.
 
 ### Status flags
 
-Every value has a status flag: `A` normal, `P` provisional, `B` break (for example a rebased
-index), `E` estimated, `M` missing, `U` low reliability. Ask for them next to the values with
+Every value has a status flag: `A` normal, `P` provisional, `B` break (for example, a rebased
+index), `E` estimated, `M` missing, `U` low reliability. Display them next to the values with
 `flags=True`:
 
 ```python
@@ -159,10 +144,7 @@ print(then[["date", "value", "realtime_start"]].tail())
 
 ### Which data release you are using
 
-By default you get the latest data release. It is looked up the first time you use the library
-and then kept until you ask for a newer one with `id.refresh_latest()`, so your results do not
-change on their own. To make results reproducible, pin a dated release. A pinned release is
-always used, even inside a copy of this repository:
+By default, you receive the most recently released data version. This is retrieved the first time you use the library and is then stored until you request a newer version via `id.refresh_latest()`; this ensures your results remain consistent. To make results reproducible, you can pin a specific version (associated with a date). Such a pinned version will always be used, even within a copy of this repository:
 
 ```python
 id.set_release("data-2026-10")    # or set the environment variable IRAQDATA_RELEASE
@@ -178,8 +160,7 @@ left alone. Data are downloaded from the GitHub releases of `husseinkh90/iraqdat
 ## Without Python
 
 The [guide for R and Stata](https://github.com/husseinkh90/iraqdata/blob/main/docs/r_and_stata.md)
-shows how to load a series, turn its dates into dates, use the flags and reshape the table. In short,
-every table is available as a CSV file on the
+This demonstrates how to load a series, convert the dates into date format, use the flags, and reshape the table. In short, every table is available as a CSV file on the
 [latest release page](https://github.com/husseinkh90/iraqdata/releases/latest), one file per
 subject area (for example `money_banking_monthly.csv`).
 
@@ -211,7 +192,7 @@ If you use `iraqdata`, please cite it:
 }
 ```
 
-A DOI will be added once the release is archived on Zenodo.
+I will add a DOI once the release is archived on Zenodo.
 
 Please cite both the package and the original publishers of the series you use (each series'
 sources are in `datapackage.json`, and their terms in
