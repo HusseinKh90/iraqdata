@@ -19,7 +19,7 @@ Anyone studying Iraq’s economy faces the same set of challenges:
 
 `iraqdata` carries out this work in a thorough and transparent manner, offering it as a one-time service:
 
-- Each figure specifies its source and the methodology used for measurement. 91% of the observations come directly from official archival documents; the rest are calculated from these publications. The series are listed in 
+- Each figure specifies its source and the methodology used for measurement. <!-- share:begin -->91%<!-- share:end --> of the observations come directly from official archival documents; the rest are calculated from these publications. The series are listed in 
   [docs/series.md](https://github.com/husseinkh90/iraqdata/blob/main/docs/series.md#data-not-observed-from-an-archived-official-file) and flagged.
 - Breaks between series are marked rather than hidden.
 - The data are checked before each release.
