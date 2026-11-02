@@ -58,7 +58,7 @@ CBI_FX_PAGE = "https://cbi.iq/page/144"
 # The hosts each fetcher may contact. update_check restricts a fetch, and every redirect it meets,
 # to its source's hosts (downloads.restrict_hosts); a new host here needs the source checked first.
 HOSTS: Dict[str, List[str]] = {
-    "bis_lbs": ["https://stats.bis.org/"],
+    "bis_lbs": ["https://stats.bis.org/", "https://data.bis.org/"],
     "cbi_bop": ["https://cbi.iq/"],
     "cbi_kfi": ["https://cbi.iq/"],
     "cbi_bulletin": ["https://cbi.iq/"],
