@@ -185,7 +185,7 @@ def _robots_for(url: str) -> urllib.robotparser.RobotFileParser:
     parts = urlsplit(url)
     host = f"{parts.scheme}://{parts.netloc}"
     if host not in _robots:
-        robots_url = f"{host}/robots.txt"
+        robots_url = "https://data.bis.org/robots.txt" if parts.hostname == "stats.bis.org" else f"{host}/robots.txt"
         resp = _fetch(robots_url, timeout=20, max_bytes=PAGE_MAX_BYTES, robots=False)
         parser = urllib.robotparser.RobotFileParser(robots_url)
         if 400 <= resp.status_code < 500:
