@@ -97,8 +97,8 @@ UPDATE_SCHEDULE_PATH = repo_root / "pipeline" / "metadata" / "update_schedule.ya
 EXPECTED_GAPS_PATH = repo_root / "pipeline" / "metadata" / "expected_gaps.yaml"
 NEW_POINT_PATH = repo_root / "pipeline" / "metadata" / "new_point_check.yaml"
 SANITY_CHECKS_PATH = repo_root / "pipeline" / "metadata" / "sanity_checks.yaml"
-# Auto sources are api (add-only releases are routine) or spreadsheet (always reviewed)
-SOURCE_KINDS = ("api", "spreadsheet")
+# API add-only releases are routine; spreadsheet and publication releases require review.
+SOURCE_KINDS = ("api", "spreadsheet", "publication")
 DEFAULT_FAILURE_THRESHOLD = 2
 DEFAULT_PENDING_THRESHOLD = 4   # runs a downloaded release may wait to be applied before it is an anomaly
 DEFAULT_LARGE_REVISION_PCT = 5.0  # a revision of at least this many percent is marked in the issue title
