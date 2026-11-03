@@ -25,9 +25,11 @@ nothing and is reported as fetch_failed. Each fetcher was run against its live s
 pipeline/verify_fetchers.py; the dated results are in pipeline/metadata/fetcher_verification.yaml.
 """
 
+import csv
 import hashlib
+import json
 import re
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Callable, Dict, List, Optional
 
@@ -60,6 +62,7 @@ CBI_FX_PAGE = "https://cbi.iq/page/144"
 # The hosts each fetcher may contact. update_check restricts a fetch, and every redirect it meets,
 # to its source's hosts (downloads.restrict_hosts); a new host here needs the source checked first.
 HOSTS: Dict[str, List[str]] = {
+    "opec_momr": ["https://publications.opec.org/"],
     "bis_lbs": ["https://stats.bis.org/", "https://data.bis.org/"],
     "cbi_bop": ["https://cbi.iq/"],
     "cbi_kfi": ["https://cbi.iq/"],
@@ -100,6 +103,74 @@ def _collect(paths: List[Optional[Path]]) -> Optional[List[Path]]:
     saved = [p for p in paths if p is not None]
     return saved or None
 
+def fetch_opec_momr(raw_root: Path, today: date, manifest_path: Path) -> Optional[List[Path]]:
+    """Archive validated OPEC production reports; never write production tables."""
+    directory = Path(raw_root) / "opec"
+    known = {}
+    for path in sorted(directory.glob("momr_*.json")):
+        metadata, report, observations = opec_momr.read_capture(path.read_bytes())
+        retrieved = datetime.fromisoformat(metadata["retrieved_at"].replace("Z", "+00:00"))
+        previous = known.get(report.period)
+        if previous is not None and retrieved == previous[0]:
+            old = opec_momr.observation_signature(previous[1])
+            new = opec_momr.observation_signature(observations)
+            opec_momr.require(old == new, "Conflicting OPEC captures have the same retrieval time")
+        if previous is None or retrieved > previous[0]:
+            known[report.period] = (retrieved, observations)
+
+    index = _get(OPEC_MOMR_INDEX, max_bytes=opec_momr.MAX_BYTES)
+    latest = opec_momr.discover(index, today=today)[0]
+    last_report = max(known) if known else None
+    if last_report is None:
+        records = sorted((Path(raw_root) / "transcribed").glob("opec_momr_crude_direct_*.csv"))
+        if records:
+            with records[-1].open(encoding="utf-8-sig", newline="") as stream:
+                periods = [row["period"] for row in csv.DictReader(stream)
+                           if row["series_id"] == opec_momr.SERIES]
+            opec_momr.require(bool(periods) and all(
+                re.fullmatch(r"20\d{2}-(?:0[1-9]|1[0-2])", p) for p in periods),
+                "Historical OPEC production record has invalid or missing periods")
+            last_report = opec_momr.shift_month(max(periods), 1)
+
+    if last_report is not None:
+        opec_momr.require(last_report <= latest.period,
+                         "Stored OPEC inputs are newer than the publication index")
+    reports = [latest]
+    if last_report is not None and opec_momr.shift_month(last_report, 1) < latest.period:
+        reports = []
+        for year in range(int(last_report[:4]), int(latest.period[:4]) + 1):
+            reports.extend(report for report in opec_momr.discover(index, year=year, today=today)
+                           if last_report < report.period <= latest.period)
+        opec_momr.require(bool(reports), "Missing OPEC reports needed for catch-up")
+
+    pending = []
+    for report in reports:
+        if report.archive_url:
+            archive = _get(report.archive_url, max_bytes=opec_momr.MAX_BYTES)
+            report = opec_momr.resolve_archive(report, archive)
+        raw_html = _get(report.chapter_url, max_bytes=opec_momr.MAX_BYTES)
+        observations = opec_momr.extract(report, raw_html)
+        previous = known.get(report.period)
+        signature = opec_momr.observation_signature(observations)
+        if previous is not None and signature == opec_momr.observation_signature(previous[1]):
+            continue
+        capture = {
+            "schema": 1,
+            "source": "opec_momr",
+            "report_month": report.period,
+            "publication_id": report.publication_id,
+            "source_url": report.chapter_url,
+            "retrieved_at": datetime.now(timezone.utc).isoformat(),
+            "source_sha256": _sha(raw_html),
+            "html": raw_html.decode("utf-8"),
+        }
+        content = (json.dumps(capture, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
+        opec_momr.read_capture(content)
+        target = directory / f"momr_{report.period}_{_sha(content)}_{today.isoformat()}.json"
+        pending.append((target, content))
+
+    # Validate every requested report before saving any new captures.
+    return [downloads.save_new_file(path, content) for path, content in pending] or None
 
 # ===================================================================== API and file sources
 
@@ -258,6 +329,7 @@ def fetch_cbi_fx(raw_root: Path, today: date, manifest_path: Path) -> Optional[L
 
 
 FETCHERS: Dict[str, Fetcher] = {
+    "opec_momr": fetch_opec_momr,
     "bis_lbs": fetch_bis_lbs,
     "cbi_bop": fetch_cbi_bop,
     "cbi_kfi": fetch_cbi_kfi,
