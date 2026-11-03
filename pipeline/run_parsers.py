@@ -231,6 +231,7 @@ def _run_oil_monthly(raw_root, seeds_root, out_dir, seeds_out_dir):
         eia_zip_path=downloads.latest_version(raw_root / "eia" / "INTL.zip"),
         jodi_dir_path=raw_root / "jodi",
         transcribed_dir=raw_root / "transcribed",
+        opec_dir=raw_root / "opec",
         seed_parquet_path=seeds_out_dir / "opec_momr_historical.parquet",
         output_parquet_path=out_dir / "oil_monthly.parquet",
     )
@@ -367,7 +368,7 @@ REGISTRY: List[ParserSpec] = [
     ParserSpec(
         name="oil_monthly", module="parse_oil_monthly", run=_run_oil_monthly,
         inputs=("pipeline/raw/eia/INTL*.zip", "pipeline/raw/jodi/jodi_iraq_*.csv",
-                "pipeline/raw/transcribed/opec_momr_*.csv"),
+                "pipeline/raw/transcribed/opec_momr_*.csv", "pipeline/raw/opec/momr_*.json"),
         outputs=("oil_monthly.parquet",),
         seed_outputs=("opec_momr_historical.parquet",),
         series_inputs={
