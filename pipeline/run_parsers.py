@@ -395,15 +395,15 @@ SNAPSHOT_TABLE = {
 # Queries used by raw_audit.py
 # =====================================================================
 
-def consumer_map() -> Dict[str, List[Tuple[str, str]]]:
+def consumer_map(root: Path = repo_root) -> Dict[str, List[Tuple[str, str]]]:
     """Map each archived file (NFC, repository-relative) to the parsers that read it."""
     consumers: Dict[str, List[Tuple[str, str]]] = {}
     for spec in REGISTRY:
         for glob in spec.inputs:
-            for path in sorted(repo_root.glob(glob)):
+            for path in sorted(Path(root).glob(glob)):
                 if not path.is_file():
                     continue
-                key = _repo_rel(path)
+                key = unicodedata.normalize("NFC", path.resolve().relative_to(Path(root).resolve()).as_posix())
                 entry = (spec.name, spec.use_of(glob))
                 if entry not in consumers.setdefault(key, []):
                     consumers[key].append(entry)
@@ -411,18 +411,20 @@ def consumer_map() -> Dict[str, List[Tuple[str, str]]]:
 
 
 @functools.lru_cache(maxsize=None)
-def versions_of(path: str) -> frozenset:
+def versions_of(path: str, root: Path = repo_root) -> frozenset:
     """
     Every archived version of an expected input: the file itself plus its
     dated re-downloads. After an update, unchanged rows keep the fingerprint of the older version,
     so provenance accepts any member of the family. The CBI workbooks form one family each,
     whatever their (legacy or dated) names.
     """
+    root = Path(root)
+    relative = lambda p: unicodedata.normalize("NFC", p.resolve().relative_to(root.resolve()).as_posix())
     for globs in (KFI_GLOBS, BULLETIN_GLOBS):
         if any(PurePosixPath(path).match(g) for g in globs):
-            return frozenset({path} | {_repo_rel(p) for g in globs for p in repo_root.glob(g) if p.is_file()})
-    base = repo_root / path
-    siblings = {_repo_rel(p) for p in base.parent.glob(f"{base.stem}_*{base.suffix}")
+            return frozenset({path} | {relative(p) for g in globs for p in root.glob(g) if p.is_file()})
+    base = root / path
+    siblings = {relative(p) for p in base.parent.glob(f"{base.stem}_*{base.suffix}")
                 if p.is_file() and downloads.vintage_of(p) and p.stem.rsplit("_", 1)[0] == base.stem}
     return frozenset({path} | siblings)
 
@@ -432,7 +434,8 @@ def writers_of(table: str) -> List[ParserSpec]:
     return [spec for spec in REGISTRY if f"{table}.parquet" in spec.outputs]
 
 
-def expected_inputs(table: str, series_id: str, date: str) -> Union[List[str], str, None]:
+def expected_inputs(table: str, series_id: str, date: str,
+                    raw_root: Optional[Path] = None) -> Union[List[str], str, None]:
     """
     The file(s) or input group a published (table, series, date) value was read from, or None
     when it was not read from any archived file. The last writer in run order wins, matching
@@ -451,6 +454,12 @@ def expected_inputs(table: str, series_id: str, date: str) -> Union[List[str], s
         expected = value
     if not found:
         raise KeyError(f"No parser declares series {series_id!r} ({date}) in table {table!r}")
+    if table == "oil_monthly" and series_id == "crude_production_direct":
+        import opec_momr
+        captures = opec_momr.capture_inputs(Path(raw_root) / "opec" if raw_root is not None
+                                          else DEFAULT_RAW_ROOT / "opec", date)
+        if captures:
+            return tuple([expected] + [[f"pipeline/raw/opec/{path.name}"] for path in captures])
     return expected
 
 
