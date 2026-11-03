@@ -37,6 +37,7 @@ from iraqdata.schema import CANONICAL_COLUMNS
 import flags  # noqa: E402
 import source_io  # noqa: E402
 import transcription  # noqa: E402
+import opec_momr  # noqa: E402
 
 REALTIME_START = "2026-10-28"
 EIA_MEMBER = "INTL.txt"
@@ -59,7 +60,8 @@ def parse_oil_monthly(
     jodi_dir_path: Optional[Path] = None,
     transcribed_dir: Optional[Path] = None,
     seed_parquet_path: Optional[Path] = None,
-    output_parquet_path: Optional[Path] = None
+    output_parquet_path: Optional[Path] = None,
+    opec_dir: Optional[Path] = None,
 ) -> pd.DataFrame:
     """
     Parses EIA secondary production, JODI direct production, and Basrah crude price,
@@ -80,6 +82,9 @@ def parse_oil_monthly(
 
     if output_parquet_path is None:
         output_parquet_path = repo_root / "pipeline" / "data" / "garden" / "oil_monthly.parquet"
+    
+    if opec_dir is None:
+       opec_dir = Path(transcribed_dir).parent / "opec"
 
     eia_hash = None
     observations: List[Dict] = []
@@ -181,6 +186,24 @@ def parse_oil_monthly(
                 "source_hash": r.source_hash,
             })
             where.append(record_path.name)
+
+    # Official report captures supersede overlapping candidates in scratch builds.
+    # The merge layer retains published predecessors as vintage history on acceptance.
+    official = opec_momr.latest_production(opec_dir)
+    if official:
+        replaced = set(official)
+        keep = [not (r["series_id"] == "crude_production_direct" and r["date"] in replaced)
+                for r in observations]
+        observations = [r for r, selected in zip(observations, keep) if selected]
+        where = [place for place, selected in zip(where, keep) if selected]
+        for period, item in sorted(official.items()):
+            observations.append({
+                "date": period, "series_id": "crude_production_direct",
+                "value": float(item["value"]), "unit": item["unit"],
+                "status_flag": "A", "realtime_start": REALTIME_START,
+                "source_hash": item["capture_hash"],
+            })
+            where.append(str(item["capture_path"]))
 
     df_out = pd.DataFrame(observations, columns=CANONICAL_COLUMNS)
     # JODI and the transcription record both give crude_production_direct: a month in both is
