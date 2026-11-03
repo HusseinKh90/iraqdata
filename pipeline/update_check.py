@@ -303,8 +303,8 @@ def build_findings(results: List[dict], changes: Dict[str, dict], gate: dict, fr
         elif e["outcome"] == "new_release":
             details = ([{"file": f["path"], "size": f["size"], "sha256": f["sha256"], "available_until": expires}
                         for f in e["files"]] + _new_periods(src, changes))
-            if src.get("kind") == "spreadsheet":
-                # PDF and spreadsheet sources always open a review issue
+            if src.get("kind") in ("spreadsheet", "publication"):
+                # Spreadsheet and publication sources always open a review issue
                 findings.append(_finding("anomaly", f"review:{sid}", f"{sid}: new release to review", details, [sid]))
             else:
                 findings.append(_finding("routine", f"routine:{sid}", f"{sid}: new data", details, [sid]))
