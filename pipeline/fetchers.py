@@ -33,7 +33,9 @@ from typing import Callable, Dict, List, Optional
 
 import download_checks
 import downloads
+import opec_momr
 
+OPEC_MOMR_INDEX = opec_momr.INDEX
 FRED_URL = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU"
 # EIA bulk download of the International Energy Statistics (see https://www.eia.gov/opendata/bulkfiles.php)
 EIA_URL = "https://api.eia.gov/bulk/INTL.zip"
