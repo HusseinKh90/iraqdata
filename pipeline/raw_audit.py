@@ -70,6 +70,8 @@ FOLDER_RULES = [
      "CBI BOP Data Archive, https://cbi.iq/page/145", "cbi_bop", None),
     ("pipeline/raw/cbi/fx/",
      "CBI dinar-per-dollar rates (daily, monthly, annual), https://cbi.iq/page/144", "cbi_fx", None),
+    ("pipeline/raw/opec/",
+     "OPEC Monthly Oil Market Report, https://publications.opec.org/momr", "opec_momr", None),
     ("pipeline/raw/cosit/",
      "COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income",
      "cosit_national_accounts", None),
@@ -210,7 +212,7 @@ def file_entry(file_path: Path, root: Path = repo_root, consumers_map: Optional[
     path = rel(file_path, root)
     if consumers_map is None:
         import run_parsers
-        consumers_map = run_parsers.consumer_map()
+        consumers_map = run_parsers.consumer_map(root)
     origin, source_ref, acquired = _folder_rule(path)
     if acquired is None:
         acquired = _acquired_from_name(path)
@@ -232,7 +234,7 @@ def file_entry(file_path: Path, root: Path = repo_root, consumers_map: Optional[
 
 def build_manifest(root: Path = repo_root) -> dict:
     import run_parsers
-    consumers_map = run_parsers.consumer_map()
+    consumers_map = run_parsers.consumer_map(root)
     return {
         "files": [file_entry(p, root, consumers_map) for p in iter_raw_files(root)],
         "input_groups": [],
@@ -492,7 +494,7 @@ def resolve_hashes(
             key = (table, series_id, date)
             if key not in expected_cache:
                 try:
-                    expected_cache[key] = run_parsers.expected_inputs(table, series_id, date)
+                    expected_cache[key] = run_parsers.expected_inputs(table, series_id, date, raw_root=Path(root) / "pipeline" / "raw")
                 except KeyError:
                     expected_cache[key] = KeyError
             expected = expected_cache[key]
@@ -515,7 +517,7 @@ def resolve_hashes(
                 for files_used in alternatives:
                     # Any archived version of an expected file counts (after an update,
                     # unchanged rows keep the older version's fingerprint)
-                    families = [run_parsers.versions_of(e) for e in files_used]
+                    families = [run_parsers.versions_of(e, root) for e in files_used]
                     matched = matched or (all(any(r in fam for fam in families) for r in resolved)
                                           and all(fam & resolved for fam in families))
                 status = "attributed" if matched else "misattributed"
