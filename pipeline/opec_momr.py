@@ -2,10 +2,12 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from decimal import Decimal
+from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 
 from lxml import html
@@ -187,3 +189,65 @@ def extract(report, body):
     require([o['date'] for o in observations] == expected,
             f"Unexpected monthly columns: {[o['date'] for o in observations]}; expected {expected}")
     return observations
+def read_capture(body):
+    """Validate an archived JSON capture and return metadata, report, observations."""
+    require(len(body) <= MAX_BYTES * 6 + 10_000, "Archived capture exceeds size limit")
+    try:
+        metadata = json.loads(body)
+        require(isinstance(metadata, dict), "Capture must contain a JSON object")
+        require(metadata.get("schema") == 1 and metadata.get("source") == "opec_momr",
+                "Unknown OPEC capture format")
+        for key in ("report_month", "publication_id", "source_url", "retrieved_at",
+                    "source_sha256", "html"):
+            require(isinstance(metadata.get(key), str) and bool(metadata[key]),
+                    f"Missing capture field: {key}")
+        public_url(metadata["source_url"])
+        retrieved = datetime.fromisoformat(metadata["retrieved_at"].replace("Z", "+00:00"))
+        require(retrieved.utcoffset() == timezone.utc.utcoffset(None),
+                "Capture retrieval time must include UTC timezone")
+        raw_html = metadata["html"].encode("utf-8")
+        require(hashlib.sha256(raw_html).hexdigest() == metadata["source_sha256"],
+                "Archived HTML fingerprint does not match")
+        report = Report(metadata["report_month"], metadata["publication_id"],
+                        chapter_url=metadata["source_url"])
+        return metadata, report, extract(report, raw_html)
+    except (KeyError, TypeError, ValueError, UnicodeError) as exc:
+        raise CollectionError(f"Invalid OPEC capture: {exc}") from exc
+
+
+def observation_signature(observations):
+    """Compare periods, numeric values and units without HTML-formatting noise."""
+    return tuple((o["date"], Decimal(o["value"]), o["unit"]) for o in observations)
+
+
+def capture_records(directory):
+    """Read immutable evidence; reject conflicting captures with identical timestamps."""
+    records = []
+    seen = {}
+    for path in sorted(Path(directory).glob("momr_*.json")):
+        require(path.stat().st_size <= MAX_BYTES * 6 + 10_000, "Archived capture exceeds size limit")
+        body = path.read_bytes()
+        metadata, report, observations = read_capture(body)
+        when = datetime.fromisoformat(metadata["retrieved_at"].replace("Z", "+00:00"))
+        key = (report.period, when)
+        signature = observation_signature(observations)
+        require(key not in seen or seen[key] == signature,
+                "Conflicting OPEC captures have the same retrieval time")
+        seen[key] = signature
+        records.append((report.period, when, path, metadata, observations, hashlib.sha256(body).hexdigest()[:16]))
+    return sorted(records, key=lambda item: (item[0], item[1], item[2].name))
+
+
+def latest_production(directory):
+    """Latest report/retrieval wins per month, retaining the actual archive fingerprint."""
+    selected = {}
+    for _, _, path, _, observations, digest in capture_records(directory):
+        for observation in observations:
+            selected[observation["date"]] = dict(observation, capture_path=path, capture_hash=digest)
+    return selected
+
+
+def capture_inputs(directory, period):
+    """All archived versions that can legitimately explain an unchanged published row."""
+    return [path for _, _, path, _, observations, _ in capture_records(directory)
+            if any(item["date"] == period for item in observations)]
