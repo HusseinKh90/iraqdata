@@ -52,7 +52,7 @@ in the `origin` and `official` columns of `iraqdata.list_series()`, and in full 
 | Series | Frequency | Unit | Starts | Description |
 | :--- | :---: | :---: | :---: | :--- |
 | `crude_production_secondary` | Monthly | Th. Barrels/Day | 2004-01 | Iraq crude production estimated by secondary sources (U.S. EIA International Energy Statistics). |
-| `crude_production_direct` | Monthly | Th. Barrels/Day | 2007-01 | Iraq crude production reported by the Ministry of Oil: read from JODI to March 2024, then typed in from OPEC MOMR figures (flag `U`). |
+| `crude_production_direct` | Monthly | Th. Barrels/Day | 2007-01 | Iraq crude production reported by the Ministry of Oil: JODI history, historical OPEC records, and archived official OPEC online tables. |
 | `oil_price_basrah` | Monthly | USD per Barrel | 2004-07 | Basrah crude price, OPEC MOMR anchor months only: ten prices typed in from OPEC reports (flag `U`). The other months are not estimated. |
 | `oil_price_brent` | Daily | USD per Barrel | 2004-01-06 | Daily Europe Brent spot crude oil price (U.S. EIA via FRED). |
 
@@ -194,7 +194,7 @@ Generated from `src/iraqdata/series_catalog.yaml` by `pipeline/docs_origin.py`; 
 | `parallel_rate_iraq` | observed 2004-01-01..2022-12-31; observed (unofficial) 2023-01-01..open |
 | `fx.official` | observed 2004-01-01..open |
 | `crude_production_secondary` | observed 2004-01..open |
-| `crude_production_direct` | observed 2007-01..2024-03; transcribed 2024-04..open |
+| `crude_production_direct` | observed 2007-01..2024-03; transcribed 2024-04..2026-06; observed 2026-07..open |
 | `oil_price_basrah` | transcribed 2004-07..open |
 | `oil_price_brent` | observed 2004-01-06..open |
 | `cpi.headline_1993` | observed 2004-01..open |
@@ -251,7 +251,7 @@ These periods are derived, modelled, transcribed by hand, of unknown origin, or 
 | Series | Periods | Class | Method | Source |
 |--------|---------|-------|--------|--------|
 | `parallel_rate_iraq` | 2023-01-01..open | observed (unofficial) | Read from the Iraq-parallel-exchange-rate dataset (Baghdad close of dealer quotes) | HusseinKh90/Iraq-parallel-exchange-rate dealer consensus (CC-BY 4.0) |
-| `crude_production_direct` | 2024-04..open | transcribed | Typed in from OPEC Monthly Oil Market Report direct-communication figures; source document not archived | OPEC Monthly Oil Market Report (issue and table not recorded); record `pipeline/raw/transcribed/opec_momr_crude_direct_2026-10-25.csv` |
+| `crude_production_direct` | 2024-04..2026-06 | transcribed | Typed in from OPEC Monthly Oil Market Report direct-communication figures; source document not archived | OPEC Monthly Oil Market Report (issue and table not recorded); record `pipeline/raw/transcribed/opec_momr_crude_direct_2026-10-25.csv` |
 | `oil_price_basrah` | 2004-07..open | transcribed | Ten anchor months typed in from OPEC Monthly Oil Market Reports; source documents not archived | OPEC Monthly Oil Market Report (issues not recorded); record `pipeline/raw/transcribed/opec_momr_basrah_anchors_2026-10-25.csv` |
 | `cpi_headline` | 2004-01..open | derived (unofficial) | Linked from the four published CPI bases (1993, 2007, 2012, 2022 = 100) by a December one-month overlap, switching base each January after an overlap year (flag B); see docs/linked_inflation_method.md | Central Bank of Iraq & COSIT |
 | `cpi_core` | 2004-01..open | derived (unofficial) | Linked from the four published CPI bases (1993, 2007, 2012, 2022 = 100) by a December one-month overlap, switching base each January after an overlap year (flag B); see docs/linked_inflation_method.md | Central Bank of Iraq & COSIT |
