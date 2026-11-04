@@ -206,7 +206,8 @@ def run(source, raw, tmp_path, monkeypatch, content_for=None, error=None):
     return result, web
 
 
-SOURCES = sorted(fetchers.FETCHERS)
+# OPEC archives validated JSON envelopes; its dedicated tests exercise that contract.
+SOURCES = sorted(s for s in fetchers.FETCHERS if s != "opec_momr")
 
 
 @pytest.mark.parametrize("source", SOURCES)
