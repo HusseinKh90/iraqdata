@@ -136,8 +136,8 @@ sources:
   checked: '2026-10-25'
 - id: opec_momr
   publisher: Organization of the Petroleum Exporting Countries (OPEC)
-  title: Monthly Oil Market Report (figures typed into transcription records)
-  url: https://www.opec.org
+  title: Monthly Oil Market Report (historical records and archived official online tables)
+  url: https://publications.opec.org/momr
   terms: Public PDF download
   licence: null
   status: unconfirmed
