@@ -19,8 +19,8 @@ pytestmark = pytest.mark.usefixtures("no_network")
 
 TODAY = "2026-11-15"
 # Cbi_fx is fetched automatically, and github_fx (the parallel rate from 2023) is new
-MANUAL = {"fiscal_seed", "cosit", "opec_momr"}
-AUTO = {"bis_lbs", "cbi_bop", "cbi_kfi", "cbi_bulletin", "wb_oda", "fred_brent", "eia_intl", "cbi_fx", "github_fx"}
+MANUAL = {"fiscal_seed", "cosit"}
+AUTO = {"opec_momr", "bis_lbs", "cbi_bop", "cbi_kfi", "cbi_bulletin", "wb_oda", "fred_brent", "eia_intl", "cbi_fx", "github_fx"}
 
 
 def unchanged(raw, today, manifest):
