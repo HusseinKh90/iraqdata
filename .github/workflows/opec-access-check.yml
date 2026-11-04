@@ -33,8 +33,8 @@ jobs:
           import downloads
 
           urls = [
-              "https://publications.opec.org/momr",
-              "https://www.opec.org/monthly-oil-market-report.html",
+              "https://www.opec.org/assets/assetdb/momr-sep-2026.pdf",
+              "https://momr.opec.org/pdf-download/res/pdf_delivery_momr.php?secToken2=1",
           ]
           for url in urls:
               try:
@@ -44,6 +44,7 @@ jobs:
                       "url": url,
                       "status": response.status_code,
                       "bytes": len(response.content),
+                      "pdf_signature": response.content.startswith(b"%PDF-"),
                       "server": response.headers.get("Server"),
                       "content_type": response.headers.get("Content-Type"),
                   }
