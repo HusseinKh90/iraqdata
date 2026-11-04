@@ -17,3 +17,5 @@ pipeline/archive/** -text
 *.sha256                       text eol=lf
 release/**/datapackage.json    text eol=lf
 pipeline/data/datapackage.json text eol=lf
+# Frozen publisher HTML is source evidence; preserve its recorded bytes on every OS.
+tests/fixtures/opec/*.html binary
