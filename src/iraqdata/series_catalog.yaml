@@ -296,12 +296,14 @@ series:
   primary_source: JODI-Oil (INDPROD, 2007-Mar 2024); OPEC MOMR Direct Communication
     (Apr 2024+)
   source_file: pipeline/raw/jodi/jodi_iraq_<year>.csv (2007-01 to 2024-03) & pipeline/raw/transcribed/opec_momr_crude_direct_2026-10-25.csv
-    (2024-04 on)
+    (2024-04 to 2026-06) & pipeline/raw/opec/momr_*.json (official online report captures)
   cross_check: None
   description: 'Monthly crude oil production reported by the Iraqi Ministry of Oil through direct
     communication: read from the JODI-Oil database to March 2024, then typed in from OPEC Monthly
-    Oil Market Report figures whose source documents are not archived (status flag U).'
-  summary: 'Iraq crude production reported by the Ministry of Oil: read from JODI to March 2024, then typed in from OPEC MOMR figures (flag `U`).'
+    Oil Market Report figures through June 2026 (status flag U). The publisher’s online tables are
+    archived and extracted automatically thereafter; overlapping historical candidates are
+    reported for review and retain their conservative U flag until separately reviewed.'
+  summary: 'Iraq crude production reported by the Ministry of Oil: JODI history, historical OPEC records, and archived official OPEC online tables.'
   origin:
   - from: 2007-01
     to: 2024-03
@@ -311,7 +313,7 @@ series:
     source: JODI-Oil World Database (pipeline/raw/jodi/jodi_iraq_<year>.csv)
     source_ref: jodi_oil
   - from: 2024-04
-    to: open
+    to: 2026-06
     class: transcribed
     official: true
     method: Typed in from OPEC Monthly Oil Market Report direct-communication figures; source document not
@@ -319,6 +321,13 @@ series:
     source: OPEC Monthly Oil Market Report (issue and table not recorded)
     source_ref: opec_momr
     record: pipeline/raw/transcribed/opec_momr_crude_direct_2026-10-25.csv
+  - from: 2026-07
+    to: open
+    class: observed
+    official: true
+    method: Extracted from archived official OPEC online direct-communication tables; source_hash identifies the capture.
+    source: OPEC Monthly Oil Market Report, https://publications.opec.org/momr
+    source_ref: opec_momr
 - series_id: oil_price_basrah
   name_en: Basrah crude price, OPEC MOMR anchor months (transcribed)
   name_ar: معدل سعر نفط البصرة (خام البصرة الخفيف / المتوسط)
