@@ -104,9 +104,10 @@ sources:
     calendar: International energy statistics, monthly, about 3-4 months behind
   - id: opec_momr
     publisher: OPEC Monthly Oil Market Report; JODI Oil World Database
-    url: https://www.opec.org/opec_web/en/publications/338.htm
-    fetch: manual
-    reason: JODI files end 2024-03; later months and the Basrah anchors are transcribed by hand from OPEC MOMR into the dated records under pipeline/raw/transcribed/
+    url: https://publications.opec.org/momr
+    fetch: auto
+    kind: publication
+    failure_threshold: 1
     parsers: [oil_monthly]
     calendar: Monthly report, about 1 month after month end
 
@@ -189,4 +190,4 @@ series:
   oil_price_brent: {source: fred_brent, lag_days: 7, rationale: FRED posts daily 1-2 business days behind, reviewed: 2026-10-24}
   oil_price_basrah: {source: opec_momr, ended: Only transcribed OPEC MOMR anchor months remain and there is no fetchable source, reviewed: 2026-10-25}
   crude_production_secondary: {source: eia_intl, lag_days: 120, rationale: EIA international data run about 3-4 months behind, reviewed: 2026-10-24}
-  crude_production_direct: {source: opec_momr, lag_days: 120, rationale: JODI to 2024-03; then OPEC MOMR transcribed into pipeline/raw/transcribed/, reviewed: 2026-10-25}
+  crude_production_direct: {source: opec_momr, lag_days: 120, rationale: JODI to 2024-03; historical OPEC transcriptions through 2026-06; archived official OPEC online production tables thereafter, reviewed: 2026-11-03}
