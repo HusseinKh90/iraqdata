@@ -238,7 +238,10 @@ def test_get_origin_returns_segments_in_period_order():
     df = iraqdata.get_origin("crude_production_direct")
     assert list(df.columns) == ["from", "to", "class", "official", "method", "source", "record"]
     assert df[["from", "to", "class"]].values.tolist() == [
-        ["2007-01", "2024-03", "observed"], ["2024-04", "open", "transcribed"]]
+        ["2007-01", "2024-03", "observed"],
+        ["2024-04", "2026-06", "transcribed"],
+        ["2026-07", "open", "observed"],
+    ]
     assert df["record"].iloc[1].startswith("pipeline/raw/transcribed/")
 
 

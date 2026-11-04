@@ -47,7 +47,11 @@ def sandbox(tmp_path, parser):
             if glob.startswith("pipeline/raw/"):
                 folders.add(glob[len("pipeline/raw/"):].split("/")[0])
     for folder in folders:
-        shutil.copytree(RAW_DIR / folder, raw / folder)
+        if folder == "opec" and not (RAW_DIR / folder).exists():
+            # No captures are archived before the first OPEC download.
+            (raw / folder).mkdir(parents=True, exist_ok=True)
+        else:
+            shutil.copytree(RAW_DIR / folder, raw / folder)
     raw.mkdir(exist_ok=True)
     shutil.copytree(SEEDS_DIR, seeds)
     shutil.copytree(GARDEN_DIR, garden)
