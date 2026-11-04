@@ -1,0 +1,60 @@
+name: OPEC access check
+
+on:
+  push:
+    branches: [automate-opec-production]
+    paths: [.github/workflows/opec-access-check.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-access:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+      - name: Install the pipeline dependencies
+        run: pip install -c requirements/ci-constraints.txt -e ".[pipeline]"
+      - name: Inspect official OPEC responses
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import sys
+          from lxml import html
+          sys.path.insert(0, "pipeline")
+          import downloads
+
+          urls = [
+              "https://publications.opec.org/momr",
+              "https://www.opec.org/monthly-oil-market-report.html",
+          ]
+          for url in urls:
+              try:
+                  with downloads.restrict_hosts([url]):
+                      response = downloads.polite_get(url, timeout=20, max_bytes=5_000_000)
+                  result = {
+                      "url": url,
+                      "status": response.status_code,
+                      "bytes": len(response.content),
+                      "server": response.headers.get("Server"),
+                      "content_type": response.headers.get("Content-Type"),
+                  }
+                  try:
+                      page = html.fromstring(response.content, parser=html.HTMLParser(no_network=True))
+                      result["title"] = page.xpath("string(//title)")
+                      if response.status_code >= 400:
+                          result["error_text"] = " ".join(page.text_content().split())[:700]
+                  except (ValueError, html.etree.ParserError):
+                      result["error_text"] = "Response was not readable HTML"
+                  print(json.dumps(result), flush=True)
+              except Exception as error:
+                  print(json.dumps({"url": url, "error": type(error).__name__ + ": " + str(error)}), flush=True)
+          PY
