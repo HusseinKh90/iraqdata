@@ -48,7 +48,7 @@ def test_identity_kinds_come_from_the_catalog():
     rule_names = [rule for rule, _ in validate.IDENTITY_RULES]
     assert "OECD net ODA" not in rule_names  # residual withdrawn
     assert "OECD gross >= net" not in rule_names  # gross ODA withdrawn
-    assert len(rule_names) == 14
+    assert len(rule_names) == 15
 
 
 def test_bop_trade_balance_failure(garden_tables, tmp_path):

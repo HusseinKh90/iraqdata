@@ -113,6 +113,8 @@ def test_out_of_envelope_value_reported(name, garden_tables, tmp_path):
         top_sid = "oecd.dac.oda_total_net"
     elif name == "money_banking_monthly":
         top_sid = "money.m2"
+    elif name == "fx_auction_monthly":
+        top_sid = "fx.auction_total"
 
     rules = validate.load_rules()
     rule = rules["series"][top_sid]
@@ -135,6 +137,8 @@ def test_out_of_envelope_value_reported(name, garden_tables, tmp_path):
         faulty_df = set_value(faulty_df, mid_date, "gdp.real_oil", lambda v: v + delta)
     elif name == "oecd_dac_annual":
         faulty_df = set_value(faulty_df, mid_date, "oecd.dac.grants_excl_tc", lambda v: v + delta)
+    elif name == "fx_auction_monthly":
+        faulty_df = set_value(faulty_df, mid_date, "fx.auction_transfers", lambda v: v + delta)
 
     tmp_file = write_tmp_parquet(faulty_df, tmp_path, name)
 
@@ -210,7 +214,7 @@ def test_coverage_line_on_real_data():
 
     # Sum of checked series across production tables must equal 64
     checked_counts = [
-        int(re.search(r"series:\s*(\d+)\s*checked", l).group(1)) for l in coverage_lines[:10]
+        int(re.search(r"series:\s*(\d+)\s*checked", l).group(1)) for l in coverage_lines[:11]
     ]
     assert sum(checked_counts) == 65  # gross ODA and the aid residual withdrawn
     assert GATE_SUMMARY in proc.stdout

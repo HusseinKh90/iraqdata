@@ -11,8 +11,15 @@ provenance: []
 # Outcomes: unhandled_error (an exception from pandas, openpyxl, json, zipfile ... or an error that
 # names neither the file, sheet nor label), silent_shift (no error, but the output changed) and
 # not_atomic (output written in place). correct and clear_error outcomes are not listed.
-# The parsers read, check and write through pipeline/parsers/source_io.py, so none is open.
-robustness: []
+# The parsers read, check and write through pipeline/parsers/source_io.py; one is open.
+robustness:
+- parser: cbi_fx_auction
+  input: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  mutation: missing
+  outcome: silent_shift
+  reason: Without the newest bulletin the parser reads the next newest one (bulletin_latest.xlsx), which
+    ends a month earlier. Nothing is published from it - the raw manifest check reports the missing file,
+    and the merge refuses a build that drops published months (run_parsers.MissingRowsError).
 
 
 # Text cells holding numbers in Arabic-Indic digits, with thousands separators or with footnote
