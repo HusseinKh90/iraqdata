@@ -29,7 +29,7 @@ def test_every_series_has_a_rule(garden_tables, seed_tables):
     for df in seed_tables.values():
         all_series.update(df["series_id"].unique())
 
-    assert len(all_series) == 62
+    assert len(all_series) == 65
     missing = all_series - set(series_rules.keys())
     assert not missing, f"Missing rules for series: {sorted(missing)}"
 
@@ -39,7 +39,7 @@ def test_rules_are_well_formed():
     rules = validate.load_rules()
     series_rules = rules.get("series", {})
 
-    assert len(series_rules) == 62
+    assert len(series_rules) == 65
 
     for sid, entry in series_rules.items():
         assert "unit" in entry and entry["unit"], f"{sid} missing unit"
@@ -212,5 +212,5 @@ def test_coverage_line_on_real_data():
     checked_counts = [
         int(re.search(r"series:\s*(\d+)\s*checked", l).group(1)) for l in coverage_lines[:10]
     ]
-    assert sum(checked_counts) == 62  # gross ODA and the aid residual withdrawn
+    assert sum(checked_counts) == 65  # gross ODA and the aid residual withdrawn
     assert GATE_SUMMARY in proc.stdout

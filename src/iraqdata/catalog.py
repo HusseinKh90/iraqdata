@@ -38,6 +38,9 @@ SERIES_TO_TABLE: dict[str, str] = {
     # Family 2: Exchange Rates (Daily)
     "parallel_rate_iraq": "exchange_rates_daily",
     "fx.official": "exchange_rates_daily",
+    "fx.auction_cash": "fx_auction_monthly",
+    "fx.auction_transfers": "fx_auction_monthly",
+    "fx.auction_total": "fx_auction_monthly",
 
     # Family 3: Oil (Daily & Monthly)
     "oil_price_brent": "oil_daily",
@@ -121,6 +124,9 @@ SERIES_DIRECT_SOURCES: dict[str, str] = {
     # Family 2: Exchange Rates
     "fx.official": "Central Bank of Iraq (CBI)",
     "parallel_rate_iraq": "Baghdad Currency Market (Consensus)",
+    "fx.auction_cash": "Central Bank of Iraq (CBI)",
+    "fx.auction_transfers": "Central Bank of Iraq (CBI)",
+    "fx.auction_total": "Central Bank of Iraq (CBI)",
 
     # Family 3: Oil
     "oil_price_brent": "U.S. EIA via FRED",
@@ -210,6 +216,8 @@ ALIASES: dict[str, str] = {
     "parallel": "parallel_rate_iraq",
     "official_rate": "fx.official",
     "official": "fx.official",
+    "fx_auction": "fx.auction_total",
+    "dollar_auction": "fx.auction_total",
 
     # Inflation & Prices shortcuts
     "cpi": "cpi_headline",

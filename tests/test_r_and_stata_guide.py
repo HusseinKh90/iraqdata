@@ -21,6 +21,8 @@ GUIDE = REPO_ROOT / "docs" / "r_and_stata.md"
 TEXT = GUIDE.read_text(encoding="utf-8")
 BLOCK = re.compile(r"(<!-- not run:[^>]*-->\s*\n)?^```(r|stata)\s*\n(.*?)^```", re.DOTALL | re.MULTILINE)
 COLUMNS = ["date", "series_id", "value", "unit", "status_flag", "realtime_start", "source_hash"]
+# The guide describes the files of a published release; a table added since appears there with the next release
+RELEASE_TABLES = sorted(p.stem for p in RELEASE_DIR.glob("*.csv"))
 DATE_FORMAT = {"monthly": r"\d{4}-\d{2}", "daily": r"\d{4}-\d{2}-\d{2}", "quarterly": r"\d{4}-Q[1-4]", "annual": r"\d{4}"}
 
 
@@ -32,7 +34,7 @@ def test_the_seven_columns_are_the_files_columns():
     section = TEXT[TEXT.index("Every file has the same seven columns"):TEXT.index("## 2. R")]
     named = re.findall(r"^\| `(\w+)` \|", section, re.MULTILINE)
     assert named == COLUMNS
-    for table in iraqdata.list_tables():
+    for table in RELEASE_TABLES:
         header = (RELEASE_DIR / f"{table}.csv").read_text(encoding="utf-8").splitlines()[0]
         assert header.split(",") == COLUMNS, table
 
@@ -40,7 +42,7 @@ def test_the_seven_columns_are_the_files_columns():
 def test_the_table_of_files_is_complete_and_its_date_formats_are_right():
     section = TEXT[TEXT.index("| File | Series in it |"):TEXT.index("[series.md]")]
     rows = [[cell.strip() for cell in line.strip("|").split("|")] for line in section.splitlines() if line.startswith("| `")]
-    assert sorted(row[0].strip("`").removesuffix(".csv") for row in rows) == sorted(iraqdata.list_tables())
+    assert sorted(row[0].strip("`").removesuffix(".csv") for row in rows) == RELEASE_TABLES
     kinds = {"year-month": "monthly", "day": "daily", "quarter": "quarterly", "year": "annual"}
     for row in rows:
         table = row[0].strip("`").removesuffix(".csv")

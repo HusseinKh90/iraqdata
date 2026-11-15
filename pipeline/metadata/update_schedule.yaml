@@ -48,7 +48,7 @@ sources:
     url: https://cbi.iq/page/122
     fetch: auto
     kind: spreadsheet
-    parsers: [cbi_fiscal_bulletin]
+    parsers: [cbi_fiscal_bulletin, cbi_fx_auction]
     calendar: Monthly Statistical Bulletin; the December cumulative fiscal outturn appears within a year
   - id: cbi_fx
     publisher: Central Bank of Iraq (CBI)
@@ -168,6 +168,10 @@ series:
   fiscal.revenue_current: {source: cbi_bulletin, lag_days: 365, rationale: Annual outturn appears in the bulletin within a year, reviewed: 2026-10-24}
   fiscal.revenue_investment: {source: cbi_bulletin, lag_days: 365, rationale: Annual outturn appears in the bulletin within a year, reviewed: 2026-10-24}
   fiscal.revenue_total: {source: cbi_bulletin, lag_days: 365, rationale: Annual outturn appears in the bulletin within a year, reviewed: 2026-10-24}
+  # CBI Monthly Statistical Bulletin: foreign currency sales (sheet 3-a, 2024 onwards; earlier months from the seed)
+  fx.auction_cash: {source: cbi_bulletin, lag_days: 90, rationale: Sheet 3-a has the previous month within weeks of month end, reviewed: 2026-11-15}
+  fx.auction_total: {source: cbi_bulletin, lag_days: 90, rationale: Sheet 3-a has the previous month within weeks of month end, reviewed: 2026-11-15}
+  fx.auction_transfers: {source: cbi_bulletin, lag_days: 90, rationale: Sheet 3-a has the previous month within weeks of month end, reviewed: 2026-11-15}
 
   # CBI exchange rates (hand-built seed)
   fx.official: {source: cbi_fx, lag_days: 14, rationale: CBI workbook ran to 2026-10-21 on 2026-10-24; allows holidays and a missed upload, reviewed: 2026-10-24}

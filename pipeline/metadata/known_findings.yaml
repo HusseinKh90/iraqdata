@@ -4,7 +4,7 @@
 # Fixing a finding therefore means deleting its entry in the same change.
 
 # Published observations that were not read from the archived file their source_hash names.
-# Counts are for the 10 production tables only; the seed snapshots mirror the same rows.
+# Counts are for the 11 production tables only; the seed snapshots mirror the same rows.
 provenance: []
 
 # Parser robustness gaps, measured by tests/test_parser_robustness.py.
@@ -38,7 +38,13 @@ cell_text_scan:
     footnote_markers: 0
     formulas_without_cache: 0
   cbi_fiscal_bulletin:
-    input: pipeline/raw/cbi/bulletin_latest.xlsx
+    input: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+    arabic_indic_digits: 0
+    thousands_separators: 0
+    footnote_markers: 0
+    formulas_without_cache: 0
+  cbi_fx_auction:
+    input: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
     arabic_indic_digits: 0
     thousands_separators: 0
     footnote_markers: 0

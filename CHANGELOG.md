@@ -5,6 +5,17 @@ All notable changes to `iraqdata` are documented here. The format follows
 [Semantic Versioning](https://semver.org/). Data releases are dated separately
 (e.g. `data-2026-10`) and record the code version that built them.
 
+## [Unreleased]
+
+### Data
+
+- Three new monthly series of CBI foreign currency sales (the dollar auction), in million USD, from
+  2020-01, in the new table `fx_auction_monthly`: `fx.auction_cash`, `fx.auction_transfers` (every
+  non-cash sale) and `fx.auction_total`. 2020-2023 come from monthly data the maintainer obtained
+  from the CBI (`pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx`), checked against the annual
+  totals of the CBI Monthly Statistical Bulletin; from 2024-01 they are read from sheet 3-a of that
+  bulletin, which the weekly update check already downloads, so new months arrive automatically.
+
 ## [1.0.0] - 2026-10-28
 
 First release, with the data release `data-2026-10`.

@@ -1,13 +1,13 @@
 # Robustness mutations.
 #
-# spreadsheet: the 6 parsers that read a workbook by sheet name, row label or cell position.
+# spreadsheet: the 7 parsers that read a workbook by sheet name, row label or cell position.
 #   input        - the one representative workbook that is mutated (manifest path)
 #   sheets       - the sheets the parser reads: a blank row is inserted above the first used
 #                  row of each (row_inserted), and each is renamed with "_x" (sheet_renamed)
 #   label        - one label cell the parser relies on, rewritten to `new_text` (label_changed)
 #   label_words  - words that, in an error message, name the sheet or label (clear_error)
 #
-# bad_input: the primary input of all 11 parsers, replaced by a missing, an empty (0 bytes)
+# bad_input: the primary input of all 12 parsers, replaced by a missing, an empty (0 bytes)
 #   and a corrupt (random bytes, same length and extension) copy.
 
 spreadsheet:
@@ -32,10 +32,15 @@ spreadsheet:
     label: {sheet: "Sheet1", cell: B1, new_text: "revenue total"}
     label_words: ["revenue_actual_total", "year", "sheet1"]
   cbi_fiscal_bulletin:
-    input: pipeline/raw/cbi/bulletin_latest.xlsx
+    input: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx  # the newest bulletin, the one the parsers read
     sheets: ["6-1"]
     label: {sheet: "6-1", cell: A41, new_text: "Year total"}
     label_words: ["6-1", "dec"]
+  cbi_fx_auction:
+    input: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+    sheets: ["3-a"]
+    label: {sheet: "3-a", cell: B8, new_text: "Cash sales"}
+    label_words: ["3-a", "cash"]
   cbi_money_banking:
     input: pipeline/raw/cbi/key_financial_indicators.xlsx
     sheets: ["Sheet1"]
@@ -48,7 +53,8 @@ bad_input:
   cbi_cpi: pipeline/raw/cbi/key_financial_indicators.xlsx
   cbi_exchange_rates: pipeline/seeds/cbi_exchange_rate_historical.xlsx
   fiscal_seed: pipeline/seeds/iraq_fiscal_historical.xlsx
-  cbi_fiscal_bulletin: pipeline/raw/cbi/bulletin_latest.xlsx
+  cbi_fiscal_bulletin: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  cbi_fx_auction: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
   cbi_money_banking: pipeline/raw/cbi/key_financial_indicators.xlsx
   cosit_gdp: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv  # the record it reads
   oecd_dac: pipeline/raw/oecd/wb_oda_net.json

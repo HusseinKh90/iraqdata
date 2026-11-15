@@ -97,6 +97,9 @@ FOLDER_RULES = [
     ("pipeline/seeds/iraq_fiscal_historical.",
      "Compiled by the maintainer from the original publishers' documents (maintainer statement, 2026-10-25)",
      "maintainer_fiscal_seed", UNKNOWN),
+    ("pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx",
+     "Obtained by the maintainer directly from the CBI (maintainer statement, 2026-11-15)",
+     "maintainer_fx_auction_seed", "2026-11-15"),
 ]
 
 

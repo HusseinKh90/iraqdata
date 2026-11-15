@@ -1,7 +1,7 @@
 """
 Deterministic parser runs in a sandbox.
 
-All 11 parsers run twice, offline, into fresh temporary folders (the session fixture
+All 12 parsers run twice, offline, into fresh temporary folders (the session fixture
 ``sandbox_runs``). The two runs must be byte-identical, equal the committed production and
 seed tables, pass Tier-1 validation, and write nothing to pipeline/.
 """

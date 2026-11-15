@@ -41,6 +41,9 @@ in the `origin` and `official` columns of `iraqdata.list_series()`, and in full 
 | :--- | :---: | :---: | :---: | :--- |
 | `parallel_rate_iraq` | Daily | IQD per USD | 2004-01-01 | Daily closing parallel market exchange rate in Baghdad: CBI's published market rate to 2022, then the Baghdad close of the [Iraq-parallel-exchange-rate](https://github.com/HusseinKh90/Iraq-parallel-exchange-rate) dealer consensus (CC-BY 4.0). Flag `B` on 2023-01-01 marks the change of source. |
 | `fx.official` | Daily | IQD per USD | 2004-01-01 | Official statutory exchange rate set by CBI for government foreign exchange (CBI workbook, `cbi.iq/page/144`). |
+| `fx.auction_cash` | Monthly | Million USD | 2020-01 | CBI sales of US dollars in cash through the foreign currency window (dollar auction). |
+| `fx.auction_transfers` | Monthly | Million USD | 2020-01 | CBI non-cash sales of US dollars: transfers, letters of credit, settlements and bank account top-ups. |
+| `fx.auction_total` | Monthly | Million USD | 2020-01 | Total CBI sales of US dollars (cash plus non-cash), monthly. |
 
 <!-- series:exchange_rates:end -->
 
@@ -193,6 +196,9 @@ Generated from `src/iraqdata/series_catalog.yaml` by `pipeline/docs_origin.py`; 
 | `money.required_reserves` | observed 2004-12..open |
 | `parallel_rate_iraq` | observed 2004-01-01..2022-12-31; observed (unofficial) 2023-01-01..open |
 | `fx.official` | observed 2004-01-01..open |
+| `fx.auction_cash` | observed 2020-01..2023-12; observed 2024-01..open |
+| `fx.auction_transfers` | observed 2020-01..2023-12; observed 2024-01..open |
+| `fx.auction_total` | observed 2020-01..2023-12; observed 2024-01..open |
 | `crude_production_secondary` | observed 2004-01..open |
 | `crude_production_direct` | observed 2007-01..2024-03; transcribed 2024-04..open |
 | `oil_price_basrah` | transcribed 2004-07..open |

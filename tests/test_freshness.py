@@ -17,8 +17,8 @@ from conftest import GATE_SUMMARY, run_validate, write_tmp_parquet
 pytestmark = pytest.mark.usefixtures("no_network")
 
 BASELINE_LINE = GATE_SUMMARY
-# 62 series: 55 are still updating and 7 have ended (oil_price_basrah, whose only months are old transcribed ones, among them)
-FRESHNESS_LINE = "[FRESHNESS] as of 2026-10-28: 55 current, 0 overdue, 0 acknowledged, 7 ended, 0 unchecked"
+# 65 series: 58 are still updating and 7 have ended (oil_price_basrah, whose only months are old transcribed ones, among them)
+FRESHNESS_LINE = "[FRESHNESS] as of 2026-10-28: 58 current, 0 overdue, 0 acknowledged, 7 ended, 0 unchecked"
 
 
 def run_gate(*args):

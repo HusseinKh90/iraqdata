@@ -263,6 +263,96 @@ series:
     method: Read from the CBI daily official exchange rate workbook
     source: Central Bank of Iraq (cbi.iq/page/144); no licence stated, free download (checked 2026-10-24)
     source_ref: cbi_fx
+- series_id: fx.auction_cash
+  name_en: CBI Foreign Currency Sales, Cash
+  name_ar: مبيعات البنك المركزي للعملة الأجنبية - النقد
+  category: exchange_rates
+  frequency: monthly
+  unit: MILLION_USD
+  start_date: '2020-01'
+  primary_source: Central Bank of Iraq (CBI), foreign currency sale window
+  source_file: pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 3-a, column B, Cash) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheet 3-a annual totals (2020-2023)
+  description: US dollars sold for cash by the Central Bank of Iraq through its foreign currency sale window
+    (the dollar auction), per month.
+  summary: 'CBI sales of US dollars in cash through the foreign currency window (dollar auction).'
+  origin:
+  - from: '2020-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; each year adds up to the
+      annual total in sheet 3-a of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_fx_auction.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx)
+    source_ref: maintainer_fx_auction_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 3-a (column B, Cash)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: fx.auction_transfers
+  name_en: CBI Foreign Currency Sales, Transfers and Other Non-Cash
+  name_ar: مبيعات البنك المركزي للعملة الأجنبية - الحوالات وغير النقدية
+  category: exchange_rates
+  frequency: monthly
+  unit: MILLION_USD
+  start_date: '2020-01'
+  primary_source: Central Bank of Iraq (CBI), foreign currency sale window
+  source_file: pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 3-a, columns C-F) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheet 3-a annual totals (2020-2023)
+  description: Non-cash foreign currency sales by the Central Bank of Iraq per month, made up of
+    transfers, letters of credit, international settlements and the replenishing of banks' accounts
+    abroad outside the sale window (from 2023). Equals total sales minus cash sales.
+  summary: 'CBI non-cash sales of US dollars: transfers, letters of credit, settlements and bank account top-ups.'
+  origin:
+  - from: '2020-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; each year adds up to the
+      annual total in sheet 3-a of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_fx_auction.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx)
+    source_ref: maintainer_fx_auction_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 3-a (columns C-F, Transfer, Letters of credit, International settlement, Replenishing bank accounts)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: fx.auction_total
+  name_en: CBI Foreign Currency Sales, Total
+  name_ar: مبيعات البنك المركزي للعملة الأجنبية - الإجمالي
+  category: exchange_rates
+  frequency: monthly
+  unit: MILLION_USD
+  start_date: '2020-01'
+  primary_source: Central Bank of Iraq (CBI), foreign currency sale window
+  source_file: pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 3-a, column G, CBI Sales of FC) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheet 3-a annual totals (2020-2023)
+  description: Total foreign currency sold by the Central Bank of Iraq per month, cash plus non-cash sales.
+  summary: 'Total CBI sales of US dollars (cash plus non-cash), monthly.'
+  origin:
+  - from: '2020-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; each year adds up to the
+      annual total in sheet 3-a of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_fx_auction.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx)
+    source_ref: maintainer_fx_auction_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 3-a (column G, CBI Sales of FC)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
 - series_id: crude_production_secondary
   name_en: Crude Oil Production (Secondary Sources)
   name_ar: إنتاج النفط الخام (المصادر الثانوية)

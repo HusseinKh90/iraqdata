@@ -20,25 +20,26 @@ import iraqdata as id
 from iraqdata.schema import CANONICAL_COLUMNS
 
 
-def test_catalog_loads_all_62_series():
-    """Verify that the catalog loads exactly 62 series across 9 families."""
+def test_catalog_loads_all_65_series():
+    """Verify that the catalog loads exactly 65 series across 9 families."""
     df = cat.list_series()
     assert isinstance(df, pd.DataFrame)
-    assert len(df) == 62, f"Expected 62 series, got {len(df)}"
+    assert len(df) == 65, f"Expected 65 series, got {len(df)}"
     expected_cols = ["series_id", "name_en", "name_ar", "category", "frequency", "unit", "start_date", "table"]
     for col in expected_cols:
         assert col in df.columns, f"Missing column '{col}' in list_series() output"
 
 
 def test_catalog_tables_and_categories():
-    """Verify that all 10 garden tables and categories are present and populated."""
+    """Verify that all 11 garden tables and categories are present and populated."""
     tables = cat.list_tables()
-    assert len(tables) == 10
+    assert len(tables) == 11
     expected_tables = {
         "bis_lbs_quarterly",
         "bop_trade_quarterly",
         "exchange_rates_daily",
         "fiscal_annual",
+        "fx_auction_monthly",
         "gdp_quarterly",
         "money_banking_monthly",
         "oecd_dac_annual",

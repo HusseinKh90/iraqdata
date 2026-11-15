@@ -276,10 +276,16 @@ def cbi_cpi(raw_root: Path, seeds_root: Path, date: str) -> Expectation:
                        [("cpi_headline", "2026-06")])
 
 
+def _bulletin(raw_root: Path) -> Path:
+    """The bulletin the parsers read now: the newest dated download, else bulletin_latest.xlsx."""
+    import parse_cbi_fiscal_bulletin
+    return parse_cbi_fiscal_bulletin.resolve_bulletin_input(raw_root / "cbi")
+
+
 def cbi_fiscal_bulletin(raw_root: Path, seeds_root: Path, date: str) -> Expectation:
     import parse_cbi_fiscal_bulletin as p
 
-    src = raw_root / "cbi" / "bulletin_latest.xlsx"
+    src = _bulletin(raw_root)
     wb = _load(src)
     ws = wb["6-1"]
     year, dec_2025, header_2026 = None, None, None
@@ -302,6 +308,36 @@ def cbi_fiscal_bulletin(raw_root: Path, seeds_root: Path, date: str) -> Expectat
     series = list(p.FISCAL_SERIES_COLS)
     return Expectation(("fiscal.revenue_total", "2026"), ("fiscal.revenue_total", "2025", revised_value),
                        [(s, "2026") for s in series])
+
+
+def cbi_fx_auction(raw_root: Path, seeds_root: Path, date: str) -> Expectation:
+    """Sheet 3-a: January 2025 revised (cash and total, +10) and a new month after the last one."""
+    import parse_cbi_fx_auction as p
+
+    wb = _load(_bulletin(raw_root))
+    ws = wb[p.SHEET]
+    year, jan_2025, last = None, None, None
+    for r in range(9, ws.max_row + 1):
+        s = str(ws.cell(r, 1).value or "").strip()
+        if s.isdigit() and len(s) == 4:
+            year = s
+        elif year == "2025" and s.lower().startswith("jan"):
+            jan_2025 = r
+        elif s and not s.lower().startswith("total"):
+            last = r
+    for col in (p.CASH_COL, p.TOTAL_COL):
+        ws.cell(jan_2025, col).value = float(ws.cell(jan_2025, col).value) + 10.0
+    revised_value = float(ws.cell(jan_2025, p.CASH_COL).value)
+    month = p.MONTHS[str(ws.cell(last, 1).value).strip().lower()[:3]] + 1
+    new_row = last + 1
+    ws.cell(new_row, 1).value = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.",
+                                 "Nov.", "Dec."][month - 1]
+    for col in range(2, p.TOTAL_COL + 1):
+        ws.cell(new_row, col).value = ws.cell(last, col).value
+    _save(wb, raw_root / "cbi" / f"cbi_bulletin_{date}.xlsx")
+    period = f"{year}-{month:02d}"
+    return Expectation((p.TOTAL, period), (p.CASH, "2025-01", revised_value),
+                       [(p.TOTAL, "2025-01")] + [(s, period) for s in (p.CASH, p.TRANSFERS, p.TOTAL)])
 
 
 # ===================================================================== seeds (run with --vintage)
@@ -368,6 +404,7 @@ BUILDERS: Dict[str, Callable[[Path, Path, str], Expectation]] = {
     "cbi_exchange_rates": cbi_exchange_rates,
     "fiscal_seed": fiscal_seed,
     "cbi_fiscal_bulletin": cbi_fiscal_bulletin,
+    "cbi_fx_auction": cbi_fx_auction,
     "cbi_money_banking": cbi_money_banking,
     "oecd_dac": oecd_dac,
     "oil_daily": oil_daily,
@@ -394,8 +431,8 @@ def identical_copy(parser: str, raw_root: Path, seeds_root: Path, date: str) -> 
         shutil.copyfile(raw_root / "cbi" / "key_financial_indicators.xlsx",
                         raw_root / "cbi" / f"cbi_key_financial_indicators_{date}.xlsx")
         return None
-    if parser == "cbi_fiscal_bulletin":
-        shutil.copyfile(raw_root / "cbi" / "bulletin_latest.xlsx", raw_root / "cbi" / f"cbi_bulletin_{date}.xlsx")
+    if parser in ("cbi_fiscal_bulletin", "cbi_fx_auction"):
+        shutil.copyfile(_bulletin(raw_root), raw_root / "cbi" / f"cbi_bulletin_{date}.xlsx")
         return None
     if parser == "cbi_exchange_rates":  # the two raw sources (the seed is unchanged)
         import downloads

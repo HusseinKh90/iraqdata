@@ -36,12 +36,12 @@ This project delivers a shared, free starting point. Researchers can study the I
 ## What data is included
 
 Each *series* is one indicator measured over time, such as broad money (M2) month by month.
-There are 62 series in 9 areas:
+There are 65 series in 9 areas:
 
 | Area | Examples | Original publisher |
 |---|---|---|
 | Money and banking | broad money `money.m2`, policy rate `money.policy_rate`, official reserves `money.reserves_official` | Central Bank of Iraq |
-| Exchange rates | official rate `fx.official`, Baghdad parallel-market rate `parallel_rate_iraq` | Central Bank of Iraq; Iraq-parallel-exchange-rate project |
+| Exchange rates | official rate `fx.official`, Baghdad parallel-market rate `parallel_rate_iraq`, CBI dollar sales `fx.auction_total` | Central Bank of Iraq; Iraq-parallel-exchange-rate project |
 | Prices and inflation | consumer prices `cpi_headline` and `cpi_core` | COSIT, via the Central Bank of Iraq |
 | Oil | Brent price `oil_price_brent`, Basrah price `oil_price_basrah`, crude production `crude_production_direct` | Ministry of Oil and SOMO, OPEC and JODI, U.S. EIA |
 | Public finance | revenue `fiscal.revenue_total`, spending `fiscal.expenditure_total`, balance `fiscal.balance` | Ministry of Finance, via the Central Bank of Iraq |
@@ -50,7 +50,7 @@ There are 62 series in 9 areas:
 | Cross-border banking | claims `bis.lbs.claims_total`, liabilities `bis.lbs.liabilities_total` | Bank for International Settlements |
 | Development aid | net aid received `oecd.dac.oda_total_net` | OECD / World Bank |
 
-See the [full list of all 62 series](https://github.com/husseinkh90/iraqdata/blob/main/docs/series.md).
+See the [full list of all 65 series](https://github.com/husseinkh90/iraqdata/blob/main/docs/series.md).
 
 ## Install
 
