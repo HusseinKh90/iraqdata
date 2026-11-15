@@ -18,7 +18,7 @@ from test_parser_robustness import SPREADSHEET, classify_error, same_content
 
 KFI = "key_financial_indicators.xlsx"
 SEED_FX = "cbi_exchange_rate_historical.xlsx"
-BULLETIN = "bulletin_latest.xlsx"
+BULLETIN = "cbi_bulletin_2026-11-12.xlsx"  # the newest archived bulletin, the one the parser reads
 
 
 def _run(parser, raw_root, seeds_root, tmp_path):

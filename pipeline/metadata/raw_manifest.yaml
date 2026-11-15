@@ -208,6 +208,8 @@ files:
   consumers:
   - parser: cbi_fiscal_bulletin
     use: parsed
+  - parser: cbi_fx_auction
+    use: parsed
   status: parsed
 - path: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
   size: 1306884

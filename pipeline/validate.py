@@ -777,6 +777,10 @@ REAL_GDP_SIDS = [
     ("cosit.gdp_real", "cosit.gdp_real_oil", "cosit.gdp_real_nonoil"),
 ]
 
+# (total, cash, non-cash); the CBI bulletin rounds each of its five columns to a whole million USD
+FX_SALES_SIDS = ("fx.auction_total", "fx.auction_cash", "fx.auction_transfers")
+FX_SALES_TOLERANCE = 2.5
+
 # Rule name -> component series groups, used by identity_coverage()
 IDENTITY_RULES: List[Tuple[str, List[Tuple[str, ...]]]] = [
     ("Fiscal balance", FISCAL_BALANCE_SIDS),
@@ -793,6 +797,7 @@ IDENTITY_RULES: List[Tuple[str, List[Tuple[str, ...]]]] = [
     ("BOP current account", [("bop.current_account", "bop.trade_balance", "bop.services_net", "bop.income_net", "bop.transfers_net")]),
     ("Currency <= M0", [("money.currency_outside_banks", "money.m0"), ("cbi.money.currency_outside_banks", "cbi.money.m0")]),
     ("Currency <= M1", [("money.currency_outside_banks", "money.m1"), ("cbi.money.currency_outside_banks", "cbi.money.m1")]),
+    ("CBI foreign currency sales", [FX_SALES_SIDS]),
 ]
 
 
@@ -1229,6 +1234,17 @@ def validate_tier2_details(df: pd.DataFrame, dataset_name: str = "dataset") -> T
                     errors.append(
                         f"[{dataset_name}] BIS Sector Liability Discrepancy: Banks + Non-Bank > Total Liabilities for quarters: {bad_discrep.index.tolist()}"
                     )
+
+    # 5b. CBI foreign currency sales: cash + non-cash == total
+    if set(FX_SALES_SIDS).issubset(set(df["series_id"].values)):
+        piv = df.pivot_table(index="date", columns="series_id", values="value")
+        tot, cash, noncash = (piv[s] for s in FX_SALES_SIDS)
+        diff = (cash + noncash - tot).abs().dropna()
+        bad = diff[diff > FX_SALES_TOLERANCE]
+        if not bad.empty:
+            errors.append(
+                f"[{dataset_name}] FX Sales Discrepancy: Cash + Transfers != Total for months: {bad.index.tolist()}"
+            )
 
     # 6. OECD DAC: no identity (net ODA minus grants mixes two concepts, so it is not published)
 

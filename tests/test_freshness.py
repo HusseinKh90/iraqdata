@@ -108,7 +108,7 @@ def test_real_data_counts(garden_tables):
     sched = validate.load_update_schedule()
     got = validate.freshness_status(garden_tables, sched, [], "2026-10-24", set(garden_tables))
     states = pd.Series([st.state for st in got]).value_counts().to_dict()
-    assert states == {"current": 55, "ended": 7}
+    assert states == {"current": 58, "ended": 7}
 
 
 # ---------------------------------------------------------------------- command line
@@ -144,7 +144,7 @@ def test_release_check_passes_on_current_data():
 # had stopped updating: fx.official after 2023-12-13 and parallel_rate_iraq after 2023-08-03.
 # Every other table is unchanged.
 STALE_FEED_BASELINE_LINE = (
-    "ALL CHECKS PASSED: 14 dataset(s) verified (22,992 total observations, 0 review notice(s))."
+    "ALL CHECKS PASSED: 15 dataset(s) verified (23,238 total observations, 0 review notice(s))."
 )
 LAST_DAY = {"fx.official": "2023-12-13", "parallel_rate_iraq": "2023-08-03"}
 
@@ -218,7 +218,7 @@ def test_acknowledged_overdue_passes_release_check(stale_feed_files, tmp_path, c
     assert code == 0, out[-2000:]
     lines = [l for l in out.splitlines() if l.startswith("    [ACKNOWLEDGED] exchange_rates_daily/")]
     assert len(lines) == 2 and "test reason fx" in "".join(lines)
-    assert "[FRESHNESS] as of 2026-10-28: 53 current, 0 overdue, 2 acknowledged, 7 ended, 0 unchecked" in out
+    assert "[FRESHNESS] as of 2026-10-28: 56 current, 0 overdue, 2 acknowledged, 7 ended, 0 unchecked" in out
 
 
 def test_stale_overdue_ack_fails(stale_feed_files, tmp_path, capsys):

@@ -37,7 +37,7 @@ CASH, TRANSFERS, TOTAL = "fx.auction_cash", "fx.auction_transfers", "fx.auction_
 UNIT = "MILLION_USD"
 REALTIME_START = "2026-10-28"  # replaced by the merge's vintage
 FIRST_BULLETIN_MONTH = "2024-01"
-TOLERANCE = 1.5  # million USD: the bulletin rounds its figures
+TOLERANCE = 2.5  # million USD: the bulletin rounds each of its five columns (as validate.FX_SALES_TOLERANCE)
 
 SHEET = "3-a"
 CASH_COL, TOTAL_COL = 2, 7          # B: Cash, G: CBI Sales of FC

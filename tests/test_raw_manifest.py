@@ -26,9 +26,9 @@ def test_manifest_check_clean():
 
 
 def test_manifest_lists_every_raw_file():
-    """76 immutable files with full hashes (the ones no parser reads included) plus the 4 derived snapshots."""
+    """78 immutable files with full hashes (the ones no parser reads included) plus the 4 derived snapshots."""
     manifest = raw_audit.load_manifest()
-    assert len(manifest["files"]) == 76
+    assert len(manifest["files"]) == 78
     assert sorted(s["path"] for s in manifest["derived_snapshots"]) == sorted(raw_audit.DERIVED_SNAPSHOTS)
 
 

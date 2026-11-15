@@ -126,8 +126,8 @@ def test_the_calibration_in_the_settings_file_is_what_the_data_gives(garden_tabl
                 z_by_age.append((z, len(group) - 1 - index))
     z = np.array([a for a, _ in z_by_age])
     age = np.array([b for _, b in z_by_age])
-    assert (series, tested) == (47, 4778)
+    assert (series, tested) == (50, 4913)
     assert {k: int((z > k).sum()) for k in (8, 12, 15, 20, 30)} == {8: 68, 12: 42, 15: 26, 20: 17, 30: 6}
     assert int(((z > 15) & (age < 3)).sum()) == 1
     header = (METADATA_DIR / "new_point_check.yaml").read_text(encoding="utf-8")
-    assert "47 such series, 4,778 points" in header and "k = 15: 26 (0.54%)" in header
+    assert "50 such series, 4,913 points" in header and "k = 15: 26 (0.53%)" in header

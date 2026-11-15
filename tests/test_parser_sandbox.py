@@ -21,7 +21,7 @@ SNAPSHOTS = sorted(run_parsers.SNAPSHOT_TABLE)
 OUTPUTS = [f"{t}.parquet" for t in PRODUCTION_TABLES] + [f"seeds/{s}.parquet" for s in SNAPSHOTS]
 REGISTRY_ORDER = [
     "bis_lbs", "cbi_bop", "cbi_cpi", "cbi_exchange_rates", "fiscal_seed", "cbi_fiscal_bulletin",
-    "cbi_money_banking", "cosit_gdp", "oecd_dac", "oil_daily", "oil_monthly",
+    "cbi_money_banking", "cosit_gdp", "oecd_dac", "oil_daily", "oil_monthly", "cbi_fx_auction",
 ]
 
 

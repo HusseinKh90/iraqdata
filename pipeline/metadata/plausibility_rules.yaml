@@ -604,7 +604,7 @@ series:
     unit: MILLION_USD
     min: 246.085
     max: 17166.8
-    sign: non_negative
+    sign: positive
     jump: {measure: log, threshold: 1.91144, typical: 0.191144, k: 10}
     basis: statistical
     derived_through: '2026-11-15'
@@ -613,7 +613,7 @@ series:
     unit: MILLION_USD
     min: 155.964
     max: 16540.0
-    sign: non_negative
+    sign: positive
     jump: {measure: log, threshold: 1.87874, typical: 0.187874, k: 10}
     basis: statistical
     derived_through: '2026-11-15'

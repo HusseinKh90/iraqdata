@@ -203,7 +203,7 @@ def test_coverage_line_on_real_data():
     coverage_lines = [
         line.strip() for line in proc.stdout.splitlines() if line.strip().startswith("[COVERAGE]")
     ]
-    assert len(coverage_lines) == 14
+    assert len(coverage_lines) == 15
     for line in coverage_lines:
         assert "0 unchecked" in line
         assert "0 exempt" in line
