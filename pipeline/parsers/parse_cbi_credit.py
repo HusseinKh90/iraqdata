@@ -157,9 +157,10 @@ def parse_cbi_credit(seed_path: Path, bulletin_path: Path, output_parquet_path: 
 
     # Every seed December before the bulletin's months must match the bulletin's year-end row
     for period in [p for p in seed.index if p.endswith("-12") and p < FIRST_BULLETIN_MONTH]:
-        official = bulletin.get(period)
-        if official is None:
-            raise source_io.ParseError(seed_path, f"a {period[:4]} year-end row in the bulletin", "none", period=period)
+        official = bulletin.get(period, {})
+        if not set(YEAR_END_CHECKED) <= set(official):
+            raise source_io.ParseError(bulletin_path, f"{period[:4]} year-end values for {list(YEAR_END_CHECKED)}",
+                                       f"only {sorted(official)}", sheet=", ".join(SHEETS), period=period)
         for sid in YEAR_END_CHECKED:
             if abs(seed.at[period, sid] - official[sid]) > TOLERANCE:
                 raise source_io.ParseError(seed_path, f"{sid} {period} equal to the bulletin's {official[sid]}",
@@ -176,7 +177,7 @@ def parse_cbi_credit(seed_path: Path, bulletin_path: Path, output_parquet_path: 
         values = bulletin[period]
         if set(values) != set(COLUMNS):
             raise source_io.ParseError(bulletin_path, f"all six series for {period}",
-                                       f"only {sorted(values)}", period=period)
+                                       f"only {sorted(values)}", sheet=", ".join(SHEETS), period=period)
         check_identities(bulletin_path, period, values)
         rows += [_row(period, sid, v, bulletin_hash) for sid, v in values.items()]
 
