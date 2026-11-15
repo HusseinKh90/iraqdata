@@ -340,6 +340,48 @@ def cbi_fx_auction(raw_root: Path, seeds_root: Path, date: str) -> Expectation:
                        [(p.TOTAL, "2025-01")] + [(s, period) for s in (p.CASH, p.TRANSFERS, p.TOTAL)])
 
 
+def _month_rows(ws, first: int):
+    """(row of each month label by (year, month), last month row) of a bulletin sheet laid out by year."""
+    rows, year, last = {}, None, None
+    for r in range(first, ws.max_row + 1):
+        s = str(ws.cell(r, 1).value or "").strip()
+        if s[:4].isdigit():
+            year = s[:4]
+        elif s:
+            rows[(year, s.lower()[:3])] = last = r
+    return rows, last
+
+
+MONTH_LABELS = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."]
+
+
+def cbi_credit(raw_root: Path, seeds_root: Path, date: str) -> Expectation:
+    """Sheets 8-a to 8-c: January 2025 central-government credit revised (+1000, total too) and a new month."""
+    import parse_cbi_credit as p
+
+    wb = _load(_bulletin(raw_root))
+    a = wb["8-a"]
+    rows, last = _month_rows(a, 9)
+    jan = rows[("2025", "jan")]
+    col = {label: next(c for c in range(1, a.max_column + 1) if label in str(a.cell(8, c).value or "").lower())
+           for label in ("central govt", "total of cash credit")}
+    for c in col.values():
+        a.cell(jan, c).value = float(a.cell(jan, c).value) + 1000.0
+    revised_value = float(a.cell(jan, col["central govt"]).value)
+    month = p.MONTHS[str(a.cell(last, 1).value).strip().lower()[:3]] + 1
+    year = max(y for y, _ in rows)
+    for sheet in p.SHEETS:
+        ws = wb[sheet]
+        _, end = _month_rows(ws, 8)
+        ws.cell(end + 1, 1).value = MONTH_LABELS[month - 1]
+        for c in range(2, ws.max_column + 1):
+            ws.cell(end + 1, c).value = ws.cell(end, c).value
+    _save(wb, raw_root / "cbi" / f"cbi_bulletin_{date}.xlsx")
+    period = f"{year}-{month:02d}"
+    return Expectation((p.TOTAL, period), (p.CENTRAL, "2025-01", revised_value),
+                       [(p.TOTAL, "2025-01")] + [(s, period) for s in p.COLUMNS])
+
+
 # ===================================================================== seeds (run with --vintage)
 
 
@@ -405,6 +447,7 @@ BUILDERS: Dict[str, Callable[[Path, Path, str], Expectation]] = {
     "fiscal_seed": fiscal_seed,
     "cbi_fiscal_bulletin": cbi_fiscal_bulletin,
     "cbi_fx_auction": cbi_fx_auction,
+    "cbi_credit": cbi_credit,
     "cbi_money_banking": cbi_money_banking,
     "oecd_dac": oecd_dac,
     "oil_daily": oil_daily,
@@ -431,7 +474,7 @@ def identical_copy(parser: str, raw_root: Path, seeds_root: Path, date: str) -> 
         shutil.copyfile(raw_root / "cbi" / "key_financial_indicators.xlsx",
                         raw_root / "cbi" / f"cbi_key_financial_indicators_{date}.xlsx")
         return None
-    if parser in ("cbi_fiscal_bulletin", "cbi_fx_auction"):
+    if parser in ("cbi_fiscal_bulletin", "cbi_fx_auction", "cbi_credit"):
         shutil.copyfile(_bulletin(raw_root), raw_root / "cbi" / f"cbi_bulletin_{date}.xlsx")
         return None
     if parser == "cbi_exchange_rates":  # the two raw sources (the seed is unchanged)

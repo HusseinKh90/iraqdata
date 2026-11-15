@@ -204,6 +204,191 @@ series:
     method: Read from the CBI Key Financial Indicators workbook, a - Required Reserves 3 (Row 116)
     source: Central Bank of Iraq (CBI), Key Financial Indicators (cbi.iq/news/view/94)
     source_ref: cbi_kfi
+- series_id: credit.private_total
+  name_en: Commercial Bank Credit to the Private Sector
+  name_ar: الائتمان النقدي المباشر للقطاع الخاص - إجمالي المصارف التجارية
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2015-01'
+  primary_source: Central Bank of Iraq (CBI), commercial bank direct cash credit
+  source_file: pipeline/seeds/cbi_credit_monthly_seed.xlsx to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 8-a, Private Sector) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheets 8-a to 8-c year-end rows (2015-2023)
+  description: Direct cash credit of all commercial banks to the private sector at the end of the month (overdrafts, discounted
+    bills, loans and advances, and past-due debts).
+    Equals the sum of state-owned and private banks' credit to the private sector.
+  summary: 'Commercial bank credit to the private sector, all banks (end of month).'
+  origin:
+  - from: '2015-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; checked against the
+      year-end rows of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_credit.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_credit_monthly_seed.xlsx)
+    source_ref: maintainer_credit_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 8-a (Private Sector)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: credit.private_state_banks
+  name_en: Private Sector Credit by State-Owned Banks
+  name_ar: الائتمان النقدي المباشر للقطاع الخاص - المصارف الحكومية
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2015-01'
+  primary_source: Central Bank of Iraq (CBI), commercial bank direct cash credit
+  source_file: pipeline/seeds/cbi_credit_monthly_seed.xlsx to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 8-b, Private Sector) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheets 8-a to 8-c year-end rows (2015-2023)
+  description: Direct cash credit of state-owned commercial banks to the private sector at the end of the month
+    (overdrafts, discounted
+    bills, loans and advances, and past-due debts).
+  summary: 'Credit to the private sector by state-owned banks (end of month).'
+  origin:
+  - from: '2015-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; checked against the
+      year-end rows of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_credit.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_credit_monthly_seed.xlsx)
+    source_ref: maintainer_credit_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 8-b (Private Sector)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: credit.private_private_banks
+  name_en: Private Sector Credit by Private Banks
+  name_ar: الائتمان النقدي المباشر للقطاع الخاص - المصارف الأهلية
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2015-01'
+  primary_source: Central Bank of Iraq (CBI), commercial bank direct cash credit
+  source_file: pipeline/seeds/cbi_credit_monthly_seed.xlsx to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 8-c, Private Sector) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheets 8-a to 8-c year-end rows (2015-2023)
+  description: Direct cash credit of private commercial banks to the private sector at the end of the month
+    (overdrafts, discounted
+    bills, loans and advances, and past-due debts).
+  summary: 'Credit to the private sector by private banks (end of month).'
+  origin:
+  - from: '2015-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; checked against the
+      year-end rows of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_credit.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_credit_monthly_seed.xlsx)
+    source_ref: maintainer_credit_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 8-c (Private Sector)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: credit.central_gov
+  name_en: Commercial Bank Credit to the Central Government
+  name_ar: الائتمان النقدي المباشر للحكومة المركزية - المصارف التجارية
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2015-01'
+  primary_source: Central Bank of Iraq (CBI), commercial bank direct cash credit
+  source_file: pipeline/seeds/cbi_credit_monthly_seed.xlsx to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 8-a, Central Govt.) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheets 8-a to 8-c year-end rows (2015-2023)
+  description: Direct cash credit of all commercial banks to the central government at the end of the month
+    (overdrafts, discounted
+    bills, loans and advances, and past-due debts).
+  summary: 'Commercial bank direct credit to the central government (end of month).'
+  origin:
+  - from: '2015-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; December 2022 differs from the bulletin's year-end row by 14,986, moved between central government and public institutions (the total is the same); checked against the
+      year-end rows of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_credit.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_credit_monthly_seed.xlsx)
+    source_ref: maintainer_credit_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 8-a (Central Govt.)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: credit.public_institutions
+  name_en: Commercial Bank Credit to Public Institutions
+  name_ar: الائتمان النقدي المباشر للمؤسسات العامة - المصارف التجارية
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2015-01'
+  primary_source: Central Bank of Iraq (CBI), commercial bank direct cash credit
+  source_file: pipeline/seeds/cbi_credit_monthly_seed.xlsx to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 8-a, Public Institutions) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheets 8-a to 8-c year-end rows (2015-2023)
+  description: Direct cash credit of all commercial banks to public institutions and state-owned enterprises at
+    the end of the month (overdrafts, discounted
+    bills, loans and advances, and past-due debts).
+  summary: 'Commercial bank credit to public institutions and state-owned enterprises (end of month).'
+  origin:
+  - from: '2015-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; December 2022 differs from the bulletin's year-end row by 14,986, moved between central government and public institutions (the total is the same); checked against the
+      year-end rows of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_credit.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_credit_monthly_seed.xlsx)
+    source_ref: maintainer_credit_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 8-a (Public Institutions)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: credit.total
+  name_en: Total Commercial Bank Cash Credit
+  name_ar: إجمالي الائتمان النقدي المباشر للمصارف التجارية
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2015-01'
+  primary_source: Central Bank of Iraq (CBI), commercial bank direct cash credit
+  source_file: pipeline/seeds/cbi_credit_monthly_seed.xlsx to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 8-a, Total of Cash Credit Commercial Banks) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheets 8-a to 8-c year-end rows (2015-2023)
+  description: Total direct cash credit of the commercial banking system at the end of the month, made up of credit to the
+    private sector, the central government and public institutions.
+  summary: 'Total commercial bank cash credit: private sector, central government and public institutions.'
+  origin:
+  - from: '2015-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; checked against the
+      year-end rows of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_credit.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_credit_monthly_seed.xlsx)
+    source_ref: maintainer_credit_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 8-a (Total of Cash Credit Commercial Banks)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
 - series_id: parallel_rate_iraq
   name_en: Parallel Market Exchange Rate (Baghdad)
   name_ar: سعر صرف السوق الموازي للدينار العراقي (بغداد)

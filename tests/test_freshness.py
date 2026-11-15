@@ -17,8 +17,8 @@ from conftest import GATE_SUMMARY, run_validate, write_tmp_parquet
 pytestmark = pytest.mark.usefixtures("no_network")
 
 BASELINE_LINE = GATE_SUMMARY
-# 65 series: 58 are still updating and 7 have ended (oil_price_basrah, whose only months are old transcribed ones, among them)
-FRESHNESS_LINE = "[FRESHNESS] as of 2026-10-28: 58 current, 0 overdue, 0 acknowledged, 7 ended, 0 unchecked"
+# 71 series: 64 are still updating and 7 have ended (oil_price_basrah, whose only months are old transcribed ones, among them)
+FRESHNESS_LINE = "[FRESHNESS] as of 2026-10-28: 64 current, 0 overdue, 0 acknowledged, 7 ended, 0 unchecked"
 
 
 def run_gate(*args):
@@ -108,7 +108,7 @@ def test_real_data_counts(garden_tables):
     sched = validate.load_update_schedule()
     got = validate.freshness_status(garden_tables, sched, [], "2026-10-24", set(garden_tables))
     states = pd.Series([st.state for st in got]).value_counts().to_dict()
-    assert states == {"current": 58, "ended": 7}
+    assert states == {"current": 64, "ended": 7}
 
 
 # ---------------------------------------------------------------------- command line
@@ -144,7 +144,7 @@ def test_release_check_passes_on_current_data():
 # had stopped updating: fx.official after 2023-12-13 and parallel_rate_iraq after 2023-08-03.
 # Every other table is unchanged.
 STALE_FEED_BASELINE_LINE = (
-    "ALL CHECKS PASSED: 15 dataset(s) verified (23,238 total observations, 0 review notice(s))."
+    "ALL CHECKS PASSED: 16 dataset(s) verified (24,084 total observations, 0 review notice(s))."
 )
 LAST_DAY = {"fx.official": "2023-12-13", "parallel_rate_iraq": "2023-08-03"}
 
@@ -218,7 +218,7 @@ def test_acknowledged_overdue_passes_release_check(stale_feed_files, tmp_path, c
     assert code == 0, out[-2000:]
     lines = [l for l in out.splitlines() if l.startswith("    [ACKNOWLEDGED] exchange_rates_daily/")]
     assert len(lines) == 2 and "test reason fx" in "".join(lines)
-    assert "[FRESHNESS] as of 2026-10-28: 56 current, 0 overdue, 2 acknowledged, 7 ended, 0 unchecked" in out
+    assert "[FRESHNESS] as of 2026-10-28: 62 current, 0 overdue, 2 acknowledged, 7 ended, 0 unchecked" in out
 
 
 def test_stale_overdue_ack_fails(stale_feed_files, tmp_path, capsys):

@@ -213,7 +213,7 @@ def variant_files(tmp_path_factory):
 
 @pytest.fixture(scope="session")
 def measured(sandbox_runs, baselines, variant_files, tmp_path_factory):
-    """All 64 robustness runs: 7 spreadsheet parsers x 4 layout mutations + 12 parsers x 3 bad inputs."""
+    """All 71 robustness runs: 8 spreadsheet parsers x 4 layout mutations + 13 parsers x 3 bad inputs."""
     plan = [(parser, spec["input"], kind) for parser, spec in SPREADSHEET.items() for kind in LAYOUT_KINDS]
     plan += [(parser, input_rel, kind) for parser, input_rel in BAD_INPUT.items() for kind in BAD_KINDS]
     results = []
@@ -251,8 +251,8 @@ def test_resave_alone_changes_nothing(parser, sandbox_runs, baselines, tmp_path)
 
 
 def test_every_outcome_classified(measured):
-    """All 64 runs happened and each has one of the four outcomes."""
-    assert len(measured) == len(SPREADSHEET) * len(LAYOUT_KINDS) + len(BAD_INPUT) * len(BAD_KINDS) == 64
+    """All 71 runs happened and each has one of the four outcomes."""
+    assert len(measured) == len(SPREADSHEET) * len(LAYOUT_KINDS) + len(BAD_INPUT) * len(BAD_KINDS) == 71
     assert {m["outcome"] for m in measured} <= OUTCOMES
 
 

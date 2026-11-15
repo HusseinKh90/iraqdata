@@ -618,3 +618,58 @@ series:
     basis: statistical
     derived_through: '2026-11-15'
     reviewed: '2026-11-15'
+  # --- credit_monthly
+  credit.central_gov:
+    unit: MILLION_IQD
+    min: 5304610.0
+    max: 59949200.0
+    sign: positive
+    jump: {measure: log, threshold: 0.129744, typical: 0.0129744, k: 10}
+    basis: statistical
+    derived_through: '2026-11-15'
+    reviewed: '2026-11-15'
+  credit.private_private_banks:
+    unit: MILLION_IQD
+    min: 3555370.0
+    max: 31487700.0
+    sign: positive
+    jump: {measure: log, threshold: 0.0931922, typical: 0.00931922, k: 10}
+    basis: statistical
+    derived_through: '2026-11-15'
+    reviewed: '2026-11-15'
+  credit.private_state_banks:
+    unit: MILLION_IQD
+    min: 5083460.0
+    max: 64224000.0
+    sign: positive
+    jump: {measure: log, threshold: 0.0857006, typical: 0.00857006, k: 10}
+    basis: statistical
+    derived_through: '2026-11-15'
+    reviewed: '2026-11-15'
+  credit.private_total:
+    unit: MILLION_IQD
+    min: 8722210.0
+    max: 94953500.0
+    sign: positive
+    jump: {measure: log, threshold: 0.0717727, typical: 0.00717727, k: 10}
+    basis: statistical
+    derived_through: '2026-11-15'
+    reviewed: '2026-11-15'
+  credit.public_institutions:
+    unit: MILLION_IQD
+    min: 1125300.0
+    max: 16050700.0
+    sign: positive
+    jump: {measure: log, threshold: 0.107045, typical: 0.0107045, k: 10}
+    basis: statistical
+    derived_through: '2026-11-15'
+    reviewed: '2026-11-15'
+  credit.total:
+    unit: MILLION_IQD
+    min: 17676300.0
+    max: 151169000.0
+    sign: positive
+    jump: {measure: log, threshold: 0.0654265, typical: 0.00654265, k: 10}
+    basis: statistical
+    derived_through: '2026-11-15'
+    reviewed: '2026-11-15'

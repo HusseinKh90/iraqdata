@@ -15,6 +15,14 @@ All notable changes to `iraqdata` are documented here. The format follows
   from the CBI (`pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx`), checked against the annual
   totals of the CBI Monthly Statistical Bulletin; from 2024-01 they are read from sheet 3-a of that
   bulletin, which the weekly update check already downloads, so new months arrive automatically.
+- Six new monthly series of commercial bank direct cash credit by sector, in million IQD, from
+  2015-01, in the new table `credit_monthly`: `credit.private_total` (credit to the private
+  sector), split into `credit.private_state_banks` and `credit.private_private_banks`, plus
+  `credit.central_gov`, `credit.public_institutions` and the grand total `credit.total`.
+  2015-2023 come from monthly data the maintainer obtained from the CBI
+  (`pipeline/seeds/cbi_credit_monthly_seed.xlsx`), checked against the bulletin's year-end rows;
+  from 2024-01 they are read from sheets 8-a to 8-c of the bulletin. The gate checks that the
+  bank types add up to private credit and the sectors add up to the total.
 
 ## [1.0.0] - 2026-10-28
 

@@ -34,6 +34,12 @@ SERIES_TO_TABLE: dict[str, str] = {
     "money.bank_deposit_rate": "money_banking_monthly",
     "money.bank_lending_rate": "money_banking_monthly",
     "money.required_reserves": "money_banking_monthly",
+    "credit.private_total": "credit_monthly",
+    "credit.private_state_banks": "credit_monthly",
+    "credit.private_private_banks": "credit_monthly",
+    "credit.central_gov": "credit_monthly",
+    "credit.public_institutions": "credit_monthly",
+    "credit.total": "credit_monthly",
 
     # Family 2: Exchange Rates (Daily)
     "parallel_rate_iraq": "exchange_rates_daily",
@@ -120,6 +126,12 @@ SERIES_DIRECT_SOURCES: dict[str, str] = {
     "money.bank_deposit_rate": "Central Bank of Iraq (CBI)",
     "money.bank_lending_rate": "Central Bank of Iraq (CBI)",
     "money.required_reserves": "Central Bank of Iraq (CBI)",
+    "credit.private_total": "Central Bank of Iraq (CBI)",
+    "credit.private_state_banks": "Central Bank of Iraq (CBI)",
+    "credit.private_private_banks": "Central Bank of Iraq (CBI)",
+    "credit.central_gov": "Central Bank of Iraq (CBI)",
+    "credit.public_institutions": "Central Bank of Iraq (CBI)",
+    "credit.total": "Central Bank of Iraq (CBI)",
 
     # Family 2: Exchange Rates
     "fx.official": "Central Bank of Iraq (CBI)",
@@ -210,6 +222,8 @@ ALIASES: dict[str, str] = {
     "lending_rate": "money.bank_lending_rate",
     "required_reserves": "money.required_reserves",
     "currency_outside_banks": "money.currency_outside_banks",
+    "private_credit": "credit.private_total",
+    "credit": "credit.total",
 
     # Exchange rate shortcuts
     "parallel_rate": "parallel_rate_iraq",

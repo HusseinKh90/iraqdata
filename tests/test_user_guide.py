@@ -51,8 +51,8 @@ def test_every_example_runs(monkeypatch, tmp_path, fresh_memory_cache):
 
 
 def test_the_counts_and_lists_are_the_libraries(fresh_memory_cache):
-    assert f"There are {len(iraqdata.list_series())} series in eleven subject tables" in TEXT
-    assert len(iraqdata.list_tables()) == 11
+    assert f"There are {len(iraqdata.list_series())} series in twelve subject tables" in TEXT
+    assert len(iraqdata.list_tables()) == 12
     for table in iraqdata.list_tables():
         assert f"`{table}`" in TEXT, table
     for category in iraqdata.list_categories():

@@ -100,6 +100,9 @@ FOLDER_RULES = [
     ("pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx",
      "Obtained by the maintainer directly from the CBI (maintainer statement, 2026-11-15)",
      "maintainer_fx_auction_seed", "2026-11-15"),
+    ("pipeline/seeds/cbi_credit_monthly_seed.xlsx",
+     "Obtained by the maintainer directly from the CBI (maintainer statement, 2026-11-15)",
+     "maintainer_credit_seed", "2026-11-15"),
 ]
 
 

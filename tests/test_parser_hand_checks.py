@@ -27,7 +27,7 @@ with open(METADATA_DIR / "hand_checks.yaml", encoding="utf-8") as _f:
     VALUES = yaml.safe_load(_f)["values"]
 
 PARSERS = {
-    "bis_lbs", "cbi_bop", "cbi_cpi", "cbi_exchange_rates", "fiscal_seed", "cbi_fiscal_bulletin", "cbi_fx_auction",
+    "bis_lbs", "cbi_bop", "cbi_cpi", "cbi_exchange_rates", "fiscal_seed", "cbi_fiscal_bulletin", "cbi_fx_auction", "cbi_credit",
     "cbi_money_banking", "cosit_gdp", "oecd_dac", "oil_daily", "oil_monthly",
 }
 _WORKBOOKS: dict = {}
@@ -119,11 +119,11 @@ def test_hand_check_value(entry, sandbox_runs):
 
 
 def test_every_parser_has_3_to_5_values():
-    """3-5 values for each of the 12 parsers (36-60 in total)."""
+    """3-5 values for each of the 13 parsers (39-65 in total)."""
     counts = Counter(e["parser"] for e in VALUES)
     assert set(counts) == PARSERS
     assert all(3 <= n <= 5 for n in counts.values()), counts
-    assert 36 <= len(VALUES) <= 60
+    assert 39 <= len(VALUES) <= 65
 
 
 def test_status_values_valid():

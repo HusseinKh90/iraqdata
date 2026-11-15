@@ -780,6 +780,16 @@ REAL_GDP_SIDS = [
 # (total, cash, non-cash); the CBI bulletin rounds each of its five columns to a whole million USD
 FX_SALES_SIDS = ("fx.auction_total", "fx.auction_cash", "fx.auction_transfers")
 FX_SALES_TOLERANCE = 2.5
+# Commercial bank credit (million IQD): (total, parts...)
+PRIVATE_CREDIT_SIDS = ("credit.private_total", "credit.private_state_banks", "credit.private_private_banks")
+TOTAL_CREDIT_SIDS = ("credit.total", "credit.private_total", "credit.central_gov", "credit.public_institutions")
+CREDIT_TOLERANCE = 1.0
+# Sum identities checked in validate_tier2: (label, (total, parts...), tolerance)
+SUM_IDENTITIES = [
+    ("FX Sales Discrepancy: Cash + Transfers != Total", FX_SALES_SIDS, FX_SALES_TOLERANCE),
+    ("Credit Discrepancy: State + Private Banks != Private Sector Credit", PRIVATE_CREDIT_SIDS, CREDIT_TOLERANCE),
+    ("Credit Discrepancy: Private + Central Govt. + Public Institutions != Total Credit", TOTAL_CREDIT_SIDS, CREDIT_TOLERANCE),
+]
 
 # Rule name -> component series groups, used by identity_coverage()
 IDENTITY_RULES: List[Tuple[str, List[Tuple[str, ...]]]] = [
@@ -798,6 +808,8 @@ IDENTITY_RULES: List[Tuple[str, List[Tuple[str, ...]]]] = [
     ("Currency <= M0", [("money.currency_outside_banks", "money.m0"), ("cbi.money.currency_outside_banks", "cbi.money.m0")]),
     ("Currency <= M1", [("money.currency_outside_banks", "money.m1"), ("cbi.money.currency_outside_banks", "cbi.money.m1")]),
     ("CBI foreign currency sales", [FX_SALES_SIDS]),
+    ("Private credit by bank type", [PRIVATE_CREDIT_SIDS]),
+    ("Total credit by sector", [TOTAL_CREDIT_SIDS]),
 ]
 
 
@@ -1235,16 +1247,14 @@ def validate_tier2_details(df: pd.DataFrame, dataset_name: str = "dataset") -> T
                         f"[{dataset_name}] BIS Sector Liability Discrepancy: Banks + Non-Bank > Total Liabilities for quarters: {bad_discrep.index.tolist()}"
                     )
 
-    # 5b. CBI foreign currency sales: cash + non-cash == total
-    if set(FX_SALES_SIDS).issubset(set(df["series_id"].values)):
-        piv = df.pivot_table(index="date", columns="series_id", values="value")
-        tot, cash, noncash = (piv[s] for s in FX_SALES_SIDS)
-        diff = (cash + noncash - tot).abs().dropna()
-        bad = diff[diff > FX_SALES_TOLERANCE]
-        if not bad.empty:
-            errors.append(
-                f"[{dataset_name}] FX Sales Discrepancy: Cash + Transfers != Total for months: {bad.index.tolist()}"
-            )
+    # 5b. Sum identities: CBI foreign currency sales, commercial bank credit
+    for label, (total, *parts), tolerance in SUM_IDENTITIES:
+        if {total, *parts}.issubset(set(df["series_id"].values)):
+            piv = df.pivot_table(index="date", columns="series_id", values="value")
+            diff = (piv[parts].sum(axis=1, min_count=len(parts)) - piv[total]).abs().dropna()
+            bad = diff[diff > tolerance]
+            if not bad.empty:
+                errors.append(f"[{dataset_name}] {label} for months: {bad.index.tolist()}")
 
     # 6. OECD DAC: no identity (net ODA minus grants mixes two concepts, so it is not published)
 

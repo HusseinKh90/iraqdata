@@ -618,3 +618,68 @@ values:
     date: 2026-10
   status: pending
   confirmed_on: null
+- parser: cbi_credit
+  source: pipeline/seeds/cbi_credit_monthly_seed.xlsx
+  locator:
+    sheet: Sheet1
+    cell: B2
+  expected: 17728962.0
+  scale: 1
+  target:
+    table: credit_monthly
+    series: credit.private_total
+    date: 2015-01
+  status: pending
+  confirmed_on: null
+- parser: cbi_credit
+  source: pipeline/seeds/cbi_credit_monthly_seed.xlsx
+  locator:
+    sheet: Sheet1
+    cell: G103
+  expected: 63440289.0
+  scale: 1
+  target:
+    table: credit_monthly
+    series: credit.total
+    date: 2023-06
+  status: pending
+  confirmed_on: null
+- parser: cbi_credit
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: 8-a
+    cell: F22
+  expected: 28947533.0
+  scale: 1
+  target:
+    table: credit_monthly
+    series: credit.central_gov
+    date: 2024-01
+  status: pending
+  confirmed_on: null
+- parser: cbi_credit
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: 8-a
+    cell: P56
+  expected: 46798779.0
+  scale: 1
+  target:
+    table: credit_monthly
+    series: credit.private_total
+    date: 2026-09
+  status: pending
+  confirmed_on: null
+- parser: cbi_credit
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: 8-c
+    cell: P55
+  expected: 15743827.0
+  scale: 1
+  target:
+    table: credit_monthly
+    series: credit.private_private_banks
+    date: 2026-09
+  status: pending
+  confirmed_on: null

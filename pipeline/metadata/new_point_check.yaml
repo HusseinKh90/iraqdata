@@ -8,13 +8,14 @@
 # records the two values). Monthly and quarterly series with at least window + 10 observations are
 # checked; a move at a B-flagged observation is a known break, not a notice.
 #
-# Calibration on the committed history (50 such series, 4,913 points, every point tested as if it were
+# Calibration on the committed history (56 such series, 5,537 points, every point tested as if it were
 # the latest; tests/test_new_point_check.py repeats it):
-#   k = 8:  68 points (1.38%)   k = 12: 42 (0.85%)   k = 15: 26 (0.53%)   k = 20: 17 (0.35%)   k = 30: 6 (0.12%)
+#   k = 8:  78 points (1.41%)   k = 12: 48 (0.87%)   k = 15: 31 (0.56%)   k = 20: 20 (0.36%)   k = 30: 9 (0.16%)
 # Most are the CBI's administered rates (policy, deposit and lending rates) moving in steps and the
-# oil series, which move for real reasons. At k = 15 the latest three periods of today's data raise 1
+# oil series, which move for real reasons, and credit moved between sectors in the commercial bank
+# credit tables. At k = 15 the latest three periods of today's data raise 1
 # notice (crude_production_secondary 2026-06), and a weekly update that adds one new period to each
-# series would raise about 0.27 per run (50 points at 0.53%).
+# series would raise about 0.31 per run (56 points at 0.56%).
 #
 # Switch it on with `enabled: true` once you have decided that is an acceptable review load.
 enabled: false

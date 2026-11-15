@@ -29,6 +29,12 @@ in the `origin` and `official` columns of `iraqdata.list_series()`, and in full 
 | `money.bank_deposit_rate` | Monthly | Percent | 2004-01 | Commercial banks' weighted average interest rate on 1-year fixed deposits. |
 | `money.bank_lending_rate` | Monthly | Percent | 2004-01 | Commercial banks' weighted average interest rate on medium-term loans. |
 | `money.required_reserves` | Monthly | Billion IQD | 2004-12 | Statutory mandatory reserves maintained by commercial banks at CBI. |
+| `credit.private_total` | Monthly | Million IQD | 2015-01 | Commercial bank credit to the private sector, all banks (end of month). |
+| `credit.private_state_banks` | Monthly | Million IQD | 2015-01 | Credit to the private sector by state-owned banks (end of month). |
+| `credit.private_private_banks` | Monthly | Million IQD | 2015-01 | Credit to the private sector by private banks (end of month). |
+| `credit.central_gov` | Monthly | Million IQD | 2015-01 | Commercial bank direct credit to the central government (end of month). |
+| `credit.public_institutions` | Monthly | Million IQD | 2015-01 | Commercial bank credit to public institutions and state-owned enterprises (end of month). |
+| `credit.total` | Monthly | Million IQD | 2015-01 | Total commercial bank cash credit: private sector, central government and public institutions. |
 
 <!-- series:money_banking:end -->
 
@@ -194,6 +200,12 @@ Generated from `src/iraqdata/series_catalog.yaml` by `pipeline/docs_origin.py`; 
 | `money.bank_deposit_rate` | observed 2004-01..open |
 | `money.bank_lending_rate` | observed 2004-01..open |
 | `money.required_reserves` | observed 2004-12..open |
+| `credit.private_total` | observed 2015-01..2023-12; observed 2024-01..open |
+| `credit.private_state_banks` | observed 2015-01..2023-12; observed 2024-01..open |
+| `credit.private_private_banks` | observed 2015-01..2023-12; observed 2024-01..open |
+| `credit.central_gov` | observed 2015-01..2023-12; observed 2024-01..open |
+| `credit.public_institutions` | observed 2015-01..2023-12; observed 2024-01..open |
+| `credit.total` | observed 2015-01..2023-12; observed 2024-01..open |
 | `parallel_rate_iraq` | observed 2004-01-01..2022-12-31; observed (unofficial) 2023-01-01..open |
 | `fx.official` | observed 2004-01-01..open |
 | `fx.auction_cash` | observed 2020-01..2023-12; observed 2024-01..open |

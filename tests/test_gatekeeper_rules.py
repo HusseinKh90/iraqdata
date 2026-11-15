@@ -29,7 +29,7 @@ def test_every_series_has_a_rule(garden_tables, seed_tables):
     for df in seed_tables.values():
         all_series.update(df["series_id"].unique())
 
-    assert len(all_series) == 65
+    assert len(all_series) == 71
     missing = all_series - set(series_rules.keys())
     assert not missing, f"Missing rules for series: {sorted(missing)}"
 
@@ -39,7 +39,7 @@ def test_rules_are_well_formed():
     rules = validate.load_rules()
     series_rules = rules.get("series", {})
 
-    assert len(series_rules) == 65
+    assert len(series_rules) == 71
 
     for sid, entry in series_rules.items():
         assert "unit" in entry and entry["unit"], f"{sid} missing unit"
@@ -115,6 +115,8 @@ def test_out_of_envelope_value_reported(name, garden_tables, tmp_path):
         top_sid = "money.m2"
     elif name == "fx_auction_monthly":
         top_sid = "fx.auction_total"
+    elif name == "credit_monthly":
+        top_sid = "credit.total"
 
     rules = validate.load_rules()
     rule = rules["series"][top_sid]
@@ -139,6 +141,8 @@ def test_out_of_envelope_value_reported(name, garden_tables, tmp_path):
         faulty_df = set_value(faulty_df, mid_date, "oecd.dac.grants_excl_tc", lambda v: v + delta)
     elif name == "fx_auction_monthly":
         faulty_df = set_value(faulty_df, mid_date, "fx.auction_transfers", lambda v: v + delta)
+    elif name == "credit_monthly":
+        faulty_df = set_value(faulty_df, mid_date, "credit.central_gov", lambda v: v + delta)
 
     tmp_file = write_tmp_parquet(faulty_df, tmp_path, name)
 
@@ -207,14 +211,14 @@ def test_coverage_line_on_real_data():
     coverage_lines = [
         line.strip() for line in proc.stdout.splitlines() if line.strip().startswith("[COVERAGE]")
     ]
-    assert len(coverage_lines) == 15
+    assert len(coverage_lines) == 16
     for line in coverage_lines:
         assert "0 unchecked" in line
         assert "0 exempt" in line
 
     # Sum of checked series across production tables must equal 64
     checked_counts = [
-        int(re.search(r"series:\s*(\d+)\s*checked", l).group(1)) for l in coverage_lines[:11]
+        int(re.search(r"series:\s*(\d+)\s*checked", l).group(1)) for l in coverage_lines[:12]
     ]
-    assert sum(checked_counts) == 65  # gross ODA and the aid residual withdrawn
+    assert sum(checked_counts) == 71  # gross ODA and the aid residual withdrawn
     assert GATE_SUMMARY in proc.stdout

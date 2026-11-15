@@ -1,7 +1,7 @@
 """
 pipeline.run_parsers
 ====================
-Single entry point that runs all 12 parsers in a fixed, documented order.
+Single entry point that runs all 13 parsers in a fixed, documented order.
 
     python pipeline/run_parsers.py [--output-dir DIR | --apply-to DIR] [--only NAME ...]
                                    [--raw-root DIR] [--seeds-root DIR] [--history-dir DIR]
@@ -30,6 +30,7 @@ Run order
 11. oil_monthly          - EIA, JODI and the transcribed OPEC records; it does not read oil_daily
                            (the Basrah months are not modelled from Brent)
 12. cbi_fx_auction       - CBI foreign-currency sales: the seed to 2023, then bulletin sheet 3-a
+13. cbi_credit           - commercial bank credit by sector: the seed to 2023, then bulletin sheets 8-a to 8-c
 
 The four seed parquet files (bis_lbs_quarterly_seed, cosit_gdp_quarterly_seed,
 oecd_dac_annual_seed, opec_momr_historical) are derived seed snapshots: they are regenerated
@@ -228,6 +229,16 @@ def _run_cbi_fx_auction(raw_root, seeds_root, out_dir, seeds_out_dir):
     )
 
 
+def _run_cbi_credit(raw_root, seeds_root, out_dir, seeds_out_dir):
+    import parse_cbi_credit
+    parse_cbi_credit.parse_cbi_credit(
+        seed_path=seeds_root / "cbi_credit_monthly_seed.xlsx",
+        bulletin_path=_require(_bulletin_input(raw_root), "CBI Monthly Statistical Bulletin",
+                               raw_root / "cbi" / "bulletin_latest.xlsx"),
+        output_parquet_path=out_dir / "credit_monthly.parquet",
+    )
+
+
 def _run_oil_daily(raw_root, seeds_root, out_dir, seeds_out_dir):
     import parse_oil_daily
     parse_oil_daily.parse_oil_daily(
@@ -293,14 +304,17 @@ BULLETIN_GLOBS = (
     "pipeline/raw/cbi/cbi_bulletin_*.xlsx",
 )
 FX_AUCTION_SEED = "pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx"
+CREDIT_SEED = "pipeline/seeds/cbi_credit_monthly_seed.xlsx"
 
 
-def _fx_auction_source(date: str) -> Optional[List[str]]:
-    import parse_cbi_fx_auction
-    if date < parse_cbi_fx_auction.FIRST_BULLETIN_MONTH:
-        return [FX_AUCTION_SEED]
-    path = _cbi_choice("bulletin")
-    return [path] if path else None
+def _seed_then_bulletin(seed: str, first_bulletin_month: str):
+    """Rows before `first_bulletin_month` were read from `seed`, later ones from the bulletin."""
+    def source(date: str) -> Optional[List[str]]:
+        if date < first_bulletin_month:
+            return [seed]
+        path = _cbi_choice("bulletin")
+        return [path] if path else None
+    return source
 
 REGISTRY: List[ParserSpec] = [
     ParserSpec(
@@ -401,7 +415,13 @@ REGISTRY: List[ParserSpec] = [
         name="cbi_fx_auction", module="parse_cbi_fx_auction", run=_run_cbi_fx_auction,
         inputs=(FX_AUCTION_SEED, *BULLETIN_GLOBS),
         outputs=("fx_auction_monthly.parquet",),
-        series_inputs={"*": _fx_auction_source},
+        series_inputs={"*": _seed_then_bulletin(FX_AUCTION_SEED, "2024-01")},
+    ),
+    ParserSpec(
+        name="cbi_credit", module="parse_cbi_credit", run=_run_cbi_credit,
+        inputs=(CREDIT_SEED, *BULLETIN_GLOBS),
+        outputs=("credit_monthly.parquet",),
+        series_inputs={"*": _seed_then_bulletin(CREDIT_SEED, "2024-01")},
     ),
 ]
 
