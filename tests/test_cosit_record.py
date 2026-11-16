@@ -71,8 +71,10 @@ def test_the_quarters_without_an_archived_document_are_the_ones_the_catalog_name
                         | {"2021-Q3", "2021-Q4", "2022-Q2", "2022-Q3", "2023-Q3"})
     assert ("gdp.nominal", "2023-Q3") not in unarchived   # only the oil value of 2023-Q3 is kept from the earlier record
     cited = [r for r in rows if r["page_or_table"] != "unknown"]
-    assert all(r["transcriber"].startswith("Claude Code") and "not yet reviewed by the maintainer" in r["transcriber"]
-               for r in cited)
+    # each cited value was either extracted automatically and is awaiting review, or typed in by the maintainer
+    assert all(r["transcriber"] in ("automated extraction from the archived file; not yet reviewed by the maintainer",
+                                    "Hussein Khalid") for r in cited)
+    assert not any("claude" in r["transcriber"].lower() for r in rows)
 
 
 def test_the_implausible_printed_value_is_documented_not_used():
@@ -177,3 +179,40 @@ def test_a_number_on_a_scanned_page_needs_another_document_to_print_it(tmp_path)
 def test_the_command_line_reports_ok(capsys):
     assert check.main(["--record", str(RECORD)]) == 0
     assert capsys.readouterr().out.strip().endswith("COSIT record: OK")
+
+
+# ---------------------------------------------------------------------------- the 2025 report (PDF pages 11-14)
+
+REPORT_2025 = "cosit/التقديرات_الأولية_الفصلية_والإجمالية_للناتج_المحلي_الإجمالي_لسنة_2025_2026-11-16.pdf"
+
+
+def test_a_number_split_by_stray_spaces_in_the_pdf_text_is_found(tmp_path):
+    # page 12's text reads "82,102 ,269.6": the spaces come from the PDF, not from the printed number
+    row = _row("gdp.nominal", "2025-Q2", "82102269.6", REPORT_2025,
+               "page 12, table 4, column 2025-Q2, row 'Gross Domestic Product'", "printed=82,102,269.6")
+    counts, problems = _check(tmp_path, row)
+    assert counts == {"page": 1} and problems == []
+
+
+def test_a_number_split_by_spaces_is_still_not_another_number(tmp_path):
+    row = _row("gdp.nominal", "2025-Q2", "82102269.7", REPORT_2025,
+               "page 12, table 4, column 2025-Q2, row 'Gross Domestic Product'", "printed=82,102,269.7")
+    _, problems = _check(tmp_path, row)
+    assert len(problems) == 1 and "is not on" in problems[0]
+
+
+def test_a_value_read_from_the_page_image_is_counted_apart_not_passed(tmp_path):
+    # Table 3's first two quarters are drawn as an image: no text to read them back from
+    row = _row("gdp.nominal_oil", "2025-Q1", "30663490.0", REPORT_2025,
+               "page 11, table 3, column 'Crude oil', row '1st Quarter 2025' (read from the page image)",
+               "printed=30,663,490.0")
+    counts, problems = _check(tmp_path, row)
+    assert counts == {"image": 1} and problems == []
+
+
+def test_a_value_read_from_the_page_image_must_still_equal_its_printed_text(tmp_path):
+    row = _row("gdp.nominal_oil", "2025-Q1", "30663390.0", REPORT_2025,
+               "page 11, table 3, column 'Crude oil', row '1st Quarter 2025' (read from the page image)",
+               "printed=30,663,490.0")
+    _, problems = _check(tmp_path, row)
+    assert len(problems) == 1 and "is not the value" in problems[0]

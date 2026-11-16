@@ -1727,7 +1727,7 @@ series:
     method: Typed in from COSIT quarterly national accounts; the source document is not archived
     source: COSIT Directorate of National Accounts (document not recorded)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2020-Q1
     to: 2021-Q2
     class: observed
@@ -1735,7 +1735,7 @@ series:
     method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
     source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2021-Q3
     to: 2021-Q4
     class: transcribed
@@ -1743,7 +1743,7 @@ series:
     method: Typed in from COSIT quarterly national accounts; the source document is not archived
     source: COSIT Directorate of National Accounts (document not recorded)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2022-Q1
     to: 2022-Q1
     class: observed
@@ -1751,7 +1751,7 @@ series:
     method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
     source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2022-Q2
     to: 2022-Q3
     class: transcribed
@@ -1759,7 +1759,7 @@ series:
     method: Typed in from COSIT quarterly national accounts; the source document is not archived
     source: COSIT Directorate of National Accounts (document not recorded)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2022-Q4
     to: open
     class: observed
@@ -1767,7 +1767,7 @@ series:
     method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
     source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
 - series_id: gdp.nominal_nonoil
   name_en: Non-Oil GDP at Current Basic Prices
   name_ar: الناتج المحلي الإجمالي عدا النفط بالأسعار الجارية
@@ -1791,7 +1791,7 @@ series:
     inputs:
     - gdp.nominal
     - gdp.nominal_oil
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
 - series_id: gdp.nominal_oil
   name_en: Crude Oil GDP at Current Basic Prices
   name_ar: ناتج نشاط النفط الخام بالأسعار الجارية
@@ -1812,7 +1812,7 @@ series:
     method: Typed in from COSIT quarterly national accounts; the source document is not archived
     source: COSIT Directorate of National Accounts (document not recorded)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2020-Q1
     to: 2021-Q2
     class: observed
@@ -1820,7 +1820,7 @@ series:
     method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
     source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2021-Q3
     to: 2021-Q4
     class: transcribed
@@ -1828,7 +1828,7 @@ series:
     method: Typed in from COSIT quarterly national accounts; the source document is not archived
     source: COSIT Directorate of National Accounts (document not recorded)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2022-Q1
     to: 2022-Q1
     class: observed
@@ -1836,7 +1836,7 @@ series:
     method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print
     source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2022-Q2
     to: 2022-Q3
     class: transcribed
@@ -1844,7 +1844,7 @@ series:
     method: Typed in from COSIT quarterly national accounts; the source document is not archived
     source: COSIT Directorate of National Accounts (document not recorded)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2022-Q4
     to: 2023-Q2
     class: observed
@@ -1852,7 +1852,7 @@ series:
     method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print
     source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2023-Q3
     to: 2023-Q3
     class: transcribed
@@ -1860,15 +1860,15 @@ series:
     method: Typed in from COSIT quarterly national accounts; the source document is not archived
     source: COSIT Directorate of National Accounts (document not recorded)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2023-Q4
     to: open
     class: observed
     official: true
-    method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print
+    method: Read from archived COSIT documents (workbooks, early-warning reports and the 2025 preliminary quarterly estimates); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back, except 2025-Q1 and 2025-Q2, which the 2025 report prints only as an image and were read by eye; for the quarters taken from the early-warning reports, total GDP minus the non-oil GDP they print
     source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
 - series_id: gdp.real
   name_en: Headline Real GDP at Constant Basic Prices (2007 = 100)
   name_ar: الناتج المحلي الإجمالي بالأسعار الأساسية الثابتة (أساس 2007 = 100)
@@ -1889,7 +1889,7 @@ series:
     method: Typed in from COSIT quarterly national accounts; the source document is not archived
     source: COSIT Directorate of National Accounts (document not recorded)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2020-Q1
     to: 2021-Q2
     class: observed
@@ -1897,7 +1897,7 @@ series:
     method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
     source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2021-Q3
     to: 2021-Q4
     class: transcribed
@@ -1905,7 +1905,7 @@ series:
     method: Typed in from COSIT quarterly national accounts; the source document is not archived
     source: COSIT Directorate of National Accounts (document not recorded)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2022-Q1
     to: 2022-Q1
     class: observed
@@ -1913,7 +1913,7 @@ series:
     method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
     source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2022-Q2
     to: 2022-Q3
     class: transcribed
@@ -1921,7 +1921,7 @@ series:
     method: Typed in from COSIT quarterly national accounts; the source document is not archived
     source: COSIT Directorate of National Accounts (document not recorded)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2022-Q4
     to: open
     class: observed
@@ -1929,7 +1929,7 @@ series:
     method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
     source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
 - series_id: gdp.real_nonoil
   name_en: Real Non-Oil GDP at Constant Basic Prices (2007 = 100)
   name_ar: الناتج المحلي الإجمالي عدا النفط بالأسعار الثابتة (أساس 2007 = 100)
@@ -1953,7 +1953,7 @@ series:
     inputs:
     - gdp.real
     - gdp.real_oil
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
 - series_id: gdp.real_oil
   name_en: Real Crude Oil GDP at Constant Basic Prices (2007 = 100)
   name_ar: ناتج نشاط النفط الخام بالأسعار الثابتة (أساس 2007 = 100)
@@ -1974,7 +1974,7 @@ series:
     method: Typed in from COSIT quarterly national accounts; the source document is not archived
     source: COSIT Directorate of National Accounts (document not recorded)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2020-Q1
     to: 2021-Q2
     class: observed
@@ -1982,7 +1982,7 @@ series:
     method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back
     source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2021-Q3
     to: 2021-Q4
     class: transcribed
@@ -1990,7 +1990,7 @@ series:
     method: Typed in from COSIT quarterly national accounts; the source document is not archived
     source: COSIT Directorate of National Accounts (document not recorded)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2022-Q1
     to: 2022-Q1
     class: observed
@@ -1998,7 +1998,7 @@ series:
     method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print
     source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2022-Q2
     to: 2022-Q3
     class: transcribed
@@ -2006,7 +2006,7 @@ series:
     method: Typed in from COSIT quarterly national accounts; the source document is not archived
     source: COSIT Directorate of National Accounts (document not recorded)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
   - from: 2022-Q4
     to: open
     class: observed
@@ -2014,7 +2014,7 @@ series:
     method: Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print
     source: COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)
     source_ref: cosit_national_accounts
-    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv
+    record: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
 - series_id: bis.lbs.claims_total
   name_en: Total Claims of BIS Reporting Banks on Iraq
   name_ar: إجمالي مطالبات المصارف الدولية على العراق
