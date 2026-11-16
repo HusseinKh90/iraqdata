@@ -22,7 +22,7 @@ import iraqdata.storage as storage
 from conftest import GARDEN_DIR, PINNED_TAG, RELEASE_DIR, build_release, write_marker
 
 TABLE = "money_banking_monthly"
-NEXT_TAG = "data-2026-11"
+NEXT_TAG = "data-2026-12"  # a made-up next release
 
 
 def _modified_table_bytes() -> bytes:
@@ -46,7 +46,7 @@ def local_dir(tmp_path, monkeypatch):
 
 @pytest.fixture
 def next_release(tmp_path, fake_github):
-    """Release data-2026-11: data-2026-10 with one money value changed."""
+    """Release data-2026-12: data-2026-11 with one money value changed."""
     folder = build_release(tmp_path / NEXT_TAG, files={f"{TABLE}.parquet": _modified_table_bytes()})
     fake_github.add_release(NEXT_TAG, folder)
     return folder

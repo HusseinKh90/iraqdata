@@ -21,6 +21,9 @@ one Parquet file with the same content):
 | `money_banking_monthly.csv` | money, reserves, bank rates | year-month, `2024-08` |
 | `prices_monthly.csv` | consumer prices (`cpi_headline`, `cpi_core` and their bases) | year-month, `2024-08` |
 | `oil_monthly.csv` | crude production, Basrah price | year-month, `2024-08` |
+| `credit_monthly.csv` | commercial bank credit by sector | year-month, `2024-08` |
+| `govt_claims_monthly.csv` | banking-system claims on and deposits of the government | year-month, `2024-08` |
+| `fx_auction_monthly.csv` | CBI foreign currency sales (dollar auction) | year-month, `2024-08` |
 | `exchange_rates_daily.csv` | official and parallel exchange rates | day, `2024-08-15` |
 | `oil_daily.csv` | Brent price | day, `2024-08-15` |
 | `gdp_quarterly.csv` | GDP, nominal and real, oil and non-oil | quarter, `2024-Q3` |

@@ -83,7 +83,7 @@ def test_release_contains_exactly_the_expected_files():
 def test_checksums_cover_and_match_all_data_files():
     assert verify_checksums(RELEASE_DIR) == []
     lines = [ln for ln in (RELEASE_DIR / "checksums.sha256").read_text(encoding="utf-8").splitlines() if ln.strip()]
-    assert len(lines) == 20
+    assert len(lines) == 26
     assert sorted(ln.split()[-1].lstrip("*") for ln in lines) == DATA_FILES
 
 
@@ -114,7 +114,10 @@ def test_csv_and_parquet_are_identical(table):
             assert csv_df[col].astype(str).tolist() == pq_df[col].astype(str).tolist(), col
 
 
-RELEASE_VINTAGE = "2026-10-28"  # the one vintage of the first release: every value was first published then
+# Every value was first published either with data-2026-10 or, for the three tables added since, from the
+# CBI bulletin of 2026-11-12; nothing has been revised, so there is one vintage per table
+RELEASE_VINTAGE = {"credit_monthly": "2026-11-12", "fx_auction_monthly": "2026-11-12", "govt_claims_monthly": "2026-11-12"}
+FIRST_VINTAGE = "2026-10-28"
 
 
 @pytest.mark.parametrize("table", PRODUCTION_TABLES)
@@ -123,7 +126,7 @@ def test_release_parquet_matches_production(table):
     released = pd.read_parquet(RELEASE_DIR / f"{table}.parquet").reset_index(drop=True)
     production = pd.read_parquet(GARDEN_DIR / f"{table}.parquet")
     assert released.equals(production.reset_index(drop=True))
-    assert set(released["realtime_start"]) == {RELEASE_VINTAGE}
+    assert set(released["realtime_start"]) == {RELEASE_VINTAGE.get(table, FIRST_VINTAGE)}
 
 
 def test_the_first_release_has_no_vintage_history():
@@ -147,7 +150,7 @@ def test_descriptor_records_building_code_version(descriptor):
 
 
 def test_descriptor_lists_one_resource_per_data_file(descriptor):
-    assert len(descriptor["resources"]) == 20
+    assert len(descriptor["resources"]) == 26
     assert sorted(r["path"] for r in descriptor["resources"]) == DATA_FILES
 
 

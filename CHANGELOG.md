@@ -9,6 +9,8 @@ All notable changes to `iraqdata` are documented here. The format follows
 
 ### Data
 
+Data release `data-2026-11` (82 series in 13 tables, 25,386 observations) adds the following.
+
 - Three new monthly series of CBI foreign currency sales (the dollar auction), in million USD, from
   2020-01, in the new table `fx_auction_monthly`: `fx.auction_cash`, `fx.auction_transfers` (every
   non-cash sale) and `fx.auction_total`. 2020-2023 come from monthly data the maintainer obtained

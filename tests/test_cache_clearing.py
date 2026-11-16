@@ -12,7 +12,7 @@ import iraqdata.storage as storage
 from conftest import PINNED_TAG, RELEASE_DIR, build_release
 
 TABLE = "money_banking_monthly"
-NEXT_TAG = "data-2026-11"
+NEXT_TAG = "data-2026-12"  # a made-up next release
 
 
 def _snapshot(*paths):
@@ -83,7 +83,7 @@ def test_legacy_latest_folder_is_never_read_and_is_cleared(fake_github):
     legacy = root / "latest"
     legacy.mkdir()
     (legacy / f"{TABLE}.parquet").write_bytes(b"PAR1 stale PAR1")
-    df = storage.load_table(TABLE)  # resolves latest to data-2026-10 and downloads it
+    df = storage.load_table(TABLE)  # resolves latest to data-2026-11 and downloads it
     assert len(df) > 0
     assert iraqdata.clear_cache() == 2
     assert not legacy.exists()

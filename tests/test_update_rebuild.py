@@ -15,7 +15,7 @@ import pytest
 
 import export_release
 import run_parsers
-from conftest import GARDEN_DIR, SEEDS_DIR
+from conftest import GARDEN_DIR, RELEASE_DIR, SEEDS_DIR
 
 pytestmark = pytest.mark.usefixtures("no_network")
 
@@ -78,7 +78,7 @@ def _export(tmp_path, history_dir):
 
 def test_export_without_history_matches_todays_file_list(tmp_path):
     out = _export(tmp_path, tmp_path / "no_history")
-    released = [p.name for p in (GARDEN_DIR.parent.parent.parent / "release" / "data-2026-10").iterdir()]
+    released = [p.name for p in RELEASE_DIR.iterdir()]
     assert sorted(p.name for p in out.iterdir()) == sorted(released)
     assert export_release.RELEASE_ASSETS in released
 

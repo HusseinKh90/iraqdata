@@ -56,7 +56,7 @@ def test_the_table_of_files_is_complete_and_its_date_formats_are_right():
 def test_every_file_named_in_the_guide_is_a_release_asset():
     assets = {line.split("\t")[0] for line in (RELEASE_DIR / "release-assets.txt").read_text(encoding="utf-8").splitlines()}
     names = set(re.findall(r"\b(\w+_(?:monthly|daily|quarterly|annual)\.(?:csv|parquet))\b", TEXT))
-    assert len(names) == 10 + 1                                    # the ten tables, and the parquet example
+    assert len(names) == 13 + 1                                    # the thirteen tables, and the parquet example
     assert names <= assets
 
 

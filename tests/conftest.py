@@ -33,7 +33,7 @@ from iraqdata.schema import CANONICAL_COLUMNS  # noqa: E402
 
 GARDEN_DIR = REPO_ROOT / "pipeline" / "data" / "garden"
 SEEDS_DIR = REPO_ROOT / "pipeline" / "seeds"
-RELEASE_DIR = REPO_ROOT / "release" / "data-2026-10"
+RELEASE_DIR = REPO_ROOT / "release" / "data-2026-11"  # the newest release in this repository
 RAW_DIR = REPO_ROOT / "pipeline" / "raw"
 METADATA_DIR = REPO_ROOT / "pipeline" / "metadata"
 DATA_DIR = REPO_ROOT / "pipeline" / "data"
@@ -189,7 +189,7 @@ def fresh_memory_cache():
     storage._IN_MEMORY_TABLE_CACHE.clear()
 
 
-PINNED_TAG = "data-2026-10"
+PINNED_TAG = "data-2026-11"
 
 
 def _isolate_client(monkeypatch, tmp_path) -> None:
@@ -217,7 +217,7 @@ def offline(monkeypatch, tmp_path):
     Isolate the client from the network and from the user's real cache.
 
     - IRAQDATA_CACHE_DIR points at a temporary directory; IRAQDATA_LOCAL_DIR at an empty one.
-    - Release data-2026-10 is pinned (IRAQDATA_RELEASE). Its cache folder holds the release's
+    - Release data-2026-11 is pinned (IRAQDATA_RELEASE). Its cache folder holds the release's
       checksums.sha256 and iraqdata's ownership marker, but no tables.
     - requests.get and socket connections raise and are recorded in ``calls``.
     """
@@ -380,7 +380,7 @@ class FakeGitHub:
 def fake_github(monkeypatch, tmp_path):
     """
     The client isolated as in ``offline`` but unpinned, with requests.get answered by a
-    FakeGitHub that serves release data-2026-10 from release/data-2026-10/.
+    FakeGitHub that serves release data-2026-11 from release/data-2026-11/.
     """
     def _blocked_connect(self, *args, **kwargs):
         raise ConnectionError("network blocked in test")
