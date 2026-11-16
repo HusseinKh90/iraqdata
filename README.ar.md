@@ -186,7 +186,7 @@ print(id.get_data_source())       # release data-2026-11 (pinned with set_releas
   author  = {Khalid, Hussein},
   title   = {iraqdata: Open, Documented, and Reproducible Iraqi Macroeconomic Data Package},
   year    = {2026},
-  version = {1.0.0},
+  version = {1.1.0},
   url     = {https://github.com/husseinkh90/iraqdata}
 }
 ```

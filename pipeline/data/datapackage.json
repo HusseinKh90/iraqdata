@@ -3,7 +3,7 @@
   "name": "iraqdata",
   "title": "Iraq Macroeconomic Data Package",
   "description": "Open, documented, and reproducible macroeconomic data package for Iraq. Covers monetary aggregates, official and parallel exchange rates, crude oil production and prices, consumer price inflation, public finances, balance of payments, merchandise trade, quarterly national accounts (GDP), and external cross-border banking. Compiled and derived data are licensed CC-BY-4.0; source data remain subject to each publisher's terms, listed under `sources`.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "release": "data-2026-11",
   "homepage": "https://github.com/husseinkh90/iraqdata",
   "contributors": [

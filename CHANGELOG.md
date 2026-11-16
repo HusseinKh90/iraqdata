@@ -5,7 +5,7 @@ All notable changes to `iraqdata` are documented here. The format follows
 [Semantic Versioning](https://semver.org/). Data releases are dated separately
 (e.g. `data-2026-10`) and record the code version that built them.
 
-## [Unreleased]
+## [1.1.0] - 2026-11-16
 
 ### Data
 
@@ -35,6 +35,10 @@ Data release `data-2026-11` (82 series in 13 tables, 25,386 observations) adds t
   2018-2023 come from monthly data the maintainer obtained from the CBI
   (`pipeline/seeds/cbi_govt_claims_monthly_seed.csv`; its 2015-2017 rows predate the CBI's
   revision to the IMF methodology and are not used), checked against the bulletin's year-ends.
+
+### Documentation
+
+- An Arabic README, `README.ar.md`, with the same content as the English one.
 
 ## [1.0.0] - 2026-10-28
 

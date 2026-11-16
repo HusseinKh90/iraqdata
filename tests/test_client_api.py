@@ -217,7 +217,7 @@ def test_get_table_returns_full_stored_table(garden_tables, table):
 
 
 def test_version_is_1_0_0():
-    assert iraqdata.__version__ == "1.0.0"
+    assert iraqdata.__version__ == "1.1.0"
 
 
 # =====================================================================
