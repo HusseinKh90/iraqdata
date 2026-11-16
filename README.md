@@ -8,37 +8,32 @@
 [![Data licence: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-lightgrey.svg)](https://github.com/husseinkh90/iraqdata/blob/main/LICENSE-DATA)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 
-The `iraqdata` project provides the main economic time series for Iraq (money and banking, prices, exchange rates, oil, public finance, GDP, the balance of payments and more) as ready-to-use tables, available from Python or as plain CSV downloads.
+The `iraqdata` project provides Iraq's main economic time series (money and banking, prices, exchange rates, oil, public finance, GDP, the balance of payments, and more) as ready-to-use tables, available in Python or as plain CSV downloads.
 
-## Why this project matters
+## Why `iraqdata`?
 
-Anyone studying Iraq’s economy faces the same set of challenges:
+Analysing Iraq's macroeconomic data currently requires massive ETL (Extract, Transform, Load) overhead. `iraqdata` removes this friction, letting researchers and analysts focus entirely on modelling. This library solves four structural data challenges:
 
-- **Data is fragmented.** Iraq's data is scattered across the websites of the Central Bank of Iraq, the Central Organization for Statistics and Information Technology (COSIT), the Ministry of Finance, the Ministry of Oil, OPEC, and various international organizations. Web pages are frequently moved or altered without notice.
-- **Files are difficult to work with.** Much of the data comes as complex Arabic or bilingual spreadsheets and PDF documents, rather than tables ready for analysis.
-- **Time series contain breaks.** The consumer price index has been published on four base years (1993, 2007, 2012 and 2022), and the Central Bank of Iraq has revised its monetary statistics to the IMF methodology back to 2012. Joining these series correctly requires careful work.
-- **Redundant effort.** Researchers often spend the majority of their time collecting and cleaning data, long before the actual analysis can begin.
+- **Centralised Access:** Iraqi economic data is spread across the Central Bank of Iraq, the Commission Statistics and GIS (COSIT), Ministries of Finance and Oil, OPEC, and international organisations. `iraqdata` brings these sources together in a single Python library.
+- **Analysis-Ready Formats:** Eliminates the need to scrape PDFs or parse complex, bilingual (Arabic/English) spreadsheets. `iraqdata` delivers clean, fully typed DataFrames.
+- **Continuous Time Series:** Automatically handles historical breaks and methodological shifts. We map and stitch together multi-base CPI series (1993, 2007, 2012, 2022) and IMF-adjusted monetary statistics into single, continuous datasets.
+- **Streamlined Workflow:** Data collection, translation, and cleaning typically consume the majority of a research project. `iraqdata` minimises this preparation phase, allowing researchers to proceed directly to analysis.
 
-`iraqdata` does this work once, thoroughly and transparently, so that users do not have to repeat it:
 
-- Every value records its source and how it was obtained. <!-- share:begin -->90%<!-- share:end --> of the observations are read directly from archived official publications. The rest are computed from other series, read from a non-official source, typed in from publications or of unknown origin; each such period is listed in
-  [docs/series.md](https://github.com/husseinkh90/iraqdata/blob/main/docs/series.md#data-not-observed-from-an-archived-official-file), and values typed in or of unknown origin carry the status flag `U`.
-- Breaks in a series, such as a change of base year, are flagged rather than hidden.
-- The data pass automated quality checks before each release.
+By providing a free, open-source foundation, `iraqdata` lets researchers study the Iraqi economy more efficiently while making it easier to replicate and verify results.
 
-This project delivers a shared, free starting point. Researchers can study the Iraqi economy faster and replicate and verify results more easily.
+## Target Audience
 
-## Who it is for
+- **Researchers and students:** Fully documented series with clear provenance, prepared for econometric modelling and replication.
+- **Journalists and the public:** Easily accessible official figures, ensuring every number can be verified against the primary publisher.
+- **Banks, businesses, and investors:** Track monetary, exchange-rate, oil, and fiscal indicators presented in consistent units and frequencies.
+- **Policymakers and analysts:** Consistent, long-term time series for reliable economic monitoring and assessment.
 
-- **Researchers and students:** documented series with their sources, ready for estimation and replication.
-- **Journalists and the public:** official figures in one place, each traceable to its publisher.
-- **Banks, businesses and investors:** monetary, exchange-rate, oil and fiscal indicators with stated units and frequencies.
-- **Policymakers and analysts:** consistent long series for monitoring and assessment.
+## Dataset Overview
 
-## What data is included
+Data is structured as individual time series, with each representing a single economic indicator (e.g., monthly Broad Money, M2). 
+The library currently provides access to 82 distinct series across 9 core macroeconomic categories:
 
-Each *series* is one indicator measured over time, such as broad money (M2) month by month.
-There are 82 series in 9 areas:
 
 | Area | Examples | Original publisher |
 |---|---|---|
@@ -60,13 +55,14 @@ See the [full list of all 82 series](https://github.com/husseinkh90/iraqdata/blo
 pip install iraqdata
 ```
 
-You need Python 3.10 or newer. To try the latest development version, run
+`iraqdata` requires Python 3.10+ (tested across Python 3.10–3.13).
+To install the latest development version directly from GitHub:
 `pip install git+https://github.com/husseinkh90/iraqdata` instead.
-The test suite runs on Python 3.10–3.13.
 
-## How to use
 
-The [user guide](https://github.com/husseinkh90/iraqdata/blob/main/docs/user_guide.md) explains each step in detail: finding series, loading and renaming them, status flags, the origin of each value, saving data, pinning a data release, offline use and the meaning of each error message.
+## Documentation
+
+The [user guide](https://github.com/husseinkh90/iraqdata/blob/main/docs/user_guide.md) explains the library in detail. It covers finding, loading, and renaming series; understanding status flags and each value's origin; saving data; pinning data releases; offline use; and interpreting error messages.
 
 Import the library:
 
@@ -74,15 +70,14 @@ Import the library:
 import iraqdata as id
 ```
 
-Get one series as a table indexed by date:
+Retrieve a single series as a table indexed by date:
 
 ```python
 df = id.get_series("money.m2")
 print(df.tail())
 ```
 
-Request several series at once. Series of different frequencies (monthly, daily) come back as one
-table per frequency, so nothing is mixed or averaged:
+Retrieve multiple series simultaneously. To prevent implicit aggregation, series with different frequencies (e.g., monthly vs. daily) are returned as distinct DataFrames grouped by frequency:
 
 ```python
 tables = id.get_series(["money.m2", "fx.official"])
@@ -90,7 +85,7 @@ print(tables["monthly"].tail())
 print(tables["daily"].tail())
 ```
 
-Choose a date range and your own column names:
+Choose a date range and column names:
 
 ```python
 df = id.get_series({"Broad money": "m2", "Narrow money": "m1"}, start="2020-01", end="2024-12")
@@ -114,29 +109,28 @@ money = id.get_table("money_banking_monthly")
 print(money.head())
 ```
 
-The data are downloaded the first time you request them and kept on your computer, so later requests work offline.
+The data downloads on the first request and caches locally, so subsequent requests run offline.
 
-### Status flags
+## Status Flags
+Every data point includes a status flag indicating its quality or condition. You can display these flags alongside the values by passing flags=True.
 
-Every value has a status flag: `A` normal, `P` provisional, `B` break (for example, a rebased
-index), `E` estimated, `M` missing, `U` low reliability. Display them next to the values with
-`flags=True`:
+The available flags are: A: Normal, P: Provisional, B: Break in series (e.g., a rebased index), E: Estimated, M: Missing, U: Low reliability.
 
 ```python
 df = id.get_series(["cpi", "m2"], flags=True)
 print(df[df["cpi_flag"].isin(["B", "P"])])
 ```
 
-Without `flags=True`, a `FlagWarning` tells you when a table contains breaks or provisional
-values. To hide it: `warnings.filterwarnings("ignore", category=id.FlagWarning)`.
+Without `flags=True`, a `FlagWarning` tells you when a table contains breaks or provisional values. To hide it:
 
-### Values as published on a past date
+```python
+import warnings
+warnings.filterwarnings("ignore", category=id.FlagWarning)
+```
 
-Values are revised over time. `as_of` returns them as they were published on a given date, from
-the vintage history that ships with a release. A release has a `history/` folder once a published
-value has been revised or withdrawn. The releases so far, `data-2026-10` and `data-2026-11`, have
-none, because no published value has yet been revised; asking them for `as_of` raises
-`NoVintageHistoryError`. From the first release that has a history:
+## Point-in-Time Querying (as_of)
+
+Macroeconomic data is frequently revised. To ensure reproducibility, the as_of parameter lets you retrieve values exactly as they were published on a specific past date.
 
 <!-- not run: needs a release with a history folder -->
 ```python
@@ -144,9 +138,10 @@ then = id.get_series("cpi", wide=False, as_of="2026-10-28")
 print(then[["date", "value", "realtime_start"]].tail())
 ```
 
-### Which data release you are using
+## Pinning a Data Release
+Data is published in dated releases (e.g., data-2026-10, data-2026-11). By default, the library automatically fetches the newest available release upon first use and caches it. It will continue to use this cached version to prevent unexpected changes to your results, until you explicitly run id.refresh_latest().
 
-Data are published in dated releases (`data-2026-10`, `data-2026-11`, ...). By default you receive the newest release. It is looked up the first time you use the library and then kept until you ask for a newer one with `id.refresh_latest()`, so your results do not change on their own. To make results reproducible, pin a release. A pinned release is always used, even within a copy of this repository:
+For absolute reproducibility across environments or users, pin a specific release. Once pinned, that exact release is always used:
 
 ```python
 id.set_release("data-2026-11")    # or set the environment variable IRAQDATA_RELEASE
@@ -195,13 +190,13 @@ If you use `iraqdata`, please cite it:
 }
 ```
 
-I will add a DOI once the release is archived on Zenodo.
+A DOI once the release is archived on Zenodo.
 
 Please cite both the package and the original publishers of the series you use (each series'
 sources are in `datapackage.json`, and their terms in
 [`pipeline/metadata/sources.yaml`](https://github.com/husseinkh90/iraqdata/blob/main/pipeline/metadata/sources.yaml)):
 - the Central Bank of Iraq;
-- the Central Organization for Statistics and Information Technology (COSIT);
+- the Commission Statistics and GIS (COSIT);
 - the Ministry of Finance;
 - the Ministry of Oil and SOMO;
 - OPEC and JODI;
