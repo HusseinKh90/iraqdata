@@ -112,7 +112,7 @@ def test_integrity_job_runs_on_three_operating_systems(integrity_job):
 
 
 # =====================================================================
-# The weekly update check reports and never commits
+# The monthly update check reports and never commits
 # =====================================================================
 
 UPDATE_WORKFLOW = REPO_ROOT / ".github" / "workflows" / "update_check.yml"
@@ -129,11 +129,11 @@ def update_job(update_workflow) -> dict:
     return next(iter(update_workflow["jobs"].values()))
 
 
-def test_update_check_is_weekly_and_manual(update_workflow):
+def test_update_check_is_monthly_and_manual(update_workflow):
     triggers = update_workflow.get("on", update_workflow.get(True))
     (entry,) = triggers["schedule"]
     minute, hour, dom, month, dow = entry["cron"].split()
-    assert (hour, dom, month, dow) == ("6", "*", "*", "1") and minute not in ("0", "30")  # Mondays, off the hour
+    assert (hour, dom, month, dow) == ("6", "20", "*", "*") and minute not in ("0", "30")  # the 20th, off the hour
     assert "workflow_dispatch" in triggers
 
 
@@ -260,7 +260,7 @@ def test_update_check_never_commits(update_job):
 
 
 def test_update_check_installs_pinned_dependencies(update_job):
-    """The weekly check uses the same pins as CI."""
+    """The monthly check uses the same pins as CI."""
     runs = [step.get("run", "") for step in update_job["steps"]]
     assert any("pip install -c requirements/ci-constraints.txt" in run for run in runs)
 

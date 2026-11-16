@@ -61,7 +61,7 @@ from iraqdata.storage import (
     set_release,
 )
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 __all__ = [
     # Primary user API

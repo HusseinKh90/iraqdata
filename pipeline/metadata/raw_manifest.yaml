@@ -208,6 +208,28 @@ files:
   consumers:
   - parser: cbi_fiscal_bulletin
     use: parsed
+  - parser: cbi_fx_auction
+    use: parsed
+  - parser: cbi_credit
+    use: parsed
+  - parser: cbi_govt_claims
+    use: parsed
+  status: parsed
+- path: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  size: 1306884
+  sha256: e6dc42ea48143161d0a8fa3d872ccb24730fcecd1b718f6eeeea3dd0efe688a6
+  origin: CBI Monthly Statistical Bulletin, https://cbi.iq/page/122
+  acquired: '2026-11-12'
+  source_ref: cbi_bulletin
+  consumers:
+  - parser: cbi_fiscal_bulletin
+    use: parsed
+  - parser: cbi_fx_auction
+    use: parsed
+  - parser: cbi_credit
+    use: parsed
+  - parser: cbi_govt_claims
+    use: parsed
   status: parsed
 - path: pipeline/raw/cbi/fx/cbi_fx_usd_2026-10-25.xlsx
   size: 249525
@@ -817,6 +839,16 @@ files:
   - parser: oil_monthly
     use: parsed
   status: parsed
+- path: pipeline/seeds/cbi_credit_monthly_seed.xlsx
+  size: 12985
+  sha256: 352fc0c09a5f80e6795b0429826c6c2f19ff92b713cd30b1f6b54cd921c096f9
+  origin: Obtained by the maintainer directly from the CBI (maintainer statement, 2026-11-15)
+  acquired: '2026-11-15'
+  source_ref: maintainer_credit_seed
+  consumers:
+  - parser: cbi_credit
+    use: parsed
+  status: parsed
 - path: pipeline/seeds/cbi_exchange_rate_historical.xlsx
   size: 333102
   sha256: a1b9d842eab9843234ad7f77eb0c95951e07b43ed0dc45cf40a24f0ffeb4b2f0
@@ -827,6 +859,26 @@ files:
   source_ref: cbi_fx
   consumers:
   - parser: cbi_exchange_rates
+    use: parsed
+  status: parsed
+- path: pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx
+  size: 12194
+  sha256: 30625e7cc8396319c3438f43356019052312cef1b2703a21238bb11215157e70
+  origin: Obtained by the maintainer directly from the CBI (maintainer statement, 2026-11-15)
+  acquired: '2026-11-15'
+  source_ref: maintainer_fx_auction_seed
+  consumers:
+  - parser: cbi_fx_auction
+    use: parsed
+  status: parsed
+- path: pipeline/seeds/cbi_govt_claims_monthly_seed.csv
+  size: 15019
+  sha256: eebd9fe3a66cad8b8a98130237de558277305a74f832fde994257f756011b657
+  origin: Obtained by the maintainer directly from the CBI (maintainer statement, 2026-11-16)
+  acquired: '2026-11-16'
+  source_ref: maintainer_govt_claims_seed
+  consumers:
+  - parser: cbi_govt_claims
     use: parsed
   status: parsed
 - path: pipeline/seeds/iraq_fiscal_historical.csv

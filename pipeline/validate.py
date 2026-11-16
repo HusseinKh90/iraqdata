@@ -99,8 +99,8 @@ NEW_POINT_PATH = repo_root / "pipeline" / "metadata" / "new_point_check.yaml"
 SANITY_CHECKS_PATH = repo_root / "pipeline" / "metadata" / "sanity_checks.yaml"
 # Auto sources are api (add-only releases are routine) or spreadsheet (always reviewed)
 SOURCE_KINDS = ("api", "spreadsheet")
-DEFAULT_FAILURE_THRESHOLD = 2
-DEFAULT_PENDING_THRESHOLD = 4   # runs a downloaded release may wait to be applied before it is an anomaly
+DEFAULT_FAILURE_THRESHOLD = 1   # the check runs monthly: a failed fetch is reported at once
+DEFAULT_PENDING_THRESHOLD = 2   # runs, counting the one that found it: a release not applied by the next monthly run is an anomaly
 DEFAULT_LARGE_REVISION_PCT = 5.0  # a revision of at least this many percent is marked in the issue title
 GARDEN_DIR = repo_root / "pipeline" / "data" / "garden"
 
@@ -127,7 +127,7 @@ RULE_BASES = ("statistical", "reviewed")
 
 
 def today_utc() -> pd.Timestamp:
-    """Today's date in UTC, at midnight. CI and the weekly check run in UTC; a local date would differ near midnight."""
+    """Today's date in UTC, at midnight. CI and the monthly update check run in UTC; a local date would differ near midnight."""
     return pd.Timestamp.now(tz="UTC").tz_localize(None).normalize()
 
 
@@ -777,6 +777,29 @@ REAL_GDP_SIDS = [
     ("cosit.gdp_real", "cosit.gdp_real_oil", "cosit.gdp_real_nonoil"),
 ]
 
+# (total, cash, non-cash); the CBI bulletin rounds each of its five columns to a whole million USD
+FX_SALES_SIDS = ("fx.auction_total", "fx.auction_cash", "fx.auction_transfers")
+FX_SALES_TOLERANCE = 2.5
+# Commercial bank credit (million IQD): (total, parts...)
+PRIVATE_CREDIT_SIDS = ("credit.private_total", "credit.private_state_banks", "credit.private_private_banks")
+TOTAL_CREDIT_SIDS = ("credit.total", "credit.private_total", "credit.central_gov", "credit.public_institutions")
+CREDIT_TOLERANCE = 1.0
+# Banking-system claims on government (million IQD): (total, parts...); the net series as claims = net + deposits
+GOVT_CLAIMS_GROUPS = [
+    ("CBI claims on government", ("govt.cbi_claims_total", "govt.cbi_tbills", "govt.cbi_loans")),
+    ("CBI net claims on government", ("govt.cbi_claims_total", "govt.cbi_net_claims", "govt.cbi_deposits")),
+    ("Bank net claims on government", ("govt.bank_claims", "govt.bank_net_claims", "govt.bank_deposits")),
+    ("Banking system debt holdings", ("govt.system_debt_holdings", "govt.cbi_tbills", "govt.bank_claims")),
+    ("Banking system government deposits", ("govt.system_deposits", "govt.cbi_deposits", "govt.bank_deposits")),
+    ("Banking system net claims on government", ("govt.system_net_claims", "govt.cbi_net_claims", "govt.bank_net_claims")),
+]
+# Sum identities checked in validate_tier2: (label, (total, parts...), tolerance)
+SUM_IDENTITIES = [
+    ("FX Sales Discrepancy: Cash + Transfers != Total", FX_SALES_SIDS, FX_SALES_TOLERANCE),
+    ("Credit Discrepancy: State + Private Banks != Private Sector Credit", PRIVATE_CREDIT_SIDS, CREDIT_TOLERANCE),
+    ("Credit Discrepancy: Private + Central Govt. + Public Institutions != Total Credit", TOTAL_CREDIT_SIDS, CREDIT_TOLERANCE),
+] + [(f"Government Claims Discrepancy: {name}", sids, CREDIT_TOLERANCE) for name, sids in GOVT_CLAIMS_GROUPS]
+
 # Rule name -> component series groups, used by identity_coverage()
 IDENTITY_RULES: List[Tuple[str, List[Tuple[str, ...]]]] = [
     ("Fiscal balance", FISCAL_BALANCE_SIDS),
@@ -793,7 +816,10 @@ IDENTITY_RULES: List[Tuple[str, List[Tuple[str, ...]]]] = [
     ("BOP current account", [("bop.current_account", "bop.trade_balance", "bop.services_net", "bop.income_net", "bop.transfers_net")]),
     ("Currency <= M0", [("money.currency_outside_banks", "money.m0"), ("cbi.money.currency_outside_banks", "cbi.money.m0")]),
     ("Currency <= M1", [("money.currency_outside_banks", "money.m1"), ("cbi.money.currency_outside_banks", "cbi.money.m1")]),
-]
+    ("CBI foreign currency sales", [FX_SALES_SIDS]),
+    ("Private credit by bank type", [PRIVATE_CREDIT_SIDS]),
+    ("Total credit by sector", [TOTAL_CREDIT_SIDS]),
+] + [(name, [sids]) for name, sids in GOVT_CLAIMS_GROUPS]
 
 
 def _identity_tolerance(headline: pd.Series) -> pd.Series:
@@ -1229,6 +1255,15 @@ def validate_tier2_details(df: pd.DataFrame, dataset_name: str = "dataset") -> T
                     errors.append(
                         f"[{dataset_name}] BIS Sector Liability Discrepancy: Banks + Non-Bank > Total Liabilities for quarters: {bad_discrep.index.tolist()}"
                     )
+
+    # 5b. Sum identities: CBI foreign currency sales, commercial bank credit
+    for label, (total, *parts), tolerance in SUM_IDENTITIES:
+        if {total, *parts}.issubset(set(df["series_id"].values)):
+            piv = df.pivot_table(index="date", columns="series_id", values="value")
+            diff = (piv[parts].sum(axis=1, min_count=len(parts)) - piv[total]).abs().dropna()
+            bad = diff[diff > tolerance]
+            if not bad.empty:
+                errors.append(f"[{dataset_name}] {label} for months: {bad.index.tolist()}")
 
     # 6. OECD DAC: no identity (net ODA minus grants mixes two concepts, so it is not published)
 

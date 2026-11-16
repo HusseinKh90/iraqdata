@@ -1,7 +1,7 @@
 """
 pipeline.update_issues
 ======================
-Turns the weekly update check's findings into GitHub issues, and reads earlier runs' failure
+Turns the monthly update check's findings into GitHub issues, and reads earlier runs' failure
 counts.
 
     python pipeline/update_issues.py --streaks-out FILE --run-id ID
@@ -42,8 +42,8 @@ from typing import Callable, Dict, List, Optional, Sequence
 LABEL = "data-update-check"
 FAILURE_LABEL = "update-check-failure"
 LABELS = {
-    LABEL: ("0e8a16", "Opened and closed by the weekly update check"),
-    FAILURE_LABEL: ("b60205", "The weekly update check itself failed"),
+    LABEL: ("0e8a16", "Opened and closed by the monthly update check"),
+    FAILURE_LABEL: ("b60205", "The monthly update check itself failed"),
 }
 WORKFLOW_FILE = "update_check.yml"
 ARTIFACT_NAME = "update-check-report"
@@ -94,7 +94,7 @@ def failure_streaks(previous_reports: List[dict]) -> Dict[str, int]:
 
 
 def pending_streaks(previous_reports: List[dict]) -> Dict[str, int]:
-    """Consecutive earlier runs in which a downloaded release was waiting to be applied (it was found again each week)."""
+    """Consecutive earlier runs in which a downloaded release was waiting to be applied (it was found again in each run)."""
     return outcome_streaks(previous_reports, ("new_release", "parse_failed"))
 
 
@@ -148,7 +148,7 @@ def issue_body(finding: dict, run: dict) -> str:
     if expires:
         lines.append(f"The downloaded files are in that run's artifact until {expires[-1]}; archive the exact "
                      "bytes (check each SHA-256) before then, as in the maintainer's update steps.")
-    lines += ["", "_Opened, updated and closed by the weekly update check (pipeline/update_issues.py)._"]
+    lines += ["", "_Opened, updated and closed by the monthly update check (pipeline/update_issues.py)._"]
     return "\n".join(lines)
 
 

@@ -134,6 +134,39 @@ sources:
     each value is unknown (flag U)
   attribution: iraqdata historical fiscal seed (compiled by the maintainer)
   checked: '2026-10-25'
+- id: maintainer_credit_seed
+  publisher: Central Bank of Iraq (CBI), data supplied to the maintainer
+  title: Monthly commercial bank cash credit by sector, 2015-2026
+  url: pipeline/seeds/cbi_credit_monthly_seed.xlsx
+  terms: Redistribution confirmed by the maintainer on 2026-11-15
+  licence: null
+  status: confirmed_by_maintainer
+  redistribution: Obtained by the maintainer directly from the CBI (statement, 2026-11-15); every
+    year-end matches the CBI Monthly Statistical Bulletin, sheets 8-a to 8-c
+  attribution: Central Bank of Iraq
+  checked: '2026-11-15'
+- id: maintainer_govt_claims_seed
+  publisher: Central Bank of Iraq (CBI), data supplied to the maintainer
+  title: Monthly banking-system claims on and deposits of the government, 2015-2026
+  url: pipeline/seeds/cbi_govt_claims_monthly_seed.csv
+  terms: Redistribution confirmed by the maintainer on 2026-11-16
+  licence: null
+  status: confirmed_by_maintainer
+  redistribution: Obtained by the maintainer directly from the CBI (statement, 2026-11-16); every
+    year-end from 2018 matches the CBI Monthly Statistical Bulletin, sheets 4 and 5
+  attribution: Central Bank of Iraq
+  checked: '2026-11-16'
+- id: maintainer_fx_auction_seed
+  publisher: Central Bank of Iraq (CBI), data supplied to the maintainer
+  title: Monthly CBI foreign currency sales, 2020-2026
+  url: pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx
+  terms: Redistribution confirmed by the maintainer on 2026-11-15
+  licence: null
+  status: confirmed_by_maintainer
+  redistribution: Obtained by the maintainer directly from the CBI (statement, 2026-11-15); every year
+    adds up to the annual total in the CBI Monthly Statistical Bulletin, sheet 3-a
+  attribution: Central Bank of Iraq
+  checked: '2026-11-15'
 - id: opec_momr
   publisher: Organization of the Petroleum Exporting Countries (OPEC)
   title: Monthly Oil Market Report (figures typed into transcription records)

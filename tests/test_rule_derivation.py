@@ -44,7 +44,7 @@ def test_measure_is_scaled_exactly_for_series_with_values_not_above_zero(garden_
     statistical = {sid for sid, r in RULES.items() if r["basis"] == "statistical"}
     scaled = {sid for sid in statistical if RULES[sid]["jump"]["measure"] == "scaled"}
     assert scaled == non_positive & statistical
-    assert len(scaled) == 10
+    assert len(scaled) == 14  # fx.auction_cash has months with no cash sales; the net claims on government can be negative
 
 
 def test_statistical_threshold_is_k_times_typical():

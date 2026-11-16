@@ -107,12 +107,12 @@ def test_wall_clock_does_not_reach_the_output(export, monkeypatch):
 @pytest.mark.parametrize("table", PRODUCTION_TABLES)
 def test_reexport_reproduces_published_csv(two_exports, table):
     """
-    Where the garden table is still the one data-2026-10 was built from, re-exporting it
+    Where the garden table is still the one the newest release was built from, re-exporting it
     gives the published CSV bytes. Tables production has since updated
     are not byte copies of the release and are skipped.
     """
     if (GARDEN_DIR / f"{table}.parquet").read_bytes() != (RELEASE_DIR / f"{table}.parquet").read_bytes():
-        pytest.skip("garden table has changed since data-2026-10")
+        pytest.skip("garden table has changed since the newest release")
     assert (two_exports[0] / f"{table}.csv").read_bytes() == (RELEASE_DIR / f"{table}.csv").read_bytes()
 
 

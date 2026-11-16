@@ -126,7 +126,7 @@ def test_production_observation_count_matches_release(garden_tables):
     total = sum(len(df) for df in garden_tables.values())
     descriptor = json.loads((RELEASE_DIR / "datapackage.json").read_text(encoding="utf-8"))
     declared = sum(r["rows"] for r in descriptor["resources"] if r["path"].endswith(".parquet"))
-    assert total == 23139
+    assert total == 25386
     assert total == declared
 
 

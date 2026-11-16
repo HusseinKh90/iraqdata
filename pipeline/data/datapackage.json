@@ -3,8 +3,8 @@
   "name": "iraqdata",
   "title": "Iraq Macroeconomic Data Package",
   "description": "Open, documented, and reproducible macroeconomic data package for Iraq. Covers monetary aggregates, official and parallel exchange rates, crude oil production and prices, consumer price inflation, public finances, balance of payments, merchandise trade, quarterly national accounts (GDP), and external cross-border banking. Compiled and derived data are licensed CC-BY-4.0; source data remain subject to each publisher's terms, listed under `sources`.",
-  "version": "1.0.0",
-  "release": "data-2026-10",
+  "version": "1.1.0",
+  "release": "data-2026-11",
   "homepage": "https://github.com/husseinkh90/iraqdata",
   "contributors": [
     {
@@ -143,6 +143,39 @@
       "checked": "2026-10-25"
     },
     {
+      "id": "maintainer_credit_seed",
+      "title": "Central Bank of Iraq (CBI), data supplied to the maintainer, Monthly commercial bank cash credit by sector, 2015-2026",
+      "path": "pipeline/seeds/cbi_credit_monthly_seed.xlsx",
+      "terms": "Redistribution confirmed by the maintainer on 2026-11-15",
+      "licence": null,
+      "status": "confirmed_by_maintainer",
+      "redistribution": "Obtained by the maintainer directly from the CBI (statement, 2026-11-15); every year-end matches the CBI Monthly Statistical Bulletin, sheets 8-a to 8-c",
+      "attribution": "Central Bank of Iraq",
+      "checked": "2026-11-15"
+    },
+    {
+      "id": "maintainer_govt_claims_seed",
+      "title": "Central Bank of Iraq (CBI), data supplied to the maintainer, Monthly banking-system claims on and deposits of the government, 2015-2026",
+      "path": "pipeline/seeds/cbi_govt_claims_monthly_seed.csv",
+      "terms": "Redistribution confirmed by the maintainer on 2026-11-16",
+      "licence": null,
+      "status": "confirmed_by_maintainer",
+      "redistribution": "Obtained by the maintainer directly from the CBI (statement, 2026-11-16); every year-end from 2018 matches the CBI Monthly Statistical Bulletin, sheets 4 and 5",
+      "attribution": "Central Bank of Iraq",
+      "checked": "2026-11-16"
+    },
+    {
+      "id": "maintainer_fx_auction_seed",
+      "title": "Central Bank of Iraq (CBI), data supplied to the maintainer, Monthly CBI foreign currency sales, 2020-2026",
+      "path": "pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx",
+      "terms": "Redistribution confirmed by the maintainer on 2026-11-15",
+      "licence": null,
+      "status": "confirmed_by_maintainer",
+      "redistribution": "Obtained by the maintainer directly from the CBI (statement, 2026-11-15); every year adds up to the annual total in the CBI Monthly Statistical Bulletin, sheet 3-a",
+      "attribution": "Central Bank of Iraq",
+      "checked": "2026-11-15"
+    },
+    {
       "id": "opec_momr",
       "title": "Organization of the Petroleum Exporting Countries (OPEC), Monthly Oil Market Report (figures typed into transcription records)",
       "path": "https://www.opec.org",
@@ -178,7 +211,7 @@
     "gdp"
   ],
   "seriesCatalog": {
-    "totalSeries": 62,
+    "totalSeries": 82,
     "series": [
       {
         "series_id": "money.currency_outside_banks",
@@ -451,6 +484,605 @@
         ]
       },
       {
+        "series_id": "credit.private_total",
+        "name_en": "Commercial Bank Credit to the Private Sector",
+        "name_ar": "الائتمان النقدي المباشر للقطاع الخاص - إجمالي المصارف التجارية",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2015-01",
+        "description": "Direct cash credit of all commercial banks to the private sector at the end of the month (overdrafts, discounted bills, loans and advances, and past-due debts). Equals the sum of state-owned and private banks' credit to the private sector.",
+        "origin": [
+          {
+            "from": "2015-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; checked against the year-end rows of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_credit.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_credit_monthly_seed.xlsx)",
+            "source_ref": "maintainer_credit_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 8-a (Private Sector)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_credit_seed"
+        ]
+      },
+      {
+        "series_id": "credit.private_state_banks",
+        "name_en": "Private Sector Credit by State-Owned Banks",
+        "name_ar": "الائتمان النقدي المباشر للقطاع الخاص - المصارف الحكومية",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2015-01",
+        "description": "Direct cash credit of state-owned commercial banks to the private sector at the end of the month (overdrafts, discounted bills, loans and advances, and past-due debts).",
+        "origin": [
+          {
+            "from": "2015-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; checked against the year-end rows of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_credit.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_credit_monthly_seed.xlsx)",
+            "source_ref": "maintainer_credit_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 8-b (Private Sector)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_credit_seed"
+        ]
+      },
+      {
+        "series_id": "credit.private_private_banks",
+        "name_en": "Private Sector Credit by Private Banks",
+        "name_ar": "الائتمان النقدي المباشر للقطاع الخاص - المصارف الأهلية",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2015-01",
+        "description": "Direct cash credit of private commercial banks to the private sector at the end of the month (overdrafts, discounted bills, loans and advances, and past-due debts).",
+        "origin": [
+          {
+            "from": "2015-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; checked against the year-end rows of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_credit.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_credit_monthly_seed.xlsx)",
+            "source_ref": "maintainer_credit_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 8-c (Private Sector)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_credit_seed"
+        ]
+      },
+      {
+        "series_id": "credit.central_gov",
+        "name_en": "Commercial Bank Credit to the Central Government",
+        "name_ar": "الائتمان النقدي المباشر للحكومة المركزية - المصارف التجارية",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2015-01",
+        "description": "Direct cash credit of all commercial banks to the central government at the end of the month (overdrafts, discounted bills, loans and advances, and past-due debts).",
+        "origin": [
+          {
+            "from": "2015-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; December 2022 differs from the bulletin's year-end row by 14,986, moved between central government and public institutions (the total is the same); checked against the year-end rows of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_credit.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_credit_monthly_seed.xlsx)",
+            "source_ref": "maintainer_credit_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 8-a (Central Govt.)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_credit_seed"
+        ]
+      },
+      {
+        "series_id": "credit.public_institutions",
+        "name_en": "Commercial Bank Credit to Public Institutions",
+        "name_ar": "الائتمان النقدي المباشر للمؤسسات العامة - المصارف التجارية",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2015-01",
+        "description": "Direct cash credit of all commercial banks to public institutions and state-owned enterprises at the end of the month (overdrafts, discounted bills, loans and advances, and past-due debts).",
+        "origin": [
+          {
+            "from": "2015-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; December 2022 differs from the bulletin's year-end row by 14,986, moved between central government and public institutions (the total is the same); checked against the year-end rows of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_credit.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_credit_monthly_seed.xlsx)",
+            "source_ref": "maintainer_credit_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 8-a (Public Institutions)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_credit_seed"
+        ]
+      },
+      {
+        "series_id": "credit.total",
+        "name_en": "Total Commercial Bank Cash Credit",
+        "name_ar": "إجمالي الائتمان النقدي المباشر للمصارف التجارية",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2015-01",
+        "description": "Total direct cash credit of the commercial banking system at the end of the month, made up of credit to the private sector, the central government and public institutions.",
+        "origin": [
+          {
+            "from": "2015-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; checked against the year-end rows of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_credit.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_credit_monthly_seed.xlsx)",
+            "source_ref": "maintainer_credit_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 8-a (Total of Cash Credit Commercial Banks)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_credit_seed"
+        ]
+      },
+      {
+        "series_id": "govt.cbi_tbills",
+        "name_en": "CBI Holdings of Government Treasury Bills and Securities",
+        "name_ar": "حيازات البنك المركزي من السندات والحوالات الحكومية",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2018-01",
+        "description": "Government treasury bills, discounted bonds and other government securities held by the Central Bank of Iraq, at the end of the month.",
+        "origin": [
+          {
+            "from": "2018-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; each December matches the year-end row of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_govt_claims.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_govt_claims_monthly_seed.csv)",
+            "source_ref": "maintainer_govt_claims_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 4, column 4 (Govt. T. Bills & Securities)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_govt_claims_seed"
+        ]
+      },
+      {
+        "series_id": "govt.cbi_loans",
+        "name_en": "CBI Loans and Advances to Government",
+        "name_ar": "القروض والسلف للدوائر الحكومية من البنك المركزي",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2018-01",
+        "description": "Direct loans, advances and overdrafts of the Central Bank of Iraq to government departments (the Ministry of Finance), at the end of the month.",
+        "origin": [
+          {
+            "from": "2018-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; each December matches the year-end row of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_govt_claims.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_govt_claims_monthly_seed.csv)",
+            "source_ref": "maintainer_govt_claims_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 4, column 5 (Loans & Advances to Govt.)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_govt_claims_seed"
+        ]
+      },
+      {
+        "series_id": "govt.cbi_claims_total",
+        "name_en": "CBI Gross Claims on Government",
+        "name_ar": "إجمالي الديون الحكومية لدى البنك المركزي",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2018-01",
+        "description": "Gross claims of the Central Bank of Iraq on the government at the end of the month, the sum of its government securities and its loans and advances to government.",
+        "origin": [
+          {
+            "from": "2018-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; each December matches the year-end row of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_govt_claims.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_govt_claims_monthly_seed.csv)",
+            "source_ref": "maintainer_govt_claims_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 4, column 3 (Claims on Government, Total)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_govt_claims_seed"
+        ]
+      },
+      {
+        "series_id": "govt.cbi_deposits",
+        "name_en": "Government Deposits at the CBI",
+        "name_ar": "الودائع الحكومية لدى البنك المركزي",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2018-01",
+        "description": "Deposits of the government held at the Central Bank of Iraq, at the end of the month.",
+        "origin": [
+          {
+            "from": "2018-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; each December matches the year-end row of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_govt_claims.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_govt_claims_monthly_seed.csv)",
+            "source_ref": "maintainer_govt_claims_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 4, column 12 (Govt. Deposits)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_govt_claims_seed"
+        ]
+      },
+      {
+        "series_id": "govt.cbi_net_claims",
+        "name_en": "CBI Net Claims on Government",
+        "name_ar": "صافي الديون الحكومية لدى البنك المركزي",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2018-01",
+        "description": "Net claims of the Central Bank of Iraq on the government, that is its gross claims minus government deposits at the CBI. Positive means the CBI is a net lender to the government.",
+        "origin": [
+          {
+            "from": "2018-01",
+            "to": "open",
+            "class": "derived",
+            "official": true,
+            "method": "Computed as govt.cbi_claims_total - govt.cbi_deposits",
+            "source": "Central Bank of Iraq (CBI)",
+            "inputs": [
+              "govt.cbi_claims_total",
+              "govt.cbi_deposits"
+            ]
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_govt_claims_seed"
+        ]
+      },
+      {
+        "series_id": "govt.bank_claims",
+        "name_en": "Commercial Bank Claims on the Central Government",
+        "name_ar": "ديون المصارف التجارية على الحكومة المركزية",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2018-01",
+        "description": "Claims of commercial banks on the central government at the end of the month, made up of government securities they hold and their direct credit to the government (the cash credit alone is credit.central_gov).",
+        "origin": [
+          {
+            "from": "2018-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; December 2023 is 692 below the bulletin's year-end row (0.002%); each December matches the year-end row of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_govt_claims.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_govt_claims_monthly_seed.csv)",
+            "source_ref": "maintainer_govt_claims_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 5, column 5 (Claims on Central Govt.)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_govt_claims_seed"
+        ]
+      },
+      {
+        "series_id": "govt.bank_deposits",
+        "name_en": "Government Deposits at Commercial Banks",
+        "name_ar": "الودائع الحكومية لدى المصارف التجارية",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2018-01",
+        "description": "Deposits of the government held at commercial banks, at the end of the month.",
+        "origin": [
+          {
+            "from": "2018-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; each December matches the year-end row of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_govt_claims.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_govt_claims_monthly_seed.csv)",
+            "source_ref": "maintainer_govt_claims_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 5, column 13 (Govt. Deposits)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_govt_claims_seed"
+        ]
+      },
+      {
+        "series_id": "govt.bank_net_claims",
+        "name_en": "Commercial Bank Net Claims on the Central Government",
+        "name_ar": "صافي ديون المصارف التجارية على الحكومة المركزية",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2018-01",
+        "description": "Net claims of commercial banks on the central government, that is their claims minus government deposits at commercial banks.",
+        "origin": [
+          {
+            "from": "2018-01",
+            "to": "open",
+            "class": "derived",
+            "official": true,
+            "method": "Computed as govt.bank_claims - govt.bank_deposits",
+            "source": "Central Bank of Iraq (CBI)",
+            "inputs": [
+              "govt.bank_claims",
+              "govt.bank_deposits"
+            ]
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_govt_claims_seed"
+        ]
+      },
+      {
+        "series_id": "govt.system_debt_holdings",
+        "name_en": "Government Securities and Bank Claims Held by the Banking System",
+        "name_ar": "الديون الحكومية لدى الجهاز المصرفي",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2018-01",
+        "description": "Government debt held across the banking system, that is the CBI's government securities plus commercial banks' claims on the central government. The CBI's loans and advances are not included.",
+        "origin": [
+          {
+            "from": "2018-01",
+            "to": "open",
+            "class": "derived",
+            "official": true,
+            "method": "Computed as govt.cbi_tbills + govt.bank_claims",
+            "source": "Central Bank of Iraq (CBI)",
+            "inputs": [
+              "govt.cbi_tbills",
+              "govt.bank_claims"
+            ]
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_govt_claims_seed"
+        ]
+      },
+      {
+        "series_id": "govt.system_deposits",
+        "name_en": "Government Deposits in the Banking System",
+        "name_ar": "ودائع الحكومة لدى الجهاز المصرفي",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2018-01",
+        "description": "Government deposits held across the banking system, that is at the CBI plus at commercial banks.",
+        "origin": [
+          {
+            "from": "2018-01",
+            "to": "open",
+            "class": "derived",
+            "official": true,
+            "method": "Computed as govt.cbi_deposits + govt.bank_deposits",
+            "source": "Central Bank of Iraq (CBI)",
+            "inputs": [
+              "govt.cbi_deposits",
+              "govt.bank_deposits"
+            ]
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_govt_claims_seed"
+        ]
+      },
+      {
+        "series_id": "govt.system_net_claims",
+        "name_en": "Banking System Net Claims on Government",
+        "name_ar": "صافي الديون الحكومية للجهاز المصرفي",
+        "category": "money_banking",
+        "frequency": "monthly",
+        "unit": "MILLION_IQD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2018-01",
+        "description": "Net claims on government of the banking system as a whole, that is the CBI's net claims plus commercial banks' net claims. The same as Table 6 (Claims on Govt., Net) of the bulletin for 2018-2025; from 2026 that column no longer nets the CBI's government deposits.",
+        "origin": [
+          {
+            "from": "2018-01",
+            "to": "open",
+            "class": "derived",
+            "official": true,
+            "method": "Computed as govt.cbi_net_claims + govt.bank_net_claims",
+            "source": "Central Bank of Iraq (CBI)",
+            "inputs": [
+              "govt.cbi_net_claims",
+              "govt.bank_net_claims"
+            ]
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_govt_claims_seed"
+        ]
+      },
+      {
         "series_id": "parallel_rate_iraq",
         "name_en": "Parallel Market Exchange Rate (Baghdad)",
         "name_ar": "سعر صرف السوق الموازي للدينار العراقي (بغداد)",
@@ -512,6 +1144,117 @@
         "status": "active",
         "sources": [
           "cbi_fx"
+        ]
+      },
+      {
+        "series_id": "fx.auction_cash",
+        "name_en": "CBI Foreign Currency Sales, Cash",
+        "name_ar": "مبيعات البنك المركزي للعملة الأجنبية - النقد",
+        "category": "exchange_rates",
+        "frequency": "monthly",
+        "unit": "MILLION_USD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2020-01",
+        "description": "US dollars sold for cash by the Central Bank of Iraq through its foreign currency sale window (the dollar auction), per month.",
+        "origin": [
+          {
+            "from": "2020-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; each year adds up to the annual total in sheet 3-a of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_fx_auction.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx)",
+            "source_ref": "maintainer_fx_auction_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 3-a (column B, Cash)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_fx_auction_seed"
+        ]
+      },
+      {
+        "series_id": "fx.auction_transfers",
+        "name_en": "CBI Foreign Currency Sales, Transfers and Other Non-Cash",
+        "name_ar": "مبيعات البنك المركزي للعملة الأجنبية - الحوالات وغير النقدية",
+        "category": "exchange_rates",
+        "frequency": "monthly",
+        "unit": "MILLION_USD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2020-01",
+        "description": "Non-cash foreign currency sales by the Central Bank of Iraq per month, made up of transfers, letters of credit, international settlements and the replenishing of banks' accounts abroad outside the sale window (from 2023). Equals total sales minus cash sales.",
+        "origin": [
+          {
+            "from": "2020-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; each year adds up to the annual total in sheet 3-a of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_fx_auction.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx)",
+            "source_ref": "maintainer_fx_auction_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 3-a (columns C-F, Transfer, Letters of credit, International settlement, Replenishing bank accounts)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_fx_auction_seed"
+        ]
+      },
+      {
+        "series_id": "fx.auction_total",
+        "name_en": "CBI Foreign Currency Sales, Total",
+        "name_ar": "مبيعات البنك المركزي للعملة الأجنبية - الإجمالي",
+        "category": "exchange_rates",
+        "frequency": "monthly",
+        "unit": "MILLION_USD",
+        "source": "Central Bank of Iraq (CBI)",
+        "startDate": "2020-01",
+        "description": "Total foreign currency sold by the Central Bank of Iraq per month, cash plus non-cash sales.",
+        "origin": [
+          {
+            "from": "2020-01",
+            "to": "2023-12",
+            "class": "observed",
+            "official": true,
+            "method": "Monthly figures obtained by the maintainer directly from the CBI; each year adds up to the annual total in sheet 3-a of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_fx_auction.py)",
+            "source": "Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx)",
+            "source_ref": "maintainer_fx_auction_seed"
+          },
+          {
+            "from": "2024-01",
+            "to": "open",
+            "class": "observed",
+            "official": true,
+            "method": "Read from the CBI Monthly Statistical Bulletin, sheet 3-a (column G, CBI Sales of FC)",
+            "source": "Central Bank of Iraq, Monthly Statistical Bulletin",
+            "source_ref": "cbi_bulletin"
+          }
+        ],
+        "official": true,
+        "status": "active",
+        "sources": [
+          "cbi_bulletin",
+          "maintainer_fx_auction_seed"
         ]
       },
       {
@@ -2481,6 +3224,140 @@
       }
     },
     {
+      "name": "credit_monthly-parquet",
+      "path": "credit_monthly.parquet",
+      "profile": "tabular-data-resource",
+      "format": "parquet",
+      "mediatype": "application/vnd.apache.parquet",
+      "bytes": 11873,
+      "hash": "sha256:3d90ddfbaf771f501ff3c2fa461cf81344960794029a7bb18a4e52b2785719fb",
+      "rows": 846,
+      "frequency": "monthly",
+      "temporal": {
+        "start": "2015-01",
+        "end": "2026-09"
+      },
+      "seriesCount": 6,
+      "series": [
+        "credit.central_gov",
+        "credit.private_private_banks",
+        "credit.private_state_banks",
+        "credit.private_total",
+        "credit.public_institutions",
+        "credit.total"
+      ],
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "string",
+            "description": "ISO period representation (YYYY-MM-DD daily, YYYY-MM monthly, YYYY-Qn quarterly, YYYY annual)"
+          },
+          {
+            "name": "series_id",
+            "type": "string",
+            "description": "Canonical indicator code in dataset.series format (e.g. money.m2, fiscal.balance)"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Pure numeric float value without formatting, commas, or placeholders"
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "Native unit and scale as published (e.g. BILLION_IQD, MILLION_USD, INDEX)"
+          },
+          {
+            "name": "status_flag",
+            "type": "string",
+            "description": "SDMX observation status: A = normal, P = provisional, B = break, E = estimated, M = missing, U = low reliability (includes hand-transcribed values whose source document is not archived)"
+          },
+          {
+            "name": "realtime_start",
+            "type": "string",
+            "description": "ISO publication/release snapshot date tracking vintage provenance"
+          },
+          {
+            "name": "source_hash",
+            "type": "string",
+            "description": "SHA-256 fingerprint of the raw source file for 100% provenance verification"
+          }
+        ],
+        "primaryKey": [
+          "date",
+          "series_id"
+        ]
+      }
+    },
+    {
+      "name": "credit_monthly-csv",
+      "path": "credit_monthly.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "bytes": 71485,
+      "hash": "sha256:b50e49edb54e7b588c9084915d4fe0d32c9d7170e20848d0792b4cfe23268e69",
+      "rows": 846,
+      "frequency": "monthly",
+      "temporal": {
+        "start": "2015-01",
+        "end": "2026-09"
+      },
+      "seriesCount": 6,
+      "series": [
+        "credit.central_gov",
+        "credit.private_private_banks",
+        "credit.private_state_banks",
+        "credit.private_total",
+        "credit.public_institutions",
+        "credit.total"
+      ],
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "string",
+            "description": "ISO period representation (YYYY-MM-DD daily, YYYY-MM monthly, YYYY-Qn quarterly, YYYY annual)"
+          },
+          {
+            "name": "series_id",
+            "type": "string",
+            "description": "Canonical indicator code in dataset.series format (e.g. money.m2, fiscal.balance)"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Pure numeric float value without formatting, commas, or placeholders"
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "Native unit and scale as published (e.g. BILLION_IQD, MILLION_USD, INDEX)"
+          },
+          {
+            "name": "status_flag",
+            "type": "string",
+            "description": "SDMX observation status: A = normal, P = provisional, B = break, E = estimated, M = missing, U = low reliability (includes hand-transcribed values whose source document is not archived)"
+          },
+          {
+            "name": "realtime_start",
+            "type": "string",
+            "description": "ISO publication/release snapshot date tracking vintage provenance"
+          },
+          {
+            "name": "source_hash",
+            "type": "string",
+            "description": "SHA-256 fingerprint of the raw source file for 100% provenance verification"
+          }
+        ],
+        "primaryKey": [
+          "date",
+          "series_id"
+        ]
+      }
+    },
+    {
       "name": "exchange_rates_daily-parquet",
       "path": "exchange_rates_daily.parquet",
       "profile": "tabular-data-resource",
@@ -2743,6 +3620,134 @@
       }
     },
     {
+      "name": "fx_auction_monthly-parquet",
+      "path": "fx_auction_monthly.parquet",
+      "profile": "tabular-data-resource",
+      "format": "parquet",
+      "mediatype": "application/vnd.apache.parquet",
+      "bytes": 6930,
+      "hash": "sha256:958db5864a23b2f2535cd19d0f951bd5f429eb9ec1fe6f408aa62db43ce50033",
+      "rows": 246,
+      "frequency": "monthly",
+      "temporal": {
+        "start": "2020-01",
+        "end": "2026-10"
+      },
+      "seriesCount": 3,
+      "series": [
+        "fx.auction_cash",
+        "fx.auction_total",
+        "fx.auction_transfers"
+      ],
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "string",
+            "description": "ISO period representation (YYYY-MM-DD daily, YYYY-MM monthly, YYYY-Qn quarterly, YYYY annual)"
+          },
+          {
+            "name": "series_id",
+            "type": "string",
+            "description": "Canonical indicator code in dataset.series format (e.g. money.m2, fiscal.balance)"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Pure numeric float value without formatting, commas, or placeholders"
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "Native unit and scale as published (e.g. BILLION_IQD, MILLION_USD, INDEX)"
+          },
+          {
+            "name": "status_flag",
+            "type": "string",
+            "description": "SDMX observation status: A = normal, P = provisional, B = break, E = estimated, M = missing, U = low reliability (includes hand-transcribed values whose source document is not archived)"
+          },
+          {
+            "name": "realtime_start",
+            "type": "string",
+            "description": "ISO publication/release snapshot date tracking vintage provenance"
+          },
+          {
+            "name": "source_hash",
+            "type": "string",
+            "description": "SHA-256 fingerprint of the raw source file for 100% provenance verification"
+          }
+        ],
+        "primaryKey": [
+          "date",
+          "series_id"
+        ]
+      }
+    },
+    {
+      "name": "fx_auction_monthly-csv",
+      "path": "fx_auction_monthly.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "bytes": 19422,
+      "hash": "sha256:c849089ffa267bf5dc9f4a60102c0fcdc5e43bcd687f4faab93237b890260758",
+      "rows": 246,
+      "frequency": "monthly",
+      "temporal": {
+        "start": "2020-01",
+        "end": "2026-10"
+      },
+      "seriesCount": 3,
+      "series": [
+        "fx.auction_cash",
+        "fx.auction_total",
+        "fx.auction_transfers"
+      ],
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "string",
+            "description": "ISO period representation (YYYY-MM-DD daily, YYYY-MM monthly, YYYY-Qn quarterly, YYYY annual)"
+          },
+          {
+            "name": "series_id",
+            "type": "string",
+            "description": "Canonical indicator code in dataset.series format (e.g. money.m2, fiscal.balance)"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Pure numeric float value without formatting, commas, or placeholders"
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "Native unit and scale as published (e.g. BILLION_IQD, MILLION_USD, INDEX)"
+          },
+          {
+            "name": "status_flag",
+            "type": "string",
+            "description": "SDMX observation status: A = normal, P = provisional, B = break, E = estimated, M = missing, U = low reliability (includes hand-transcribed values whose source document is not archived)"
+          },
+          {
+            "name": "realtime_start",
+            "type": "string",
+            "description": "ISO publication/release snapshot date tracking vintage provenance"
+          },
+          {
+            "name": "source_hash",
+            "type": "string",
+            "description": "SHA-256 fingerprint of the raw source file for 100% provenance verification"
+          }
+        ],
+        "primaryKey": [
+          "date",
+          "series_id"
+        ]
+      }
+    },
+    {
       "name": "gdp_quarterly-parquet",
       "path": "gdp_quarterly.parquet",
       "profile": "tabular-data-resource",
@@ -2831,6 +3836,150 @@
         "gdp.real",
         "gdp.real_nonoil",
         "gdp.real_oil"
+      ],
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "string",
+            "description": "ISO period representation (YYYY-MM-DD daily, YYYY-MM monthly, YYYY-Qn quarterly, YYYY annual)"
+          },
+          {
+            "name": "series_id",
+            "type": "string",
+            "description": "Canonical indicator code in dataset.series format (e.g. money.m2, fiscal.balance)"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Pure numeric float value without formatting, commas, or placeholders"
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "Native unit and scale as published (e.g. BILLION_IQD, MILLION_USD, INDEX)"
+          },
+          {
+            "name": "status_flag",
+            "type": "string",
+            "description": "SDMX observation status: A = normal, P = provisional, B = break, E = estimated, M = missing, U = low reliability (includes hand-transcribed values whose source document is not archived)"
+          },
+          {
+            "name": "realtime_start",
+            "type": "string",
+            "description": "ISO publication/release snapshot date tracking vintage provenance"
+          },
+          {
+            "name": "source_hash",
+            "type": "string",
+            "description": "SHA-256 fingerprint of the raw source file for 100% provenance verification"
+          }
+        ],
+        "primaryKey": [
+          "date",
+          "series_id"
+        ]
+      }
+    },
+    {
+      "name": "govt_claims_monthly-parquet",
+      "path": "govt_claims_monthly.parquet",
+      "profile": "tabular-data-resource",
+      "format": "parquet",
+      "mediatype": "application/vnd.apache.parquet",
+      "bytes": 13025,
+      "hash": "sha256:66c3e9bb69ea3ea0bc8f2b2d5d2559115bf7fa498fbbb633ec03fd22d3632a8b",
+      "rows": 1155,
+      "frequency": "monthly",
+      "temporal": {
+        "start": "2018-01",
+        "end": "2026-09"
+      },
+      "seriesCount": 11,
+      "series": [
+        "govt.bank_claims",
+        "govt.bank_deposits",
+        "govt.bank_net_claims",
+        "govt.cbi_claims_total",
+        "govt.cbi_deposits",
+        "govt.cbi_loans",
+        "govt.cbi_net_claims",
+        "govt.cbi_tbills",
+        "govt.system_debt_holdings",
+        "govt.system_deposits",
+        "govt.system_net_claims"
+      ],
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "string",
+            "description": "ISO period representation (YYYY-MM-DD daily, YYYY-MM monthly, YYYY-Qn quarterly, YYYY annual)"
+          },
+          {
+            "name": "series_id",
+            "type": "string",
+            "description": "Canonical indicator code in dataset.series format (e.g. money.m2, fiscal.balance)"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Pure numeric float value without formatting, commas, or placeholders"
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "Native unit and scale as published (e.g. BILLION_IQD, MILLION_USD, INDEX)"
+          },
+          {
+            "name": "status_flag",
+            "type": "string",
+            "description": "SDMX observation status: A = normal, P = provisional, B = break, E = estimated, M = missing, U = low reliability (includes hand-transcribed values whose source document is not archived)"
+          },
+          {
+            "name": "realtime_start",
+            "type": "string",
+            "description": "ISO publication/release snapshot date tracking vintage provenance"
+          },
+          {
+            "name": "source_hash",
+            "type": "string",
+            "description": "SHA-256 fingerprint of the raw source file for 100% provenance verification"
+          }
+        ],
+        "primaryKey": [
+          "date",
+          "series_id"
+        ]
+      }
+    },
+    {
+      "name": "govt_claims_monthly-csv",
+      "path": "govt_claims_monthly.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "bytes": 94354,
+      "hash": "sha256:3f7c8ded6623b38b88eae40e8b5afa9cd83b08d88c6820efd413c0d95aa9819d",
+      "rows": 1155,
+      "frequency": "monthly",
+      "temporal": {
+        "start": "2018-01",
+        "end": "2026-09"
+      },
+      "seriesCount": 11,
+      "series": [
+        "govt.bank_claims",
+        "govt.bank_deposits",
+        "govt.bank_net_claims",
+        "govt.cbi_claims_total",
+        "govt.cbi_deposits",
+        "govt.cbi_loans",
+        "govt.cbi_net_claims",
+        "govt.cbi_tbills",
+        "govt.system_debt_holdings",
+        "govt.system_deposits",
+        "govt.system_net_claims"
       ],
       "schema": {
         "fields": [

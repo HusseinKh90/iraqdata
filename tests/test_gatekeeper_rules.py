@@ -29,7 +29,7 @@ def test_every_series_has_a_rule(garden_tables, seed_tables):
     for df in seed_tables.values():
         all_series.update(df["series_id"].unique())
 
-    assert len(all_series) == 62
+    assert len(all_series) == 82
     missing = all_series - set(series_rules.keys())
     assert not missing, f"Missing rules for series: {sorted(missing)}"
 
@@ -39,7 +39,7 @@ def test_rules_are_well_formed():
     rules = validate.load_rules()
     series_rules = rules.get("series", {})
 
-    assert len(series_rules) == 62
+    assert len(series_rules) == 82
 
     for sid, entry in series_rules.items():
         assert "unit" in entry and entry["unit"], f"{sid} missing unit"
@@ -113,6 +113,12 @@ def test_out_of_envelope_value_reported(name, garden_tables, tmp_path):
         top_sid = "oecd.dac.oda_total_net"
     elif name == "money_banking_monthly":
         top_sid = "money.m2"
+    elif name == "fx_auction_monthly":
+        top_sid = "fx.auction_total"
+    elif name == "credit_monthly":
+        top_sid = "credit.total"
+    elif name == "govt_claims_monthly":
+        top_sid = "govt.cbi_loans"
 
     rules = validate.load_rules()
     rule = rules["series"][top_sid]
@@ -135,6 +141,13 @@ def test_out_of_envelope_value_reported(name, garden_tables, tmp_path):
         faulty_df = set_value(faulty_df, mid_date, "gdp.real_oil", lambda v: v + delta)
     elif name == "oecd_dac_annual":
         faulty_df = set_value(faulty_df, mid_date, "oecd.dac.grants_excl_tc", lambda v: v + delta)
+    elif name == "fx_auction_monthly":
+        faulty_df = set_value(faulty_df, mid_date, "fx.auction_transfers", lambda v: v + delta)
+    elif name == "credit_monthly":
+        faulty_df = set_value(faulty_df, mid_date, "credit.central_gov", lambda v: v + delta)
+    elif name == "govt_claims_monthly":  # the CBI's loans are in its gross and net claims and the system net claims
+        for sid in ("govt.cbi_claims_total", "govt.cbi_net_claims", "govt.system_net_claims"):
+            faulty_df = set_value(faulty_df, mid_date, sid, lambda v: v + delta)
 
     tmp_file = write_tmp_parquet(faulty_df, tmp_path, name)
 
@@ -203,14 +216,14 @@ def test_coverage_line_on_real_data():
     coverage_lines = [
         line.strip() for line in proc.stdout.splitlines() if line.strip().startswith("[COVERAGE]")
     ]
-    assert len(coverage_lines) == 14
+    assert len(coverage_lines) == 17
     for line in coverage_lines:
         assert "0 unchecked" in line
         assert "0 exempt" in line
 
     # Sum of checked series across production tables must equal 64
     checked_counts = [
-        int(re.search(r"series:\s*(\d+)\s*checked", l).group(1)) for l in coverage_lines[:10]
+        int(re.search(r"series:\s*(\d+)\s*checked", l).group(1)) for l in coverage_lines[:13]
     ]
-    assert sum(checked_counts) == 62  # gross ODA and the aid residual withdrawn
+    assert sum(checked_counts) == 82  # gross ODA and the aid residual withdrawn
     assert GATE_SUMMARY in proc.stdout

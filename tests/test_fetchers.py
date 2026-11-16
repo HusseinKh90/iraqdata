@@ -190,8 +190,9 @@ def archived_bytes(raw: Path, source: str, url: str) -> bytes:
         return (raw / "cbi" / "bop" / ("bop_2026.xlsx" if "bop-a" in url else "bop_2025.xlsx")).read_bytes()
     if source == "cbi_kfi":
         return (raw / "cbi" / "key_financial_indicators.xlsx").read_bytes()
-    if source == "cbi_bulletin":
-        return (raw / "cbi" / "bulletin_latest.xlsx").read_bytes()
+    if source == "cbi_bulletin":  # the newest archived bulletin, which the fetcher compares with
+        import parse_cbi_fiscal_bulletin
+        return parse_cbi_fiscal_bulletin.resolve_bulletin_input(raw / "cbi").read_bytes()
     if source == "github_fx":
         return downloads.latest_version(raw / "github" / "daily_fx.csv").read_bytes()
     if source == "cbi_fx":

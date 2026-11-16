@@ -1,7 +1,7 @@
 """
 pipeline.update_check
 =====================
-The weekly update check.
+The monthly update check (the 20th of each month, .github/workflows/update_check.yml).
 
     python pipeline/update_check.py --workdir DIR --report-dir DIR [--sources ID ...] [--today YYYY-MM-DD]
 
@@ -282,7 +282,7 @@ def build_findings(results: List[dict], changes: Dict[str, dict], gate: dict, fr
         sid = e["id"]
         if e["pending_streak"] >= e["pending_threshold"]:
             # The note is stable while the same series are late, so a waiting release is one issue
-            # that is updated quietly, not a new mention every week.
+            # that is updated quietly, not a new mention every run.
             rows = published_late.get(sid) or [{"note": f"The downloaded files are kept in each run's artifact for "
                                                          f"{ARTIFACT_DAYS} days; apply or archive them before then."}]
             findings.append(_finding("anomaly", f"pending:{sid}",
@@ -545,7 +545,7 @@ def render_markdown(report: dict) -> str:
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
-    parser = argparse.ArgumentParser(description="Weekly update check (report only; never commits).")
+    parser = argparse.ArgumentParser(description="Monthly update check (report only; never commits).")
     parser.add_argument("--workdir", type=Path, required=True, help="New or empty scratch folder.")
     parser.add_argument("--report-dir", type=Path, required=True, help="Where report.md/json and downloads go.")
     parser.add_argument("--sources", nargs="+", default=None, help="Only these source ids.")

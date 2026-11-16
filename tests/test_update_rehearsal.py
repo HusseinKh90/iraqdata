@@ -1,7 +1,7 @@
 """
 tests.test_update_rehearsal
 ===========================
-For each of the 11 parsers, a "next release"
+For each of the 14 parsers, a "next release"
 of its input is fed through the merge, offline, in a sandbox copy of the raw archive, the seeds
 and the published tables:
 

@@ -1513,3 +1513,360 @@ acknowledged:
   reviewer: HusseinKh90
   date: '2026-10-27'
   review_by: '2027-10-27'
+- series: credit.central_gov
+  check: jump
+  periods:
+  - 2018-10
+  values:
+    2018-09: 11162445.0
+    2018-10: 15349818.0
+  reason: Value as published by the Central Bank of Iraq (commercial bank credit); reviewed by the maintainer
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: credit.central_gov
+  check: jump
+  periods:
+  - 2020-07
+  values:
+    2020-06: 17210503.0
+    2020-07: 20056223.0
+  reason: Value as published by the Central Bank of Iraq (commercial bank credit); reviewed by the maintainer
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: credit.private_state_banks
+  check: jump
+  periods:
+  - 2020-02
+  values:
+    2020-01: 13290096.0
+    2020-02: 15589567.0
+  reason: Value as published by the Central Bank of Iraq (commercial bank credit); reviewed by the maintainer
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: credit.private_total
+  check: jump
+  periods:
+  - 2020-02
+  values:
+    2020-01: 21122365.0
+    2020-02: 23260035.0
+  reason: Value as published by the Central Bank of Iraq (commercial bank credit); reviewed by the maintainer
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: credit.public_institutions
+  check: jump
+  periods:
+  - 2015-03
+  values:
+    2015-02: 8025372.0
+    2015-03: 7142103.0
+  reason: Value as published by the Central Bank of Iraq (commercial bank credit); reviewed by the maintainer
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: credit.public_institutions
+  check: jump
+  periods:
+  - 2018-10
+  values:
+    2018-09: 6876027.0
+    2018-10: 2650406.0
+  reason: Value as published by the Central Bank of Iraq (commercial bank credit); reviewed by the maintainer
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: credit.public_institutions
+  check: jump
+  periods:
+  - 2021-12
+  - 2022-01
+  - 2022-04
+  values:
+    2021-11: 2716841.0
+    2021-12: 4169687.0
+    2022-01: 2628832.0
+    2022-03: 2747604.0
+    2022-04: 3182123.0
+  reason: Value as published by the Central Bank of Iraq (commercial bank credit); reviewed by the maintainer
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: credit.public_institutions
+  check: jump
+  periods:
+  - 2023-03
+  values:
+    2023-02: 3587289.0
+    2023-03: 2447324.0
+  reason: Value as published by the Central Bank of Iraq (commercial bank credit); reviewed by the maintainer
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: credit.public_institutions
+  check: jump
+  periods:
+  - 2024-10
+  values:
+    2024-09: 2317970.0
+    2024-10: 2584413.0
+  reason: Value as published by the Central Bank of Iraq (commercial bank credit); reviewed by the maintainer
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: credit.total
+  check: jump
+  periods:
+  - 2020-07
+  values:
+    2020-06: 43734641.0
+    2020-07: 46739089.0
+  reason: Value as published by the Central Bank of Iraq (commercial bank credit); reviewed by the maintainer
+    as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.bank_claims
+  check: jump
+  periods:
+  - 2018-10
+  values:
+    2018-09: 21810110.0
+    2018-10: 26251652.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.cbi_claims_total
+  check: jump
+  periods:
+  - 2020-06
+  - 2020-07
+  - 2020-08
+  - 2020-11
+  values:
+    2020-05: 16337325.0
+    2020-06: 20646575.0
+    2020-07: 25464325.0
+    2020-08: 30464325.0
+    2020-10: 30464325.0
+    2020-11: 38173741.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.cbi_claims_total
+  check: jump
+  periods:
+  - 2026-04
+  values:
+    2026-03: 48577757.0
+    2026-04: 57760628.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2027-11-16'
+- series: govt.cbi_loans
+  check: jump
+  periods:
+  - 2018-05
+  values:
+    2018-04: 2271180.0
+    2018-05: 2071180.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.cbi_loans
+  check: jump
+  periods:
+  - 2018-12
+  - 2019-01
+  values:
+    2018-11: 2071180.0
+    2018-12: 2015562.0
+    2019-01: 1960448.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.cbi_loans
+  check: jump
+  periods:
+  - 2019-06
+  values:
+    2019-05: 1960448.0
+    2019-06: 1760448.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.cbi_loans
+  check: jump
+  periods:
+  - 2020-07
+  values:
+    2020-06: 1759944.0
+    2020-07: 1559944.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.cbi_loans
+  check: jump
+  periods:
+  - 2022-07
+  values:
+    2022-06: 1567194.0
+    2022-07: 1367194.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.cbi_loans
+  check: jump
+  periods:
+  - 2022-11
+  values:
+    2022-10: 1367194.0
+    2022-11: 1567194.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.cbi_loans
+  check: jump
+  periods:
+  - 2023-10
+  values:
+    2023-09: 1574971.0
+    2023-10: 1274971.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.cbi_loans
+  check: jump
+  periods:
+  - 2024-07
+  values:
+    2024-06: 1264797.0
+    2024-07: 755797.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.cbi_loans
+  check: jump
+  periods:
+  - 2025-06
+  values:
+    2025-05: 758950.0
+    2025-06: 555519.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.cbi_loans
+  check: jump
+  periods:
+  - 2026-07
+  values:
+    2026-06: 558067.0
+    2026-07: 355669.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2027-11-16'
+- series: govt.cbi_tbills
+  check: jump
+  periods:
+  - 2020-06
+  - 2020-07
+  - 2020-08
+  - 2020-11
+  values:
+    2020-05: 14577381.0
+    2020-06: 18886631.0
+    2020-07: 23904381.0
+    2020-08: 28904381.0
+    2020-10: 28904381.0
+    2020-11: 36613797.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.system_debt_holdings
+  check: jump
+  periods:
+  - 2020-07
+  values:
+    2020-06: 42847456.0
+    2020-07: 48913594.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true
+- series: govt.system_debt_holdings
+  check: jump
+  periods:
+  - 2020-11
+  values:
+    2020-10: 53406707.0
+    2020-11: 61039503.0
+  reason: Value as published by the Central Bank of Iraq (claims on and deposits of the government); reviewed
+    by the maintainer as a genuine movement, not a data or processing error.
+  reviewer: HusseinKh90
+  date: '2026-11-16'
+  review_by: '2031-11-16'
+  settled: true

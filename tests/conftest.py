@@ -33,7 +33,7 @@ from iraqdata.schema import CANONICAL_COLUMNS  # noqa: E402
 
 GARDEN_DIR = REPO_ROOT / "pipeline" / "data" / "garden"
 SEEDS_DIR = REPO_ROOT / "pipeline" / "seeds"
-RELEASE_DIR = REPO_ROOT / "release" / "data-2026-10"
+RELEASE_DIR = REPO_ROOT / "release" / "data-2026-11"  # the newest release in this repository
 RAW_DIR = REPO_ROOT / "pipeline" / "raw"
 METADATA_DIR = REPO_ROOT / "pipeline" / "metadata"
 DATA_DIR = REPO_ROOT / "pipeline" / "data"
@@ -41,9 +41,12 @@ DATA_DIR = REPO_ROOT / "pipeline" / "data"
 PRODUCTION_TABLES = sorted([
     "bis_lbs_quarterly",
     "bop_trade_quarterly",
+    "credit_monthly",
     "exchange_rates_daily",
     "fiscal_annual",
+    "fx_auction_monthly",
     "gdp_quarterly",
+    "govt_claims_monthly",
     "money_banking_monthly",
     "oecd_dac_annual",
     "oil_daily",
@@ -54,7 +57,7 @@ FREQ_OF = {name: name.rsplit("_", 1)[1] for name in PRODUCTION_TABLES}
 VALID_FLAGS = {"A", "P", "B", "E", "M", "U"}
 
 # What `validate.py --release` prints for the committed data: every review notice is acknowledged.
-GATE_SUMMARY = "ALL CHECKS PASSED: 14 dataset(s) verified (24,496 total observations, 0 review notice(s))."
+GATE_SUMMARY = "ALL CHECKS PASSED: 17 dataset(s) verified (26,743 total observations, 0 review notice(s))."
 
 __all__ = [
     "REPO_ROOT", "GARDEN_DIR", "SEEDS_DIR", "RELEASE_DIR", "RAW_DIR", "METADATA_DIR", "DATA_DIR",
@@ -186,7 +189,7 @@ def fresh_memory_cache():
     storage._IN_MEMORY_TABLE_CACHE.clear()
 
 
-PINNED_TAG = "data-2026-10"
+PINNED_TAG = "data-2026-11"
 
 
 def _isolate_client(monkeypatch, tmp_path) -> None:
@@ -214,7 +217,7 @@ def offline(monkeypatch, tmp_path):
     Isolate the client from the network and from the user's real cache.
 
     - IRAQDATA_CACHE_DIR points at a temporary directory; IRAQDATA_LOCAL_DIR at an empty one.
-    - Release data-2026-10 is pinned (IRAQDATA_RELEASE). Its cache folder holds the release's
+    - Release data-2026-11 is pinned (IRAQDATA_RELEASE). Its cache folder holds the release's
       checksums.sha256 and iraqdata's ownership marker, but no tables.
     - requests.get and socket connections raise and are recorded in ``calls``.
     """
@@ -377,7 +380,7 @@ class FakeGitHub:
 def fake_github(monkeypatch, tmp_path):
     """
     The client isolated as in ``offline`` but unpinned, with requests.get answered by a
-    FakeGitHub that serves release data-2026-10 from release/data-2026-10/.
+    FakeGitHub that serves release data-2026-11 from release/data-2026-11/.
     """
     def _blocked_connect(self, *args, **kwargs):
         raise ConnectionError("network blocked in test")
@@ -459,7 +462,7 @@ def no_network():
 @pytest.fixture(scope="session")
 def sandbox_runs(tmp_path_factory):
     """
-    Run all 11 parsers twice, offline, into two fresh folders.
+    Run all 14 parsers twice, offline, into two fresh folders.
     Hashes of pipeline/raw, pipeline/seeds and pipeline/data are taken before and after.
     """
     import run_parsers

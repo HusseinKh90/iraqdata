@@ -566,3 +566,187 @@ values:
     date: 2025-Q4
   status: unverified-against-source
   confirmed_on: null
+- parser: cbi_fx_auction
+  source: pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx
+  locator:
+    sheet: Monthly_Auction_Million_USD
+    cell: B2
+  expected: 488.84
+  scale: 1
+  target:
+    table: fx_auction_monthly
+    series: fx.auction_cash
+    date: 2020-01
+  status: pending
+  confirmed_on: null
+- parser: cbi_fx_auction
+  source: pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx
+  locator:
+    sheet: Monthly_Auction_Million_USD
+    cell: D40
+  expected: 3685.142917
+  scale: 1
+  target:
+    table: fx_auction_monthly
+    series: fx.auction_total
+    date: 2023-03
+  status: pending
+  confirmed_on: null
+- parser: cbi_fx_auction
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: 3-a
+    cell: G32
+  expected: 7975.1295279999995
+  scale: 1
+  target:
+    table: fx_auction_monthly
+    series: fx.auction_total
+    date: 2024-01
+  status: pending
+  confirmed_on: null
+- parser: cbi_fx_auction
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: 3-a
+    cell: B69
+  expected: 131.0
+  scale: 1
+  target:
+    table: fx_auction_monthly
+    series: fx.auction_cash
+    date: 2026-10
+  status: pending
+  confirmed_on: null
+- parser: cbi_credit
+  source: pipeline/seeds/cbi_credit_monthly_seed.xlsx
+  locator:
+    sheet: Sheet1
+    cell: B2
+  expected: 17728962.0
+  scale: 1
+  target:
+    table: credit_monthly
+    series: credit.private_total
+    date: 2015-01
+  status: pending
+  confirmed_on: null
+- parser: cbi_credit
+  source: pipeline/seeds/cbi_credit_monthly_seed.xlsx
+  locator:
+    sheet: Sheet1
+    cell: G103
+  expected: 63440289.0
+  scale: 1
+  target:
+    table: credit_monthly
+    series: credit.total
+    date: 2023-06
+  status: pending
+  confirmed_on: null
+- parser: cbi_credit
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: 8-a
+    cell: F22
+  expected: 28947533.0
+  scale: 1
+  target:
+    table: credit_monthly
+    series: credit.central_gov
+    date: 2024-01
+  status: pending
+  confirmed_on: null
+- parser: cbi_credit
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: 8-a
+    cell: P56
+  expected: 46798779.0
+  scale: 1
+  target:
+    table: credit_monthly
+    series: credit.private_total
+    date: 2026-09
+  status: pending
+  confirmed_on: null
+- parser: cbi_credit
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: 8-c
+    cell: P55
+  expected: 15743827.0
+  scale: 1
+  target:
+    table: credit_monthly
+    series: credit.private_private_banks
+    date: 2026-09
+  status: pending
+  confirmed_on: null
+- parser: cbi_govt_claims
+  source: pipeline/seeds/cbi_govt_claims_monthly_seed.csv
+  locator:
+    row_match:
+      Date: '2018-01'
+    column: CBI_Gov_TBills
+  expected: 17770526.0
+  scale: 1
+  target:
+    table: govt_claims_monthly
+    series: govt.cbi_tbills
+    date: '2018-01'
+  status: pending
+  confirmed_on: null
+- parser: cbi_govt_claims
+  source: pipeline/seeds/cbi_govt_claims_monthly_seed.csv
+  locator:
+    row_match:
+      Date: '2023-06'
+    column: Bank_Gov_Deposits
+  expected: 50987602.0
+  scale: 1
+  target:
+    table: govt_claims_monthly
+    series: govt.bank_deposits
+    date: '2023-06'
+  status: pending
+  confirmed_on: null
+- parser: cbi_govt_claims
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: '4'
+    cell: E65
+  expected: 557149.0
+  scale: 1
+  target:
+    table: govt_claims_monthly
+    series: govt.cbi_loans
+    date: '2026-01'
+  status: pending
+  confirmed_on: null
+- parser: cbi_govt_claims
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: '4'
+    cell: D73
+  expected: 81243664.0
+  scale: 1
+  target:
+    table: govt_claims_monthly
+    series: govt.cbi_tbills
+    date: '2026-09'
+  status: pending
+  confirmed_on: null
+- parser: cbi_govt_claims
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: '5'
+    cell: M63
+  expected: 36779473.0
+  scale: 1
+  target:
+    table: govt_claims_monthly
+    series: govt.bank_deposits
+    date: '2026-09'
+  status: pending
+  confirmed_on: null

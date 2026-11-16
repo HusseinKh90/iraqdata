@@ -15,7 +15,7 @@ from fixtures import damage
 from source_io import ParseError
 
 SHEET = "6-1"
-BULLETIN = "bulletin_latest.xlsx"
+BULLETIN = "cbi_bulletin_2026-11-12.xlsx"  # the newest archived bulletin, the one the parser reads
 HEADER_ROW = 8  # 'Actual  Revenues', ' Current Revenues', ... in the archived bulletin
 
 

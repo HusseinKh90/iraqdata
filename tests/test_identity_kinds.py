@@ -58,7 +58,7 @@ def test_independent_identity_still_fails_on_a_break(tmp_path):
 
 
 def test_definitional_rules_on_production_data():
-    """The three rules that hold by definition add nothing to the checked count."""
+    """The rules that hold by definition add nothing to the checked count."""
     seen = {}
     for path in sorted(GARDEN_DIR.glob("*.parquet")):
         df = pd.read_parquet(path)
@@ -69,7 +69,12 @@ def test_definitional_rules_on_production_data():
             if rule in ("Nominal GDP", "Real GDP", "BIS net position"):
                 assert checked == 0, rule
     assert seen == {"Nominal GDP": "gdp.nominal_nonoil", "Real GDP": "gdp.real_nonoil",
-                    "BIS net position": "bis.lbs.net_position"}
+                    "BIS net position": "bis.lbs.net_position",
+                    "CBI net claims on government": "govt.cbi_net_claims",
+                    "Bank net claims on government": "govt.bank_net_claims",
+                    "Banking system debt holdings": "govt.system_debt_holdings",
+                    "Banking system government deposits": "govt.system_deposits",
+                    "Banking system net claims on government": "govt.system_net_claims"}
 
 
 def test_uncovered_derived_series_on_production_data():
@@ -78,7 +83,9 @@ def test_uncovered_derived_series_on_production_data():
     for path in sorted(GARDEN_DIR.glob("*.parquet")):
         found |= set(validate.uncovered_derived(pd.read_parquet(path)))
     assert sorted(found) == ["bis.lbs.net_position", "cpi_core", "cpi_headline",
-                             "gdp.nominal_nonoil", "gdp.real_nonoil"]
+                             "gdp.nominal_nonoil", "gdp.real_nonoil",
+                             "govt.bank_net_claims", "govt.cbi_net_claims", "govt.system_debt_holdings",
+                             "govt.system_deposits", "govt.system_net_claims"]
 
 
 def test_report_lines_match_the_contract(tmp_path):

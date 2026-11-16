@@ -5,6 +5,47 @@ All notable changes to `iraqdata` are documented here. The format follows
 [Semantic Versioning](https://semver.org/). Data releases are dated separately
 (e.g. `data-2026-10`) and record the code version that built them.
 
+## [1.1.0] - 2026-11-16
+
+### Data
+
+Data release `data-2026-11` (82 series in 13 tables, 25,386 observations) adds the following.
+
+- Three new monthly series of CBI foreign currency sales (the dollar auction), in million USD, from
+  2020-01, in the new table `fx_auction_monthly`: `fx.auction_cash`, `fx.auction_transfers` (every
+  non-cash sale) and `fx.auction_total`. 2020-2023 come from monthly data the maintainer obtained
+  from the CBI (`pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx`), checked against the annual
+  totals of the CBI Monthly Statistical Bulletin; from 2024-01 they are read from sheet 3-a of that
+  bulletin, which the monthly update check already downloads, so new months arrive automatically.
+- Six new monthly series of commercial bank direct cash credit by sector, in million IQD, from
+  2015-01, in the new table `credit_monthly`: `credit.private_total` (credit to the private
+  sector), split into `credit.private_state_banks` and `credit.private_private_banks`, plus
+  `credit.central_gov`, `credit.public_institutions` and the grand total `credit.total`.
+  2015-2023 come from monthly data the maintainer obtained from the CBI
+  (`pipeline/seeds/cbi_credit_monthly_seed.xlsx`), checked against the bulletin's year-end rows;
+  from 2024-01 they are read from sheets 8-a to 8-c of the bulletin. The gate checks that the
+  bank types add up to private credit and the sectors add up to the total.
+- Eleven monthly series of the banking system's claims on, and deposits of, the government, in
+  million IQD, from 2018-01, in the new table `govt_claims_monthly`. Read: the CBI's government
+  securities `govt.cbi_tbills`, loans `govt.cbi_loans`, gross claims `govt.cbi_claims_total` and
+  government deposits `govt.cbi_deposits` (bulletin sheet 4); commercial banks' claims on
+  government `govt.bank_claims` and government deposits `govt.bank_deposits` (sheet 5). Computed:
+  `govt.cbi_net_claims`, `govt.bank_net_claims`, `govt.system_debt_holdings` (CBI securities plus
+  bank claims), `govt.system_deposits` and `govt.system_net_claims` (CBI net plus bank net claims).
+  2018-2023 come from monthly data the maintainer obtained from the CBI
+  (`pipeline/seeds/cbi_govt_claims_monthly_seed.csv`; its 2015-2017 rows predate the CBI's
+  revision to the IMF methodology and are not used), checked against the bulletin's year-ends.
+
+### Changed
+
+- The update check (`.github/workflows/update_check.yml`) runs monthly, on the 20th, instead of
+  weekly. A failed download is reported at the first failed run, and a downloaded release that has
+  not been applied by the next run is raised as an anomaly.
+
+### Documentation
+
+- An Arabic README, `README.ar.md`, with the same content as the English one.
+
 ## [1.0.0] - 2026-10-28
 
 First release, with the data release `data-2026-10`.

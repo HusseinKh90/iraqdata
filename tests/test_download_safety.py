@@ -2,7 +2,7 @@
 tests.test_download_safety
 ==========================
 What the downloader refuses: anything but https, a URL with credentials, a redirect to another
-host (or, in the weekly check, to a host that is not one of the source's), too many redirects, and
+host (or, in the monthly update check, to a host that is not one of the source's), too many redirects, and
 a zip that expands far beyond the file we expect. The project's contact address is in every
 request's User-Agent. Offline: requests.get is a scripted fake.
 """
@@ -141,7 +141,7 @@ def test_page_links_are_resolved_against_the_page(href, expected):
     assert downloads.page_link("https://cbi.iq/page/145", href) == expected
 
 
-def test_a_link_to_another_host_is_refused_in_the_weekly_check(web):
+def test_a_link_to_another_host_is_refused_in_the_update_check(web):
     link = downloads.page_link("https://cbi.iq/page/145", "//attacker.example/f.xlsx")
     with downloads.restrict_hosts(fetchers.HOSTS["cbi_bop"]):
         with pytest.raises(PermissionError, match="attacker.example"):

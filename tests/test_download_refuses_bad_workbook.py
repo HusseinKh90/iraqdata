@@ -118,7 +118,7 @@ def test_bop_fetcher_saves_nothing(html_web, tmp_path):
 
 
 def test_update_check_reports_fetch_failed(html_web, tmp_path):
-    """The weekly check names the refusal as fetch_failed, not parse_failed."""
+    """The monthly update check names the refusal as fetch_failed, not parse_failed."""
     report = update_check.run_check(tmp_path / "work", tmp_path / "report", TODAY, only_sources=["cbi_kfi"])
     (entry,) = report["sources"]
     assert entry["outcome"] == "fetch_failed"
