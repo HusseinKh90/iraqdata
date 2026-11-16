@@ -683,3 +683,70 @@ values:
     date: 2026-09
   status: pending
   confirmed_on: null
+- parser: cbi_govt_claims
+  source: pipeline/seeds/cbi_govt_claims_monthly_seed.csv
+  locator:
+    row_match:
+      Date: '2018-01'
+    column: CBI_Gov_TBills
+  expected: 17770526.0
+  scale: 1
+  target:
+    table: govt_claims_monthly
+    series: govt.cbi_tbills
+    date: '2018-01'
+  status: pending
+  confirmed_on: null
+- parser: cbi_govt_claims
+  source: pipeline/seeds/cbi_govt_claims_monthly_seed.csv
+  locator:
+    row_match:
+      Date: '2023-06'
+    column: Bank_Gov_Deposits
+  expected: 50987602.0
+  scale: 1
+  target:
+    table: govt_claims_monthly
+    series: govt.bank_deposits
+    date: '2023-06'
+  status: pending
+  confirmed_on: null
+- parser: cbi_govt_claims
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: '4'
+    cell: E65
+  expected: 557149.0
+  scale: 1
+  target:
+    table: govt_claims_monthly
+    series: govt.cbi_loans
+    date: '2026-01'
+  status: pending
+  confirmed_on: null
+- parser: cbi_govt_claims
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: '4'
+    cell: D73
+  expected: 81243664.0
+  scale: 1
+  target:
+    table: govt_claims_monthly
+    series: govt.cbi_tbills
+    date: '2026-09'
+  status: pending
+  confirmed_on: null
+- parser: cbi_govt_claims
+  source: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  locator:
+    sheet: '5'
+    cell: M63
+  expected: 36779473.0
+  scale: 1
+  target:
+    table: govt_claims_monthly
+    series: govt.bank_deposits
+    date: '2026-09'
+  status: pending
+  confirmed_on: null

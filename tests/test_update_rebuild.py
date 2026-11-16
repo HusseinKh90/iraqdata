@@ -41,7 +41,7 @@ def applied(tmp_path_factory):
 def test_every_table_reports_no_change(applied):
     _, _, report = applied
     assert report["vintage"] == "2026-11-12"  # the newest dated input (the CBI bulletin of that day)
-    assert len(report["tables"]) == 12
+    assert len(report["tables"]) == 13
     for table, info in report["tables"].items():
         assert (info["changed"], info["added"], info["revised"], info["missing"]) == (False, [], [], []), table
 

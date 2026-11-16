@@ -23,6 +23,16 @@ All notable changes to `iraqdata` are documented here. The format follows
   (`pipeline/seeds/cbi_credit_monthly_seed.xlsx`), checked against the bulletin's year-end rows;
   from 2024-01 they are read from sheets 8-a to 8-c of the bulletin. The gate checks that the
   bank types add up to private credit and the sectors add up to the total.
+- Eleven monthly series of the banking system's claims on, and deposits of, the government, in
+  million IQD, from 2018-01, in the new table `govt_claims_monthly`. Read: the CBI's government
+  securities `govt.cbi_tbills`, loans `govt.cbi_loans`, gross claims `govt.cbi_claims_total` and
+  government deposits `govt.cbi_deposits` (bulletin sheet 4); commercial banks' claims on
+  government `govt.bank_claims` and government deposits `govt.bank_deposits` (sheet 5). Computed:
+  `govt.cbi_net_claims`, `govt.bank_net_claims`, `govt.system_debt_holdings` (CBI securities plus
+  bank claims), `govt.system_deposits` and `govt.system_net_claims` (CBI net plus bank net claims).
+  2018-2023 come from monthly data the maintainer obtained from the CBI
+  (`pipeline/seeds/cbi_govt_claims_monthly_seed.csv`; its 2015-2017 rows predate the CBI's
+  revision to the IMF methodology and are not used), checked against the bulletin's year-ends.
 
 ## [1.0.0] - 2026-10-28
 

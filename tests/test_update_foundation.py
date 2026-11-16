@@ -94,7 +94,7 @@ def schedule_raw():
 def test_real_schedule_loads():
     sched = validate.load_update_schedule()
     assert len(sched["sources"]) == 12
-    assert len(sched["series"]) == 71  # gross ODA withdrawn; aid grants renamed, residual withdrawn
+    assert len(sched["series"]) == 82  # gross ODA withdrawn; aid grants renamed, residual withdrawn
 
 
 def test_exchange_rate_sources_are_automatic():
@@ -114,7 +114,7 @@ def test_schedule_covers_exactly_the_production_series(garden_tables):
     for df in garden_tables.values():
         published |= set(df["series_id"].unique())
     assert set(sched["series"]) == published
-    assert len(published) == 71
+    assert len(published) == 82
 
 
 def test_every_parser_belongs_to_a_source():

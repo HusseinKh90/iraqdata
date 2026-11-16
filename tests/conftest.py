@@ -46,6 +46,7 @@ PRODUCTION_TABLES = sorted([
     "fiscal_annual",
     "fx_auction_monthly",
     "gdp_quarterly",
+    "govt_claims_monthly",
     "money_banking_monthly",
     "oecd_dac_annual",
     "oil_daily",
@@ -56,7 +57,7 @@ FREQ_OF = {name: name.rsplit("_", 1)[1] for name in PRODUCTION_TABLES}
 VALID_FLAGS = {"A", "P", "B", "E", "M", "U"}
 
 # What `validate.py --release` prints for the committed data: every review notice is acknowledged.
-GATE_SUMMARY = "ALL CHECKS PASSED: 16 dataset(s) verified (25,588 total observations, 0 review notice(s))."
+GATE_SUMMARY = "ALL CHECKS PASSED: 17 dataset(s) verified (26,743 total observations, 0 review notice(s))."
 
 __all__ = [
     "REPO_ROOT", "GARDEN_DIR", "SEEDS_DIR", "RELEASE_DIR", "RAW_DIR", "METADATA_DIR", "DATA_DIR",
@@ -461,7 +462,7 @@ def no_network():
 @pytest.fixture(scope="session")
 def sandbox_runs(tmp_path_factory):
     """
-    Run all 13 parsers twice, offline, into two fresh folders.
+    Run all 14 parsers twice, offline, into two fresh folders.
     Hashes of pipeline/raw, pipeline/seeds and pipeline/data are taken before and after.
     """
     import run_parsers

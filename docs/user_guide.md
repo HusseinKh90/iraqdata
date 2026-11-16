@@ -44,7 +44,7 @@ In the examples `id` is short for `iraqdata`. If you prefer, write `import iraqd
 
 ## 2. Find the series you need
 
-There are 71 series in twelve subject tables. Three ways to find one:
+There are 82 series in thirteen subject tables. Three ways to find one:
 
 **Search** in English or Arabic. It looks in ids, short names, names in both languages and
 descriptions, ignores capital letters and Arabic spelling variants, and returns the best matches
@@ -156,7 +156,7 @@ print(long.tail(3))
 ### A whole table
 
 Each subject table holds all its series in long form. The tables are `bis_lbs_quarterly`,
-`bop_trade_quarterly`, `credit_monthly`, `exchange_rates_daily`, `fiscal_annual`, `fx_auction_monthly`, `gdp_quarterly`,
+`bop_trade_quarterly`, `credit_monthly`, `exchange_rates_daily`, `fiscal_annual`, `fx_auction_monthly`, `gdp_quarterly`, `govt_claims_monthly`,
 `money_banking_monthly`, `oecd_dac_annual`, `oil_daily`, `oil_monthly` and `prices_monthly`:
 
 ```python

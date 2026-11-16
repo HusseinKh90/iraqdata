@@ -1,13 +1,13 @@
 # Robustness mutations.
 #
-# spreadsheet: the 8 parsers that read a workbook by sheet name, row label or cell position.
+# spreadsheet: the 9 parsers that read a workbook by sheet name, row label or cell position.
 #   input        - the one representative workbook that is mutated (manifest path)
 #   sheets       - the sheets the parser reads: a blank row is inserted above the first used
 #                  row of each (row_inserted), and each is renamed with "_x" (sheet_renamed)
 #   label        - one label cell the parser relies on, rewritten to `new_text` (label_changed)
 #   label_words  - words that, in an error message, name the sheet or label (clear_error)
 #
-# bad_input: the primary input of all 13 parsers, replaced by a missing, an empty (0 bytes)
+# bad_input: the primary input of all 14 parsers, replaced by a missing, an empty (0 bytes)
 #   and a corrupt (random bytes, same length and extension) copy.
 
 spreadsheet:
@@ -46,6 +46,11 @@ spreadsheet:
     sheets: ["8-a", "8-b", "8-c"]
     label: {sheet: "8-a", cell: P8, new_text: "Private credit"}
     label_words: ["8-a", "private sector"]
+  cbi_govt_claims:
+    input: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+    sheets: ["4", "5"]
+    label: {sheet: "4", cell: D14, new_text: "Govt. securities"}
+    label_words: ["sheet '4'", "bills"]
   cbi_money_banking:
     input: pipeline/raw/cbi/key_financial_indicators.xlsx
     sheets: ["Sheet1"]
@@ -61,6 +66,7 @@ bad_input:
   cbi_fiscal_bulletin: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
   cbi_fx_auction: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
   cbi_credit: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
+  cbi_govt_claims: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
   cbi_money_banking: pipeline/raw/cbi/key_financial_indicators.xlsx
   cosit_gdp: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv  # the record it reads
   oecd_dac: pipeline/raw/oecd/wb_oda_net.json

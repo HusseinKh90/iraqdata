@@ -78,7 +78,7 @@ def test_flags_line_format():
     proc = run_validate()
     assert proc.returncode == 0
     flag_lines = [l.strip() for l in proc.stdout.splitlines() if l.strip().startswith("[FLAGS]")]
-    assert len(flag_lines) == 16
+    assert len(flag_lines) == 17
 
     pattern = re.compile(r"^\[FLAGS\]\s+P=\d+,\s+E=\d+,\s+B=\d+,\s+M=\d+,\s+U=\d+$")
     for line in flag_lines:

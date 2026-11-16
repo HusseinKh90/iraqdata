@@ -344,11 +344,11 @@ def _month_rows(ws, first: int):
     """(row of each month label by (year, month), last month row) of a bulletin sheet laid out by year."""
     rows, year, last = {}, None, None
     for r in range(first, ws.max_row + 1):
-        s = str(ws.cell(r, 1).value or "").strip()
+        s = str(ws.cell(r, 1).value or "").strip(" .").lower()
         if s[:4].isdigit():
             year = s[:4]
-        elif s:
-            rows[(year, s.lower()[:3])] = last = r
+        elif s[:3] in _MONTH_NUM:   # labels such as 'Jan.', '.Sept' or 'Dec.24'; notes below the table are not months
+            rows[(year, s[:3])] = last = r
     return rows, last
 
 
@@ -380,6 +380,37 @@ def cbi_credit(raw_root: Path, seeds_root: Path, date: str) -> Expectation:
     period = f"{year}-{month:02d}"
     return Expectation((p.TOTAL, period), (p.CENTRAL, "2025-01", revised_value),
                        [(p.TOTAL, "2025-01")] + [(s, period) for s in p.COLUMNS])
+
+
+def cbi_govt_claims(raw_root: Path, seeds_root: Path, date: str) -> Expectation:
+    """Sheets 4 and 5: January 2025 CBI T-bills revised (+1000, the claims total too) and a new month."""
+    import parse_cbi_govt_claims as p
+
+    wb = _load(_bulletin(raw_root))
+    four = wb["4"]
+    rows, last = _month_rows(four, 16)
+    jan = rows[("2025", "jan")]
+    tbills, total = p.COLUMNS[p.CBI_TBILLS][1], p.COLUMNS[p.CBI_CLAIMS][1]
+    for c in (tbills, total):
+        four.cell(jan, c).value = float(four.cell(jan, c).value) + 1000.0
+    revised_value = float(four.cell(jan, tbills).value)
+    month = _MONTH_NUM[str(four.cell(last, 1).value).strip(" .").lower()[:3]] + 1
+    year = max(y for y, _ in rows)
+    for sheet in p.SHEETS:
+        ws = wb[sheet]
+        _, end = _month_rows(ws, 15)
+        for merged in [m for m in ws.merged_cells.ranges if m.min_row > end]:
+            ws.unmerge_cells(str(merged))   # openpyxl does not move merged cells (the note under sheet 4)
+        ws.insert_rows(end + 1)   # above that note
+        ws.cell(end + 1, 1).value = MONTH_LABELS[month - 1]
+        for c in range(2, ws.max_column + 1):
+            ws.cell(end + 1, c).value = ws.cell(end, c).value
+    _save(wb, raw_root / "cbi" / f"cbi_bulletin_{date}.xlsx")
+    period = f"{year}-{month:02d}"
+    changed = [p.CBI_CLAIMS, p.CBI_NET, p.SYSTEM_DEBT, p.SYSTEM_NET]   # the revision moves the totals built on it
+    every = [*p.COLUMNS, p.CBI_NET, p.BANK_NET, p.SYSTEM_DEBT, p.SYSTEM_DEPOSITS, p.SYSTEM_NET]
+    return Expectation((p.SYSTEM_NET, period), (p.CBI_TBILLS, "2025-01", revised_value),
+                       [(s, "2025-01") for s in changed] + [(s, period) for s in every])
 
 
 # ===================================================================== seeds (run with --vintage)
@@ -448,6 +479,7 @@ BUILDERS: Dict[str, Callable[[Path, Path, str], Expectation]] = {
     "cbi_fiscal_bulletin": cbi_fiscal_bulletin,
     "cbi_fx_auction": cbi_fx_auction,
     "cbi_credit": cbi_credit,
+    "cbi_govt_claims": cbi_govt_claims,
     "cbi_money_banking": cbi_money_banking,
     "oecd_dac": oecd_dac,
     "oil_daily": oil_daily,
@@ -474,7 +506,7 @@ def identical_copy(parser: str, raw_root: Path, seeds_root: Path, date: str) -> 
         shutil.copyfile(raw_root / "cbi" / "key_financial_indicators.xlsx",
                         raw_root / "cbi" / f"cbi_key_financial_indicators_{date}.xlsx")
         return None
-    if parser in ("cbi_fiscal_bulletin", "cbi_fx_auction", "cbi_credit"):
+    if parser in ("cbi_fiscal_bulletin", "cbi_fx_auction", "cbi_credit", "cbi_govt_claims"):
         shutil.copyfile(_bulletin(raw_root), raw_root / "cbi" / f"cbi_bulletin_{date}.xlsx")
         return None
     if parser == "cbi_exchange_rates":  # the two raw sources (the seed is unchanged)

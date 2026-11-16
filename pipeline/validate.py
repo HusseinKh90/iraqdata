@@ -784,12 +784,21 @@ FX_SALES_TOLERANCE = 2.5
 PRIVATE_CREDIT_SIDS = ("credit.private_total", "credit.private_state_banks", "credit.private_private_banks")
 TOTAL_CREDIT_SIDS = ("credit.total", "credit.private_total", "credit.central_gov", "credit.public_institutions")
 CREDIT_TOLERANCE = 1.0
+# Banking-system claims on government (million IQD): (total, parts...); the net series as claims = net + deposits
+GOVT_CLAIMS_GROUPS = [
+    ("CBI claims on government", ("govt.cbi_claims_total", "govt.cbi_tbills", "govt.cbi_loans")),
+    ("CBI net claims on government", ("govt.cbi_claims_total", "govt.cbi_net_claims", "govt.cbi_deposits")),
+    ("Bank net claims on government", ("govt.bank_claims", "govt.bank_net_claims", "govt.bank_deposits")),
+    ("Banking system debt holdings", ("govt.system_debt_holdings", "govt.cbi_tbills", "govt.bank_claims")),
+    ("Banking system government deposits", ("govt.system_deposits", "govt.cbi_deposits", "govt.bank_deposits")),
+    ("Banking system net claims on government", ("govt.system_net_claims", "govt.cbi_net_claims", "govt.bank_net_claims")),
+]
 # Sum identities checked in validate_tier2: (label, (total, parts...), tolerance)
 SUM_IDENTITIES = [
     ("FX Sales Discrepancy: Cash + Transfers != Total", FX_SALES_SIDS, FX_SALES_TOLERANCE),
     ("Credit Discrepancy: State + Private Banks != Private Sector Credit", PRIVATE_CREDIT_SIDS, CREDIT_TOLERANCE),
     ("Credit Discrepancy: Private + Central Govt. + Public Institutions != Total Credit", TOTAL_CREDIT_SIDS, CREDIT_TOLERANCE),
-]
+] + [(f"Government Claims Discrepancy: {name}", sids, CREDIT_TOLERANCE) for name, sids in GOVT_CLAIMS_GROUPS]
 
 # Rule name -> component series groups, used by identity_coverage()
 IDENTITY_RULES: List[Tuple[str, List[Tuple[str, ...]]]] = [
@@ -810,7 +819,7 @@ IDENTITY_RULES: List[Tuple[str, List[Tuple[str, ...]]]] = [
     ("CBI foreign currency sales", [FX_SALES_SIDS]),
     ("Private credit by bank type", [PRIVATE_CREDIT_SIDS]),
     ("Total credit by sector", [TOTAL_CREDIT_SIDS]),
-]
+] + [(name, [sids]) for name, sids in GOVT_CLAIMS_GROUPS]
 
 
 def _identity_tolerance(headline: pd.Series) -> pd.Series:

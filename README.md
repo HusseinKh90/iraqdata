@@ -19,7 +19,7 @@ Anyone studying Iraq’s economy faces the same set of challenges:
 
 `iraqdata` carries out this work in a thorough and transparent manner, offering it as a one-time service:
 
-- Each figure specifies its source and the methodology used for measurement. <!-- share:begin -->91%<!-- share:end --> of the observations come directly from official archival documents; the rest are calculated from these publications. The series are listed in 
+- Each figure specifies its source and the methodology used for measurement. <!-- share:begin -->90%<!-- share:end --> of the observations come directly from official archival documents; the rest are calculated from these publications. The series are listed in 
   [docs/series.md](https://github.com/husseinkh90/iraqdata/blob/main/docs/series.md#data-not-observed-from-an-archived-official-file) and flagged.
 - Breaks between series are marked rather than hidden.
 - The data are checked before each release.
@@ -36,11 +36,11 @@ This project delivers a shared, free starting point. Researchers can study the I
 ## What data is included
 
 Each *series* is one indicator measured over time, such as broad money (M2) month by month.
-There are 71 series in 9 areas:
+There are 82 series in 9 areas:
 
 | Area | Examples | Original publisher |
 |---|---|---|
-| Money and banking | broad money `money.m2`, policy rate `money.policy_rate`, official reserves `money.reserves_official`, private sector credit `credit.private_total` | Central Bank of Iraq |
+| Money and banking | broad money `money.m2`, policy rate `money.policy_rate`, official reserves `money.reserves_official`, private sector credit `credit.private_total`, net claims on government `govt.system_net_claims` | Central Bank of Iraq |
 | Exchange rates | official rate `fx.official`, Baghdad parallel-market rate `parallel_rate_iraq`, CBI dollar sales `fx.auction_total` | Central Bank of Iraq; Iraq-parallel-exchange-rate project |
 | Prices and inflation | consumer prices `cpi_headline` and `cpi_core` | COSIT, via the Central Bank of Iraq |
 | Oil | Brent price `oil_price_brent`, Basrah price `oil_price_basrah`, crude production `crude_production_direct` | Ministry of Oil and SOMO, OPEC and JODI, U.S. EIA |
@@ -50,7 +50,7 @@ There are 71 series in 9 areas:
 | Cross-border banking | claims `bis.lbs.claims_total`, liabilities `bis.lbs.liabilities_total` | Bank for International Settlements |
 | Development aid | net aid received `oecd.dac.oda_total_net` | OECD / World Bank |
 
-See the [full list of all 71 series](https://github.com/husseinkh90/iraqdata/blob/main/docs/series.md).
+See the [full list of all 82 series](https://github.com/husseinkh90/iraqdata/blob/main/docs/series.md).
 
 ## Install
 

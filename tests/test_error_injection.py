@@ -124,7 +124,7 @@ def results(garden_tables):
 
 
 def test_scale_errors_are_always_reported(results):
-    assert len({k[0] for k in results}) == 71
+    assert len({k[0] for k in results}) == 82
     misses = {k: v for k, v in results.items() if k[1] in ("x10", "x0.1") and v[0] < v[1]}
     assert not misses
 

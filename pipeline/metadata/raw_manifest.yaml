@@ -212,6 +212,8 @@ files:
     use: parsed
   - parser: cbi_credit
     use: parsed
+  - parser: cbi_govt_claims
+    use: parsed
   status: parsed
 - path: pipeline/raw/cbi/cbi_bulletin_2026-11-12.xlsx
   size: 1306884
@@ -225,6 +227,8 @@ files:
   - parser: cbi_fx_auction
     use: parsed
   - parser: cbi_credit
+    use: parsed
+  - parser: cbi_govt_claims
     use: parsed
   status: parsed
 - path: pipeline/raw/cbi/fx/cbi_fx_usd_2026-10-25.xlsx
@@ -865,6 +869,16 @@ files:
   source_ref: maintainer_fx_auction_seed
   consumers:
   - parser: cbi_fx_auction
+    use: parsed
+  status: parsed
+- path: pipeline/seeds/cbi_govt_claims_monthly_seed.csv
+  size: 15019
+  sha256: eebd9fe3a66cad8b8a98130237de558277305a74f832fde994257f756011b657
+  origin: Obtained by the maintainer directly from the CBI (maintainer statement, 2026-11-16)
+  acquired: '2026-11-16'
+  source_ref: maintainer_govt_claims_seed
+  consumers:
+  - parser: cbi_govt_claims
     use: parsed
   status: parsed
 - path: pipeline/seeds/iraq_fiscal_historical.csv

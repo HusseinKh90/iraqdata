@@ -389,6 +389,300 @@ series:
     method: Read from the CBI Monthly Statistical Bulletin, sheet 8-a (Total of Cash Credit Commercial Banks)
     source: Central Bank of Iraq, Monthly Statistical Bulletin
     source_ref: cbi_bulletin
+- series_id: govt.cbi_tbills
+  name_en: CBI Holdings of Government Treasury Bills and Securities
+  name_ar: حيازات البنك المركزي من السندات والحوالات الحكومية
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2018-01'
+  primary_source: Central Bank of Iraq (CBI), consolidated statements of the CBI and of commercial banks
+  source_file: pipeline/seeds/cbi_govt_claims_monthly_seed.csv to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 4, column 4, Govt. T. Bills & Securities) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheet 4 year-end rows (2018-2023)
+  description: Government treasury bills, discounted bonds and other government securities held by the
+    Central Bank of Iraq, at the end of the month.
+  summary: 'Government treasury bills and securities held by the CBI (end of month).'
+  origin:
+  - from: '2018-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; each December matches the
+      year-end row of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_govt_claims.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_govt_claims_monthly_seed.csv)
+    source_ref: maintainer_govt_claims_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 4, column 4 (Govt. T. Bills & Securities)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: govt.cbi_loans
+  name_en: CBI Loans and Advances to Government
+  name_ar: القروض والسلف للدوائر الحكومية من البنك المركزي
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2018-01'
+  primary_source: Central Bank of Iraq (CBI), consolidated statements of the CBI and of commercial banks
+  source_file: pipeline/seeds/cbi_govt_claims_monthly_seed.csv to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 4, column 5, Loans & Advances to Govt.) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheet 4 year-end rows (2018-2023)
+  description: Direct loans, advances and overdrafts of the Central Bank of Iraq to government departments
+    (the Ministry of Finance), at the end of the month.
+  summary: 'CBI direct loans and advances to the government (end of month).'
+  origin:
+  - from: '2018-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; each December matches the
+      year-end row of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_govt_claims.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_govt_claims_monthly_seed.csv)
+    source_ref: maintainer_govt_claims_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 4, column 5 (Loans & Advances to Govt.)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: govt.cbi_claims_total
+  name_en: CBI Gross Claims on Government
+  name_ar: إجمالي الديون الحكومية لدى البنك المركزي
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2018-01'
+  primary_source: Central Bank of Iraq (CBI), consolidated statements of the CBI and of commercial banks
+  source_file: pipeline/seeds/cbi_govt_claims_monthly_seed.csv to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 4, column 3, Claims on Government, Total) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheet 4 year-end rows (2018-2023)
+  description: Gross claims of the Central Bank of Iraq on the government at the end of the month, the sum of
+    its government securities and its loans and advances to government.
+  summary: 'CBI gross claims on government: securities plus loans and advances (end of month).'
+  origin:
+  - from: '2018-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; each December matches the
+      year-end row of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_govt_claims.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_govt_claims_monthly_seed.csv)
+    source_ref: maintainer_govt_claims_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 4, column 3 (Claims on Government, Total)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: govt.cbi_deposits
+  name_en: Government Deposits at the CBI
+  name_ar: الودائع الحكومية لدى البنك المركزي
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2018-01'
+  primary_source: Central Bank of Iraq (CBI), consolidated statements of the CBI and of commercial banks
+  source_file: pipeline/seeds/cbi_govt_claims_monthly_seed.csv to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 4, column 12, Govt. Deposits) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheet 4 year-end rows (2018-2023)
+  description: Deposits of the government held at the Central Bank of Iraq, at the end of the month.
+  summary: 'Government deposits held at the CBI (end of month).'
+  origin:
+  - from: '2018-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; each December matches the
+      year-end row of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_govt_claims.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_govt_claims_monthly_seed.csv)
+    source_ref: maintainer_govt_claims_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 4, column 12 (Govt. Deposits)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: govt.cbi_net_claims
+  name_en: CBI Net Claims on Government
+  name_ar: صافي الديون الحكومية لدى البنك المركزي
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2018-01'
+  primary_source: Central Bank of Iraq (CBI), consolidated statements of the CBI and of commercial banks
+  source_file: Computed from the series it is made of (pipeline/parsers/parse_cbi_govt_claims.py)
+  cross_check: 'Accounting identity: govt.cbi_claims_total - govt.cbi_deposits'
+  description: Net claims of the Central Bank of Iraq on the government, that is its gross claims minus government
+    deposits at the CBI. Positive means the CBI is a net lender to the government.
+  summary: 'CBI net claims on government: gross claims minus government deposits at the CBI.'
+  origin:
+  - from: '2018-01'
+    to: open
+    class: derived
+    official: true
+    method: Computed as govt.cbi_claims_total - govt.cbi_deposits
+    source: Central Bank of Iraq (CBI)
+    inputs:
+    - govt.cbi_claims_total
+    - govt.cbi_deposits
+- series_id: govt.bank_claims
+  name_en: Commercial Bank Claims on the Central Government
+  name_ar: ديون المصارف التجارية على الحكومة المركزية
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2018-01'
+  primary_source: Central Bank of Iraq (CBI), consolidated statements of the CBI and of commercial banks
+  source_file: pipeline/seeds/cbi_govt_claims_monthly_seed.csv to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 5, column 5, Claims on Central Govt.) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheet 5 year-end rows (2018-2023)
+  description: Claims of commercial banks on the central government at the end of the month, made up of
+    government securities they hold and their direct credit to the government (the cash credit
+    alone is credit.central_gov).
+  summary: 'Commercial bank claims on the central government: securities held plus direct credit (end of month).'
+  origin:
+  - from: '2018-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; December 2023 is 692 below the bulletin's year-end row (0.002%); each December matches the
+      year-end row of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_govt_claims.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_govt_claims_monthly_seed.csv)
+    source_ref: maintainer_govt_claims_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 5, column 5 (Claims on Central Govt.)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: govt.bank_deposits
+  name_en: Government Deposits at Commercial Banks
+  name_ar: الودائع الحكومية لدى المصارف التجارية
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2018-01'
+  primary_source: Central Bank of Iraq (CBI), consolidated statements of the CBI and of commercial banks
+  source_file: pipeline/seeds/cbi_govt_claims_monthly_seed.csv to 2023-12; CBI Monthly Statistical
+    Bulletin (sheet 5, column 13, Govt. Deposits) from 2024-01
+  cross_check: CBI Monthly Statistical Bulletin sheet 5 year-end rows (2018-2023)
+  description: Deposits of the government held at commercial banks, at the end of the month.
+  summary: 'Government deposits held at commercial banks (end of month).'
+  origin:
+  - from: '2018-01'
+    to: '2023-12'
+    class: observed
+    official: true
+    method: Monthly figures obtained by the maintainer directly from the CBI; each December matches the
+      year-end row of the CBI Monthly Statistical Bulletin (pipeline/parsers/parse_cbi_govt_claims.py)
+    source: Central Bank of Iraq (CBI), data supplied to the maintainer (pipeline/seeds/cbi_govt_claims_monthly_seed.csv)
+    source_ref: maintainer_govt_claims_seed
+  - from: '2024-01'
+    to: open
+    class: observed
+    official: true
+    method: Read from the CBI Monthly Statistical Bulletin, sheet 5, column 13 (Govt. Deposits)
+    source: Central Bank of Iraq, Monthly Statistical Bulletin
+    source_ref: cbi_bulletin
+- series_id: govt.bank_net_claims
+  name_en: Commercial Bank Net Claims on the Central Government
+  name_ar: صافي ديون المصارف التجارية على الحكومة المركزية
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2018-01'
+  primary_source: Central Bank of Iraq (CBI), consolidated statements of the CBI and of commercial banks
+  source_file: Computed from the series it is made of (pipeline/parsers/parse_cbi_govt_claims.py)
+  cross_check: 'Accounting identity: govt.bank_claims - govt.bank_deposits'
+  description: Net claims of commercial banks on the central government, that is their claims minus government
+    deposits at commercial banks.
+  summary: 'Commercial bank net claims on government: claims minus government deposits at banks.'
+  origin:
+  - from: '2018-01'
+    to: open
+    class: derived
+    official: true
+    method: Computed as govt.bank_claims - govt.bank_deposits
+    source: Central Bank of Iraq (CBI)
+    inputs:
+    - govt.bank_claims
+    - govt.bank_deposits
+- series_id: govt.system_debt_holdings
+  name_en: Government Securities and Bank Claims Held by the Banking System
+  name_ar: الديون الحكومية لدى الجهاز المصرفي
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2018-01'
+  primary_source: Central Bank of Iraq (CBI), consolidated statements of the CBI and of commercial banks
+  source_file: Computed from the series it is made of (pipeline/parsers/parse_cbi_govt_claims.py)
+  cross_check: 'Accounting identity: govt.cbi_tbills + govt.bank_claims'
+  description: Government debt held across the banking system, that is the CBI's government securities plus commercial
+    banks' claims on the central government. The CBI's loans and advances are not included.
+  summary: 'Government securities held by the CBI plus commercial bank claims on government (excludes CBI loans).'
+  origin:
+  - from: '2018-01'
+    to: open
+    class: derived
+    official: true
+    method: Computed as govt.cbi_tbills + govt.bank_claims
+    source: Central Bank of Iraq (CBI)
+    inputs:
+    - govt.cbi_tbills
+    - govt.bank_claims
+- series_id: govt.system_deposits
+  name_en: Government Deposits in the Banking System
+  name_ar: ودائع الحكومة لدى الجهاز المصرفي
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2018-01'
+  primary_source: Central Bank of Iraq (CBI), consolidated statements of the CBI and of commercial banks
+  source_file: Computed from the series it is made of (pipeline/parsers/parse_cbi_govt_claims.py)
+  cross_check: 'Accounting identity: govt.cbi_deposits + govt.bank_deposits'
+  description: Government deposits held across the banking system, that is at the CBI plus at commercial banks.
+  summary: 'Government deposits at the CBI plus at commercial banks (end of month).'
+  origin:
+  - from: '2018-01'
+    to: open
+    class: derived
+    official: true
+    method: Computed as govt.cbi_deposits + govt.bank_deposits
+    source: Central Bank of Iraq (CBI)
+    inputs:
+    - govt.cbi_deposits
+    - govt.bank_deposits
+- series_id: govt.system_net_claims
+  name_en: Banking System Net Claims on Government
+  name_ar: صافي الديون الحكومية للجهاز المصرفي
+  category: money_banking
+  frequency: monthly
+  unit: MILLION_IQD
+  start_date: '2018-01'
+  primary_source: Central Bank of Iraq (CBI), consolidated statements of the CBI and of commercial banks
+  source_file: Computed from the series it is made of (pipeline/parsers/parse_cbi_govt_claims.py)
+  cross_check: 'Accounting identity: govt.cbi_net_claims + govt.bank_net_claims'
+  description: Net claims on government of the banking system as a whole, that is the CBI's net claims plus commercial
+    banks' net claims. The same as Table 6 (Claims on Govt., Net) of the bulletin for 2018-2025;
+    from 2026 that column no longer nets the CBI's government deposits.
+  summary: 'Banking system net claims on government: CBI net claims plus commercial bank net claims.'
+  origin:
+  - from: '2018-01'
+    to: open
+    class: derived
+    official: true
+    method: Computed as govt.cbi_net_claims + govt.bank_net_claims
+    source: Central Bank of Iraq (CBI)
+    inputs:
+    - govt.cbi_net_claims
+    - govt.bank_net_claims
 - series_id: parallel_rate_iraq
   name_en: Parallel Market Exchange Rate (Baghdad)
   name_ar: سعر صرف السوق الموازي للدينار العراقي (بغداد)

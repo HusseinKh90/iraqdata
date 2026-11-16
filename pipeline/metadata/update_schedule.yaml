@@ -48,7 +48,7 @@ sources:
     url: https://cbi.iq/page/122
     fetch: auto
     kind: spreadsheet
-    parsers: [cbi_fiscal_bulletin, cbi_fx_auction, cbi_credit]
+    parsers: [cbi_fiscal_bulletin, cbi_fx_auction, cbi_credit, cbi_govt_claims]
     calendar: Monthly Statistical Bulletin; the December cumulative fiscal outturn appears within a year
   - id: cbi_fx
     publisher: Central Bank of Iraq (CBI)
@@ -175,6 +175,18 @@ series:
   credit.private_total: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 8-a to 8-c have the previous month within weeks of month end, reviewed: 2026-11-15}
   credit.public_institutions: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 8-a to 8-c have the previous month within weeks of month end, reviewed: 2026-11-15}
   credit.total: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 8-a to 8-c have the previous month within weeks of month end, reviewed: 2026-11-15}
+  # CBI Monthly Statistical Bulletin: banking-system claims on government (sheets 4 and 5, 2024 onwards; earlier months from the seed)
+  govt.bank_claims: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 4 and 5 have the previous month within weeks of month end, reviewed: 2026-11-16}
+  govt.bank_deposits: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 4 and 5 have the previous month within weeks of month end, reviewed: 2026-11-16}
+  govt.bank_net_claims: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 4 and 5 have the previous month within weeks of month end, reviewed: 2026-11-16}
+  govt.cbi_claims_total: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 4 and 5 have the previous month within weeks of month end, reviewed: 2026-11-16}
+  govt.cbi_deposits: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 4 and 5 have the previous month within weeks of month end, reviewed: 2026-11-16}
+  govt.cbi_loans: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 4 and 5 have the previous month within weeks of month end, reviewed: 2026-11-16}
+  govt.cbi_net_claims: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 4 and 5 have the previous month within weeks of month end, reviewed: 2026-11-16}
+  govt.cbi_tbills: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 4 and 5 have the previous month within weeks of month end, reviewed: 2026-11-16}
+  govt.system_debt_holdings: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 4 and 5 have the previous month within weeks of month end, reviewed: 2026-11-16}
+  govt.system_deposits: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 4 and 5 have the previous month within weeks of month end, reviewed: 2026-11-16}
+  govt.system_net_claims: {source: cbi_bulletin, lag_days: 90, rationale: Sheets 4 and 5 have the previous month within weeks of month end, reviewed: 2026-11-16}
   # CBI Monthly Statistical Bulletin: foreign currency sales (sheet 3-a, 2024 onwards; earlier months from the seed)
   fx.auction_cash: {source: cbi_bulletin, lag_days: 90, rationale: Sheet 3-a has the previous month within weeks of month end, reviewed: 2026-11-15}
   fx.auction_total: {source: cbi_bulletin, lag_days: 90, rationale: Sheet 3-a has the previous month within weeks of month end, reviewed: 2026-11-15}

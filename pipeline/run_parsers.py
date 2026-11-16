@@ -1,7 +1,7 @@
 """
 pipeline.run_parsers
 ====================
-Single entry point that runs all 13 parsers in a fixed, documented order.
+Single entry point that runs all 14 parsers in a fixed, documented order.
 
     python pipeline/run_parsers.py [--output-dir DIR | --apply-to DIR] [--only NAME ...]
                                    [--raw-root DIR] [--seeds-root DIR] [--history-dir DIR]
@@ -31,6 +31,7 @@ Run order
                            (the Basrah months are not modelled from Brent)
 12. cbi_fx_auction       - CBI foreign-currency sales: the seed to 2023, then bulletin sheet 3-a
 13. cbi_credit           - commercial bank credit by sector: the seed to 2023, then bulletin sheets 8-a to 8-c
+14. cbi_govt_claims      - banking-system claims on government: the seed 2018-2023, then bulletin sheets 4 and 5
 
 The four seed parquet files (bis_lbs_quarterly_seed, cosit_gdp_quarterly_seed,
 oecd_dac_annual_seed, opec_momr_historical) are derived seed snapshots: they are regenerated
@@ -239,6 +240,16 @@ def _run_cbi_credit(raw_root, seeds_root, out_dir, seeds_out_dir):
     )
 
 
+def _run_cbi_govt_claims(raw_root, seeds_root, out_dir, seeds_out_dir):
+    import parse_cbi_govt_claims
+    parse_cbi_govt_claims.parse_cbi_govt_claims(
+        seed_path=seeds_root / "cbi_govt_claims_monthly_seed.csv",
+        bulletin_path=_require(_bulletin_input(raw_root), "CBI Monthly Statistical Bulletin",
+                               raw_root / "cbi" / "bulletin_latest.xlsx"),
+        output_parquet_path=out_dir / "govt_claims_monthly.parquet",
+    )
+
+
 def _run_oil_daily(raw_root, seeds_root, out_dir, seeds_out_dir):
     import parse_oil_daily
     parse_oil_daily.parse_oil_daily(
@@ -305,6 +316,7 @@ BULLETIN_GLOBS = (
 )
 FX_AUCTION_SEED = "pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx"
 CREDIT_SEED = "pipeline/seeds/cbi_credit_monthly_seed.xlsx"
+GOVT_CLAIMS_SEED = "pipeline/seeds/cbi_govt_claims_monthly_seed.csv"
 
 
 def _seed_then_bulletin(seed: str, first_bulletin_month: str):
@@ -422,6 +434,12 @@ REGISTRY: List[ParserSpec] = [
         inputs=(CREDIT_SEED, *BULLETIN_GLOBS),
         outputs=("credit_monthly.parquet",),
         series_inputs={"*": _seed_then_bulletin(CREDIT_SEED, "2024-01")},
+    ),
+    ParserSpec(
+        name="cbi_govt_claims", module="parse_cbi_govt_claims", run=_run_cbi_govt_claims,
+        inputs=(GOVT_CLAIMS_SEED, *BULLETIN_GLOBS),
+        outputs=("govt_claims_monthly.parquet",),
+        series_inputs={"*": _seed_then_bulletin(GOVT_CLAIMS_SEED, "2024-01")},
     ),
 ]
 

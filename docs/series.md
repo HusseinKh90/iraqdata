@@ -35,6 +35,17 @@ in the `origin` and `official` columns of `iraqdata.list_series()`, and in full 
 | `credit.central_gov` | Monthly | Million IQD | 2015-01 | Commercial bank direct credit to the central government (end of month). |
 | `credit.public_institutions` | Monthly | Million IQD | 2015-01 | Commercial bank credit to public institutions and state-owned enterprises (end of month). |
 | `credit.total` | Monthly | Million IQD | 2015-01 | Total commercial bank cash credit: private sector, central government and public institutions. |
+| `govt.cbi_tbills` | Monthly | Million IQD | 2018-01 | Government treasury bills and securities held by the CBI (end of month). |
+| `govt.cbi_loans` | Monthly | Million IQD | 2018-01 | CBI direct loans and advances to the government (end of month). |
+| `govt.cbi_claims_total` | Monthly | Million IQD | 2018-01 | CBI gross claims on government: securities plus loans and advances (end of month). |
+| `govt.cbi_deposits` | Monthly | Million IQD | 2018-01 | Government deposits held at the CBI (end of month). |
+| `govt.cbi_net_claims` | Monthly | Million IQD | 2018-01 | CBI net claims on government: gross claims minus government deposits at the CBI. |
+| `govt.bank_claims` | Monthly | Million IQD | 2018-01 | Commercial bank claims on the central government: securities held plus direct credit (end of month). |
+| `govt.bank_deposits` | Monthly | Million IQD | 2018-01 | Government deposits held at commercial banks (end of month). |
+| `govt.bank_net_claims` | Monthly | Million IQD | 2018-01 | Commercial bank net claims on government: claims minus government deposits at banks. |
+| `govt.system_debt_holdings` | Monthly | Million IQD | 2018-01 | Government securities held by the CBI plus commercial bank claims on government (excludes CBI loans). |
+| `govt.system_deposits` | Monthly | Million IQD | 2018-01 | Government deposits at the CBI plus at commercial banks (end of month). |
+| `govt.system_net_claims` | Monthly | Million IQD | 2018-01 | Banking system net claims on government: CBI net claims plus commercial bank net claims. |
 
 <!-- series:money_banking:end -->
 
@@ -206,6 +217,17 @@ Generated from `src/iraqdata/series_catalog.yaml` by `pipeline/docs_origin.py`; 
 | `credit.central_gov` | observed 2015-01..2023-12; observed 2024-01..open |
 | `credit.public_institutions` | observed 2015-01..2023-12; observed 2024-01..open |
 | `credit.total` | observed 2015-01..2023-12; observed 2024-01..open |
+| `govt.cbi_tbills` | observed 2018-01..2023-12; observed 2024-01..open |
+| `govt.cbi_loans` | observed 2018-01..2023-12; observed 2024-01..open |
+| `govt.cbi_claims_total` | observed 2018-01..2023-12; observed 2024-01..open |
+| `govt.cbi_deposits` | observed 2018-01..2023-12; observed 2024-01..open |
+| `govt.cbi_net_claims` | derived 2018-01..open |
+| `govt.bank_claims` | observed 2018-01..2023-12; observed 2024-01..open |
+| `govt.bank_deposits` | observed 2018-01..2023-12; observed 2024-01..open |
+| `govt.bank_net_claims` | derived 2018-01..open |
+| `govt.system_debt_holdings` | derived 2018-01..open |
+| `govt.system_deposits` | derived 2018-01..open |
+| `govt.system_net_claims` | derived 2018-01..open |
 | `parallel_rate_iraq` | observed 2004-01-01..2022-12-31; observed (unofficial) 2023-01-01..open |
 | `fx.official` | observed 2004-01-01..open |
 | `fx.auction_cash` | observed 2020-01..2023-12; observed 2024-01..open |
@@ -268,6 +290,11 @@ These periods are derived, modelled, transcribed by hand, of unknown origin, or 
 
 | Series | Periods | Class | Method | Source |
 |--------|---------|-------|--------|--------|
+| `govt.cbi_net_claims` | 2018-01..open | derived | Computed as govt.cbi_claims_total - govt.cbi_deposits | Central Bank of Iraq (CBI) |
+| `govt.bank_net_claims` | 2018-01..open | derived | Computed as govt.bank_claims - govt.bank_deposits | Central Bank of Iraq (CBI) |
+| `govt.system_debt_holdings` | 2018-01..open | derived | Computed as govt.cbi_tbills + govt.bank_claims | Central Bank of Iraq (CBI) |
+| `govt.system_deposits` | 2018-01..open | derived | Computed as govt.cbi_deposits + govt.bank_deposits | Central Bank of Iraq (CBI) |
+| `govt.system_net_claims` | 2018-01..open | derived | Computed as govt.cbi_net_claims + govt.bank_net_claims | Central Bank of Iraq (CBI) |
 | `parallel_rate_iraq` | 2023-01-01..open | observed (unofficial) | Read from the Iraq-parallel-exchange-rate dataset (Baghdad close of dealer quotes) | HusseinKh90/Iraq-parallel-exchange-rate dealer consensus (CC-BY 4.0) |
 | `crude_production_direct` | 2024-04..open | transcribed | Typed in from OPEC Monthly Oil Market Report direct-communication figures; source document not archived | OPEC Monthly Oil Market Report (issue and table not recorded); record `pipeline/raw/transcribed/opec_momr_crude_direct_2026-10-25.csv` |
 | `oil_price_basrah` | 2004-07..open | transcribed | Ten anchor months typed in from OPEC Monthly Oil Market Reports; source documents not archived | OPEC Monthly Oil Market Report (issues not recorded); record `pipeline/raw/transcribed/opec_momr_basrah_anchors_2026-10-25.csv` |

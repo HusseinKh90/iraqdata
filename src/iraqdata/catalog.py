@@ -40,6 +40,17 @@ SERIES_TO_TABLE: dict[str, str] = {
     "credit.central_gov": "credit_monthly",
     "credit.public_institutions": "credit_monthly",
     "credit.total": "credit_monthly",
+    "govt.cbi_tbills": "govt_claims_monthly",
+    "govt.cbi_loans": "govt_claims_monthly",
+    "govt.cbi_claims_total": "govt_claims_monthly",
+    "govt.cbi_deposits": "govt_claims_monthly",
+    "govt.cbi_net_claims": "govt_claims_monthly",
+    "govt.bank_claims": "govt_claims_monthly",
+    "govt.bank_deposits": "govt_claims_monthly",
+    "govt.bank_net_claims": "govt_claims_monthly",
+    "govt.system_debt_holdings": "govt_claims_monthly",
+    "govt.system_deposits": "govt_claims_monthly",
+    "govt.system_net_claims": "govt_claims_monthly",
 
     # Family 2: Exchange Rates (Daily)
     "parallel_rate_iraq": "exchange_rates_daily",
@@ -132,6 +143,17 @@ SERIES_DIRECT_SOURCES: dict[str, str] = {
     "credit.central_gov": "Central Bank of Iraq (CBI)",
     "credit.public_institutions": "Central Bank of Iraq (CBI)",
     "credit.total": "Central Bank of Iraq (CBI)",
+    "govt.cbi_tbills": "Central Bank of Iraq (CBI)",
+    "govt.cbi_loans": "Central Bank of Iraq (CBI)",
+    "govt.cbi_claims_total": "Central Bank of Iraq (CBI)",
+    "govt.cbi_deposits": "Central Bank of Iraq (CBI)",
+    "govt.cbi_net_claims": "Central Bank of Iraq (CBI)",
+    "govt.bank_claims": "Central Bank of Iraq (CBI)",
+    "govt.bank_deposits": "Central Bank of Iraq (CBI)",
+    "govt.bank_net_claims": "Central Bank of Iraq (CBI)",
+    "govt.system_debt_holdings": "Central Bank of Iraq (CBI)",
+    "govt.system_deposits": "Central Bank of Iraq (CBI)",
+    "govt.system_net_claims": "Central Bank of Iraq (CBI)",
 
     # Family 2: Exchange Rates
     "fx.official": "Central Bank of Iraq (CBI)",
@@ -224,6 +246,7 @@ ALIASES: dict[str, str] = {
     "currency_outside_banks": "money.currency_outside_banks",
     "private_credit": "credit.private_total",
     "credit": "credit.total",
+    "net_claims_on_government": "govt.system_net_claims",
 
     # Exchange rate shortcuts
     "parallel_rate": "parallel_rate_iraq",
