@@ -373,6 +373,14 @@ files:
   source_ref: cosit_national_accounts
   consumers: []
   status: archived-not-parsed
+- path: pipeline/raw/cosit/التقديرات_الأولية_الفصلية_والإجمالية_للناتج_المحلي_الإجمالي_لسنة_2025_2026-11-16.pdf
+  size: 2114946
+  sha256: a6d00b63c7e18fa4a26b0c84b31343f90122d8b8846c54fd4e19bd8364353c03
+  origin: COSIT National Accounts, https://cosit.gov.iq/ar/national-accounts/income
+  acquired: '2026-11-16'
+  source_ref: cosit_national_accounts
+  consumers: []
+  status: archived-not-parsed
 - path: pipeline/raw/cosit/التقديرات_الأولية_للناتج_المحلي_الإجمالي_لسنة_2021.xlsx
   size: 51211
   sha256: 5375cd72dc0ea86e1c4f39761e38745da9f6762a5d5113b4635bd3e5330ade64
@@ -814,6 +822,16 @@ files:
   sha256: b93bb1dd9c081a2aff34d17a5a7ae3bedcd45aad27a7e62194820ca129c4e847
   origin: Transcription record of COSIT national-accounts values; each row cites its archived document or says it is not archived
   acquired: '2026-10-28'
+  source_ref: cosit_national_accounts
+  consumers:
+  - parser: cosit_gdp
+    use: parsed
+  status: parsed
+- path: pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv
+  size: 48883
+  sha256: 05cc0b579febf40dc898c1bfa1fce1fb712e7d3ea2a4046142a7d79deaa207db
+  origin: Transcription record of COSIT national-accounts values; each row cites its archived document or says it is not archived
+  acquired: '2026-11-16'
   source_ref: cosit_national_accounts
   consumers:
   - parser: cosit_gdp

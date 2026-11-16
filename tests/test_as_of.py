@@ -19,7 +19,7 @@ import iraqdata
 import iraqdata.client as client
 import iraqdata.storage as storage
 import vintages as pipeline_vintages
-from conftest import CANONICAL_COLUMNS, GARDEN_DIR, PINNED_TAG, build_release
+from conftest import CANONICAL_COLUMNS, GARDEN_DIR, PINNED_TAG, REPO_ROOT, build_release
 
 FIRST_VINTAGE = "2026-10-28"
 REVISION_VINTAGE = "2026-11-15"
@@ -124,17 +124,23 @@ def test_as_of_combines_with_every_option(checkout):
 
 
 def test_release_without_history_is_refused(fake_github):
-    storage.set_release(PINNED_TAG)
-    with pytest.raises(iraqdata.NoVintageHistoryError, match=PINNED_TAG):
+    fake_github.add_release("data-2026-11", REPO_ROOT / "release" / "data-2026-11")  # no value revised yet then
+    storage.set_release("data-2026-11")
+    with pytest.raises(iraqdata.NoVintageHistoryError, match="data-2026-11"):
         client.get_series("cpi", as_of=FIRST_VINTAGE)
 
 
-def test_the_published_data_has_no_history_so_as_of_is_refused(fresh_memory_cache, monkeypatch):
+def test_the_published_data_returns_a_revised_value_as_first_published(fresh_memory_cache, monkeypatch):
+    """GDP 2025-Q2 was revised on 2026-11-16 (CSGIS 2025 preliminary estimates); its first value is in the history."""
     monkeypatch.delenv("IRAQDATA_LOCAL_DIR", raising=False)
     monkeypatch.delenv("IRAQDATA_RELEASE", raising=False)
     monkeypatch.setattr(storage, "_code_pin", None)
-    with pytest.raises(iraqdata.NoVintageHistoryError):
-        client.get_series("cpi", as_of=FIRST_VINTAGE)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", iraqdata.FlagWarning)
+        then = client.get_series("gdp.nominal", wide=False, as_of="2026-11-15").set_index("date")
+        now = client.get_series("gdp.nominal", wide=False).set_index("date")
+    assert then.at["2025-Q2", "value"] == 82673353.0 and then.at["2025-Q2", "realtime_start"] == FIRST_VINTAGE
+    assert now.at["2025-Q2", "value"] == 82102269.6
 
 
 def test_release_history_is_downloaded_verified_and_applied(fake_github, tmp_path, revised):

@@ -21,7 +21,10 @@ the table prints). The check reads the document, never the parser, and fails whe
 A cited page that is a scan has no text to read. Its numbers are accepted when another archived
 document prints the same number (each early-warning report also shows the previous quarter and
 the same quarter a year earlier; only the pages the record cites are searched), and are otherwise
-reported as not checked. Rows whose source is
+reported as not checked. A number that the PDF draws as an image (no text at all where it stands) is read
+by eye; its row says "(read from the page image)" in page_or_table and is counted as `image`, never as
+checked. The text of some pages splits a number with stray spaces ("82,102 ,269.6"); a number is found
+when its characters appear in order with at most one space between them. Rows whose source is
 not archived (the quarters before 2020 and a few later ones) are counted, not checked.
 
 Exit status: 0 when no row disagrees with its document, 1 otherwise.
@@ -48,6 +51,7 @@ _CELL = re.compile(r"^sheet '(?P<sheet>.*)' cell (?P<ref>[A-Z]+[0-9]+)$")
 _PAGE = re.compile(r"^page (?P<page>[0-9]+),")
 _PRINTED = re.compile(r"^printed=(?P<text>\S+)$")
 _COMPUTED = re.compile(r"^computed=(?P<a>\S+) - (?P<b>\S+)$")
+IMAGE = "(read from the page image)"  # page_or_table of a number the PDF draws as an image
 
 
 def newest_record(folder: Path = RECORDS) -> Path:
@@ -116,11 +120,12 @@ class Documents:
 
 
 def _on_page(token: str, text: str) -> bool:
-    return re.search(rf"(?<![0-9,.]){re.escape(token)}(?![0-9,]|\.[0-9])", text) is not None
+    spaced = " ?".join(re.escape(c) for c in token)  # the PDF text may split a number with stray spaces
+    return re.search(rf"(?<![0-9,.]){spaced}(?![0-9,]|\.[0-9])", text) is not None
 
 
 def check_row(row: Dict[str, str], docs: Documents) -> Tuple[str, List[str]]:
-    """(how the row was checked, problems). `how` is cell, page, corroborated, arithmetic, unchecked or not-archived."""
+    """(how the row was checked, problems). `how` is cell, page, corroborated, image, unchecked or not-archived."""
     document, where, notes = row["source_document"], row["page_or_table"], row["notes"]
     where_cell, where_page = _CELL.match(where), _PAGE.match(where)
     if not (where_cell or where_page):
@@ -156,6 +161,8 @@ def check_row(row: Dict[str, str], docs: Documents) -> Tuple[str, List[str]]:
         problems.append(f"{name}: {computed['a']} - {computed['b']} is not {value}")
     if printed and abs(_number(printed["text"]) - value) > 1e-6:
         problems.append(f"{name}: printed {printed['text']} is not the value {value}")
+    if IMAGE in where:
+        return "image", problems
     text = docs.page_text(document, int(where_page["page"]))
     if text is None:
         corpus = docs.corpus()
@@ -194,6 +201,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     print(f"{path.name}: " + ", ".join(f"{n} {how}" for how, n in sorted(counts.items())))
     for line in problems:
         print(f"  PROBLEM {line}")
+    if counts.get("image"):
+        print(f"  {counts['image']} row(s) were read by eye from a number the PDF draws as an image")
     if counts.get("unchecked"):
         print(f"  {counts['unchecked']} row(s) cite a scanned page whose numbers no other archived document prints")
     print("COSIT record: " + ("OK" if not problems else f"{len(problems)} problem(s)"))

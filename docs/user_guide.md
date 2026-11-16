@@ -325,16 +325,17 @@ id.clear_cache()                      # everything; id.clear_cache("data-2026-11
 Values are revised over time, and the library can return them as they were published on a given
 date, so that a result can be reproduced exactly:
 
-<!-- not run: needs a release with a vintage history, and the releases so far have none -->
+<!-- not run: needs data-2026-12 or a later release, which ship a vintage history -->
 ```python
 then = id.get_series("cpi", wide=False, as_of="2027-01-15")
 print(then[["date", "value", "realtime_start"]].tail())
 ```
 
 `as_of` needs a release that ships a `history/` folder, which a release has once some published
-value has been revised or withdrawn. The releases so far (`data-2026-10` and `data-2026-11`) have
-none, because no published value has yet been revised, and raise `NoVintageHistoryError`. A series
-that did not exist on the date gives an empty result and a warning.
+value has been revised or withdrawn. `data-2026-10` and `data-2026-11` have none and raise
+`NoVintageHistoryError`. From `data-2026-12`, the history holds the 2025 GDP values that the CSGIS
+2025 preliminary estimates revised on 2026-11-16. A series that did not exist on the date gives an
+empty result and a warning.
 
 ## 10. Errors and warnings
 
