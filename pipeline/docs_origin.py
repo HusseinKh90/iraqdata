@@ -4,7 +4,7 @@ pipeline.docs_origin
 Keeps the user-facing origin documentation in step with the series catalog.
 
     python pipeline/docs_origin.py            # rewrite the generated block in docs/series.md and
-                                              # the measured share in README.md
+                                              # the measured share in README.md and README.ar.md
     python pipeline/docs_origin.py --check    # exit 1 if either is out of date
 
 The block between `<!-- origin:begin -->` and `<!-- origin:end -->` in docs/series.md lists each
@@ -33,6 +33,7 @@ from iraqdata.catalog import origin_summary  # noqa: E402
 
 SERIES_DOC = repo_root / "docs" / "series.md"
 README = repo_root / "README.md"
+README_AR = repo_root / "README.ar.md"  # the Arabic README carries the same measured share
 GARDEN_DIR = repo_root / "pipeline" / "data" / "garden"
 BEGIN, END = "<!-- origin:begin -->", "<!-- origin:end -->"
 SHARE_BEGIN, SHARE_END = "<!-- share:begin -->", "<!-- share:end -->"
@@ -172,6 +173,7 @@ def updated_files() -> List[tuple]:
         SERIES_DOC: [(BEGIN, END, render_block())]
         + [(*series_markers(key), render_series_table(key, cats)) for key, cats in SERIES_SECTIONS],
         README: [(SHARE_BEGIN, SHARE_END, f"{SHARE_BEGIN}{official_share()}%{SHARE_END}")],
+        README_AR: [(SHARE_BEGIN, SHARE_END, f"{SHARE_BEGIN}{official_share()}%{SHARE_END}")],
         INVENTORY_DOC: [(TERMS_BEGIN, TERMS_END, render_terms_block())],
     }
     out = []

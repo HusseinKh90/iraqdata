@@ -1,37 +1,39 @@
 # iraqdata
 
+[العربية](README.ar.md)
+
 **Iraq's economic statistics: clean, consistent and in one place.**
 
 [![Code licence: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](https://github.com/husseinkh90/iraqdata/blob/main/LICENSE)
 [![Data licence: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-lightgrey.svg)](https://github.com/husseinkh90/iraqdata/blob/main/LICENSE-DATA)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 
-`iraqdata` project provides key economic time series for Iraq, covering money, prices, exchange rates, oil, public finance, GDP, trade, and more, in ready-to-use tables, accessible via lines of code or a simple download.
+The `iraqdata` project provides the main economic time series for Iraq (money and banking, prices, exchange rates, oil, public finance, GDP, the balance of payments and more) as ready-to-use tables, available from Python or as plain CSV downloads.
 
 ## Why this project matters
 
 Anyone studying Iraq’s economy faces the same set of challenges:
 
-- **Data is fragmented.** Iraq's data is scattered across the websites of the Central Bank of Iraq, the Central Organization for Statistics (COSIT), the Ministry of Finance, the Ministry of Oil, OPEC, and various international organizations. Web pages are frequently moved or altered without notice.
-- **Files are difficult to work with.** Much of the data comes as complex, multilingual (Arabic) spreadsheets or PDF documents, rather than tables ready for immediate analysis.
-- **Time series contain breaks.** Price indices have been rebased multiple times (in 1993, 2007, 2012, and 2022), and accounting standards have also evolved over time. Merging these datasets correctly requires careful, precise work.
+- **Data is fragmented.** Iraq's data is scattered across the websites of the Central Bank of Iraq, the Central Organization for Statistics and Information Technology (COSIT), the Ministry of Finance, the Ministry of Oil, OPEC, and various international organizations. Web pages are frequently moved or altered without notice.
+- **Files are difficult to work with.** Much of the data comes as complex Arabic or bilingual spreadsheets and PDF documents, rather than tables ready for analysis.
+- **Time series contain breaks.** The consumer price index has been published on four base years (1993, 2007, 2012 and 2022), and the Central Bank of Iraq has revised its monetary statistics to the IMF methodology back to 2012. Joining these series correctly requires careful work.
 - **Redundant effort.** Researchers often spend the majority of their time collecting and cleaning data, long before the actual analysis can begin.
 
-`iraqdata` carries out this work in a thorough and transparent manner, offering it as a one-time service:
+`iraqdata` does this work once, thoroughly and transparently, so that users do not have to repeat it:
 
-- Each figure specifies its source and the methodology used for measurement. <!-- share:begin -->90%<!-- share:end --> of the observations come directly from official archival documents; the rest are calculated from these publications. The series are listed in 
-  [docs/series.md](https://github.com/husseinkh90/iraqdata/blob/main/docs/series.md#data-not-observed-from-an-archived-official-file) and flagged.
-- Breaks between series are marked rather than hidden.
-- The data are checked before each release.
+- Every value records its source and how it was obtained. <!-- share:begin -->90%<!-- share:end --> of the observations are read directly from archived official publications. The rest are computed from other series, read from a non-official source, typed in from publications or of unknown origin; each such period is listed in
+  [docs/series.md](https://github.com/husseinkh90/iraqdata/blob/main/docs/series.md#data-not-observed-from-an-archived-official-file), and values typed in or of unknown origin carry the status flag `U`.
+- Breaks in a series, such as a change of base year, are flagged rather than hidden.
+- The data pass automated quality checks before each release.
 
 This project delivers a shared, free starting point. Researchers can study the Iraqi economy faster and replicate and verify results more easily.
 
 ## Who it is for
 
-- **Researchers and students:**
-- **Journalists and the public:**
-- **Banks, businesses and investors:**
-- **Policymakers and analysts:**
+- **Researchers and students:** documented series with their sources, ready for estimation and replication.
+- **Journalists and the public:** official figures in one place, each traceable to its publisher.
+- **Banks, businesses and investors:** monetary, exchange-rate, oil and fiscal indicators with stated units and frequencies.
+- **Policymakers and analysts:** consistent long series for monitoring and assessment.
 
 ## What data is included
 
@@ -40,8 +42,8 @@ There are 82 series in 9 areas:
 
 | Area | Examples | Original publisher |
 |---|---|---|
-| Money and banking | broad money `money.m2`, policy rate `money.policy_rate`, official reserves `money.reserves_official`, private sector credit `credit.private_total`, net claims on government `govt.system_net_claims` | Central Bank of Iraq |
-| Exchange rates | official rate `fx.official`, Baghdad parallel-market rate `parallel_rate_iraq`, CBI dollar sales `fx.auction_total` | Central Bank of Iraq; Iraq-parallel-exchange-rate project |
+| Money and banking | broad money `money.m2`, policy rate `money.policy_rate`, official reserves `money.reserves_official`, commercial bank credit to the private sector `credit.private_total`, net claims of the banking system on government `govt.system_net_claims` | Central Bank of Iraq |
+| Exchange rates | official rate `fx.official`, Baghdad parallel-market rate `parallel_rate_iraq`, CBI foreign currency sales `fx.auction_total` | Central Bank of Iraq; Iraq-parallel-exchange-rate project |
 | Prices and inflation | consumer prices `cpi_headline` and `cpi_core` | COSIT, via the Central Bank of Iraq |
 | Oil | Brent price `oil_price_brent`, Basrah price `oil_price_basrah`, crude production `crude_production_direct` | Ministry of Oil and SOMO, OPEC and JODI, U.S. EIA |
 | Public finance | revenue `fiscal.revenue_total`, spending `fiscal.expenditure_total`, balance `fiscal.balance` | Ministry of Finance, via the Central Bank of Iraq |
@@ -64,7 +66,7 @@ The test suite runs on Python 3.10–3.13.
 
 ## How to use
 
-Check out this user guide. The [user guide](https://github.com/husseinkh90/iraqdata/blob/main/docs/user_guide.md) explains each option step by step: finding series, loading and renaming them, status indicators, the origin of each figure, saving data, pinning a data version, offline use, and the meaning of the various error messages.
+The [user guide](https://github.com/husseinkh90/iraqdata/blob/main/docs/user_guide.md) explains each step in detail: finding series, loading and renaming them, status flags, the origin of each value, saving data, pinning a data release, offline use and the meaning of each error message.
 
 Import the library:
 
@@ -79,7 +81,7 @@ df = id.get_series("money.m2")
 print(df.tail())
 ```
 
-You could display different series at the same time. Series of different frequencies (monthly, daily) come back as one
+Request several series at once. Series of different frequencies (monthly, daily) come back as one
 table per frequency, so nothing is mixed or averaged:
 
 ```python
@@ -112,7 +114,7 @@ money = id.get_table("money_banking_monthly")
 print(money.head())
 ```
 
-The data downloads the first time you request it and then stores it on your computer, so future requests can be handled offline.
+The data are downloaded the first time you request them and kept on your computer, so later requests work offline.
 
 ### Status flags
 
@@ -132,8 +134,8 @@ values. To hide it: `warnings.filterwarnings("ignore", category=id.FlagWarning)`
 
 Values are revised over time. `as_of` returns them as they were published on a given date, from
 the vintage history that ships with a release. A release has a `history/` folder once a published
-value has been revised or withdrawn. The first release, `data-2026-10`, has none, because every
-value in it was first published on 2026-10-28; asking it for `as_of` raises
+value has been revised or withdrawn. The releases so far, `data-2026-10` and `data-2026-11`, have
+none, because no published value has yet been revised; asking them for `as_of` raises
 `NoVintageHistoryError`. From the first release that has a history:
 
 <!-- not run: needs a release with a history folder -->
@@ -144,11 +146,11 @@ print(then[["date", "value", "realtime_start"]].tail())
 
 ### Which data release you are using
 
-By default, you receive the most recently released data version. This is retrieved the first time you use the library and is then stored until you request a newer version via `id.refresh_latest()`; this ensures your results remain consistent. To make results reproducible, you can pin a specific version (associated with a date). Such a pinned version will always be used, even within a copy of this repository:
+Data are published in dated releases (`data-2026-10`, `data-2026-11`, ...). By default you receive the newest release. It is looked up the first time you use the library and then kept until you ask for a newer one with `id.refresh_latest()`, so your results do not change on their own. To make results reproducible, pin a release. A pinned release is always used, even within a copy of this repository:
 
 ```python
-id.set_release("data-2026-10")    # or set the environment variable IRAQDATA_RELEASE
-print(id.get_data_source())       # release data-2026-10 (pinned with set_release) from husseinkh90/iraqdata
+id.set_release("data-2026-11")    # or set the environment variable IRAQDATA_RELEASE
+print(id.get_data_source())       # release data-2026-11 (pinned with set_release) from husseinkh90/iraqdata
 ```
 
 `id.set_release()` takes precedence over `IRAQDATA_RELEASE`; `id.set_release(None)` removes the
@@ -159,10 +161,11 @@ left alone. Data are downloaded from the GitHub releases of `husseinkh90/iraqdat
 
 ## Without Python
 
-The [guide for R and Stata](https://github.com/husseinkh90/iraqdata/blob/main/docs/r_and_stata.md)
-This demonstrates how to load a series, convert the dates into date format, use the flags, and reshape the table. In short, every table is available as a CSV file on the
+Every table is available as a CSV file on the
 [latest release page](https://github.com/husseinkh90/iraqdata/releases/latest), one file per
-subject area (for example `money_banking_monthly.csv`).
+table (for example `money_banking_monthly.csv`). The
+[guide for R and Stata](https://github.com/husseinkh90/iraqdata/blob/main/docs/r_and_stata.md)
+shows how to load a series, convert the dates, use the status flags and reshape a table.
 
 - **Excel:** Data → From Web, then paste
   `https://github.com/husseinkh90/iraqdata/releases/latest/download/money_banking_monthly.csv`.

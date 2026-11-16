@@ -87,6 +87,8 @@ short name, and you can use either:
 | `cpi`, `inflation` | `cpi_headline` | `current_account` | `bop.current_account` |
 | `core_cpi` | `cpi_core` | `brent`, `basrah` | oil prices |
 | `oil_production` | `crude_production_secondary` | `production_direct` | `crude_production_direct` |
+| `private_credit`, `credit` | `credit.private_total`, `credit.total` | `fx_auction`, `dollar_auction` | `fx.auction_total` |
+| `net_claims_on_government` | `govt.system_net_claims` | | |
 
 A name that does not exist gives an error with the closest matches:
 
@@ -281,7 +283,7 @@ print(id.get_data_source())
 **To get the same numbers again next year**, pin the release at the top of your script:
 
 ```python
-id.set_release("data-2026-10")        # or set the environment variable IRAQDATA_RELEASE
+id.set_release("data-2026-11")        # or set the environment variable IRAQDATA_RELEASE
 print(id.get_data_source())
 ```
 
@@ -306,7 +308,7 @@ print(id.get_cache_dir())
 
 <!-- not run: deletes the downloaded data -->
 ```python
-id.clear_cache()                      # everything; id.clear_cache("data-2026-10") for one release
+id.clear_cache()                      # everything; id.clear_cache("data-2026-11") for one release
 ```
 
 **Settings by environment variable** (set them before starting Python):
@@ -323,16 +325,16 @@ id.clear_cache()                      # everything; id.clear_cache("data-2026-10
 Values are revised over time, and the library can return them as they were published on a given
 date, so that a result can be reproduced exactly:
 
-<!-- not run: needs a release with a vintage history, and the first release has none -->
+<!-- not run: needs a release with a vintage history, and the releases so far have none -->
 ```python
 then = id.get_series("cpi", wide=False, as_of="2027-01-15")
 print(then[["date", "value", "realtime_start"]].tail())
 ```
 
 `as_of` needs a release that ships a `history/` folder, which a release has once some published
-value has been revised or withdrawn. The first release (`data-2026-10`) has none, because every value
-in it was first published on 2026-10-28, and raises `NoVintageHistoryError`. A series that did not
-exist on the date gives an empty result and a warning.
+value has been revised or withdrawn. The releases so far (`data-2026-10` and `data-2026-11`) have
+none, because no published value has yet been revised, and raise `NoVintageHistoryError`. A series
+that did not exist on the date gives an empty result and a warning.
 
 ## 10. Errors and warnings
 
