@@ -7,7 +7,7 @@ Commercial bank direct cash credit by sector, monthly end-of-period stocks, in m
   maintainer obtained from the CBI. The bulletin prints only year-end rows for these years; every
   seed December must match them.
 - 2024-01 on: sheets '8-a' (all commercial banks), '8-b' (state-owned banks) and '8-c' (private
-  banks) of the CBI Monthly Statistical Bulletin (cbi.iq/page/122), the workbook the weekly update
+  banks) of the CBI Monthly Statistical Bulletin (cbi.iq/page/122), the workbook the monthly update
   check already downloads.
 
 Series (each the sum of overdrafts, discounted bills, loans and advances, and past-due debts):

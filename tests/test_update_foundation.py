@@ -160,13 +160,14 @@ BROKEN = {
 
 
 def test_schedule_kinds_thresholds_and_maintainer():
-    """Every auto source has a kind; thresholds default to 2; the maintainer is named."""
+    """Every auto source has a kind; the monthly check reports a failed fetch at once and a release left
+    unapplied at the next run; the maintainer is named."""
     sched = validate.load_update_schedule()
     auto = {s["id"]: s for s in sched["sources"] if s["fetch"] == "auto"}
     assert {k for k, s in auto.items() if s["kind"] == "spreadsheet"} == {"cbi_bop", "cbi_kfi", "cbi_bulletin", "cbi_fx"}
     assert {k for k, s in auto.items() if s["kind"] == "api"} == {"bis_lbs", "wb_oda", "fred_brent", "eia_intl", "github_fx"}
-    assert {s["id"]: s["failure_threshold"] for s in sched["sources"] if s["failure_threshold"] == 1} ==         {"fred_brent": 1, "github_fx": 1, "cbi_fx": 1}
-    assert all(s["failure_threshold"] == 2 for s in sched["sources"] if s["id"] not in {"fred_brent", "github_fx", "cbi_fx"})
+    assert (validate.DEFAULT_FAILURE_THRESHOLD, validate.DEFAULT_PENDING_THRESHOLD) == (1, 2)
+    assert all(s["failure_threshold"] == 1 and s["pending_threshold"] == 2 for s in sched["sources"])
     assert sched["notify"]["github"] == "HusseinKh90"
 
 

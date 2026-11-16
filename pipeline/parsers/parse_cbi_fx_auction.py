@@ -7,7 +7,7 @@ CBI sales of foreign currency (the foreign-currency auction / window), monthly, 
   maintainer obtained directly from the CBI. The bulletin prints only annual totals for these years;
   each seed year must add up to them.
 - 2024-01 on: sheet '3-a' of the CBI Monthly Statistical Bulletin (cbi.iq/page/122), the same
-  workbook the weekly update check already downloads.
+  workbook the monthly update check already downloads.
 
 Series:
     fx.auction_cash       cash sales

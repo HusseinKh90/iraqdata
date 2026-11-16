@@ -15,7 +15,7 @@
 # oil series, which move for real reasons, credit moved between sectors in the commercial bank
 # credit tables, and the CBI's loans to government, which change in steps. At k = 15 the latest three
 # periods of today's data raise 2 notices (crude_production_secondary 2026-06, govt.cbi_loans 2026-07),
-# and a weekly update that adds one new period to each series would raise about 0.40 per run (67
+# and an update that adds one new period to each series would raise about 0.40 per run (67
 # points at 0.59%).
 #
 # Switch it on with `enabled: true` once you have decided that is an acceptable review load.

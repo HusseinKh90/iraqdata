@@ -36,6 +36,12 @@ Data release `data-2026-11` (82 series in 13 tables, 25,386 observations) adds t
   (`pipeline/seeds/cbi_govt_claims_monthly_seed.csv`; its 2015-2017 rows predate the CBI's
   revision to the IMF methodology and are not used), checked against the bulletin's year-ends.
 
+### Changed
+
+- The update check (`.github/workflows/update_check.yml`) runs monthly, on the 20th, instead of
+  weekly. A failed download is reported at the first failed run, and a downloaded release that has
+  not been applied by the next run is raised as an anomaly.
+
 ### Documentation
 
 - An Arabic README, `README.ar.md`, with the same content as the English one.

@@ -1,7 +1,7 @@
 """
 tests.test_update_check
 =======================
-The weekly update check, end to end and offline. Fetchers are replaced by fakes that write into the check's scratch workspace.
+The monthly update check, end to end and offline. Fetchers are replaced by fakes that write into the check's scratch workspace.
 """
 
 import hashlib
@@ -218,14 +218,14 @@ def findings_by_id(report):
 
 
 def test_findings_classify_the_mixed_run(mixed):
-    """API new data is routine, a first fetch failure is routine below its
-    threshold, a parse failure and overdue series are anomalies, grouped per source."""
+    """API new data is routine; a first fetch failure (the monthly check reports it at once), a parse
+    failure and overdue series are anomalies, grouped per source."""
     _, _, (_, report, _, _) = mixed
     f = findings_by_id(report)
     assert f["routine:fred_brent"]["kind"] == "routine"                     # kind: api, add-only
-    assert f["routine:wb_oda"]["kind"] == "routine"                         # failed 1 of 2 runs
+    assert f["fetch_failed:wb_oda"]["kind"] == "anomaly"                   # failed 1 of 1 run
     assert outcomes(report)["wb_oda"]["failure_streak"] == 1
-    assert outcomes(report)["wb_oda"]["failure_threshold"] == 2
+    assert outcomes(report)["wb_oda"]["failure_threshold"] == 1
     assert f["parse_failed:cbi_kfi"]["kind"] == "anomaly"
     overdue = {k for k in f if k.startswith("overdue:")}
     assert overdue == {"overdue:cbi_fx", "overdue:cbi_kfi", "overdue:fred_brent", "overdue:github_fx"}
@@ -361,18 +361,18 @@ def _build(results, schedule, **kw):
 
 
 def test_release_waiting_for_the_threshold_is_an_anomaly():
-    """An unapplied release is routine for a few runs, then one anomaly per source."""
+    """An unapplied release is routine in the run that finds it, then one anomaly per source."""
     sched = _schedule("a")
-    below = _build([_result("a", "new_release")], sched, pending={"a": 2})
-    assert "pending:a" not in below                                      # the third run of the default four
-    at = _build([_result("a", "new_release")], sched, pending={"a": 3})
+    below = _build([_result("a", "new_release")], sched, pending={})
+    assert "pending:a" not in below                                      # the first run of the default two
+    at = _build([_result("a", "new_release")], sched, pending={"a": 1})
     f = at["pending:a"]
-    assert f["kind"] == "anomaly" and "waited 4 runs" in f["title"] and f["sources"] == ["a"]
+    assert f["kind"] == "anomaly" and "waited 2 runs" in f["title"] and f["sources"] == ["a"]
     assert f["details"][0]["note"].endswith("before then.") and "90 days" in f["details"][0]["note"]
 
 
 def test_pending_threshold_is_per_source_and_a_failed_parse_counts():
-    sched = _schedule("a", "b", a={"pending_threshold": 2})
+    sched = _schedule("a", "b", a={"pending_threshold": 2}, b={"pending_threshold": 3})
     results = [_result("a", "parse_failed"), _result("b", "new_release")]
     found = _build(results, sched, pending={"a": 1, "b": 1})
     assert "pending:a" in found and "pending:b" not in found
@@ -434,7 +434,7 @@ def test_half_the_sources_failing_is_one_outage():
     f = found["outage"]
     assert f["kind"] == "anomaly" and f["title"] == "2 of 4 download sources failed in the same run"
     assert [r["source"] for r in f["details"]] == ["bis_lbs", "wb_oda"]
-    assert found["routine:bis_lbs"]["kind"] == "routine"          # each failure is still counted on its own
+    assert found["fetch_failed:bis_lbs"]["kind"] == "anomaly"     # each failure is still reported on its own
 
 
 def test_one_failing_source_is_not_an_outage():

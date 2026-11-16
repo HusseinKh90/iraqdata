@@ -1,13 +1,14 @@
 # Update schedule. Reviewed by hand: the sources are the publishers' own pages, and each lag is the
 # longest normal delay between the end of a period and its publication.
 #
-# sources: where each upstream release comes from and whether the weekly update check can fetch
+# sources: where each upstream release comes from and whether the monthly update check can fetch
 #   it (auto) or a maintainer must bring it in by hand (manual, with the reason).
 #   An auto source also says what it publishes (kind: api for API and bulk-file downloads,
 #   spreadsheet for spreadsheet or PDF publications, which always get a review issue)
-#   and may set failure_threshold: the consecutive failed weekly fetches before an issue opens
-#   (default 2), and pending_threshold: the consecutive runs in which a downloaded release may still
-#   be waiting to be applied before the update check raises it as an anomaly (default 4).
+#   and may set failure_threshold: the consecutive failed monthly fetches before an issue opens
+#   (default 1), and pending_threshold: the consecutive runs, counting the one that downloaded it, in
+#   which a release may still be waiting to be applied before the update check raises it as an
+#   anomaly (default 2: raised when it has not been applied by the next run).
 # series: the longest normal delay (lag_days) between the end of a period and the publication of
 #   its value. The next period of a series is due on period_end(latest + 1) + lag_days; after that
 #   the gatekeeper reports it overdue. A series that has stopped by design is marked `ended`.
@@ -17,7 +18,7 @@ reviewed: 2026-10-24
 # first (an issue shows at most 50 rows). Default 5.
 large_revision_pct: 5
 
-# Who the weekly update check @-mentions on GitHub issues.
+# Who the monthly update check @-mentions on GitHub issues.
 notify:
   github: HusseinKh90
 

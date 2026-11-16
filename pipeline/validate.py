@@ -99,8 +99,8 @@ NEW_POINT_PATH = repo_root / "pipeline" / "metadata" / "new_point_check.yaml"
 SANITY_CHECKS_PATH = repo_root / "pipeline" / "metadata" / "sanity_checks.yaml"
 # Auto sources are api (add-only releases are routine) or spreadsheet (always reviewed)
 SOURCE_KINDS = ("api", "spreadsheet")
-DEFAULT_FAILURE_THRESHOLD = 2
-DEFAULT_PENDING_THRESHOLD = 4   # runs a downloaded release may wait to be applied before it is an anomaly
+DEFAULT_FAILURE_THRESHOLD = 1   # the check runs monthly: a failed fetch is reported at once
+DEFAULT_PENDING_THRESHOLD = 2   # runs, counting the one that found it: a release not applied by the next monthly run is an anomaly
 DEFAULT_LARGE_REVISION_PCT = 5.0  # a revision of at least this many percent is marked in the issue title
 GARDEN_DIR = repo_root / "pipeline" / "data" / "garden"
 
@@ -127,7 +127,7 @@ RULE_BASES = ("statistical", "reviewed")
 
 
 def today_utc() -> pd.Timestamp:
-    """Today's date in UTC, at midnight. CI and the weekly check run in UTC; a local date would differ near midnight."""
+    """Today's date in UTC, at midnight. CI and the monthly update check run in UTC; a local date would differ near midnight."""
     return pd.Timestamp.now(tz="UTC").tz_localize(None).normalize()
 
 

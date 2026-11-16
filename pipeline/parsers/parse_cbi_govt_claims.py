@@ -10,7 +10,7 @@ in million IQD, from 2018-01.
   every seed December must match them.
 - 2024-01 on: sheets '4' (Consolidated Statement of the CBI) and '5' (Consolidated Statement of
   Commercial Banks) of the CBI Monthly Statistical Bulletin (cbi.iq/page/122), the workbook the
-  weekly update check already downloads.
+  monthly update check already downloads.
 
 Read (columns as the sheets number them; column 1 is the period):
     govt.cbi_claims_total   sheet 4, column 3   Claims on Government, Total (3+4)
