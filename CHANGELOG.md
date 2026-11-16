@@ -16,7 +16,7 @@ Data release `data-2026-11` (82 series in 13 tables, 25,386 observations) adds t
   non-cash sale) and `fx.auction_total`. 2020-2023 come from monthly data the maintainer obtained
   from the CBI (`pipeline/seeds/cbi_fx_auction_monthly_seed.xlsx`), checked against the annual
   totals of the CBI Monthly Statistical Bulletin; from 2024-01 they are read from sheet 3-a of that
-  bulletin, which the weekly update check already downloads, so new months arrive automatically.
+  bulletin, which the monthly update check already downloads, so new months arrive automatically.
 - Six new monthly series of commercial bank direct cash credit by sector, in million IQD, from
   2015-01, in the new table `credit_monthly`: `credit.private_total` (credit to the private
   sector), split into `credit.private_state_banks` and `credit.private_private_banks`, plus

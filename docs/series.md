@@ -79,8 +79,9 @@ in the `origin` and `official` columns of `iraqdata.list_series()`, and in full 
 <!-- series:oil:end -->
 
 ## 4. Consumer Prices & Inflation
-*Compiled by the Central Organization for Statistics and Information Technology (COSIT); read from
-the Central Bank of Iraq (CBI) Key Financial Indicators workbook*
+*Compiled by the Central Organization for Statistics and Information Technology (COSIT), now the
+Commission of Statistics and GIS (CSGIS); read from the Central Bank of Iraq (CBI) Key Financial
+Indicators workbook*
 
 <!-- series:prices:begin -->
 
@@ -118,7 +119,8 @@ from a seed table compiled by the maintainer whose publisher per value is unknow
 <!-- series:fiscal:end -->
 
 ## 6. National Accounts / GDP
-*Source: Central Organization for Statistics and Information Technology (COSIT). The totals and oil
+*Source: Central Organization for Statistics and Information Technology (COSIT), now the Commission of
+Statistics and GIS (CSGIS). The totals and oil
 components were typed in from COSIT publications that are not archived here (flag `U`); the non-oil
 series are computed as total minus oil.*
 
