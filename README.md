@@ -1,6 +1,6 @@
 # iraqdata
 
-[العربية](README.ar.md)
+[العربية](https://github.com/husseinkh90/iraqdata/blob/main/README.ar.md)
 
 **Iraq's economic statistics: clean, consistent and in one place.**
 
