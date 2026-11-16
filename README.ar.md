@@ -68,6 +68,8 @@ pip install git+https://github.com/husseinkh90/iraqdata
 
 يشرح [دليل المستخدم](https://github.com/husseinkh90/iraqdata/blob/main/docs/user_guide.md) (باللغة الإنكليزية) المكتبة بالتفصيل: البحث عن السلاسل وتحميلها وإعادة تسميتها، وفهم رموز الحالة ومصدر كل قيمة، وحفظ البيانات، وتثبيت إصدارات البيانات، والعمل من دون اتصال، وتفسير رسائل الخطأ.
 
+ويضمّ مجلد [الدروس التعليمية](https://github.com/husseinkh90/iraqdata/tree/main/tutorials) دفاتر Jupyter باللغة العربية تشرح المكتبة خطوة بخطوة، بدءًا بمقدمة عن المكتبة والبحث في البيانات باللغة العربية.
+
 استورد المكتبة:
 
 ```python

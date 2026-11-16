@@ -68,6 +68,8 @@ pip install git+https://github.com/husseinkh90/iraqdata
 
 The [user guide](https://github.com/husseinkh90/iraqdata/blob/main/docs/user_guide.md) explains the library in detail. It covers finding, loading, and renaming series; understanding status flags and each value's origin; saving data; pinning data releases; offline use; and interpreting error messages.
 
+The [tutorials](https://github.com/husseinkh90/iraqdata/tree/main/tutorials) folder contains Jupyter notebooks (in Arabic) that walk through the library step by step, starting with an introduction to the library and searching the data in Arabic.
+
 Import the library:
 
 ```python
