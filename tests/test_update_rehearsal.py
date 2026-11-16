@@ -33,7 +33,7 @@ def hash_tree(root):
     return {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
             for p in sorted(Path(root).rglob("*")) if p.is_file()}
 
-DATE = "2026-11-15"
+DATE = "2026-12-15"  # after every archived input (the newest is the GDP record of 2026-11-16)
 PARSERS = [spec.name for spec in run_parsers.REGISTRY]
 KEY = ["date", "series_id"]
 

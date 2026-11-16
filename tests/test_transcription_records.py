@@ -131,7 +131,7 @@ def test_a_missing_named_record_is_not_replaced_by_an_older_one(tmp_path):
     older.write_bytes(HEADER)
     with pytest.raises(FileNotFoundError) as info:
         transcription.newest(tmp_path, "cosit_gdp_quarterly_*.csv", "gdp.nominal")
-    assert "cosit_gdp_quarterly_2026-10-28.csv" in str(info.value) and "2026-10-25" in str(info.value)
+    assert "cosit_gdp_quarterly_2026-11-16.csv" in str(info.value) and "2026-10-25" in str(info.value)
 
 
 def test_a_newer_record_the_catalog_does_not_name_yet_is_refused(tmp_path):

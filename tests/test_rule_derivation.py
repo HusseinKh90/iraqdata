@@ -90,6 +90,8 @@ def test_new_data_does_not_change_the_rules_but_the_gate_warns(tmp_path):
     last["realtime_start"] = "2099-02-01"
     pd.concat([df, last], ignore_index=True).to_parquet(path, index=False)
 
-    assert derive_rules.main(["--check", "--garden", str(garden), "--history", str(tmp_path / "history")]) == 0  # no history
+    history = tmp_path / "history"
+    shutil.copytree(GARDEN_DIR.parent / "history", history)  # the values as first published (GDP 2025 was revised)
+    assert derive_rules.main(["--check", "--garden", str(garden), "--history", str(history)]) == 0
     _, warnings = validate.validate_tier2_details(pd.read_parquet(path), "prices_monthly")
     assert any(w.series == "cpi_headline" and w.check == "envelope" and "2099-01" in w.periods for w in warnings)

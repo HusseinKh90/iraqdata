@@ -27,8 +27,10 @@ from conftest import (
     read_release_csv,
 )
 
+HISTORY_TABLES = ["gdp_quarterly"]  # the tables with a revised value (GDP 2025, revised 2026-11-16)
 DATA_FILES = sorted(
     [f"{t}.parquet" for t in PRODUCTION_TABLES] + [f"{t}.csv" for t in PRODUCTION_TABLES]
+    + [f"history/{t}.{ext}" for t in HISTORY_TABLES for ext in ("parquet", "csv")]
 )
 SCHEMA_PATH = REPO_ROOT / "tests" / "fixtures" / "frictionless" / "tabular-data-package.json"
 
@@ -51,7 +53,7 @@ def verify_checksums(directory: Path) -> list[str]:
         digest, name = parts[0].lower(), parts[-1].lstrip("*")
         listed[name] = digest
 
-    present = {p.name for p in directory.iterdir() if p.suffix in (".parquet", ".csv")}
+    present = {p.relative_to(directory).as_posix() for p in directory.rglob("*") if p.suffix in (".parquet", ".csv")}
     problems = [f"missing file listed in checksums: {n}" for n in sorted(set(listed) - present)]
     problems += [f"data file not listed in checksums: {n}" for n in sorted(present - set(listed))]
     for name in sorted(set(listed) & present):
@@ -83,7 +85,7 @@ def test_release_contains_exactly_the_expected_files():
 def test_checksums_cover_and_match_all_data_files():
     assert verify_checksums(RELEASE_DIR) == []
     lines = [ln for ln in (RELEASE_DIR / "checksums.sha256").read_text(encoding="utf-8").splitlines() if ln.strip()]
-    assert len(lines) == 26
+    assert len(lines) == 28
     assert sorted(ln.split()[-1].lstrip("*") for ln in lines) == DATA_FILES
 
 
@@ -114,24 +116,29 @@ def test_csv_and_parquet_are_identical(table):
             assert csv_df[col].astype(str).tolist() == pq_df[col].astype(str).tolist(), col
 
 
-# Every value was first published either with data-2026-10 or, for the three tables added since, from the
-# CBI bulletin of 2026-11-12; nothing has been revised, so there is one vintage per table
-RELEASE_VINTAGE = {"credit_monthly": "2026-11-12", "fx_auction_monthly": "2026-11-12", "govt_claims_monthly": "2026-11-12"}
+# Every value was first published with data-2026-10 or, for the three tables added since, from the CBI
+# bulletin of 2026-11-12; GDP 2025 was revised from the CSGIS record of 2026-11-16
+RELEASE_VINTAGES = {"credit_monthly": {"2026-11-12"}, "fx_auction_monthly": {"2026-11-12"},
+                    "govt_claims_monthly": {"2026-11-12"}, "gdp_quarterly": {"2026-10-28", "2026-11-16"}}
 FIRST_VINTAGE = "2026-10-28"
 
 
 @pytest.mark.parametrize("table", PRODUCTION_TABLES)
 def test_release_parquet_matches_production(table):
-    """The release equals the production table exactly: one vintage, no history, nothing superseded."""
+    """The release equals the production table exactly, with the vintages its values were published on."""
     released = pd.read_parquet(RELEASE_DIR / f"{table}.parquet").reset_index(drop=True)
     production = pd.read_parquet(GARDEN_DIR / f"{table}.parquet")
     assert released.equals(production.reset_index(drop=True))
-    assert set(released["realtime_start"]) == {RELEASE_VINTAGE.get(table, FIRST_VINTAGE)}
+    assert set(released["realtime_start"]) == RELEASE_VINTAGES.get(table, {FIRST_VINTAGE})
 
 
-def test_the_first_release_has_no_vintage_history():
-    assert not (RELEASE_DIR / "history").exists()
-    assert not (GARDEN_DIR.parent / "history").exists()
+def test_the_release_history_is_the_production_history():
+    """The superseded values ship with the release, so as_of can return them."""
+    assert sorted(p.name for p in (GARDEN_DIR.parent / "history").glob("*.parquet")) == [f"{t}.parquet" for t in HISTORY_TABLES]
+    for table in HISTORY_TABLES:
+        released = pd.read_parquet(RELEASE_DIR / "history" / f"{table}.parquet").reset_index(drop=True)
+        production = pd.read_parquet(GARDEN_DIR.parent / "history" / f"{table}.parquet").reset_index(drop=True)
+        assert released.equals(production)
 
 
 # =====================================================================
@@ -150,7 +157,7 @@ def test_descriptor_records_building_code_version(descriptor):
 
 
 def test_descriptor_lists_one_resource_per_data_file(descriptor):
-    assert len(descriptor["resources"]) == 26
+    assert len(descriptor["resources"]) == 28
     assert sorted(r["path"] for r in descriptor["resources"]) == DATA_FILES
 
 
@@ -166,8 +173,8 @@ def test_descriptor_resource_matches_file(descriptor, filename):
     assert [f["name"] for f in resource["schema"]["fields"]] == CANONICAL_COLUMNS
 
     key = resource["schema"]["primaryKey"]
-    if df["realtime_start"].nunique() == 1:
-        assert key == ["date", "series_id"]
-    else:
+    if filename.startswith("history/"):      # every superseded value, so one row per vintage
         assert key == ["date", "series_id", "realtime_start"]
+    else:                                     # the current value of each period
+        assert key == ["date", "series_id"]
     assert not df.duplicated(key).any()

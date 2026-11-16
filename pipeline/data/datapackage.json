@@ -4,7 +4,7 @@
   "title": "Iraq Macroeconomic Data Package",
   "description": "Open, documented, and reproducible macroeconomic data package for Iraq. Covers monetary aggregates, official and parallel exchange rates, crude oil production and prices, consumer price inflation, public finances, balance of payments, merchandise trade, quarterly national accounts (GDP), and external cross-border banking. Compiled and derived data are licensed CC-BY-4.0; source data remain subject to each publisher's terms, listed under `sources`.",
   "version": "1.1.0",
-  "release": "data-2026-11",
+  "release": "data-2026-12",
   "homepage": "https://github.com/husseinkh90/iraqdata",
   "contributors": [
     {
@@ -2340,7 +2340,7 @@
             "method": "Typed in from COSIT quarterly national accounts; the source document is not archived",
             "source": "COSIT Directorate of National Accounts (document not recorded)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2020-Q1",
@@ -2350,7 +2350,7 @@
             "method": "Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back",
             "source": "COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2021-Q3",
@@ -2360,7 +2360,7 @@
             "method": "Typed in from COSIT quarterly national accounts; the source document is not archived",
             "source": "COSIT Directorate of National Accounts (document not recorded)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2022-Q1",
@@ -2370,7 +2370,7 @@
             "method": "Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back",
             "source": "COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2022-Q2",
@@ -2380,7 +2380,7 @@
             "method": "Typed in from COSIT quarterly national accounts; the source document is not archived",
             "source": "COSIT Directorate of National Accounts (document not recorded)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2022-Q4",
@@ -2390,7 +2390,7 @@
             "method": "Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back",
             "source": "COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           }
         ],
         "official": false,
@@ -2421,7 +2421,7 @@
               "gdp.nominal",
               "gdp.nominal_oil"
             ],
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           }
         ],
         "official": false,
@@ -2449,7 +2449,7 @@
             "method": "Typed in from COSIT quarterly national accounts; the source document is not archived",
             "source": "COSIT Directorate of National Accounts (document not recorded)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2020-Q1",
@@ -2459,7 +2459,7 @@
             "method": "Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back",
             "source": "COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2021-Q3",
@@ -2469,7 +2469,7 @@
             "method": "Typed in from COSIT quarterly national accounts; the source document is not archived",
             "source": "COSIT Directorate of National Accounts (document not recorded)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2022-Q1",
@@ -2479,7 +2479,7 @@
             "method": "Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print",
             "source": "COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2022-Q2",
@@ -2489,7 +2489,7 @@
             "method": "Typed in from COSIT quarterly national accounts; the source document is not archived",
             "source": "COSIT Directorate of National Accounts (document not recorded)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2022-Q4",
@@ -2499,7 +2499,7 @@
             "method": "Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print",
             "source": "COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2023-Q3",
@@ -2509,17 +2509,17 @@
             "method": "Typed in from COSIT quarterly national accounts; the source document is not archived",
             "source": "COSIT Directorate of National Accounts (document not recorded)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2023-Q4",
             "to": "open",
             "class": "observed",
             "official": true,
-            "method": "Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print",
+            "method": "Read from archived COSIT documents (workbooks, early-warning reports and the 2025 preliminary quarterly estimates); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back, except 2025-Q1 and 2025-Q2, which the 2025 report prints only as an image and were read by eye; for the quarters taken from the early-warning reports, total GDP minus the non-oil GDP they print",
             "source": "COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           }
         ],
         "official": false,
@@ -2547,7 +2547,7 @@
             "method": "Typed in from COSIT quarterly national accounts; the source document is not archived",
             "source": "COSIT Directorate of National Accounts (document not recorded)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2020-Q1",
@@ -2557,7 +2557,7 @@
             "method": "Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back",
             "source": "COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2021-Q3",
@@ -2567,7 +2567,7 @@
             "method": "Typed in from COSIT quarterly national accounts; the source document is not archived",
             "source": "COSIT Directorate of National Accounts (document not recorded)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2022-Q1",
@@ -2577,7 +2577,7 @@
             "method": "Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back",
             "source": "COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2022-Q2",
@@ -2587,7 +2587,7 @@
             "method": "Typed in from COSIT quarterly national accounts; the source document is not archived",
             "source": "COSIT Directorate of National Accounts (document not recorded)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2022-Q4",
@@ -2597,7 +2597,7 @@
             "method": "Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back",
             "source": "COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           }
         ],
         "official": false,
@@ -2628,7 +2628,7 @@
               "gdp.real",
               "gdp.real_oil"
             ],
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           }
         ],
         "official": false,
@@ -2656,7 +2656,7 @@
             "method": "Typed in from COSIT quarterly national accounts; the source document is not archived",
             "source": "COSIT Directorate of National Accounts (document not recorded)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2020-Q1",
@@ -2666,7 +2666,7 @@
             "method": "Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back",
             "source": "COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2021-Q3",
@@ -2676,7 +2676,7 @@
             "method": "Typed in from COSIT quarterly national accounts; the source document is not archived",
             "source": "COSIT Directorate of National Accounts (document not recorded)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2022-Q1",
@@ -2686,7 +2686,7 @@
             "method": "Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print",
             "source": "COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2022-Q2",
@@ -2696,7 +2696,7 @@
             "method": "Typed in from COSIT quarterly national accounts; the source document is not archived",
             "source": "COSIT Directorate of National Accounts (document not recorded)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           },
           {
             "from": "2022-Q4",
@@ -2706,7 +2706,7 @@
             "method": "Read from archived COSIT documents (workbooks and early-warning reports); each row of the record cites its file and its cell or page, and pipeline/check_cosit_record.py reads it back; for the quarters taken from the reports, total GDP minus the non-oil GDP they print",
             "source": "COSIT Directorate of National Accounts (archived documents under pipeline/raw/cosit/, cited per value)",
             "source_ref": "cosit_national_accounts",
-            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-10-28.csv"
+            "record": "pipeline/raw/transcribed/cosit_gdp_quarterly_2026-11-16.csv"
           }
         ],
         "official": false,
@@ -3753,8 +3753,8 @@
       "profile": "tabular-data-resource",
       "format": "parquet",
       "mediatype": "application/vnd.apache.parquet",
-      "bytes": 6827,
-      "hash": "sha256:6078af3543541f902179d701df5d62941b9909fc3e5f8990411628fcbaa50e90",
+      "bytes": 6878,
+      "hash": "sha256:76cd63dd9fb30efef3a12bb2ff2e5e106ef4e9845f19055c47caed868124ab05",
       "rows": 270,
       "frequency": "quarterly",
       "temporal": {
@@ -3821,7 +3821,7 @@
       "format": "csv",
       "mediatype": "text/csv",
       "bytes": 20630,
-      "hash": "sha256:72a9eadf123745d2dd2a9de5bc17ae5bc09e2e64248e12fe04564d6ec4b7cf06",
+      "hash": "sha256:7ffcfbba388ba538c1a77f2c002756ccfc9fc6fdd9d9b4dc9bfd8ac0fb987625",
       "rows": 270,
       "frequency": "quarterly",
       "temporal": {
@@ -4684,6 +4684,116 @@
         "primaryKey": [
           "date",
           "series_id"
+        ]
+      }
+    },
+    {
+      "name": "gdp_quarterly-history-parquet",
+      "path": "history/gdp_quarterly.parquet",
+      "profile": "tabular-data-resource",
+      "format": "parquet",
+      "mediatype": "application/vnd.apache.parquet",
+      "bytes": 4502,
+      "hash": "sha256:8af4ce070d5d52d037bd6cc263fd917cbe2102de6f4a3469f4a97f1ab3bddf0d",
+      "rows": 8,
+      "description": "Superseded vintages of gdp_quarterly (append-only vintage history)",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "string",
+            "description": "ISO period representation (YYYY-MM-DD daily, YYYY-MM monthly, YYYY-Qn quarterly, YYYY annual)"
+          },
+          {
+            "name": "series_id",
+            "type": "string",
+            "description": "Canonical indicator code in dataset.series format (e.g. money.m2, fiscal.balance)"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Pure numeric float value without formatting, commas, or placeholders"
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "Native unit and scale as published (e.g. BILLION_IQD, MILLION_USD, INDEX)"
+          },
+          {
+            "name": "status_flag",
+            "type": "string",
+            "description": "SDMX observation status: A = normal, P = provisional, B = break, E = estimated, M = missing, U = low reliability (includes hand-transcribed values whose source document is not archived)"
+          },
+          {
+            "name": "realtime_start",
+            "type": "string",
+            "description": "ISO publication/release snapshot date tracking vintage provenance"
+          },
+          {
+            "name": "source_hash",
+            "type": "string",
+            "description": "SHA-256 fingerprint of the raw source file for 100% provenance verification"
+          }
+        ],
+        "primaryKey": [
+          "date",
+          "series_id",
+          "realtime_start"
+        ]
+      }
+    },
+    {
+      "name": "gdp_quarterly-history-csv",
+      "path": "history/gdp_quarterly.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "bytes": 684,
+      "hash": "sha256:c35157ffb987db76dfa6e6eb58087cae478003342abcb12ec4dbd16533311109",
+      "rows": 8,
+      "description": "Superseded vintages of gdp_quarterly (append-only vintage history)",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "string",
+            "description": "ISO period representation (YYYY-MM-DD daily, YYYY-MM monthly, YYYY-Qn quarterly, YYYY annual)"
+          },
+          {
+            "name": "series_id",
+            "type": "string",
+            "description": "Canonical indicator code in dataset.series format (e.g. money.m2, fiscal.balance)"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Pure numeric float value without formatting, commas, or placeholders"
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "Native unit and scale as published (e.g. BILLION_IQD, MILLION_USD, INDEX)"
+          },
+          {
+            "name": "status_flag",
+            "type": "string",
+            "description": "SDMX observation status: A = normal, P = provisional, B = break, E = estimated, M = missing, U = low reliability (includes hand-transcribed values whose source document is not archived)"
+          },
+          {
+            "name": "realtime_start",
+            "type": "string",
+            "description": "ISO publication/release snapshot date tracking vintage provenance"
+          },
+          {
+            "name": "source_hash",
+            "type": "string",
+            "description": "SHA-256 fingerprint of the raw source file for 100% provenance verification"
+          }
+        ],
+        "primaryKey": [
+          "date",
+          "series_id",
+          "realtime_start"
         ]
       }
     }

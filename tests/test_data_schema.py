@@ -125,7 +125,8 @@ def test_production_observation_count_matches_release(garden_tables):
     """Production has the release's row count: the release was exported from it and nothing was published since."""
     total = sum(len(df) for df in garden_tables.values())
     descriptor = json.loads((RELEASE_DIR / "datapackage.json").read_text(encoding="utf-8"))
-    declared = sum(r["rows"] for r in descriptor["resources"] if r["path"].endswith(".parquet"))
+    declared = sum(r["rows"] for r in descriptor["resources"]
+                   if r["path"].endswith(".parquet") and not r["path"].startswith("history/"))
     assert total == 25386
     assert total == declared
 

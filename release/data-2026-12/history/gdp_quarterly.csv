@@ -1,0 +1,9 @@
+date,series_id,value,unit,status_flag,realtime_start,source_hash
+2025-Q1,gdp.nominal,82335703.0,MILLION_IQD,P,2026-10-28,b93bb1dd9c081a2a
+2025-Q1,gdp.nominal_nonoil,51672313.0,MILLION_IQD,P,2026-10-28,b93bb1dd9c081a2a
+2025-Q1,gdp.nominal_oil,30663390.0,MILLION_IQD,P,2026-10-28,b93bb1dd9c081a2a
+2025-Q2,gdp.nominal,82673353.0,MILLION_IQD,P,2026-10-28,b93bb1dd9c081a2a
+2025-Q2,gdp.nominal_nonoil,56054879.0,MILLION_IQD,P,2026-10-28,b93bb1dd9c081a2a
+2025-Q2,gdp.nominal_oil,26618474.0,MILLION_IQD,P,2026-10-28,b93bb1dd9c081a2a
+2025-Q3,gdp.nominal,84047446.0,MILLION_IQD,P,2026-10-28,b93bb1dd9c081a2a
+2025-Q3,gdp.nominal_oil,28830618.0,MILLION_IQD,P,2026-10-28,b93bb1dd9c081a2a

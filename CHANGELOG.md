@@ -5,6 +5,21 @@ All notable changes to `iraqdata` are documented here. The format follows
 [Semantic Versioning](https://semver.org/). Data releases are dated separately
 (e.g. `data-2026-10`) and record the code version that built them.
 
+## [Unreleased]
+
+### Data
+
+- Data release `data-2026-12`: 2025 GDP at current prices from the CSGIS 2025 preliminary quarterly
+  estimates (`pipeline/raw/cosit/`, record `cosit_gdp_quarterly_2026-11-16.csv`). GDP 2025-Q2 is revised
+  from 82,673,353 to 82,102,269.6 million IQD and oil GDP 2025-Q1 from 30,663,390 to 30,663,490; the
+  other changes are rounding. Constant-price values are unchanged. The superseded values ship in the
+  release's `history/` folder, so `as_of` returns them.
+
+### Changed
+
+- `pipeline/check_cosit_record.py` finds a number that a PDF's text splits with stray spaces, and counts
+  a value the PDF draws only as an image (marked "read from the page image") apart, never as checked.
+
 ## [1.1.0] - 2026-11-16
 
 ### Data

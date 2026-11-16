@@ -58,7 +58,8 @@ def test_every_citation_agrees_with_its_document(result):
     counts, problems = result
     assert problems == []
     assert counts.get("unchecked", 0) == 0          # no scanned number stands without another document printing it
-    assert counts["cell"] >= 32 and counts["page"] >= 47 and counts["corroborated"] >= 4
+    assert counts["cell"] >= 32 and counts["page"] >= 45 and counts["corroborated"] >= 4
+    assert counts.get("image", 0) == 2              # 2025-Q1 and Q2 oil, which the 2025 report prints only as an image
 
 
 def test_the_quarters_without_an_archived_document_are_the_ones_the_catalog_names():

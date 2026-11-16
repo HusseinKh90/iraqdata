@@ -40,7 +40,7 @@ def applied(tmp_path_factory):
 
 def test_every_table_reports_no_change(applied):
     _, _, report = applied
-    assert report["vintage"] == "2026-11-12"  # the newest dated input (the CBI bulletin of that day)
+    assert report["vintage"] == "2026-11-16"  # the newest dated input (the CSGIS GDP record of that day)
     assert len(report["tables"]) == 13
     for table, info in report["tables"].items():
         assert (info["changed"], info["added"], info["revised"], info["missing"]) == (False, [], [], []), table
@@ -76,8 +76,8 @@ def _export(tmp_path, history_dir):
     return out
 
 
-def test_export_without_history_matches_todays_file_list(tmp_path):
-    out = _export(tmp_path, tmp_path / "no_history")
+def test_export_matches_todays_file_list(tmp_path):
+    out = _export(tmp_path, GARDEN_DIR.parent / "history")    # the production history ships with the release
     released = [p.name for p in RELEASE_DIR.iterdir()]
     assert sorted(p.name for p in out.iterdir()) == sorted(released)
     assert export_release.RELEASE_ASSETS in released
